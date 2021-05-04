@@ -4767,6 +4767,7 @@ GameObject:
   - component: {fileID: 2382092067742610784}
   - component: {fileID: 2382092067742610789}
   - component: {fileID: 1611380675}
+  - component: {fileID: -5131791772391222121}
   m_Layer: 8
   m_Name: plataforma
   m_TagString: plataforma
@@ -4896,3 +4897,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41feb21f7d0d1264ba948553e46d19a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &-5131791772391222121
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2382092067742610785}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

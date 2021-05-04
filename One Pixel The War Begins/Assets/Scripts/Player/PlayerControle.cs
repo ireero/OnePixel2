@@ -40,6 +40,7 @@ public class PlayerControle : MonoBehaviour {
    void Start () {
       player_collider = GetComponent<BoxCollider2D>();
       podePor = true;
+      pode_mexer = true;
       caiu = false;
       anim = GetComponent<Animator>();
       rb2d = GetComponent<Rigidbody2D>();

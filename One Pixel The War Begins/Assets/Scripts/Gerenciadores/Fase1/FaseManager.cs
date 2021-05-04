@@ -16,7 +16,7 @@ public class FaseManager : MonoBehaviour
     public Transform spawn_6;
 
     public float contagem;
-    public int valor_alet;
+    private int valor_alet;
     public static bool podeSpawn;
 
     // Start is called before the first frame update
