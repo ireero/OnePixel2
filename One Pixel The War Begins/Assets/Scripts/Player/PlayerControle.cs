@@ -149,7 +149,7 @@ public class PlayerControle : MonoBehaviour {
 
    private void OnCollisionEnter2D(Collision2D other) {
       if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") 
-      || other.gameObject.CompareTag("super_bullet_inimiga") || other.gameObject.CompareTag("bullet_inimiga")) {
+      || other.gameObject.CompareTag("super_bullet_inimiga")) {
          Camera.tremer = true;
          pode_mexer = false;
          anim.SetBool("morreu", true);

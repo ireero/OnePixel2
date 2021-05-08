@@ -29,6 +29,8 @@ public class Chefao032 : MonoBehaviour
 
     public Transform posicao_inicial;
 
+    public static int vida_chefao = 3;
+
     void Start()
     {
         contador = 0;
@@ -97,6 +99,12 @@ public class Chefao032 : MonoBehaviour
                     umaVez = false;
                 }
                 break;       
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.CompareTag("bullet") && !rodar) {
+            vida_chefao--;
         }
     }
 

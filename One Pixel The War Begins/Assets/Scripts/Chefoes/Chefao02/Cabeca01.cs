@@ -6,106 +6,91 @@ public class Cabeca01 : MonoBehaviour
 {
     public GameObject Bullet;
     public Transform Spawn_Bullet;
-    private Animator anim;
-    private Rigidbody2D corpo;
-    private PolygonCollider2D collider;
 
     private float contador;
-    private float contDano;
     public static float vida_cabeca;
-    private bool podeAtirar;
 
-    public static bool morto;
-    public static bool renascer;
-    
-    private SpriteRenderer sr;
+    Cabecas cabeca1 = new Cabecas();
+    public static bool locaute;
+    public static bool podeRenascer;
 
-    private float tempoDeTiro;
-
-    private bool renascido;
+    private float cont_dano;
 
     // Start is called before the first frame update
     void Start()
     {
-        renascido = false;
-        tempoDeTiro = 1.5f;
-        renascer = false;
-        morto = false;
-        podeAtirar = true;
+        cabeca1.renascido = false;
+        cabeca1.tomou_dano = false;
+        cont_dano = 0;
+        locaute = false;
+        podeRenascer = false;
+        cabeca1.tempoDeTiro = 1.5f;
+        cabeca1.podeAtirar = true;
         PlayerControle.pode_mexer = true;
         PlayerControle.podeAtirar = true;
-        vida_cabeca = 50f;
+        cabeca1.vida = 50f;
         contador = 0;
-        contDano = 0;
-        collider = GetComponent<PolygonCollider2D>();
-        corpo = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
+        cabeca1.collider = GetComponent<PolygonCollider2D>();
+        cabeca1.corpo = GetComponent<Rigidbody2D>();
+        cabeca1.anim = GetComponent<Animator>();
+        cabeca1.sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(renascer && morto) {
-            anim.SetBool("renascer", true);
-            sr.color = Color.red;
-            tempoDeTiro = 1f;
-            StartCoroutine("renascerIdle");
+        if(podeRenascer) {
+           StartCoroutine("renascerIdle");
+           cabeca1.Renascer();
         }
 
+        vida_cabeca = cabeca1.vida;
+
         contador += Time.deltaTime;
-        if(contador >= tempoDeTiro && podeAtirar) {
+        if(contador >= cabeca1.tempoDeTiro && cabeca1.podeAtirar && !locaute) {
             Instantiate(Bullet, Spawn_Bullet.position, Spawn_Bullet.rotation);
             contador = 0;
         }
 
-        if(vida_cabeca == 40 || vida_cabeca == 30 || vida_cabeca == 20 || vida_cabeca == 10) {
-            anim.SetBool("tomou_dano", true);
-            podeAtirar = false;
-            StartCoroutine("voltarDoDano");
+        cabeca1.TomarDano(cont_dano);
+        if(cabeca1.tomou_dano) {
+            cont_dano += Time.deltaTime;
+            if(cont_dano > 1.2f) {
+                cont_dano = 0;
+                cabeca1.podeAtirar = true;
+                cabeca1.anim.SetBool("tomou_dano", false);
+            }
         }
 
-        if(vida_cabeca == 25 && !renascido) {
-            morto = true;
-            podeAtirar = false;
-            anim.SetBool("locaute", true);
+        if(cabeca1.vida == 25 && !locaute && !cabeca1.renascido) {
+            cabeca1.Locaute();
+            locaute = true;
         }
 
-        if(vida_cabeca <= 0) {
-            collider.isTrigger = true;
-            podeAtirar = false;
-            sr.color = Color.white;
-            anim.SetBool("morreu", true);
-            StartCoroutine("morrer");
+        if(cabeca1.vida <= 0) {
+            cabeca1.Morrer();
+            FaseManager2.cabeca1_morta = true;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
-            if(!renascer && !morto) {
-                vida_cabeca--;
+            if(!podeRenascer && !locaute) {
+                cabeca1.vida--;
             }
         } else if(other.gameObject.CompareTag("Chefoes")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
-    IEnumerator voltarDoDano() {
-        yield return new WaitForSeconds(1.2f);
-        if((vida_cabeca != 40) && (vida_cabeca != 30)) {
-            anim.SetBool("tomou_dano", false);
-            podeAtirar = true;
-        }
-    }
-
     IEnumerator renascerIdle() {
-        yield return new WaitForSeconds(4.5f);
-        renascido = true;
-        podeAtirar = true;
-        anim.SetBool("idle_metade", true);
-        renascer = false;
-        morto = false;
+        yield return new WaitForSeconds(4.4f);
+        cabeca1.renascido = true;
+        cabeca1.tempoDeTiro = 1f;
+        podeRenascer = false;
+        cabeca1.podeAtirar = true;
+        cabeca1.anim.SetBool("idle_metade", true);
     }
 
     IEnumerator morrer() {

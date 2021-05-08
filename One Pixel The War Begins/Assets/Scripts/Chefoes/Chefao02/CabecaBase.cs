@@ -72,6 +72,8 @@ public class CabecaBase : MonoBehaviour
         }
 
         if(vida_cabeca <= 0) {
+            FaseManager2.cabeca4_morta = true;
+            morto = true;
             podeAtirar = false;
             sr.color = Color.white;
             SuperTiroChefao.modoHard = false;
@@ -114,7 +116,7 @@ public class CabecaBase : MonoBehaviour
     }
 
     IEnumerator renascerIdle() {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5.8f);
         renascido = true;
         podeAtirar = true;
         anim.SetBool("idle_metade", true);
