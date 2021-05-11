@@ -20,16 +20,16 @@ public class FaseManager3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        vida_chefao = Chefao032.vida_chefao;
+        vida_chefao = Chefao03.vida_chefao;
         switch(vida_chefao) {
             case 2:
-                Destroy(BarraVida1);
+                Destroy(BarraVida1.gameObject);
                 break;
             case 1:
-                Destroy(BarraVida2);
+                Destroy(BarraVida2.gameObject);
                 break;
             case 0:
-                Destroy(BarraVida3);
+                Destroy(BarraVida3.gameObject);
                 break;        
         }
     }

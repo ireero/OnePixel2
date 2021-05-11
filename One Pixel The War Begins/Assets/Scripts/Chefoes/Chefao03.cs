@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chefao032 : MonoBehaviour
+public class Chefao03 : MonoBehaviour
 {
     public Transform[] pontosIdaCima = new Transform[17];
     public Transform[] pontosIdaBaixo = new Transform[17];
     public Transform[] pontosIdaEsquerda = new Transform[11];
     public Transform[] pontosIdaDireita = new Transform[11];
+
+    public GameObject particulas_de_cura;
     
     private Animator anim;
 
@@ -46,7 +48,7 @@ public class Chefao032 : MonoBehaviour
     void Update()
     {
         contador += Time.deltaTime;
-        if(contador >= 3f) {
+        if(contador >= 4f && contador < 13f) {
             StartCoroutine("transformar");
             if(rodar) {
                 transform.Rotate(new Vector3(x: 0, y: 0, z: potenciaRot));
@@ -58,15 +60,26 @@ public class Chefao032 : MonoBehaviour
         }
     }
 
-        if(contador >= 12f) {
-            StartCoroutine("reiniciarContador");
+    sortearValor();
+
+        if(contador >= 10.5f && contador < 13f) {
+            anim.SetBool("sobrecarregando", true);
+        }
+
+        if(contador >= 13f) {
+            rodar = false;
             StartCoroutine("habilitarNovamente");
-            cont = -1;
-            potenciaRot = 0;
-            speed = 10f;
+            cont = 4;
+            potenciaRot = 0f;
+            speed = 8f;
             this.gameObject.transform.rotation = posicao_inicial.rotation;
             collider_quadrado.enabled = true;
+            collider_redondo.enabled = false;
             this.gameObject.transform.position = Vector2.MoveTowards(transform.position, posicao_inicial.position, speed * Time.deltaTime);
+        }
+
+        if(vida_chefao <= 0) {
+            Destroy(this.gameObject);
         }
     }
     public void IrParaPosicao(int i, int lados) {
@@ -109,30 +122,34 @@ public class Chefao032 : MonoBehaviour
     }
 
     IEnumerator transformar() {
+        particulas_de_cura.SetActive(false);
+        yield return new WaitForSeconds(1.2f);
         anim.SetBool("transformando", true);
-        sortearValor();
         yield return new WaitForSeconds(1f);
-        collider_quadrado.enabled = false;
+        potenciaRot = 6f;
         rodar = true;
+        collider_quadrado.enabled = false;
+        collider_redondo.enabled = true;
     }
 
     public void sortearValor() {
         if((cont == 1 || cont == 3) && !umaVez) {
-            valor_alet = Random.Range(1, 17);
+            valor_alet = Random.Range(0, 17);
         } else if((cont == 2 || cont == 4) && !umaVez) {
-            valor_alet = Random.Range(1, 11);
+            valor_alet = Random.Range(0, 11);
         }
         umaVez = true;
     }
 
-    IEnumerator reiniciarContador() {
-        yield return new WaitForSeconds(3.5f);
-        contador = 0;
-    }
-
     IEnumerator habilitarNovamente() {
-        yield return new WaitForSeconds(6.5f);
-        valor_alet = Random.Range(1, 11);
+        particulas_de_cura.SetActive(true);
+        anim.SetBool("sobrecarregando", false);
+        anim.SetBool("recarregando", true);
+        valor_alet = Random.Range(0, 11);
+        yield return new WaitForSeconds(4.1f);
+        anim.SetBool("recarregando", false);
+        anim.SetBool("transformando", false);
+        contador = 3.95f;
         cont = 4;
     }
 }
