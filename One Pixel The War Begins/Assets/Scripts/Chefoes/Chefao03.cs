@@ -118,6 +118,9 @@ public class Chefao03 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet") && !rodar) {
             vida_chefao--;
+            anim.SetBool("tomou_dano", true);
+            collider_quadrado.isTrigger = true;
+            StartCoroutine("tomouDano");
         }
     }
 
@@ -151,5 +154,14 @@ public class Chefao03 : MonoBehaviour
         anim.SetBool("transformando", false);
         contador = 3.95f;
         cont = 4;
+    }
+
+    IEnumerator tomouDano() {
+        yield return new WaitForSeconds(1.2f);
+        if(!rodar) {
+            rodar = true;
+        }
+        anim.SetBool("tomou_dano", false);
+        collider_quadrado.isTrigger = false;
     }
 }

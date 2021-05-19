@@ -50,6 +50,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.4222223, y: 1.7777778}
+  m_Size: {x: 0.64, y: 0.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,7 +104,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.6, y: 2}
-    newSize: {x: 1.4222223, y: 1.7777778}
+    newSize: {x: 0.64, y: 0.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -163,7 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67391b5dd576fd54a9597c2f88e6cfeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 100
-  vidaMaxima: 100
-  contagem_danos: 0
   BarraDeVida: {fileID: 0}
+  BarraVidaMaior: {fileID: 0}
