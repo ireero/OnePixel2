@@ -7,8 +7,13 @@ public class FaseManager3 : MonoBehaviour
 {
     // Vidas
     public Image BarraVida1;
+    public Image vidinha1;
+
     public Image BarraVida2;
+    public Image vidinha2;
+
     public Image BarraVida3;
+    public Image vidinha3;
 
     private int vida_chefao;
 
@@ -23,13 +28,17 @@ public class FaseManager3 : MonoBehaviour
         vida_chefao = Chefao03.vida_chefao;
         switch(vida_chefao) {
             case 2:
-                Destroy(BarraVida1.gameObject);
+                vidinha1.enabled = false;
                 break;
             case 1:
-                Destroy(BarraVida2.gameObject);
+                vidinha2.enabled = false;
                 break;
             case 0:
-                Destroy(BarraVida3.gameObject);
+                vidinha1.enabled = true;
+                vidinha2.enabled = true;
+                BarraVida1.color = Color.red;
+                BarraVida2.color = Color.red;
+                BarraVida3.color = Color.red;
                 break;        
         }
     }

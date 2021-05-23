@@ -33,6 +33,10 @@ public class Chefao03 : MonoBehaviour
 
     public static int vida_chefao = 3;
 
+    private bool meia_vida = false;
+
+    private SpriteRenderer sr;
+
     void Start()
     {
         contador = 0;
@@ -42,6 +46,7 @@ public class Chefao03 : MonoBehaviour
         collider_quadrado = GetComponent<BoxCollider2D>();
         collider_redondo = GetComponent<CircleCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -54,9 +59,9 @@ public class Chefao03 : MonoBehaviour
                 transform.Rotate(new Vector3(x: 0, y: 0, z: potenciaRot));
                 potenciaRot += 0.005f;
                 speed += 0.005f;
-            if(corpo.velocity.y == 0f && (cont == 1 || cont == 2 || cont == 3 || cont == 4)) {
-                IrParaPosicao(valor_alet, cont);
-            }
+                if(corpo.velocity.y == 0f && (cont == 1 || cont == 2 || cont == 3 || cont == 4)) {
+                    IrParaPosicao(valor_alet, cont);
+                }
         }
     }
 
@@ -71,15 +76,24 @@ public class Chefao03 : MonoBehaviour
             StartCoroutine("habilitarNovamente");
             cont = 4;
             potenciaRot = 0f;
-            speed = 8f;
+            if(meia_vida) {
+                speed = 10f;
+            } else {
+                speed = 8f;
+            }
             this.gameObject.transform.rotation = posicao_inicial.rotation;
             collider_quadrado.enabled = true;
             collider_redondo.enabled = false;
             this.gameObject.transform.position = Vector2.MoveTowards(transform.position, posicao_inicial.position, speed * Time.deltaTime);
         }
 
-        if(vida_chefao <= 0) {
-            Destroy(this.gameObject);
+        if(vida_chefao == 0 && !meia_vida) {
+            sr.color = Color.red;
+            anim.SetBool("meia_vida", true);
+            rodar = false;
+            contador = 0;
+            meia_vida = true;
+            StartCoroutine("metadeDaVida");
         }
     }
     public void IrParaPosicao(int i, int lados) {
@@ -149,7 +163,7 @@ public class Chefao03 : MonoBehaviour
         anim.SetBool("sobrecarregando", false);
         anim.SetBool("recarregando", true);
         valor_alet = Random.Range(0, 11);
-        yield return new WaitForSeconds(4.1f);
+        yield return new WaitForSeconds(2.8f);
         anim.SetBool("recarregando", false);
         anim.SetBool("transformando", false);
         contador = 3.95f;
@@ -157,11 +171,16 @@ public class Chefao03 : MonoBehaviour
     }
 
     IEnumerator tomouDano() {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1f);
         if(!rodar) {
-            rodar = true;
+            StartCoroutine("transformar");
         }
         anim.SetBool("tomou_dano", false);
         collider_quadrado.isTrigger = false;
+    }
+
+    IEnumerator metadeDaVida() {
+        yield return new WaitForSeconds(1.2f);
+        anim.SetBool("meia_vida", false);
     }
 }
