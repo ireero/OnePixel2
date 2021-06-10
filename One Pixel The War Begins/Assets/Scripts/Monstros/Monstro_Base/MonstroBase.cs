@@ -24,7 +24,7 @@ public class MonstroBase : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("chao") || Chefao01.vivo == false) {
+        if(other.gameObject.CompareTag("chao") || FaseManager.chefao_vivo == false) {
             anim.SetBool("morte_caiu", true);
             Morte();
             Destroy(this.gameObject, 2f);

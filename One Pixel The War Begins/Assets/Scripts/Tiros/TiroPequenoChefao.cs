@@ -39,7 +39,8 @@ public class TiroPequenoChefao : MonoBehaviour
             Destroy(this.gameObject);
         } else if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("plataforma")) {
             Morrer();
-        } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga")) {
+        } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga") || 
+            other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("moeda_rir")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }

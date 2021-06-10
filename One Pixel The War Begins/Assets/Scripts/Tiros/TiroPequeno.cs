@@ -33,7 +33,7 @@ public class TiroPequeno : MonoBehaviour
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || 
         other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("super_bullet_inimiga")) {
             Morrer();
-        } else if(other.gameObject.CompareTag("plataforma")) {
+        } else if(other.gameObject.CompareTag("plataforma") || other.gameObject.CompareTag("moeda_rir")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }

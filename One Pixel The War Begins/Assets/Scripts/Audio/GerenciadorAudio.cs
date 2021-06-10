@@ -32,4 +32,5 @@ public class GerenciadorAudio : MonoBehaviour
         som_morte.clip = clipAudio;
         som_morte.Play();
     }
+
 }

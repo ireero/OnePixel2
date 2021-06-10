@@ -13,6 +13,8 @@ TagManager:
   - monstro
   - bullet_inimiga
   - super_bullet_inimiga
+  - moeda_rir
+  - monstro_base
   layers:
   - Default
   - TransparentFX

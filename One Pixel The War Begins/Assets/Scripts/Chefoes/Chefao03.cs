@@ -28,6 +28,7 @@ public class Chefao03 : MonoBehaviour
     public int cont;
 
     private bool umaVez = false;
+    private bool umaVez2 = false;
 
     public Transform posicao_inicial;
 
@@ -37,8 +38,15 @@ public class Chefao03 : MonoBehaviour
 
     private SpriteRenderer sr;
 
+    private bool morreu;
+    public bool podeTomarDano;
+
+    public AudioSource som_batida;
+
     void Start()
     {
+        podeTomarDano = true;
+        morreu = false;
         contador = 0;
         cont = 4;
         rodar = false;
@@ -53,27 +61,37 @@ public class Chefao03 : MonoBehaviour
     void Update()
     {
         contador += Time.deltaTime;
-        if(contador >= 4f && contador < 13f) {
+        if(contador >= 4f && contador < 8 && (!morreu)) {
+            particulas_de_cura.SetActive(false);
+            anim.SetBool("transformando", true);
+            podeTomarDano = false;
             StartCoroutine("transformar");
-            if(rodar) {
+        }
+            
+            if(rodar && !morreu) {
                 transform.Rotate(new Vector3(x: 0, y: 0, z: potenciaRot));
                 potenciaRot += 0.005f;
                 speed += 0.005f;
                 if(corpo.velocity.y == 0f && (cont == 1 || cont == 2 || cont == 3 || cont == 4)) {
                     IrParaPosicao(valor_alet, cont);
                 }
-        }
     }
 
     sortearValor();
 
         if(contador >= 10.5f && contador < 13f) {
+            umaVez2 = false;
             anim.SetBool("sobrecarregando", true);
         }
 
         if(contador >= 13f) {
+            anim.SetBool("recarregando", true);
+            podeTomarDano = false;
             rodar = false;
-            StartCoroutine("habilitarNovamente");
+            if(!umaVez2) {
+                StartCoroutine("habilitarNovamente");
+                umaVez2 = true;
+            }
             cont = 4;
             potenciaRot = 0f;
             if(meia_vida) {
@@ -88,10 +106,12 @@ public class Chefao03 : MonoBehaviour
         }
 
         if(vida_chefao == 0 && !meia_vida) {
+            podeTomarDano = false;
             sr.color = Color.red;
             anim.SetBool("meia_vida", true);
+            anim.SetBool("tomou_dano", false);
             rodar = false;
-            contador = 0;
+            contador = 1f;
             meia_vida = true;
             StartCoroutine("metadeDaVida");
         }
@@ -101,6 +121,8 @@ public class Chefao03 : MonoBehaviour
             case 1: // cima
                 this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaCima[i].position, speed * Time.deltaTime);
                 if(transform.position.x <= pontosIdaCima[i].position.x) {
+                    som_batida.Play();
+                    Camera.tremer_chao = true;
                     cont = 2;
                     umaVez = false;
                 }
@@ -108,6 +130,7 @@ public class Chefao03 : MonoBehaviour
             case 2: // esquerda
                 this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaEsquerda[i].position, speed * Time.deltaTime);
                 if(transform.position.x <= pontosIdaEsquerda[i].position.x) {
+                    som_batida.Play();
                     cont = 3;
                     umaVez = false;
                 }
@@ -115,6 +138,8 @@ public class Chefao03 : MonoBehaviour
             case 3: // baixo
                 this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaBaixo[i].position, speed * Time.deltaTime);
                 if(transform.position.x >= pontosIdaBaixo[i].position.x) {
+                    som_batida.Play();
+                    Camera.tremer_chao = true;
                     cont = 4;
                     umaVez = false;
                 }
@@ -122,6 +147,7 @@ public class Chefao03 : MonoBehaviour
             case 4: // direita
                 this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaDireita[i].position, speed * Time.deltaTime);
                 if(transform.position.x >= pontosIdaDireita[i].position.x) {
+                    som_batida.Play();
                     cont = 1;
                     umaVez = false;
                 }
@@ -130,19 +156,27 @@ public class Chefao03 : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("bullet") && !rodar) {
+        if(other.gameObject.CompareTag("bullet") && podeTomarDano) {
+            podeTomarDano = false;
             vida_chefao--;
-            anim.SetBool("tomou_dano", true);
-            collider_quadrado.isTrigger = true;
-            StartCoroutine("tomouDano");
+            if(vida_chefao <= -3) {
+                corpo.bodyType = RigidbodyType2D.Static;
+                collider_quadrado.isTrigger = true;
+                collider_redondo.isTrigger = true;
+                Destroy(particulas_de_cura);
+                morreu = true;
+                anim.SetBool("morreu", true);
+                StartCoroutine("morrer");
+            } else {
+                anim.SetBool("transformando", false);
+                anim.SetBool("tomou_dano", true);
+            }
         }
     }
 
     IEnumerator transformar() {
-        particulas_de_cura.SetActive(false);
+        anim.SetBool("tomou_dano", false);
         yield return new WaitForSeconds(1.2f);
-        anim.SetBool("transformando", true);
-        yield return new WaitForSeconds(1f);
         potenciaRot = 6f;
         rodar = true;
         collider_quadrado.enabled = false;
@@ -160,27 +194,24 @@ public class Chefao03 : MonoBehaviour
 
     IEnumerator habilitarNovamente() {
         particulas_de_cura.SetActive(true);
-        anim.SetBool("sobrecarregando", false);
-        anim.SetBool("recarregando", true);
-        valor_alet = Random.Range(0, 11);
-        yield return new WaitForSeconds(2.8f);
-        anim.SetBool("recarregando", false);
-        anim.SetBool("transformando", false);
-        contador = 3.95f;
-        cont = 4;
-    }
-
-    IEnumerator tomouDano() {
-        yield return new WaitForSeconds(1f);
-        if(!rodar) {
-            StartCoroutine("transformar");
-        }
-        anim.SetBool("tomou_dano", false);
-        collider_quadrado.isTrigger = false;
+        yield return new WaitForSeconds(0.8f);
+            anim.SetBool("sobrecarregando", false);
+            valor_alet = Random.Range(0, 11);
+        yield return new WaitForSeconds(2.6f);
+            anim.SetBool("recarregando", false);
+            anim.SetBool("transformando", false);
+            contador = 3f;
+            cont = 4;
+            podeTomarDano = true;
     }
 
     IEnumerator metadeDaVida() {
         yield return new WaitForSeconds(1.2f);
         anim.SetBool("meia_vida", false);
+    }
+
+    IEnumerator morrer() {
+        yield return new WaitForSeconds(5f);
+        Destroy(this.gameObject);
     }
 }

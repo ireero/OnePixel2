@@ -133,6 +133,14 @@ public class PlayerControle : MonoBehaviour {
       anim.SetBool("levantou", false);
    }
 
+   IEnumerator pararDeRir() {
+      yield return new WaitForSeconds(2f);
+      player_collider.isTrigger = false;
+      rb2d.bodyType = RigidbodyType2D.Dynamic;
+      anim.SetBool("rir", false);
+      anim.SetBool("idle", true);
+   }
+
    void Fire() {
 
       GerenciadorAudio.inst.PlayTiro(som_tiro);
@@ -148,14 +156,20 @@ public class PlayerControle : MonoBehaviour {
 	}
 
    private void OnCollisionEnter2D(Collision2D other) {
-      if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") 
-      || other.gameObject.CompareTag("super_bullet_inimiga")) {
+      if(other.gameObject.CompareTag("monstro") 
+      || other.gameObject.CompareTag("super_bullet_inimiga") || other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("bullet_inimiga")) {
+         GerenciadorAudio.inst.PlayMorte(som_morte);
          Camera.tremer = true;
          pode_mexer = false;
          anim.SetBool("morreu", true);
          player_collider.isTrigger = true;
          rb2d.bodyType = RigidbodyType2D.Static;
          Destroy(this.gameObject, 3.2f);
+      } else if(other.gameObject.CompareTag("moeda_rir")) {
+         player_collider.isTrigger = true;
+         rb2d.bodyType = RigidbodyType2D.Static;
+         anim.SetBool("rir", true);
+         StartCoroutine("pararDeRir");
       }
    }
 

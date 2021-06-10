@@ -39,6 +39,18 @@ public class FaseManager3 : MonoBehaviour
                 BarraVida1.color = Color.red;
                 BarraVida2.color = Color.red;
                 BarraVida3.color = Color.red;
+                break;  
+            case -1:
+                Destroy(BarraVida1);
+                Destroy(vidinha1);
+                break;
+            case -2:
+                Destroy(BarraVida2);
+                Destroy(vidinha2);
+                break;
+            case -3:
+                Destroy(BarraVida3);
+                Destroy(vidinha3);
                 break;        
         }
     }

@@ -13,8 +13,7 @@ public class Chefao01 : MonoBehaviour
 
     private float velocidade;
 
-    private float vida;
-    private float vidaMaxima = 100;
+    public static float vida;
 
     private bool atacando;
     private bool atacou;
@@ -26,21 +25,16 @@ public class Chefao01 : MonoBehaviour
     private Rigidbody2D corpo_vilao;
 
     public static bool metade_vida;
-    public static bool vivo;
 
     private int contagem_danos;
-
-    public Image BarraDeVida;
-    public Image BarraVidaMaior;
+    public static bool morrer_de_vez;
 
     // Start is called before the first frame update
     void Start()
     {
-        velocidade = 10f;
-        vivo = true;
+        morrer_de_vez = false;
         metade_vida = false;
-        PlayerControle.podeAtirar = false;
-        PlayerControle.pode_mexer = false;
+        velocidade = 10f;
         vida = 100f;
         contagem_danos = 0;
         bateu_chao = false;
@@ -57,8 +51,6 @@ public class Chefao01 : MonoBehaviour
     void Update()
     {
 
-        BarraVida();
-
         if(contagem_danos == 10) {
             contagem_danos = 0;
             anim.SetBool("tomou_dano", true);
@@ -67,7 +59,10 @@ public class Chefao01 : MonoBehaviour
         }
 
         if(vida <= 50f && vida > 0) {
-            BarraVidaMaior.color = Color.red;
+            if(vida == 50) {
+                anim.SetBool("meia_vida", true);
+                StartCoroutine("meiaVida");
+            }
             sr.color = Color.red;
             velocidade = 15f;
             metade_vida = true;
@@ -92,29 +87,33 @@ public class Chefao01 : MonoBehaviour
                }
             }
         } else {
-            if(contador >= 2.5f && !atacou) {
+            if(contador >= 1.5f && !atacou) {
                 anim.SetBool("atacar", true);
                 anim.SetBool("idle", false);
-                if(contador >= 3.5f && !atacou) {
+                if(contador >= 2.9f && !atacou) {
                     transform.Translate(new Vector2(-velocidade * Time.deltaTime, 0));
                     atacando = true;
                 }
-            } else if(contador >= 2.5f && atacou) {
+            } else if(contador >= 1.5f && atacou) {
                 anim.SetBool("atacar", true);
                 anim.SetBool("idle", false);
-               if(contador>= 3.5f && atacou) {
+               if(contador>= 2.9f && atacou) {
                     transform.Translate(new Vector2(velocidade * Time.deltaTime, 0));
                     atacando = false;
                }
             }
         }
 
-            if(vida <= 0) {
+        if(morrer_de_vez) {
+            anim.SetBool("morreu", false);
+            StartCoroutine("morrerDeVez");
+        }
+
+            if(vida <= 0 && vida > -10) {
+                vida = -10;
                 sr.color = Color.white;
-                Destroy(BarraVidaMaior);
                 FaseManager.podeSpawn = false;
                 velocidade = 0;
-                vivo = false;
                 corpo_vilao.bodyType = RigidbodyType2D.Static;
                 collider.isTrigger = true;  
                 anim.SetBool("morreu", true);
@@ -127,11 +126,12 @@ public class Chefao01 : MonoBehaviour
         if(other.gameObject.CompareTag("bullet")) {
             vida--;
             contagem_danos++;
-        } else if(other.gameObject.CompareTag("plataforma") || other.gameObject.CompareTag("monstro")) {
+        } else if(other.gameObject.CompareTag("plataforma") || other.gameObject.CompareTag("monstro") || 
+        other.gameObject.CompareTag("monstro_base")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
-        if(other.gameObject.CompareTag("chao") && bateu_chao == false) {
+        if(other.gameObject.CompareTag("chao") && !bateu_chao) {
             Camera.tremer_chao = true;
             bateu_chao = true;
             anim.SetBool("apareceu", true);
@@ -157,6 +157,7 @@ public class Chefao01 : MonoBehaviour
 
     IEnumerator esperaAnimAparecer() {
         yield return new WaitForSeconds(1f);
+        FaseManager.podeSpawn = true;
         anim.SetBool("idle", true);
         anim.SetBool("apareceu", false);
         PlayerControle.pode_mexer = true;
@@ -169,12 +170,19 @@ public class Chefao01 : MonoBehaviour
     }
 
     IEnumerator esperarMorte() {
-        velocidade = 0;
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(3.8f);
+        FaseManager.contagem_falas = 6;
+        FaseManager.chefao_vivo = false;
+    }
+
+    IEnumerator morrerDeVez() {
+        yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
     }
 
-    private void BarraVida() {
-        BarraDeVida.fillAmount = vida / vidaMaxima; 
+    IEnumerator meiaVida() {
+        yield return new WaitForSeconds(1.2f);
+        anim.SetBool("idle", true);
+        anim.SetBool("meia_vida", false);
     }
 }

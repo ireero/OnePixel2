@@ -38,7 +38,7 @@ public class Camera : MonoBehaviour
     }
 
     IEnumerator voltarIdleChao() {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         anim.SetBool("chao_tremeu", false);
         tremer_chao = false;
     }
