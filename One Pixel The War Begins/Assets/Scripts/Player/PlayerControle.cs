@@ -41,6 +41,7 @@ public class PlayerControle : MonoBehaviour {
       player_collider = GetComponent<BoxCollider2D>();
       podePor = true;
       pode_mexer = true;
+      podeAtirar = true;
       caiu = false;
       anim = GetComponent<Animator>();
       rb2d = GetComponent<Rigidbody2D>();
@@ -156,8 +157,7 @@ public class PlayerControle : MonoBehaviour {
 	}
 
    private void OnCollisionEnter2D(Collision2D other) {
-      if(other.gameObject.CompareTag("monstro") 
-      || other.gameObject.CompareTag("super_bullet_inimiga") || other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("bullet_inimiga")) {
+      if(other.gameObject.CompareTag("monstro") ) {
          GerenciadorAudio.inst.PlayMorte(som_morte);
          Camera.tremer = true;
          pode_mexer = false;

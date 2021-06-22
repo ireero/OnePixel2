@@ -31,7 +31,7 @@ public class CabecaBase : MonoBehaviour
         tempoDeTiro = 4.5f;
         renascer = false;
         morto = false;
-        podeAtirar = true;
+        podeAtirar = false;
         vida_cabeca = 50f;
         contador = 0;
         collider = GetComponent<BoxCollider2D>();
@@ -43,6 +43,10 @@ public class CabecaBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(FaseManager2.pode_comecar && !morto) {
+            podeAtirar = true;
+        }
 
         if(renascer) {
             anim.SetBool("renascer", true);

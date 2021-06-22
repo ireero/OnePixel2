@@ -60,6 +60,11 @@ public class Chefao03 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(FaseManager3.pode_comecar_3 == false) {
+            contador = 0;
+        }
+
         contador += Time.deltaTime;
         if(contador >= 4f && contador < 8 && (!morreu)) {
             particulas_de_cura.SetActive(false);
@@ -95,7 +100,7 @@ public class Chefao03 : MonoBehaviour
             cont = 4;
             potenciaRot = 0f;
             if(meia_vida) {
-                speed = 10f;
+                speed = 11f;
             } else {
                 speed = 8f;
             }
@@ -106,6 +111,7 @@ public class Chefao03 : MonoBehaviour
         }
 
         if(vida_chefao == 0 && !meia_vida) {
+            FaseManager3.contagem_falas_3 = 9;
             podeTomarDano = false;
             sr.color = Color.red;
             anim.SetBool("meia_vida", true);

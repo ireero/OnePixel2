@@ -25,7 +25,7 @@ public class Cabeca02 : MonoBehaviour
         locaute = false;
         podeRenascer = false;
         cabeca2.tempoDeTiro = 1f;
-        cabeca2.podeAtirar = true;
+        cabeca2.podeAtirar = false;
         cabeca2.vida = 50f;
         contador = 0;
         cabeca2.collider = GetComponent<PolygonCollider2D>();
@@ -37,6 +37,10 @@ public class Cabeca02 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(FaseManager2.pode_comecar && !locaute) {
+            cabeca2.podeAtirar = true;
+        }
 
         if(podeRenascer) {
            StartCoroutine("renascerIdle");
@@ -67,7 +71,9 @@ public class Cabeca02 : MonoBehaviour
         }
 
         if(cabeca2.vida <= 0) {
+            cabeca2.podeAtirar = false;
             cabeca2.Morrer();
+            StartCoroutine("morrer");
             FaseManager2.cabeca2_morta = true;
         }
     }

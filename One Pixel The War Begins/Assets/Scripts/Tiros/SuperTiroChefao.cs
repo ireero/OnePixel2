@@ -35,7 +35,7 @@ public class SuperTiroChefao : MonoBehaviour
         }
 
         if(modoHard) {
-            speed = -1.8f;
+            speed = -2f;
             sr.color = Color.red;
         }
 
@@ -57,7 +57,7 @@ public class SuperTiroChefao : MonoBehaviour
     }
 
     IEnumerator morre() {
-		yield return new WaitForSeconds(2.5f);
+		yield return new WaitForSeconds(3f);
         Destroy(this.gameObject);
 	}
 

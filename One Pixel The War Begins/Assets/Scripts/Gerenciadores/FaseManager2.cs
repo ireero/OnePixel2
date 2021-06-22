@@ -6,6 +6,13 @@ using UnityEngine.UI;
 public class FaseManager2 : MonoBehaviour
 {
 
+    private string[] falas_chefao = {"Vá em bora agora!", "Aproveite em quanto nosso Pai dorme e suma!", "Você vai morrer!", " ", 
+    "Meus filhos morreram porque fui fraco de mais.....", "Meu senhor este castelo é o seu túmulo, VOCÊ VAI MORRER!!!"};
+
+    public Text txtFalas;
+
+    public static int contagem_falas_2;
+
     public static bool cabeca1_morta;
     public static bool cabeca2_morta;
     public static bool cabeca3_morta;
@@ -16,24 +23,76 @@ public class FaseManager2 : MonoBehaviour
     public Image BarraDeVida;
     public Image BarraVidaMaior;
 
+    public Image imagem;
+    public GameObject painel_falas;
+
+    public static bool pode_comecar;
+
+    public Sprite cara_cabeca2;
+    public Sprite cara_cabeca3;
+
+    public Sprite cabeca_base_normal;
+    public Sprite cabeca_base_vingativa;
+
     void Start()
     {
-        
+        pode_comecar = false;
+        contagem_falas_2 = 0;
+        painel_falas.SetActive(true);
+        PlayerControle.pode_mexer = false;
+        PlayerControle.podeAtirar = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(contagem_falas_2 <= 5 && contagem_falas_2 >= 0) {
+            txtFalas.text = falas_chefao[contagem_falas_2];
+            }
+
+            switch(contagem_falas_2) {
+                case 1:
+                    imagem.sprite = cara_cabeca2;
+                    break;
+                case 2:
+                     imagem.sprite = cara_cabeca3;
+                     break;
+                case 3:
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                    pode_comecar = true;
+                    painel_falas.SetActive(false);
+                    break;
+                case 4:
+                    PlayerControle.pode_mexer = false;
+                    PlayerControle.podeAtirar = false;
+                    imagem.sprite = cabeca_base_normal;
+                    painel_falas.SetActive(true); 
+                    break; 
+                case 5:
+                    imagem.sprite = cabeca_base_vingativa; 
+                    break;
+                case 6:
+                    CabecaBase.todosMortos = true;
+                    painel_falas.SetActive(false);
+                    break;                  
+            }
+
+        if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar) {
+            contagem_falas_2++;
+        }
+
         BarraVida();
 
         if((Cabeca01.locaute && Cabeca02.locaute && Cabeca03.locaute && CabecaBase.morto) == true) {
             StartCoroutine("reviverGeral");
         }
 
-        if(cabeca1_morta && cabeca2_morta && cabeca3_morta & cabeca4_morta) {
+        if((cabeca1_morta && cabeca2_morta && cabeca3_morta & cabeca4_morta) && pode_comecar) {
             Destroy(BarraVidaMaior);
-            CabecaBase.todosMortos = true;
+            contagem_falas_2 = 4;
             TiroPequenoChefao.modoHard = false;
+            pode_comecar = false;
         }
     }
 

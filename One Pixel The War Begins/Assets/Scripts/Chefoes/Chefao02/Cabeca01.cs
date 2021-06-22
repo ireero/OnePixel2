@@ -25,9 +25,7 @@ public class Cabeca01 : MonoBehaviour
         locaute = false;
         podeRenascer = false;
         cabeca1.tempoDeTiro = 1.5f;
-        cabeca1.podeAtirar = true;
-        PlayerControle.pode_mexer = true;
-        PlayerControle.podeAtirar = true;
+        cabeca1.podeAtirar = false;
         cabeca1.vida = 50f;
         contador = 0;
         cabeca1.collider = GetComponent<PolygonCollider2D>();
@@ -39,6 +37,10 @@ public class Cabeca01 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(FaseManager2.pode_comecar && !locaute) {
+            cabeca1.podeAtirar = true;
+        }
 
         if(podeRenascer) {
            StartCoroutine("renascerIdle");
@@ -69,7 +71,9 @@ public class Cabeca01 : MonoBehaviour
         }
 
         if(cabeca1.vida <= 0) {
+            cabeca1.podeAtirar = false;
             cabeca1.Morrer();
+            StartCoroutine("morrer");
             FaseManager2.cabeca1_morta = true;
         }
     }

@@ -31,7 +31,6 @@ public class Cabecas : MonoBehaviour
     public void Morrer() {
         if(vida <= 0) {
             collider.isTrigger = true;
-            podeAtirar = false;
             sr.color = Color.white;
             anim.SetBool("morreu", true);
         }

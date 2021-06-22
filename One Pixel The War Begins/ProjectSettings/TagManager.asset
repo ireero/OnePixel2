@@ -14,7 +14,7 @@ TagManager:
   - bullet_inimiga
   - super_bullet_inimiga
   - moeda_rir
-  - monstro_base
+  - alerta_falas
   layers:
   - Default
   - TransparentFX
