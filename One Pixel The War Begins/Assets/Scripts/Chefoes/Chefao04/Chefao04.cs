@@ -95,6 +95,7 @@ public class Chefao04 : MonoBehaviour
             Destroy(protetor);
             anim.SetBool("morreu", true);
             StartCoroutine("morrer");
+            sr.color = Color.white;
         } else if(vida_chefao <= 25 && vida_chefao > 0) {
             Protetor.chefao_vermelho = true;
             sr.color = Color.red;

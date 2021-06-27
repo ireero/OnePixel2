@@ -334,6 +334,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &196984285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 196984286}
+  m_Layer: 0
+  m_Name: Spawn_Tiros_2_meia
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &196984286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196984285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2026289375}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &250154751
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 312963694}
   m_Layer: 0
-  m_Name: Spawn_Tiros (3)
+  m_Name: Spawn_Tiros_4_base
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -813,7 +843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 757569922}
   m_Layer: 0
-  m_Name: Spawn_Tiros (4)
+  m_Name: Spawn_Tiros_5_base
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1323,6 +1353,36 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1370657381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1370657382}
+  m_Layer: 0
+  m_Name: Spawn_Tiros_3_meia
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1370657382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370657381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2026289375}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1413442321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,7 +1393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1413442322}
   m_Layer: 0
-  m_Name: Spawn_Tiros (1)
+  m_Name: Spawn_Tiros_2_base
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1527,6 +1587,66 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 44.773792, y: 601.2678}
   m_EdgeRadius: 0
+--- !u!1 &1650773970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1650773971}
+  m_Layer: 0
+  m_Name: Spawn_Tiros_4_meia
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1650773971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650773970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2026289375}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1686152359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686152360}
+  m_Layer: 0
+  m_Name: Spawn_Tiros_1_meia
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1686152360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686152359}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2026289375}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1840853378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,7 +1820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1967804854}
   m_Layer: 0
-  m_Name: Spawn_Tiros
+  m_Name: Spawn_Tiros_1_base
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1953,6 +2073,10 @@ Transform:
   - {fileID: 2141825527}
   - {fileID: 312963694}
   - {fileID: 757569922}
+  - {fileID: 1686152360}
+  - {fileID: 196984286}
+  - {fileID: 1370657382}
+  - {fileID: 1650773971}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2039,7 +2163,18 @@ MonoBehaviour:
   spawn_tiro_3: {fileID: 2141825527}
   spawn_tiro_4: {fileID: 312963694}
   spawn_tiro_5: {fileID: 757569922}
+  spawn_tiro_1_meia: {fileID: 1686152360}
+  spawn_tiro_2_meia: {fileID: 196984286}
+  spawn_tiro_3_meia: {fileID: 1370657382}
+  spawn_tiro_4_meia: {fileID: 1650773971}
   bomba: {fileID: 6345512434618425498, guid: 47719d6c150587143955d514d0de7dad, type: 3}
+  girador: {fileID: 371692764588559168, guid: 8b2ceeac4d36b15428bce143bf9b2ddd, type: 3}
+  monstro_base: {fileID: 2214192494061633142, guid: a40f064ec6387444b885c8699860f570,
+    type: 3}
+  girador_sr: {fileID: 371692764588559197, guid: 8b2ceeac4d36b15428bce143bf9b2ddd,
+    type: 3}
+  base_sr: {fileID: 2214192494061633147, guid: a40f064ec6387444b885c8699860f570, type: 3}
+  valor_alet: 0
 --- !u!1 &2033506196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2182,7 +2317,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 01fa03b0eecb4854ca67ef3e59d63a19, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8
   m_Pitch: 1
@@ -2419,7 +2554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2141825527}
   m_Layer: 0
-  m_Name: Spawn_Tiros (2)
+  m_Name: Spawn_Tiros_3_base
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
