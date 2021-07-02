@@ -26,6 +26,7 @@ public class Chefao04 : MonoBehaviour
     public static int tirosDados;
 
     private bool umaVez;
+    private bool umaVezMeiaVida;
 
     private float valor_para_voltar;
 
@@ -35,6 +36,7 @@ public class Chefao04 : MonoBehaviour
 
     void Start()
     {
+        umaVezMeiaVida = false;
         umaVez = false;
         PlayerControle.podeAtirar = true;
         tirosDados = 0;
@@ -52,7 +54,11 @@ public class Chefao04 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(MoedaRisada.moeda_ativou == false) {
+        if(FaseManager5.pode_comecar_5 == false) {
+            contador = 0;
+        }
+
+        if(MoedaRisada.moeda_ativou == false && FaseManager5.pode_comecar_5 == true) {
             umaVez = false;
             contador += Time.deltaTime;
             anim.SetBool("atacando", true);
@@ -66,7 +72,7 @@ public class Chefao04 : MonoBehaviour
                 Protetor.pode_atirar = true;
                 contador = 0;
             }
-        } else {
+        } else if(MoedaRisada.moeda_ativou == true && FaseManager5.pode_comecar_5 == true) {
             contador_voltar += Time.deltaTime;
             if(!umaVez) {
                 tocador_risada_chefao.Play();
@@ -92,6 +98,8 @@ public class Chefao04 : MonoBehaviour
         }
 
         if(vida_chefao <= 0) {
+            corpo.gravityScale += 0.1f;
+            corpo.bodyType = RigidbodyType2D.Dynamic;
             Destroy(protetor);
             anim.SetBool("morreu", true);
             StartCoroutine("morrer");
@@ -100,7 +108,9 @@ public class Chefao04 : MonoBehaviour
             Protetor.chefao_vermelho = true;
             sr.color = Color.red;
             valor_para_voltar = 5f;
-            if(vida_chefao == 25) {
+            if(vida_chefao == 25 && !umaVezMeiaVida) {
+                FaseManager5.contagem_falas_5 = 8;
+                umaVezMeiaVida = true;
                 anim.SetBool("meia_vida", true);
                 StartCoroutine("meiaVida");
             }

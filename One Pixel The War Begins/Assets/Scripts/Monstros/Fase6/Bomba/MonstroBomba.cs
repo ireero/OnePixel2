@@ -14,7 +14,7 @@ public class MonstroBomba : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      speed = 2.25f;
+      speed = 2.8f;
       anim = GetComponent<Animator>();
       collider = GetComponent<BoxCollider2D>();  
       corpo = GetComponent<Rigidbody2D>();

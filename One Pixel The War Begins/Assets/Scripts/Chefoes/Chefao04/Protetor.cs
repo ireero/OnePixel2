@@ -33,13 +33,12 @@ public class Protetor : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         collider = GetComponent<CircleCollider2D>();
-        anim.SetBool("nascer", true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(MoedaRisada.moeda_ativou == false) {
+        if(MoedaRisada.moeda_ativou == false && FaseManager5.pode_comecar_5 == true) {
             collider.isTrigger = false;
             if(!chefao_vermelho) {
                 anim.SetBool("nascer", true);
@@ -59,7 +58,7 @@ public class Protetor : MonoBehaviour
                     }
                 }
             }
-        } else {
+        } else if(MoedaRisada.moeda_ativou == true && FaseManager5.pode_comecar_5 == true) {
             if(!chefao_vermelho) {
                 anim.SetBool("sumir", true);
             } else {
@@ -69,7 +68,7 @@ public class Protetor : MonoBehaviour
         }
 
         if(chefao_vermelho) {
-            tempo_de_tiro = 0.92f;
+            tempo_de_tiro = 0.88f;
             sr.color = Color.red;
             potenciaRot = 1.25f;
         } 

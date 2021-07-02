@@ -50,7 +50,7 @@ public class VoadorBase : MonoBehaviour
     }
 
     IEnumerator morre() {
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(1.45f);
         Destroy(this.gameObject);
     }
 }

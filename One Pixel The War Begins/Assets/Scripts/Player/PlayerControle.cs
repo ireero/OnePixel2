@@ -36,8 +36,19 @@ public class PlayerControle : MonoBehaviour {
    public AudioClip som_tiro;
 
    private BoxCollider2D player_collider;
+
+   private float dashAtual;
+   private bool canDash;
+   private bool isDashing;
+   private float duracaoDash;
+   private float dashSpeed;
  
-   void Start () {
+   void Start () {  
+      isDashing = false;
+      canDash = true;
+      dashSpeed = 20;
+      duracaoDash = 0.1f;
+      dashAtual = duracaoDash;
       player_collider = GetComponent<BoxCollider2D>();
       podePor = true;
       pode_mexer = true;
@@ -52,6 +63,7 @@ public class PlayerControle : MonoBehaviour {
       if(pode_mexer) {
          inputCheck ();
          move ();
+         Dash();
       }
 
       if(!isGrounded) {
@@ -67,9 +79,9 @@ public class PlayerControle : MonoBehaviour {
    }
  
    void inputCheck (){
-      if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded || Input.GetKeyDown(KeyCode.W) && isGrounded){
+      if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isGrounded){
       jump = true;
-      } else if((Input.GetKeyDown(KeyCode.UpArrow) && isGrounded || Input.GetKeyDown(KeyCode.W) && isGrounded) && caiu) {
+      } else if(((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isGrounded) && caiu) {
          jump = true;
          anim.SetBool("caiu", false);
       }
@@ -171,6 +183,35 @@ public class PlayerControle : MonoBehaviour {
          anim.SetBool("rir", true);
          StartCoroutine("pararDeRir");
       }
+   }
+
+   void Dash() {
+      if(Input.GetKey(KeyCode.Space) && canDash) {
+         if(dashAtual <= 0) {
+            StopDash();
+         } else {
+            isDashing = true;
+            dashAtual -= Time.deltaTime;
+            if(lookingRight) {
+               rb2d.velocity = Vector2.right * dashSpeed;
+            } else {
+               rb2d.velocity = Vector2.left * dashSpeed;
+            }
+         }
+      }
+
+      if(Input.GetKeyUp(KeyCode.Space)) {
+         isDashing = false;
+         canDash = true;
+         dashAtual = duracaoDash;
+      }
+   }
+
+   private void StopDash() {
+      rb2d.velocity = Vector2.zero;
+      dashAtual = duracaoDash;
+      isDashing = false;
+      canDash = false;
    }
 
 }

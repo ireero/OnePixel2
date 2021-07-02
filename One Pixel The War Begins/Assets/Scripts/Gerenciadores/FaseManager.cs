@@ -52,6 +52,9 @@ public class FaseManager : MonoBehaviour
     public Sprite chefao_normal;
     public Sprite chefao_lamentando;
 
+    public Sprite icon_meia_vida;
+    public Image icon_atual;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -136,6 +139,7 @@ public class FaseManager : MonoBehaviour
         }
 
         if(Chefao01.vida <= 50 && Chefao01.vida > 0) {
+            icon_atual.sprite = icon_meia_vida;
             BarraVidaMaior.color = Color.red;
         } else if(Chefao01.vida < 0) {
             Destroy(BarraVidaMaior);

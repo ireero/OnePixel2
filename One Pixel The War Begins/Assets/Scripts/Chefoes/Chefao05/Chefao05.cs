@@ -44,8 +44,13 @@ public class Chefao05 : MonoBehaviour
 
     public int valor_alet;
 
+    private float tempo_para_atirar;
+    private float pausa_de_tiro;
+
     void Start()
     {
+        pausa_de_tiro = 2f;
+        tempo_para_atirar = 7f;
         valor_alet = 0;
         metade_da_vida = false;
         umaVez = false;
@@ -76,7 +81,7 @@ public class Chefao05 : MonoBehaviour
             StartCoroutine("voltarDoDano");
         } 
 
-        if(contador >= 7f && !pode_atirar) {
+        if(contador >= tempo_para_atirar && !pode_atirar) {
             contador = -20f;
             anim.SetBool("idle", false);
             if(valor_alet == 1) {
@@ -108,18 +113,24 @@ public class Chefao05 : MonoBehaviour
         }
 
         if(metade_da_vida) {
+            pausa_de_tiro = 1.65f;
+            tempo_para_atirar = 3.5f;
             girador_sr.color = Color.red;
             base_sr.color = Color.red;
         }
 
-        if(nextFire >= 2f && pode_atirar) {
+        if(nextFire >= pausa_de_tiro && pode_atirar) {
             Fire();
             nextFire = 0;
         }
 
         if(vida <= 0) {
+            morto = true;
+            sr.color = Color.white;
             base_sr.color = Color.white;
             girador_sr.color = Color.white;
+            anim.SetBool("morreu", true);
+            StartCoroutine("morrendo");
         }
     }
 
@@ -127,23 +138,27 @@ public class Chefao05 : MonoBehaviour
         if(other.gameObject.CompareTag("bullet")) {
             vida--;
             contagem_danos++;
-            if(vida <= 550f && !umaVez) {
+            if(vida <= 300f && !umaVez) {
                 metade_da_vida = true;
                 if(pode_atirar) {
                     StartCoroutine("meiaVidaAtirando");
-                    pode_atirar = false;
                 } else {
                     StartCoroutine("meiaVida");
-                    pode_atirar = false;
                 }
+                pode_atirar = false;
                 umaVez = true;
                 anim.SetBool("meia_vida", true);
-                contador = 0;
+                contador = -50f;
                 sr.color = Color.red;
             }
         } else if(other.gameObject.CompareTag("monstro")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
+    }
+
+    IEnumerator morrendo() {
+        yield return new WaitForSeconds(3.8f);
+        Destroy(this.gameObject);
     }
 
     IEnumerator atirandoIdle() {
@@ -179,12 +194,14 @@ public class Chefao05 : MonoBehaviour
 
     IEnumerator meiaVida() {
         yield return new WaitForSeconds(1.5f);
+        contador = 0;
         anim.SetBool("meia_vida", false);
         anim.SetBool("idle", true);
     }
 
     IEnumerator meiaVidaAtirando() {
         yield return new WaitForSeconds(2.6f);
+        contador = 0;
         anim.SetBool("meia_vida", false);
         anim.SetBool("idle", true);
     }
