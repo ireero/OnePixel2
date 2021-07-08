@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: 63131862}
   - component: {fileID: 63131864}
   - component: {fileID: 63131863}
+  - component: {fileID: 63131865}
   m_Layer: 5
   m_Name: BarraDeVidaPlayer
   m_TagString: Untagged
@@ -488,6 +489,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63131861}
   m_CullTransparentMesh: 0
+--- !u!223 &63131865
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63131861}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &64705414
 GameObject:
   m_ObjectHideFlags: 0
@@ -4155,6 +4177,7 @@ GameObject:
   - component: {fileID: 966383530}
   - component: {fileID: 966383532}
   - component: {fileID: 966383531}
+  - component: {fileID: 966383533}
   m_Layer: 5
   m_Name: BarraDeVida
   m_TagString: Untagged
@@ -4220,6 +4243,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966383529}
   m_CullTransparentMesh: 0
+--- !u!223 &966383533
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966383529}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1001216319
 GameObject:
   m_ObjectHideFlags: 0
@@ -6091,14 +6135,13 @@ GameObject:
   - component: {fileID: 1701335836}
   - component: {fileID: 1701335839}
   - component: {fileID: 1701335838}
-  - component: {fileID: 1701335837}
   m_Layer: 5
   m_Name: Painel_conversas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1701335836
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6122,27 +6165,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 12}
   m_SizeDelta: {x: -183.09, y: -271.92}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!223 &1701335837
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701335835}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 21
-  m_TargetDisplay: 0
 --- !u!114 &1701335838
 MonoBehaviour:
   m_ObjectHideFlags: 0

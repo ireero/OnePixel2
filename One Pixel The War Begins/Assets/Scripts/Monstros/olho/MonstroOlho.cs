@@ -11,9 +11,11 @@ public class MonstroOlho : MonoBehaviour
     private Rigidbody2D corpo;
     private bool achou;
     private bool morreu;
+    private float contador;
 
     void Start()
     {
+        contador = 0;
         morreu = false;
         achou = false;
         speed = 0.8f;
@@ -26,6 +28,7 @@ public class MonstroOlho : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        contador+= Time.deltaTime;
         if(!achou) {
             transform.Translate(new Vector2(-speed * Time.deltaTime, 0));
         } else {
@@ -35,6 +38,15 @@ public class MonstroOlho : MonoBehaviour
 
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             }
+        }
+
+        if(Chefao06.atacando == false || contador >= 12f) {
+            morreu = true;
+            speed = 0;
+            collider.isTrigger = true;
+            corpo.bodyType = RigidbodyType2D.Static;
+            anim.SetBool("morreu", true);
+            Destroy(this.gameObject, 0.8f);
         }
     }
 
@@ -46,6 +58,8 @@ public class MonstroOlho : MonoBehaviour
             corpo.bodyType = RigidbodyType2D.Static;
             anim.SetBool("morreu", true);
             Destroy(this.gameObject, 0.8f);
+        } else if(other.gameObject.CompareTag("monstro")) {
+            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
