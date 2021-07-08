@@ -34,6 +34,8 @@ public class FaseManager2 : MonoBehaviour
     public Sprite cabeca_base_normal;
     public Sprite cabeca_base_vingativa;
 
+    public Sprite icon_meia_vida;
+
     void Start()
     {
         pode_comecar = false;
@@ -85,6 +87,7 @@ public class FaseManager2 : MonoBehaviour
         BarraVida();
 
         if((Cabeca01.locaute && Cabeca02.locaute && Cabeca03.locaute && CabecaBase.morto) == true) {
+            BarraVidaMaior.sprite = icon_meia_vida;
             StartCoroutine("reviverGeral");
         }
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
  
 public class PlayerControle : MonoBehaviour {
    public Transform groundCheck;
@@ -11,7 +12,7 @@ public class PlayerControle : MonoBehaviour {
    public bool lookingRight = true;
  
    private Rigidbody2D rb2d;
-   public bool isGrounded = false;
+   private bool isGrounded = false;
    private bool jump = false;
    private bool abaixado = true;
 
@@ -42,20 +43,37 @@ public class PlayerControle : MonoBehaviour {
    private bool isDashing;
    private float duracaoDash;
    private float dashSpeed;
+
+   public Image Barra_de_vida;
+   public Image valor_vida;
+   public Image BarraVidaMaior;
+
+   public Sprite icon_morte;
+
+   public Animator anim_poeira;
+   public ParticleSystem dust;
+
+   private SpriteRenderer sr;
+   public GameObject pet;
+   public static bool pet_ativado;
+   public Animator anim_pet;
  
    void Start () {  
+      pet_ativado = false;
+      pode_mexer = true;
+      podeAtirar = true;
+      Barra_de_vida.fillAmount = 1;
       isDashing = false;
       canDash = true;
       dashSpeed = 20;
       duracaoDash = 0.1f;
       dashAtual = duracaoDash;
       player_collider = GetComponent<BoxCollider2D>();
-      podePor = true;
-      pode_mexer = true;
-      podeAtirar = true;
+      podePor = false;
       caiu = false;
       anim = GetComponent<Animator>();
       rb2d = GetComponent<Rigidbody2D>();
+      sr = GetComponent<SpriteRenderer>();
    }
  
    void Update () {
@@ -70,11 +88,17 @@ public class PlayerControle : MonoBehaviour {
          podePor = true;
          anim.SetBool("pulou", false);
          anim.SetBool("idle", false);
+         anim_poeira.SetBool("poeira", false);
       } else {
+         anim_poeira.SetBool("poeira", true);
          podePor = false;
          caiu = true;
          anim.SetBool("caiu", true);
          StartCoroutine("posQueda");
+      }
+
+      if(pet_ativado) {
+         pet.SetActive(true);
       }
    }
  
@@ -154,6 +178,11 @@ public class PlayerControle : MonoBehaviour {
       anim.SetBool("idle", true);
    }
 
+   IEnumerator voltarPoeira() {
+      yield return new WaitForSeconds(0.35f);
+      anim_poeira.SetBool("poeira", false);
+   } 
+
    void Fire() {
 
       GerenciadorAudio.inst.PlayTiro(som_tiro);
@@ -170,19 +199,49 @@ public class PlayerControle : MonoBehaviour {
 
    private void OnCollisionEnter2D(Collision2D other) {
       if(other.gameObject.CompareTag("monstro") ) {
-         GerenciadorAudio.inst.PlayMorte(som_morte);
-         Camera.tremer = true;
-         pode_mexer = false;
-         anim.SetBool("morreu", true);
-         player_collider.isTrigger = true;
-         rb2d.bodyType = RigidbodyType2D.Static;
-         Destroy(this.gameObject, 3.2f);
+         if(!pet_ativado) {
+            GerenciadorAudio.inst.PlayMorte(som_morte);
+            Camera.tremer = true;
+            pode_mexer = false;
+            anim.SetBool("morreu", true);
+            player_collider.isTrigger = true;
+            rb2d.bodyType = RigidbodyType2D.Static;
+            Barra_de_vida.fillAmount = 0;
+            BarraVidaMaior.sprite = icon_morte;
+            Destroy(valor_vida);
+            Destroy(this.gameObject, 3.2f);
+         } else {
+            Camera.tremer = true;
+            anim_pet.SetBool("sacrificar", true);
+            StartCoroutine("petSumir");
+         }
       } else if(other.gameObject.CompareTag("moeda_rir")) {
          player_collider.isTrigger = true;
          rb2d.bodyType = RigidbodyType2D.Static;
          anim.SetBool("rir", true);
          StartCoroutine("pararDeRir");
+      } else if(other.gameObject.CompareTag("tijolo")) {
+         speed -= 1;
+         dashSpeed -= 5;
+         jumpForce -= 50;
+         sr.color = Color.grey;
+         StartCoroutine("tijolada");
       }
+   }
+
+   IEnumerator tijolada() {
+      yield return new WaitForSeconds(3f);
+      dashSpeed += 5;
+      jumpForce += 50;
+      speed += 1;
+      sr.color = Color.white;
+   }
+
+   IEnumerator petSumir() {
+      yield return new WaitForSeconds(0.5f);
+      pet_ativado = false;
+      pet.SetActive(false);
+      anim_pet.SetBool("sacrificar", false);
    }
 
    void Dash() {
@@ -190,6 +249,9 @@ public class PlayerControle : MonoBehaviour {
          if(dashAtual <= 0) {
             StopDash();
          } else {
+            if(isGrounded) {
+               CreateDust();
+            }
             isDashing = true;
             dashAtual -= Time.deltaTime;
             if(lookingRight) {
@@ -200,11 +262,11 @@ public class PlayerControle : MonoBehaviour {
          }
       }
 
-      if(Input.GetKeyUp(KeyCode.Space)) {
+      if(isGrounded) {
          isDashing = false;
          canDash = true;
          dashAtual = duracaoDash;
-      }
+      } 
    }
 
    private void StopDash() {
@@ -212,6 +274,10 @@ public class PlayerControle : MonoBehaviour {
       dashAtual = duracaoDash;
       isDashing = false;
       canDash = false;
+   }
+
+   void CreateDust() {
+      dust.Play();
    }
 
 }

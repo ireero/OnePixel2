@@ -8,12 +8,14 @@ public class Camera : MonoBehaviour
     private Animator anim;
     public static bool tremer;
     public static bool tremer_chao;
+    public static bool tremer_bastante;
 
     // Start is called before the first frame update
     void Start()
     {
         tremer_chao = false;
         tremer = false;
+        tremer_bastante = false;
         anim = GetComponent<Animator>();
     }
 
@@ -28,6 +30,12 @@ public class Camera : MonoBehaviour
         if(tremer_chao) {
             anim.SetBool("chao_tremeu", true);
             StartCoroutine("voltarIdleChao");
+        }
+
+        if(tremer_bastante) {
+            anim.SetBool("tremeu_leve", true);
+        } else {
+            anim.SetBool("tremeu_leve", false);
         }
     }
 

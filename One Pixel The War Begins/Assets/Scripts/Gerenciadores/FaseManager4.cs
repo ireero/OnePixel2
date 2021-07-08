@@ -8,7 +8,7 @@ public class FaseManager4 : MonoBehaviour
 
     private string[] falas_meditador = {"Sinto muito imperador....", "Eramos aproximadamente 50 soldados de alto nível e mesmo assim fomos tods derrotados", 
     "Graças ao sacrificio de todos nós ainda conseguimos eliminar 1 deles", "Eles apareceram do nada.....", "Quando notamos o perigo já era tarde de mais",
-    "Sinto muito meu senhor, espero que nossas mortes não sejam em vão", "Por favor meu imperador, salve nosso povo......"};
+    "Sinto muito meu senhor, espero que nossas mortes não sejam em vão", "Tome isso imperador, espero que lhe ajude de alguma forma", "Por favor meu imperador, salve nosso povo......"};
 
     public Text txtFalas;
 
@@ -26,6 +26,8 @@ public class FaseManager4 : MonoBehaviour
 
     void Start()
     {
+        PlayerControle.pode_mexer = true;
+        PlayerControle.podeAtirar = true;
         pode_comecar_4 = false;
         jaConversou = false;
         contagem_falas_4 = 0;
@@ -43,7 +45,7 @@ public class FaseManager4 : MonoBehaviour
             contagem_falas_4++;
         }
 
-        if(contagem_falas_4 <= 6 && contagem_falas_4 >= 0) {
+        if(contagem_falas_4 <= 7 && contagem_falas_4 >= 0) {
             txtFalas.text = falas_meditador[contagem_falas_4];
         }
 
@@ -57,7 +59,14 @@ public class FaseManager4 : MonoBehaviour
             case 5:
                 imagem.sprite = meditador_chorando;
                 break;
+            case 6:
+                imagem.sprite = meditador_olhao;
+                PlayerControle.pet_ativado = true;
+                break;   
             case 7:
+                imagem.sprite= meditador_chorando;
+                break;     
+            case 8:
                 Meditador.podeMorrer = true;
                 pode_comecar_4 = false;
                 painel_falas.SetActive(false);

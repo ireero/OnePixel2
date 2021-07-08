@@ -9,10 +9,12 @@ public class Girador : MonoBehaviour
     private Animator anim;
     private BoxCollider2D collider;
     private Transform target;
+    private bool morreu;
 
     // Start is called before the first frame update
     void Start()
     {
+        morreu = false;
         velocidade = 3f;
         corpo = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -24,9 +26,11 @@ public class Girador : MonoBehaviour
     void Update()
     {
 
-        transform.LookAt(target.position);
-        transform.Rotate(new Vector3(0, -90, 0), Space.Self);
-        transform.position = Vector2.MoveTowards(transform.position, target.position, velocidade * Time.deltaTime);
+        if(!morreu) {
+            transform.LookAt(target.position);
+            transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, velocidade * Time.deltaTime);
+        }
 
         if(Chefao05.metade_da_vida) {
             anim.SetBool("raiva", true);
@@ -37,11 +41,12 @@ public class Girador : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") ){
+        if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("chao")){
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
-        if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player")) {
+        if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("tijolo")) {
+            morreu = true;
             Morrer();
             StartCoroutine("morre");
         }

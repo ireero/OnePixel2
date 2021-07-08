@@ -27,7 +27,7 @@ public class Protetor : MonoBehaviour
     void Start()
     {
         chefao_vermelho = false;
-        tempo_de_tiro = 1.5f;
+        tempo_de_tiro = 1f;
         pode_atirar = true;
         potenciaRot = 1f;
         sr = GetComponent<SpriteRenderer>();
@@ -68,7 +68,7 @@ public class Protetor : MonoBehaviour
         }
 
         if(chefao_vermelho) {
-            tempo_de_tiro = 0.88f;
+            tempo_de_tiro = 0.5f;
             sr.color = Color.red;
             potenciaRot = 1.25f;
         } 

@@ -81,7 +81,7 @@ public class Chefao05 : MonoBehaviour
             StartCoroutine("voltarDoDano");
         } 
 
-        if(contador >= tempo_para_atirar && !pode_atirar) {
+        if(contador >= tempo_para_atirar) {
             contador = -20f;
             anim.SetBool("idle", false);
             if(valor_alet == 1) {
@@ -104,27 +104,24 @@ public class Chefao05 : MonoBehaviour
             }
         }
 
-        if(contador >= -5f && contador < 0) {
+        if((contador >= -5f && contador < 0) && pode_atirar) {
             anim.SetBool("idle_atacando", false);
             anim.SetBool("idle_atacando2", false);
             anim.SetBool("idle_atacando3", false);
-            StartCoroutine("voltarDoAtaque");
+            FaseManager6.podeCair = false;
+            Camera.tremer_bastante = false;
             pode_atirar = false;
+            StartCoroutine("voltarDoAtaque");
         }
 
-        if(metade_da_vida) {
-            pausa_de_tiro = 1.65f;
-            tempo_para_atirar = 3.5f;
-            girador_sr.color = Color.red;
-            base_sr.color = Color.red;
-        }
-
-        if(nextFire >= pausa_de_tiro && pode_atirar) {
+        if((nextFire >= pausa_de_tiro) && pode_atirar) {
             Fire();
             nextFire = 0;
         }
 
         if(vida <= 0) {
+            FaseManager6.podeCair = false;
+            Camera.tremer_bastante = false;
             morto = true;
             sr.color = Color.white;
             base_sr.color = Color.white;
@@ -139,30 +136,39 @@ public class Chefao05 : MonoBehaviour
             vida--;
             contagem_danos++;
             if(vida <= 300f && !umaVez) {
+                pausa_de_tiro = 1.65f;
+                tempo_para_atirar = 3.5f;
+                girador_sr.color = Color.red;
+                base_sr.color = Color.red;
+                umaVez = true;
+                FaseManager6.podeCair = false;
+                Camera.tremer_bastante = false;
                 metade_da_vida = true;
+                contador = -5f;
                 if(pode_atirar) {
+                    pode_atirar = false;
                     StartCoroutine("meiaVidaAtirando");
                 } else {
+                    pode_atirar = false;
                     StartCoroutine("meiaVida");
                 }
-                pode_atirar = false;
-                umaVez = true;
                 anim.SetBool("meia_vida", true);
-                contador = -50f;
                 sr.color = Color.red;
             }
-        } else if(other.gameObject.CompareTag("monstro")) {
+        } else if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("tijolo")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
     IEnumerator morrendo() {
-        yield return new WaitForSeconds(3.8f);
+        yield return new WaitForSeconds(3.5f);
         Destroy(this.gameObject);
     }
 
     IEnumerator atirandoIdle() {
         yield return new WaitForSeconds(3.35f);
+        FaseManager6.podeCair = true;
+        Camera.tremer_bastante = true;
         anim.SetBool("atacando", false);
         anim.SetBool("idle_atacando", true);
         pode_atirar = true;
@@ -170,6 +176,8 @@ public class Chefao05 : MonoBehaviour
 
     IEnumerator atirandoIdle2() {
         yield return new WaitForSeconds(3.35f);
+        FaseManager6.podeCair = true;
+        Camera.tremer_bastante = true;
         anim.SetBool("atacando2", false);
         anim.SetBool("idle_atacando2", true);
         pode_atirar = true;
@@ -177,6 +185,8 @@ public class Chefao05 : MonoBehaviour
 
     IEnumerator atirandoIdle3() {
         yield return new WaitForSeconds(3.35f);
+        FaseManager6.podeCair = true;
+        Camera.tremer_bastante = true;
         anim.SetBool("atacando3", false);
         anim.SetBool("idle_atacando3", true);
         pode_atirar = true;
@@ -208,14 +218,14 @@ public class Chefao05 : MonoBehaviour
 
     void Fire() {
 		if(!morto) {
-            if(!metade_da_vida) {
+            if(!metade_da_vida && pode_atirar) {
                 vida = vida - 2.5f;
                 if(valor_alet == 1) {
                     NascerTiro(girador);
                 } else if(valor_alet == 2){
                     NascerTiro(monstro_base);
                 }
-            } else {
+            } else if(metade_da_vida && pode_atirar){
                 vida = vida - 5f;
                 if(valor_alet == 1) {
                     NascerTiro(girador);

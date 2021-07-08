@@ -36,6 +36,8 @@ public class FaseManager3 : MonoBehaviour
     public Sprite chefao_raiva;
     public Sprite chefao_meia_vida;
 
+    public Sprite icon_metade_da_vida;
+
     void Start()
     {
         painel_falas.SetActive(true);
@@ -94,6 +96,9 @@ public class FaseManager3 : MonoBehaviour
                 vidinha2.enabled = false;
                 break;
             case 0:
+                BarraVida1.sprite = icon_metade_da_vida;
+                BarraVida2.sprite = icon_metade_da_vida;
+                BarraVida3.sprite = icon_metade_da_vida;
                 vidinha1.enabled = true;
                 vidinha2.enabled = true;
                 BarraVida1.color = Color.red;

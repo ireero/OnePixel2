@@ -43,8 +43,11 @@ public class Chefao03 : MonoBehaviour
 
     public AudioSource som_batida;
 
+    private float mais_speed;
+
     void Start()
     {
+        mais_speed = 0.005f;
         podeTomarDano = true;
         morreu = false;
         contador = 0;
@@ -76,7 +79,7 @@ public class Chefao03 : MonoBehaviour
             if(rodar && !morreu) {
                 transform.Rotate(new Vector3(x: 0, y: 0, z: potenciaRot));
                 potenciaRot += 0.005f;
-                speed += 0.005f;
+                speed += mais_speed;
                 if(corpo.velocity.y == 0f && (cont == 1 || cont == 2 || cont == 3 || cont == 4)) {
                     IrParaPosicao(valor_alet, cont);
                 }
@@ -100,7 +103,8 @@ public class Chefao03 : MonoBehaviour
             cont = 4;
             potenciaRot = 0f;
             if(meia_vida) {
-                speed = 11f;
+                mais_speed = 0.006f;
+                speed = 13f;
             } else {
                 speed = 8f;
             }

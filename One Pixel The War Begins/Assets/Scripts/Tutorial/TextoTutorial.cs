@@ -6,24 +6,76 @@ using UnityEngine.SceneManagement;
 
 public class TextoTutorial : MonoBehaviour
 {
-    private string[] instrucoes = {"One Pixel The War Begins", "Use as setas ou AWSD para se locomover", "Para pular bastar usar seta para cima ou W", 
-    "Atire apertando a tecla Z ou o lado esquerdo do mouse", "Conjure uma plataforma apertando a tecla X ou o lado direito do mouse", 
-    "Lembre-se que voce não pode conjurar plataformas estando no chão ou em outra plataforma", "Agora que você lembrou de tudo está na hora de acordar", 
-    "Aliás pixel branco, você tem um reino para salvar"};
+    private string[] instrucoes = {"One Pixel The War Begins", "Use as setas ou AWSD para andar e pular", 
+    "Atire apertando a tecla Z ou o lado esquerdo do mouse", "Conjure uma plataforma apertando a tecla X ou o lado direito do mouse, Lembre-se que voce não pode conjurar plataformas estando no chão ou em outra plataforma", "Apertando espaço você pode dar um Dash e avançar mais rápido, no ar pode ser usado apenas uma vez e no chão infinitas", 
+    "Aqui você pode ver sua barra de vida que só tem 1 de HP", "Apertando Esc você pausa e despausa o jogo", "Agora que você aprendeu tudo está na hora de ir, Aliás você tem um reino para salvar"};
 
     public Text txtTutorial;
     private int contagem;
 
-    private bool andou;
+    public Text pressioneQ;
+
+    private bool andou_direita;
+    private bool andou_esquerda;
     private bool pulou;
+    private bool abaixou;
+
     private bool atirou;
     private bool botou_plataforma;
     private bool comecou;
+    private bool deu_dash;
+
+    public Image fundo_preto;
+
+    public GameObject painel_controles;
+    public GameObject painel_tiros;
+    public GameObject painel_plataformas;
+    public GameObject painel_dash;
+
+    public GameObject vida_do_player;
+    public GameObject seta_apontando;
+
+    public GameObject painel_de_pause;
+    public GameObject controles_pause;
+
+    private bool controles;
+    private bool tiros_controles;
+    private bool controlou_plataforma;
+    private bool dash_controles;
+
+    private bool pausado;
+
+    public Animator seta_direita;
+    public Animator seta_esquerda;
+    public Animator seta_cima;
+    public Animator seta_baixo;
+
+    public Animator Ddireita;
+    public Animator Aesquerda;
+    public Animator Wcima;
+    public Animator Sbaixo;
+
+    public Animator Ztiro;
+    public Animator mouse_tiro;
+
+    public Animator Xplataforma;
+    public Animator mouse_plataforma;
+
+    public Animator space_dash;
+    public Animator botao_esq;
     
     void Start()
     {
+        pausado = false;
+        deu_dash = false;
+        dash_controles = false;
+        controlou_plataforma = false;
+        abaixou = false;
+        controles = false;
+        tiros_controles = false;
         comecou = false;
-        andou = false;
+        andou_direita = false;
+        andou_esquerda = false;
         pulou = false;
         atirou = false;
         botou_plataforma = false;
@@ -35,11 +87,139 @@ public class TextoTutorial : MonoBehaviour
 
         if(contagem <= 7 && contagem >= 0) {
             txtTutorial.text = instrucoes[contagem];
-        } else if(contagem >= 8) {
-            SceneManager.LoadScene(1);
+        } 
+
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            botao_esq.SetBool("apertando", true);
         }
 
-        if(Input.GetKeyDown(KeyCode.Q)) {
+        if(tiros_controles) {
+            if(Input.GetKeyDown(KeyCode.Z)) {
+                atirou = true;
+                Ztiro.SetBool("apertando", true);
+            } else if(Input.GetMouseButtonDown(0)) {
+                atirou = true;
+                mouse_tiro.SetBool("apertando", true);
+            }
+        }
+
+        if(controlou_plataforma) {
+            if(Input.GetKeyDown(KeyCode.X)) {
+                botou_plataforma = true;
+                Xplataforma.SetBool("apertando", true);
+            } else if(Input.GetMouseButtonDown(1)) {
+                botou_plataforma = true;
+                mouse_plataforma.SetBool("apertando", true);
+            }
+        }
+
+        if(dash_controles) {
+            if(Input.GetKeyDown(KeyCode.Space)) {
+                deu_dash = true;
+                space_dash.SetBool("apertando", true);
+            }
+        }
+        
+        if(controles) {
+            if(Input.GetKeyDown(KeyCode.UpArrow)) {
+                pulou = true;
+                seta_cima.SetBool("apertando", true);
+            } else if(Input.GetKeyDown(KeyCode.W)) {
+                pulou = true;
+                Wcima.SetBool("apertando", true);
+            }
+
+            if(Input.GetKeyDown(KeyCode.RightArrow)) {
+                andou_direita = true;
+                seta_direita.SetBool("apertando", true);
+            } else if(Input.GetKeyDown(KeyCode.D)) {
+                andou_direita = true;
+                Ddireita.SetBool("apertando", true);
+            }
+
+            if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+                andou_esquerda = true;
+                seta_esquerda.SetBool("apertando", true);
+            } else if(Input.GetKeyDown(KeyCode.A)) {
+                andou_esquerda = true;
+                Aesquerda.SetBool("apertando", true);
+            }
+
+            if(Input.GetKeyDown(KeyCode.DownArrow)) {
+                abaixou = true;
+                seta_baixo.SetBool("apertando", true);
+            } else if(Input.GetKeyDown(KeyCode.S)) {
+                abaixou = true;
+                Sbaixo.SetBool("apertando", true);
+            }
+        }
+
+        switch(contagem) {
+            case 1:
+                if(!pulou || !andou_direita || !andou_esquerda || !abaixou) {
+                    pressioneQ.enabled = false;
+                    controles = true;
+                    painel_controles.SetActive(true);
+                    PlayerControle.pode_mexer = true;
+                } else {
+                    controles = false;
+                    pressioneQ.enabled = true;
+                }
+                break;
+            case 2:
+                if(!atirou) {
+                    pressioneQ.enabled = false;
+                    painel_controles.SetActive(false);
+                    painel_tiros.SetActive(true);
+                    tiros_controles = true;
+                    PlayerControle.podeAtirar = true;
+                } else {
+                    tiros_controles = false;
+                    pressioneQ.enabled = true;
+                }
+                break; 
+            case 3:
+                if(!botou_plataforma) {
+                    pressioneQ.enabled = false;
+                    painel_tiros.SetActive(false);
+                    painel_plataformas.SetActive(true);
+                    controlou_plataforma = true;
+                } else {
+                    controlou_plataforma = false;
+                    pressioneQ.enabled = true;
+                }
+                break;
+            case 4:
+                if(!deu_dash) {
+                    pressioneQ.enabled = false;
+                    painel_plataformas.SetActive(false);
+                    painel_dash.SetActive(true);
+                    dash_controles = true;
+                } else {
+                    dash_controles = false;
+                    pressioneQ.enabled  = true;
+                }
+                break;
+            case 5:
+                painel_dash.SetActive(false);
+                vida_do_player.SetActive(true);
+                seta_apontando.SetActive(true);
+                break; 
+            case 6:
+                vida_do_player.SetActive(false);
+                seta_apontando.SetActive(false);
+                controles_pause.SetActive(true);
+                break;
+            case 7:
+                fundo_preto.enabled = false;
+                controles_pause.SetActive(false);
+                break;   
+            case 8:
+                SceneManager.LoadScene(1);   
+                break;  
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q) && !controles && !tiros_controles && !controlou_plataforma && !dash_controles && !pausado) {
             contagem++;
         }
     }

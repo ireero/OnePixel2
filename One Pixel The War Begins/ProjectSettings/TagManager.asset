@@ -15,11 +15,13 @@ TagManager:
   - super_bullet_inimiga
   - moeda_rir
   - alerta_falas
+  - monstro_base
+  - tijolo
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 

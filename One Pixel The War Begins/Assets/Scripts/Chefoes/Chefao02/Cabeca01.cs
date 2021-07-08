@@ -67,10 +67,12 @@ public class Cabeca01 : MonoBehaviour
 
         if(cabeca1.vida == 25 && !locaute && !cabeca1.renascido) {
             cabeca1.Locaute();
+            cabeca1.podeAtirar = false;
             locaute = true;
         }
 
         if(cabeca1.vida <= 0) {
+            locaute = true;
             cabeca1.podeAtirar = false;
             cabeca1.Morrer();
             StartCoroutine("morrer");

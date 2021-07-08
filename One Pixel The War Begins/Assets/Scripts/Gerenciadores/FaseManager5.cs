@@ -39,7 +39,11 @@ public class FaseManager5 : MonoBehaviour
     public Image BarraDeVida;
     public Image BarraVidaMaior;
 
+    public Sprite icon_metade_vida;
+
     private float vida_maxima = 50f;
+
+    public static int valor_tiros_dados = 8;
 
     void Start()
     {
@@ -119,7 +123,7 @@ public class FaseManager5 : MonoBehaviour
             umaVez = false;
         }
 
-        if(Chefao04.tirosDados >= 8 && !umaVez) {
+        if(Chefao04.tirosDados >= valor_tiros_dados && !umaVez) {
                 Instantiate(moeda_risada, ponto_baixo.position, ponto_baixo.rotation);
                 umaVez = true;
         }
@@ -127,6 +131,7 @@ public class FaseManager5 : MonoBehaviour
         if(Chefao04.vida_chefao == 0) {
             Destroy(BarraVidaMaior);
         } else if(Chefao04.vida_chefao <= 25 && Chefao04.vida_chefao > 0) {
+            BarraVidaMaior.sprite = icon_metade_vida;
             TiroPequenoChefao.modoHard = true;
             BarraVidaMaior.color = Color.red;
         }

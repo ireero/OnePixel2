@@ -105,9 +105,10 @@ public class Chefao04 : MonoBehaviour
             StartCoroutine("morrer");
             sr.color = Color.white;
         } else if(vida_chefao <= 25 && vida_chefao > 0) {
+            FaseManager5.valor_tiros_dados = 12;
             Protetor.chefao_vermelho = true;
             sr.color = Color.red;
-            valor_para_voltar = 5f;
+            valor_para_voltar = 6f;
             if(vida_chefao == 25 && !umaVezMeiaVida) {
                 FaseManager5.contagem_falas_5 = 8;
                 umaVezMeiaVida = true;

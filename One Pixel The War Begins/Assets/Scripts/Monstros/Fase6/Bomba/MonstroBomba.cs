@@ -10,10 +10,12 @@ public class MonstroBomba : MonoBehaviour
     private Transform target;
     private float speed;
     private Rigidbody2D corpo;
+    private bool morreu;
 
     // Start is called before the first frame update
     void Start()
     {
+      morreu = false;
       speed = 2.8f;
       anim = GetComponent<Animator>();
       collider = GetComponent<BoxCollider2D>();  
@@ -25,19 +27,22 @@ public class MonstroBomba : MonoBehaviour
     void Update()
     {
 
-        transform.LookAt(target.position);
-        transform.Rotate(new Vector3(0, -90, 0), Space.Self);
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        if(!morreu) {
+            transform.LookAt(target.position);
+            transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        }   
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("bullet")) {
+        if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("tijolo")) {
+            morreu = true;
             corpo.gravityScale += 0.1f;
             speed = 0;
             anim.SetBool("morreu", true);
             collider.isTrigger = true;
             StartCoroutine("morre");
-        } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro")) {
+        } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("chao")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }

@@ -66,11 +66,13 @@ public class Cabeca02 : MonoBehaviour
         }
 
         if(cabeca2.vida == 25 && !locaute && !cabeca2.renascido) {
+            cabeca2.podeAtirar = false;
             cabeca2.Locaute();
             locaute = true;
         }
 
         if(cabeca2.vida <= 0) {
+            locaute = true;
             cabeca2.podeAtirar = false;
             cabeca2.Morrer();
             StartCoroutine("morrer");
