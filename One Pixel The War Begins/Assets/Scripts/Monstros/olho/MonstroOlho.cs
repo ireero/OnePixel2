@@ -12,9 +12,17 @@ public class MonstroOlho : MonoBehaviour
     private bool achou;
     private bool morreu;
     private float contador;
+    private bool umaVez;
+    public Transform spawn_tiro;
+    public GameObject tiro;
+    private float cont_tiro;
+    private bool pode_meter_bala;
 
     void Start()
     {
+        pode_meter_bala = false;
+        cont_tiro = 0;
+        umaVez = false;
         contador = 0;
         morreu = false;
         achou = false;
@@ -23,12 +31,23 @@ public class MonstroOlho : MonoBehaviour
         anim = GetComponent<Animator>();
         collider = GetComponent<CircleCollider2D>();
         corpo = GetComponent<Rigidbody2D>(); 
+        if(Chefao06.meia_vida == true) {
+            anim.SetBool("meia_vida", true);
+        } else {
+            anim.SetBool("meia_vida", false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         contador+= Time.deltaTime;
+        cont_tiro += Time.deltaTime;
+
+        if(cont_tiro >= 2.4f) {
+            pode_meter_bala = true;
+        }
+
         if(!achou) {
             transform.Translate(new Vector2(-speed * Time.deltaTime, 0));
         } else {
@@ -37,11 +56,17 @@ public class MonstroOlho : MonoBehaviour
                 transform.Rotate(new Vector3(0, 90, 0), Space.Self);
 
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+                    if(Chefao06.meia_vida == true && pode_meter_bala) {
+                        Instantiate(tiro, spawn_tiro.position, spawn_tiro.rotation);
+                        pode_meter_bala = false;
+                        cont_tiro = 0;
+                    }
             }
         }
 
         if(Chefao06.atacando == false || contador >= 12f) {
             morreu = true;
+            pode_meter_bala = false;
             speed = 0;
             collider.isTrigger = true;
             corpo.bodyType = RigidbodyType2D.Static;
@@ -52,6 +77,8 @@ public class MonstroOlho : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            Chefao06.vida_restante--;
+            Chefao06.dano_tomado++;
             morreu = true;
             speed = 0;
             collider.isTrigger = true;
@@ -65,7 +92,11 @@ public class MonstroOlho : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
-            speed = 1.5f;
+            if(Chefao06.meia_vida == false) {
+                speed = 1.5f;
+            } else {
+                speed = 0;
+            }
             achou = true;
         }
     }

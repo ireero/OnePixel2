@@ -12,11 +12,17 @@ public class Tentaculo : MonoBehaviour
         contador = 0;
         anim = GetComponent<Animator>();  
         StartCoroutine("ativarIdle");  
+        if(Chefao06.meia_vida == true) {
+            anim.SetBool("meia_vida", true);
+        } else {
+            anim.SetBool("meia_vida", false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         contador += Time.deltaTime;
 
         if(contador >= 3.4f || Chefao06.camuflado_ja == false) {

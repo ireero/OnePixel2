@@ -12,9 +12,12 @@ public class Chefao06 : MonoBehaviour
     public static bool camuflado_ja;
     public static int vida_restante;
     public static int dano_tomado;
+    public static bool meia_vida;
+    public static bool ta_mortin;
 
     void Start()
     {
+        ta_mortin = false;
         dano_tomado = 0;
         vida_restante = 300;
         camuflado_ja = false;
@@ -30,7 +33,7 @@ public class Chefao06 : MonoBehaviour
     void Update()
     {
         contador += Time.deltaTime;
-        if(contador >= 6f && !camuflado_ja) {
+        if(contador >= 5f && !camuflado_ja) {
             anim.SetBool("atacar", true);
             anim.SetBool("idle", false);
             StartCoroutine("horaDoAtaque");
@@ -42,7 +45,10 @@ public class Chefao06 : MonoBehaviour
         }
 
         if(vida_restante <= 0) {
-            Destroy(this.gameObject);
+            meia_vida = false;
+            ta_mortin = true;
+            anim.SetBool("morreu", true);
+            StartCoroutine("morrer");
         }
 
         if(dano_tomado >= 50) {
@@ -55,6 +61,7 @@ public class Chefao06 : MonoBehaviour
         }
 
         if(vida_restante <= 150 && !umaVez2) {
+            meia_vida = true;
             anim.SetBool("meia_vida", true);
             umaVez2 = true;
             StartCoroutine("idleMeiaVida");
@@ -83,5 +90,10 @@ public class Chefao06 : MonoBehaviour
     IEnumerator idleMeiaVida() {
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("meia_vida", false);
+    }
+
+    IEnumerator morrer() {
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
     }
 }

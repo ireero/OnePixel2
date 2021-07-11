@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FaseManager7 : MonoBehaviour
 {
@@ -15,9 +16,13 @@ public class FaseManager7 : MonoBehaviour
     private int valor_aleatorio;
     public static bool liberado;
     private int valor_momentaneo;
+    public Image back;
+
+    private float tempo_spawn;
 
     void Start()
     {
+        tempo_spawn = 10.5f;
         valor_momentaneo = 0;;
         liberado = true;
         valor_aleatorio = 0;
@@ -32,9 +37,18 @@ public class FaseManager7 : MonoBehaviour
         cont += Time.deltaTime;
 
         if(Chefao06.atacando == true) {
-            if(cont >= 9f) {
+            if(cont >= tempo_spawn) {
                 nascerBichos(monstro_olho);
             }
+        }
+
+        if(Chefao06.meia_vida == true) {
+            back.color = Color.red;
+            tempo_spawn = 8.5f;
+        }
+
+        if(Chefao06.ta_mortin) {
+            back.color = Color.white;
         }
 
         if(Chefao06.camuflado_ja) {

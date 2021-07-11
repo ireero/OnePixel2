@@ -59,7 +59,7 @@ public class PlayerControle : MonoBehaviour {
    public Animator anim_pet;
  
    void Start () {  
-      pet_ativado = false;
+      pet_ativado = true;
       pode_mexer = true;
       podeAtirar = true;
       Barra_de_vida.fillAmount = 1;
@@ -198,7 +198,7 @@ public class PlayerControle : MonoBehaviour {
 	}
 
    private void OnCollisionEnter2D(Collision2D other) {
-      if(other.gameObject.CompareTag("monstro") ) {
+      if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") ) {
          if(!pet_ativado) {
             GerenciadorAudio.inst.PlayMorte(som_morte);
             Camera.tremer = true;
