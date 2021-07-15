@@ -17,9 +17,11 @@ public class MonstroOlho : MonoBehaviour
     public GameObject tiro;
     private float cont_tiro;
     private bool pode_meter_bala;
+    private float tempo_pra_morrer;
 
     void Start()
     {
+        tempo_pra_morrer = 12f;
         pode_meter_bala = false;
         cont_tiro = 0;
         umaVez = false;
@@ -44,8 +46,12 @@ public class MonstroOlho : MonoBehaviour
         contador+= Time.deltaTime;
         cont_tiro += Time.deltaTime;
 
-        if(cont_tiro >= 2.4f) {
+        if(cont_tiro >= 1.85f) {
             pode_meter_bala = true;
+        }
+
+        if(Chefao06.meia_vida == true) {
+            tempo_pra_morrer = 15f;
         }
 
         if(!achou) {
@@ -64,7 +70,7 @@ public class MonstroOlho : MonoBehaviour
             }
         }
 
-        if(Chefao06.atacando == false || contador >= 12f) {
+        if(Chefao06.atacando == false || contador >= tempo_pra_morrer) {
             morreu = true;
             pode_meter_bala = false;
             speed = 0;

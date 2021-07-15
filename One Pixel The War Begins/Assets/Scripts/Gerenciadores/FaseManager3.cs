@@ -38,8 +38,13 @@ public class FaseManager3 : MonoBehaviour
 
     public Sprite icon_metade_da_vida;
 
+    public GameObject painel_derrota;
+    public AudioSource backSound;
+    private int podeTocar;
+
     void Start()
     {
+        podeTocar = 0;
         painel_falas.SetActive(true);
         pode_comecar_3 = false;
         contagem_falas_3 = 0;
@@ -50,6 +55,10 @@ public class FaseManager3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(PlayerControle.player_morto == true) {
+            painel_derrota.SetActive(true);
+        }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_3) {
             contagem_falas_3++;
@@ -67,6 +76,10 @@ public class FaseManager3 : MonoBehaviour
                 imagem.sprite = chefao_raiva;
                 break;
             case 8:
+                if(podeTocar <= 0) {
+                    backSound.Play();
+                    podeTocar++;
+                }
                 PlayerControle.pode_mexer = true;
                 PlayerControle.podeAtirar = true;
                 painel_falas.SetActive(false);
@@ -114,6 +127,7 @@ public class FaseManager3 : MonoBehaviour
                 Destroy(vidinha2);
                 break;
             case -3:
+                backSound.Stop();
                 Destroy(BarraVida3);
                 Destroy(vidinha3);
                 break;        

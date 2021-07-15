@@ -6,14 +6,17 @@ public class Tentaculo : MonoBehaviour
 {
     private Animator anim;
     private float contador;
+    private float tempo_pra_morrer;
 
     void Start()
     {
+        tempo_pra_morrer = 3.4f;
         contador = 0;
         anim = GetComponent<Animator>();  
         StartCoroutine("ativarIdle");  
         if(Chefao06.meia_vida == true) {
             anim.SetBool("meia_vida", true);
+            tempo_pra_morrer = 4f;
         } else {
             anim.SetBool("meia_vida", false);
         }
@@ -25,7 +28,7 @@ public class Tentaculo : MonoBehaviour
 
         contador += Time.deltaTime;
 
-        if(contador >= 3.4f || Chefao06.camuflado_ja == false) {
+        if(contador >= tempo_pra_morrer || Chefao06.camuflado_ja == false) {
             anim.SetBool("idle", false);
             Destroy(this.gameObject, 2f);
         }

@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class FaseManager7 : MonoBehaviour
 {
+
+    public Image BarraDeVida;
+    public Image BarraVidaMaior;
+    public Sprite chefao_meia_vida;
+
     public GameObject tentaculos;
     public GameObject monstro_olho;
     public Transform[] lista_spawns = new Transform[11];
@@ -13,12 +18,17 @@ public class FaseManager7 : MonoBehaviour
 
     public static int monstros_nascidos;
 
+    private float vida_maxima = 300f;
+
     private int valor_aleatorio;
     public static bool liberado;
     private int valor_momentaneo;
     public Image back;
 
     private float tempo_spawn;
+    public Sprite back_2;
+
+    public GameObject painel_derrota;
 
     void Start()
     {
@@ -34,6 +44,12 @@ public class FaseManager7 : MonoBehaviour
     void Update()
     {
 
+        BarraVida();
+
+        if(PlayerControle.player_morto == true) {
+            painel_derrota.SetActive(true);
+        }
+
         cont += Time.deltaTime;
 
         if(Chefao06.atacando == true) {
@@ -43,6 +59,9 @@ public class FaseManager7 : MonoBehaviour
         }
 
         if(Chefao06.meia_vida == true) {
+            BarraVidaMaior.sprite = chefao_meia_vida;
+            BarraVidaMaior.color = Color.red;
+            back.sprite = back_2;
             back.color = Color.red;
             tempo_spawn = 8.5f;
         }
@@ -74,5 +93,9 @@ public class FaseManager7 : MonoBehaviour
             Instantiate(monstro, lista_spawns[i].position, lista_spawns[i].rotation);
         }
         cont = 0;
+    }
+
+    private void BarraVida() {
+        BarraDeVida.fillAmount = Chefao06.vida_restante / vida_maxima;
     }
 }

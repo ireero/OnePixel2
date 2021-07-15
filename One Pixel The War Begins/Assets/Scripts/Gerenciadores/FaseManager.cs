@@ -15,6 +15,8 @@ public class FaseManager : MonoBehaviour
 
     public static int contagem_falas;
 
+    public GameObject painel_derrota;
+
     public GameObject monstros_base;
     public SpriteRenderer monstro_sprite;
 
@@ -74,6 +76,11 @@ public class FaseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(PlayerControle.player_morto == true) {
+            painel_derrota.SetActive(true);
+        }
+
         BarraVida();
         contagem += Time.deltaTime;
         if(contagem >= 3.5f) {

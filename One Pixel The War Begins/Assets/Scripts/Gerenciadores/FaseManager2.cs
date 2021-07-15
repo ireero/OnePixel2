@@ -36,8 +36,14 @@ public class FaseManager2 : MonoBehaviour
 
     public Sprite icon_meia_vida;
 
+    public GameObject painel_derrota;
+
+    public AudioSource back;
+    private int tocaSom;
+
     void Start()
     {
+        tocaSom = 0;
         pode_comecar = false;
         contagem_falas_2 = 0;
         painel_falas.SetActive(true);
@@ -48,6 +54,11 @@ public class FaseManager2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(PlayerControle.player_morto == true) {
+            painel_derrota.SetActive(true);
+        }
+
         if(contagem_falas_2 <= 5 && contagem_falas_2 >= 0) {
             txtFalas.text = falas_chefao[contagem_falas_2];
             }
@@ -60,6 +71,10 @@ public class FaseManager2 : MonoBehaviour
                      imagem.sprite = cara_cabeca3;
                      break;
                 case 3:
+                    if(tocaSom <= 0) {
+                        back.Play();
+                        tocaSom += 1;
+                    }
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;
                     pode_comecar = true;
@@ -75,6 +90,7 @@ public class FaseManager2 : MonoBehaviour
                     imagem.sprite = cabeca_base_vingativa; 
                     break;
                 case 6:
+                    back.Stop();
                     CabecaBase.todosMortos = true;
                     painel_falas.SetActive(false);
                     break;                  

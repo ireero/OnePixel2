@@ -10,6 +10,8 @@ public class PlayerControle : MonoBehaviour {
  
    [HideInInspector]
    public bool lookingRight = true;
+
+   public static bool player_morto;
  
    private Rigidbody2D rb2d;
    private bool isGrounded = false;
@@ -57,8 +59,11 @@ public class PlayerControle : MonoBehaviour {
    public GameObject pet;
    public static bool pet_ativado;
    public Animator anim_pet;
+
+   public GameObject vida_pet;
  
    void Start () {  
+      player_morto = false;
       pet_ativado = true;
       pode_mexer = true;
       podeAtirar = true;
@@ -98,7 +103,10 @@ public class PlayerControle : MonoBehaviour {
       }
 
       if(pet_ativado) {
+         vida_pet.SetActive(true);
          pet.SetActive(true);
+      } else {
+         vida_pet.SetActive(false);
       }
    }
  
@@ -200,6 +208,7 @@ public class PlayerControle : MonoBehaviour {
    private void OnCollisionEnter2D(Collision2D other) {
       if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") ) {
          if(!pet_ativado) {
+            player_morto = true;
             GerenciadorAudio.inst.PlayMorte(som_morte);
             Camera.tremer = true;
             pode_mexer = false;
@@ -238,7 +247,7 @@ public class PlayerControle : MonoBehaviour {
    }
 
    IEnumerator petSumir() {
-      yield return new WaitForSeconds(0.5f);
+      yield return new WaitForSeconds(0.7f);
       pet_ativado = false;
       pet.SetActive(false);
       anim_pet.SetBool("sacrificar", false);

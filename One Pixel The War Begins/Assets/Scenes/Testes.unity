@@ -196,7 +196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.02625, y: 0.74744445}
   m_AnchorMax: {x: 0.185, y: 1}
-  m_AnchoredPosition: {x: 2394746.5, y: 11973903}
+  m_AnchoredPosition: {x: 2394746.5, y: 11973904}
   m_SizeDelta: {x: -24.899994, y: -15.904999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &102890010
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 102890011}
   - component: {fileID: 102890012}
   m_Layer: 0
-  m_Name: BackgroundSound
+  m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

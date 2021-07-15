@@ -29,6 +29,8 @@ public class FaseManager6 : MonoBehaviour
 
     private float tempo_de_cair;
 
+    public GameObject painel_derrota;
+
     void Start()
     {
         tempo_de_cair = 1.5f;
@@ -42,6 +44,11 @@ public class FaseManager6 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(PlayerControle.player_morto == true) {
+            painel_derrota.SetActive(true);
+        }
+
        BarraVida(); 
 
        contador += Time.deltaTime;

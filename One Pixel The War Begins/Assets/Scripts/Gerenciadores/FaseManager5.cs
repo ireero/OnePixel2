@@ -45,8 +45,13 @@ public class FaseManager5 : MonoBehaviour
 
     public static int valor_tiros_dados = 8;
 
+    public GameObject painel_derrota;
+    public AudioSource back_som;
+    private int podeTocar;
+
     void Start()
     {
+        podeTocar = 0;
         painel_falas.SetActive(true);
         pode_comecar_5 = false;
         contagem_falas_5 = 0;
@@ -59,6 +64,10 @@ public class FaseManager5 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(PlayerControle.player_morto == true) {
+            painel_derrota.SetActive(true);
+        }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_5) {
             contagem_falas_5++;
@@ -85,6 +94,10 @@ public class FaseManager5 : MonoBehaviour
                 imagem.sprite = palhaco_ameacador;
                 break;     
             case 7:
+                if(podeTocar <= 0) {
+                    back_som.Play();
+                    podeTocar++;
+                }
                 PlayerControle.pode_mexer = true;
                 PlayerControle.podeAtirar = true;
                 painel_falas.SetActive(false);
@@ -129,6 +142,7 @@ public class FaseManager5 : MonoBehaviour
         }
 
         if(Chefao04.vida_chefao == 0) {
+            back_som.Stop();
             Destroy(BarraVidaMaior);
         } else if(Chefao04.vida_chefao <= 25 && Chefao04.vida_chefao > 0) {
             BarraVidaMaior.sprite = icon_metade_vida;
