@@ -20,7 +20,7 @@ public class SuperTiroChefao : MonoBehaviour
         StartCoroutine("ativarIdle");
         contador = 0;
         anim = GetComponent<Animator>();
-        timeDestroy = 8.5f;
+        timeDestroy = 10f;
         Destroy(gameObject, timeDestroy);
         collider = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -39,13 +39,13 @@ public class SuperTiroChefao : MonoBehaviour
             sr.color = Color.red;
         }
 
-        if(vida <= 0) {
+        if(vida <= 0 || Portal.atira_ae_po == 3) {
             Morrer();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("paredesSumir")) {
+        if(other.gameObject.CompareTag("paredesSumir")||other.gameObject.CompareTag("chao")) {
             Destroy(this.gameObject);
         } else if(other.gameObject.CompareTag("Player")) {
             Morrer();

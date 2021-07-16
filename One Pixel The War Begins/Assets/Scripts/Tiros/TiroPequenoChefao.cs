@@ -35,7 +35,7 @@ public class TiroPequenoChefao : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("paredesSumir")) {
+        if(other.gameObject.CompareTag("paredesSumir") || other.gameObject.CompareTag("chao")) {
             Destroy(this.gameObject);
         } else if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("plataforma")) {
             Morrer();

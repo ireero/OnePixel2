@@ -10,6 +10,7 @@ public class Girador : MonoBehaviour
     private BoxCollider2D collider;
     private Transform target;
     private bool morreu;
+    private SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class Girador : MonoBehaviour
         anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,11 @@ public class Girador : MonoBehaviour
             if(velocidade != 0) {
                 velocidade = 3.25f;
             }
+        }
+
+        if(Portal.atira_ae_po == 3) {
+            velocidade = 2.5f;
+            sr.color = Color.white;
         }
     }
 

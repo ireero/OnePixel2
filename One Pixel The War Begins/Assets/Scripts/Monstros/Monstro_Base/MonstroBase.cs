@@ -7,6 +7,7 @@ public class MonstroBase : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private BoxCollider2D collider;
+    private AudioSource audio_morte;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,7 @@ public class MonstroBase : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audio_morte = GetComponent<AudioSource>();
         StartCoroutine("esperarCair");
     }
 
@@ -25,10 +27,12 @@ public class MonstroBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("chao") || FaseManager.chefao_vivo == false) {
+            audio_morte.Play();
             anim.SetBool("morte_caiu", true);
             Morte();
             Destroy(this.gameObject, 2f);
         } else if(other.gameObject.CompareTag("bullet")) {
+            audio_morte.Play();
             anim.SetBool("morte_tiro", true);
             Morte();
             Destroy(this.gameObject, 2f);

@@ -45,6 +45,7 @@ public class FaseManager : MonoBehaviour
     public static bool falas_terminaram;
 
     public AudioSource background;
+    public AudioSource back_void;
 
     public Image imagem;
 
@@ -57,6 +58,10 @@ public class FaseManager : MonoBehaviour
     public Sprite icon_meia_vida;
     public Image icon_atual;
 
+    public AudioSource som_caida;
+    private bool uma_batida;
+    public AudioSource som_fala;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,10 +72,12 @@ public class FaseManager : MonoBehaviour
         chefao_nasceu = false;
         podeSpawn = false;
         valor_alet = 0;
+        uma_batida = false;
         contagem = 0;
         contagem_falas = 0;
         PlayerControle.pode_mexer = false;
         PlayerControle.podeAtirar = false;
+        back_void.Play();
     }
 
     // Update is called once per frame
@@ -81,10 +88,18 @@ public class FaseManager : MonoBehaviour
             painel_derrota.SetActive(true);
         }
 
+        if(Chefao01.bateu_chao == true) {
+            if(!uma_batida) {
+                som_caida.Play();
+                uma_batida = true;
+            }
+        }
+
         BarraVida();
         contagem += Time.deltaTime;
         if(contagem >= 3.5f) {
             if(!chefao_nasceu && falas_terminaram) {
+                back_void.Pause();
                 background.Play();
                 BarraVidaMaior.enabled = true;
                 chefao.SetActive(true);
@@ -149,10 +164,15 @@ public class FaseManager : MonoBehaviour
             icon_atual.sprite = icon_meia_vida;
             BarraVidaMaior.color = Color.red;
         } else if(Chefao01.vida < 0) {
+            background.Stop();
             Destroy(BarraVidaMaior);
         }
 
         if(Input.GetKeyDown(KeyCode.Q)) {
+            if(contagem_falas == 8) {
+                back_void.Play();
+            }
+            som_fala.Play();
             contagem_falas++;
         }
     }
