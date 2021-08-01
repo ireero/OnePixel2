@@ -62,9 +62,13 @@ public class FaseManager : MonoBehaviour
     private bool uma_batida;
     public AudioSource som_fala;
 
+    private bool falarUmaVez;
+
     // Start is called before the first frame update
     void Start()
     {
+        falarUmaVez = false;
+        som_fala.Play();
         painel_falas.SetActive(true);
         falas_terminaram = false;
         BarraVidaMaior.enabled = false;
@@ -146,6 +150,10 @@ public class FaseManager : MonoBehaviour
                 falas_terminaram = true;
                 painel_falas.SetActive(false);
             } else if((contagem_falas >= 6 && contagem_falas <= 7) && !chefao_vivo) {
+                if(!falarUmaVez) {
+                    som_fala.Play();
+                    falarUmaVez = true;
+                }
                 PlayerControle.pode_mexer = false;
                 PlayerControle.podeAtirar = false;
                 imagem.sprite = chefao_normal;
@@ -171,8 +179,9 @@ public class FaseManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q)) {
             if(contagem_falas == 8) {
                 back_void.Play();
+            } else {
+                som_fala.Play();
             }
-            som_fala.Play();
             contagem_falas++;
         }
     }

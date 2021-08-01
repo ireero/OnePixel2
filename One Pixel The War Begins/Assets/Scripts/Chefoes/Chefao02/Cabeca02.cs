@@ -6,6 +6,7 @@ public class Cabeca02 : MonoBehaviour
 {
     public GameObject Bullet;
     public Transform Spawn_Bullet;
+    public AudioSource somDano;
 
     private float contador;
     public static float vida_cabeca;
@@ -82,6 +83,7 @@ public class Cabeca02 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            somDano.Play();
             if(!podeRenascer && !locaute) {
                 cabeca2.vida--;
             }
@@ -91,7 +93,7 @@ public class Cabeca02 : MonoBehaviour
     }
 
     IEnumerator renascerIdle() {
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(2.2f);
         cabeca2.renascido = true;
         cabeca2.tempoDeTiro = 0.75f;
         podeRenascer = false;
@@ -100,7 +102,7 @@ public class Cabeca02 : MonoBehaviour
     }
 
     IEnumerator morrer() {
-        yield return new WaitForSeconds(3.2f);
+        yield return new WaitForSeconds(2.05f);
         FaseManager2.cabeca2_morta = true;
         Destroy(this.gameObject);
     }

@@ -7,10 +7,12 @@ public class MonstroBomba : MonoBehaviour
 
     private Animator anim;
     private BoxCollider2D collider;
+    private CircleCollider2D rastreador_collider;
     private Transform target;
     private float speed;
     private Rigidbody2D corpo;
     private bool morreu;
+    private SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +21,10 @@ public class MonstroBomba : MonoBehaviour
       speed = 2.8f;
       anim = GetComponent<Animator>();
       collider = GetComponent<BoxCollider2D>();  
+      rastreador_collider = GetComponent<CircleCollider2D>();
       corpo = GetComponent<Rigidbody2D>();
       target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+      sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,6 +40,7 @@ public class MonstroBomba : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("tijolo")) {
+            sr.color = Color.white;
             morreu = true;
             corpo.gravityScale += 0.1f;
             speed = 0;
@@ -49,6 +54,7 @@ public class MonstroBomba : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
+            rastreador_collider.enabled = false;
             speed = 0;
             anim.SetBool("explode", true);
             StartCoroutine("morreExplode");

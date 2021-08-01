@@ -6,9 +6,15 @@ public class Chefao7 : MonoBehaviour
 {
     private Animator anim;
     private bool rindo;
+    private bool umaVez;
+    public static bool possuido;
+    public static bool bateu_nele;
 
     void Start()
     {
+        bateu_nele = false;
+        possuido = false;
+        umaVez = false;
         rindo = false;
         anim = GetComponent<Animator>();
     }
@@ -16,6 +22,11 @@ public class Chefao7 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Portal.atira_ae_po == 5 && !umaVez) {
+            umaVez = true;
+            anim.SetBool("transformar", true);
+            StartCoroutine("idleMeiaVida");
+        }
         
     }
 
@@ -27,6 +38,10 @@ public class Chefao7 : MonoBehaviour
                 rindo = true;
                 StartCoroutine("rir");
             }
+
+            if(possuido) {
+                bateu_nele = true;
+            }
         }
     }
 
@@ -35,5 +50,10 @@ public class Chefao7 : MonoBehaviour
         rindo = false;
         anim.SetBool("idle", true);
         anim.SetBool("rindo", false);
+    }
+
+    IEnumerator idleMeiaVida() {
+        yield return new WaitForSeconds(1.35f);
+        anim.SetBool("transformar", false);
     }
 }

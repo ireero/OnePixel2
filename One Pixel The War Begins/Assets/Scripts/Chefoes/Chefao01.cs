@@ -195,14 +195,14 @@ public class Chefao01 : MonoBehaviour
     }
 
     IEnumerator esperarMorte() {
-        yield return new WaitForSeconds(3.8f);
+        yield return new WaitForSeconds(2.1f);
         FaseManager.contagem_falas = 6;
         FaseManager.chefao_vivo = false;
         som_morte.Stop();
     }
 
     IEnumerator morrerDeVez() {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.1f);
         Destroy(this.gameObject);
     }
 

@@ -47,8 +47,12 @@ public class Chefao05 : MonoBehaviour
     private float tempo_para_atirar;
     private float pausa_de_tiro;
 
+    public AudioSource somTerremoto;
+    private bool umTerremoto;
+
     void Start()
     {
+        umTerremoto = false;
         pausa_de_tiro = 2f;
         tempo_para_atirar = 7f;
         valor_alet = 0;
@@ -75,13 +79,19 @@ public class Chefao05 : MonoBehaviour
         contador += Time.deltaTime;
         nextFire += Time.deltaTime;
 
+        if(FaseManager6.pode_comecar_6 == false) {
+            contador = 0;
+            nextFire = 0;
+        }
+
+
         if(contagem_danos >= 50) {
             contagem_danos = 0;
             anim.SetBool("tomou_dano", true);
             StartCoroutine("voltarDoDano");
         } 
 
-        if(contador >= tempo_para_atirar) {
+        if((contador >= tempo_para_atirar) && FaseManager6.pode_comecar_6 == true) {
             contador = -20f;
             anim.SetBool("idle", false);
             if(valor_alet == 1) {
@@ -105,6 +115,7 @@ public class Chefao05 : MonoBehaviour
         }
 
         if((contador >= -5f && contador < 0) && pode_atirar) {
+            somTerremoto.Stop();
             anim.SetBool("idle_atacando", false);
             anim.SetBool("idle_atacando2", false);
             anim.SetBool("idle_atacando3", false);
@@ -120,6 +131,7 @@ public class Chefao05 : MonoBehaviour
         }
 
         if(vida <= 0) {
+            collider.isTrigger = true;
             FaseManager6.podeCair = false;
             Camera.tremer_bastante = false;
             morto = true;
@@ -136,6 +148,7 @@ public class Chefao05 : MonoBehaviour
             vida--;
             contagem_danos++;
             if(vida <= 300f && !umaVez) {
+                FaseManager6.contagem_falas_6 = 3;
                 pausa_de_tiro = 1.65f;
                 tempo_para_atirar = 3.5f;
                 girador_sr.color = Color.red;
@@ -157,43 +170,33 @@ public class Chefao05 : MonoBehaviour
             }
         } else if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("tijolo")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        }
+        } 
     }
 
     IEnumerator morrendo() {
         yield return new WaitForSeconds(3.5f);
+        FaseManager6.contagem_falas_6 = 5;
         Destroy(this.gameObject);
     }
 
     IEnumerator atirandoIdle() {
         yield return new WaitForSeconds(3.35f);
-        FaseManager6.podeCair = true;
-        Camera.tremer_bastante = true;
-        anim.SetBool("atacando", false);
-        anim.SetBool("idle_atacando", true);
-        pode_atirar = true;
+        atirandoresIdle(1);
     }
 
     IEnumerator atirandoIdle2() {
         yield return new WaitForSeconds(3.35f);
-        FaseManager6.podeCair = true;
-        Camera.tremer_bastante = true;
-        anim.SetBool("atacando2", false);
-        anim.SetBool("idle_atacando2", true);
-        pode_atirar = true;
+        atirandoresIdle(2);
     }
 
     IEnumerator atirandoIdle3() {
         yield return new WaitForSeconds(3.35f);
-        FaseManager6.podeCair = true;
-        Camera.tremer_bastante = true;
-        anim.SetBool("atacando3", false);
-        anim.SetBool("idle_atacando3", true);
-        pode_atirar = true;
+        atirandoresIdle(3);
     }
 
     IEnumerator voltarDoAtaque() {
         yield return new WaitForSeconds(2.1f);
+        umTerremoto = false;
         anim.SetBool("idle", true);
     }
 
@@ -214,6 +217,26 @@ public class Chefao05 : MonoBehaviour
         contador = 0;
         anim.SetBool("meia_vida", false);
         anim.SetBool("idle", true);
+    }
+
+    private void atirandoresIdle(int valor) {
+        if(!umTerremoto) {
+            somTerremoto.Play();
+            umTerremoto = true;
+        }
+        FaseManager6.podeCair = true;
+        Camera.tremer_bastante = true;
+        if(valor == 1) {
+            anim.SetBool("atacando", false);
+            anim.SetBool("idle_atacando", true);
+        } else if(valor == 2) {
+            anim.SetBool("atacando2", false);
+            anim.SetBool("idle_atacando2", true);
+        } else if(valor == 3) {
+            anim.SetBool("atacando3", false);
+            anim.SetBool("idle_atacando3", true);
+        }
+        pode_atirar = true;
     }
 
     void Fire() {

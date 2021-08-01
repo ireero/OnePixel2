@@ -1491,7 +1491,7 @@ PrefabInstance:
         type: 3}
       propertyPath: som_tiro
       value: 
-      objectReference: {fileID: 8300000, guid: 0103064a4fff7ce448c9284ad75bd737, type: 3}
+      objectReference: {fileID: 8300000, guid: 36b8413de2bb71c419bad47ab7843e0d, type: 3}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: vida_pet
@@ -2240,7 +2240,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3256,6 +3256,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: chefao_01
       objectReference: {fileID: 0}
+    - target: {fileID: 7627461959162540765, guid: 6eaa0fcaa8d326c40a32996779e6b0bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7627461959162540766, guid: 6eaa0fcaa8d326c40a32996779e6b0bf,
         type: 3}
       propertyPath: m_RootOrder
@@ -3310,6 +3315,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627461959162540767, guid: 6eaa0fcaa8d326c40a32996779e6b0bf,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627461959162540767, guid: 6eaa0fcaa8d326c40a32996779e6b0bf,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627461959162540767, guid: 6eaa0fcaa8d326c40a32996779e6b0bf,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eaa0fcaa8d326c40a32996779e6b0bf, type: 3}

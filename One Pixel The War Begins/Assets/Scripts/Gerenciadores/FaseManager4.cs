@@ -7,8 +7,8 @@ public class FaseManager4 : MonoBehaviour
 {
 
     private string[] falas_meditador = {"Sinto muito imperador....", "Eramos aproximadamente 50 soldados de alto nível e mesmo assim fomos tods derrotados", 
-    "Graças ao sacrificio de todos nós ainda conseguimos eliminar 1 deles", "Eles apareceram do nada.....", "Quando notamos o perigo já era tarde de mais",
-    "Sinto muito meu senhor, espero que nossas mortes não sejam em vão", "Tome isso imperador, espero que lhe ajude de alguma forma", "Por favor meu imperador, salve nosso povo......"};
+    "Graças ao sacrificio de todos nós ainda conseguimos eliminar 1 deles", "Eles se revoltaram do nada.....", "Quando notamos o perigo já era tarde de mais, estavámos sercados",
+    "Sinto muito meu senhor, espero que nossas mortes não sejam em vão", "O monstro que matamos deixou isso cair, espero que lhe ajude em algo", "Por favor meu imperador, salve nosso povo......"};
 
     public Text txtFalas;
 
@@ -24,8 +24,17 @@ public class FaseManager4 : MonoBehaviour
     public static bool pode_comecar_4;
     public static bool jaConversou;
 
+    public AudioSource falaSom;
+    public AudioSource som_morte;
+    public AudioSource achievemente;
+
+    private bool umaVez;
+    private bool umaVezGanho;
+
     void Start()
     {
+        umaVezGanho = false;
+        umaVez = false;
         PlayerControle.pode_mexer = true;
         PlayerControle.podeAtirar = true;
         pode_comecar_4 = false;
@@ -42,6 +51,7 @@ public class FaseManager4 : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && pode_comecar_4) {
+            falaSom.Play();
             contagem_falas_4++;
         }
 
@@ -61,12 +71,20 @@ public class FaseManager4 : MonoBehaviour
                 break;
             case 6:
                 imagem.sprite = meditador_olhao;
-                PlayerControle.pet_ativado = true;
+                if(!umaVezGanho) {
+                    achievemente.Play();
+                    umaVezGanho = true;
+                }
+                PlayerControle.jaPodePularDuas = true;
                 break;   
             case 7:
                 imagem.sprite= meditador_chorando;
                 break;     
             case 8:
+                if(!umaVez) {
+                    som_morte.Play();
+                    umaVez = true;
+                }
                 Meditador.podeMorrer = true;
                 pode_comecar_4 = false;
                 painel_falas.SetActive(false);

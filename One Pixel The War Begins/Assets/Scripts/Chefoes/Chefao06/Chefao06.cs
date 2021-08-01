@@ -17,6 +17,7 @@ public class Chefao06 : MonoBehaviour
 
     void Start()
     {
+        meia_vida = false;
         ta_mortin = false;
         dano_tomado = 0;
         vida_restante = 300;

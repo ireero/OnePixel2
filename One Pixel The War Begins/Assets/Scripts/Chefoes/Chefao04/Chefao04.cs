@@ -34,6 +34,11 @@ public class Chefao04 : MonoBehaviour
 
     public AudioSource tocador_risada_player;
 
+    public AudioSource som_queda_morte;
+    public AudioSource desintegrando;
+
+    public AudioSource dano_chefao;
+
     void Start()
     {
         umaVezMeiaVida = false;
@@ -120,8 +125,12 @@ public class Chefao04 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            dano_chefao.Play();
             vida_chefao--;
             contagem_danos++;
+        }else if(other.gameObject.CompareTag("chao")) {
+            som_queda_morte.Play();
+            desintegrando.Play();
         }
     }
 
@@ -139,6 +148,7 @@ public class Chefao04 : MonoBehaviour
 
     IEnumerator morrer() {
         yield return new WaitForSeconds(3.9f);
+        desintegrando.Stop();
         Destroy(this.gameObject);
     }
 }

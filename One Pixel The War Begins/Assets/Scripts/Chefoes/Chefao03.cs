@@ -42,8 +42,12 @@ public class Chefao03 : MonoBehaviour
     public bool podeTomarDano;
 
     public AudioSource som_batida;
+    public AudioSource desintegracao;
 
     private float mais_speed;
+
+    private AudioSource audio_dano;
+    public AudioSource rugido_meia_vida;
 
     void Start()
     {
@@ -58,6 +62,7 @@ public class Chefao03 : MonoBehaviour
         collider_redondo = GetComponent<CircleCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        audio_dano = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -115,6 +120,7 @@ public class Chefao03 : MonoBehaviour
         }
 
         if(vida_chefao == 0 && !meia_vida) {
+            rugido_meia_vida.Play();
             FaseManager3.contagem_falas_3 = 9;
             podeTomarDano = false;
             sr.color = Color.red;
@@ -167,9 +173,12 @@ public class Chefao03 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet") && podeTomarDano) {
+            audio_dano.Play();
             podeTomarDano = false;
             vida_chefao--;
             if(vida_chefao <= -3) {
+                desintegracao.Play();
+                sr.color = Color.white;
                 corpo.bodyType = RigidbodyType2D.Static;
                 collider_quadrado.isTrigger = true;
                 collider_redondo.isTrigger = true;
@@ -221,7 +230,8 @@ public class Chefao03 : MonoBehaviour
     }
 
     IEnumerator morrer() {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3.4f);
+        desintegracao.Stop();
         Destroy(this.gameObject);
     }
 }

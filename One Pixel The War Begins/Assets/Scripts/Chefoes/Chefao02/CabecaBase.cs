@@ -23,10 +23,16 @@ public class CabecaBase : MonoBehaviour
     private SpriteRenderer sr;
 
     private float tempoDeTiro;
+    public AudioSource danoSound;
+    public AudioSource desintegrando;
+
+    private AudioSource rugido;
+    private bool umaVez;
 
     // Start is called before the first frame update
     void Start()
     {
+        umaVez = false;
         renascido = false;
         tempoDeTiro = 4.5f;
         renascer = false;
@@ -38,6 +44,7 @@ public class CabecaBase : MonoBehaviour
         corpo = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        rugido = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -59,6 +66,7 @@ public class CabecaBase : MonoBehaviour
         if(contador >= tempoDeTiro && podeAtirar) {
             Instantiate(Bullet, Spawn_Bullet.position, Spawn_Bullet.rotation);
             anim.SetBool("atirar", true);
+            rugido.Play();
             contador = 0;
             StartCoroutine("posTiro");
         }
@@ -82,6 +90,10 @@ public class CabecaBase : MonoBehaviour
             sr.color = Color.white;
             SuperTiroChefao.modoHard = false;
             if(todosMortos) {
+                if(!umaVez) {
+                    desintegrando.Play();
+                    umaVez = true;
+                }
                 collider.isTrigger = true;
                 anim.SetBool("morreu", true);
                 StartCoroutine("morrer");
@@ -93,6 +105,7 @@ public class CabecaBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            danoSound.Play();
             if(!renascer && !morto) {
                 vida_cabeca--;
             }
@@ -111,16 +124,16 @@ public class CabecaBase : MonoBehaviour
 
     IEnumerator posTiro() {
         if(!renascido) {
-            yield return new WaitForSeconds(2.8f);
+            yield return new WaitForSeconds(2.5f);
             anim.SetBool("atirar", false);
         } else {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             anim.SetBool("atirar", false);
         }
     }
 
     IEnumerator renascerIdle() {
-        yield return new WaitForSeconds(5.8f);
+        yield return new WaitForSeconds(2.2f);
         renascido = true;
         podeAtirar = true;
         anim.SetBool("idle_metade", true);
@@ -129,7 +142,8 @@ public class CabecaBase : MonoBehaviour
     }
 
     IEnumerator morrer() {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2.35f);
+        desintegrando.Stop();
         Destroy(this.gameObject);
     }
 }

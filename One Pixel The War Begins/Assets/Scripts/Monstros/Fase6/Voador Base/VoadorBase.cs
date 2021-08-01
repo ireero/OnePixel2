@@ -11,6 +11,7 @@ public class VoadorBase : MonoBehaviour
     private float speed;
     private Rigidbody2D corpo;
     private bool morreu;
+    private SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class VoadorBase : MonoBehaviour
         anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
         corpo = GetComponent<Rigidbody2D>(); 
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,7 @@ public class VoadorBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("tijolo")) {
+            sr.color = Color.white;
             morreu = true;
             speed = 0;
             anim.SetBool("morreu", true);

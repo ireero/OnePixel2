@@ -39,7 +39,7 @@ public class TiroPequeno : MonoBehaviour
     }
 
     IEnumerator morre() {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.75f);
         Destroy(this.gameObject);
 	}
 

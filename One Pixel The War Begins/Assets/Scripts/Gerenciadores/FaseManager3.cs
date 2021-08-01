@@ -42,8 +42,15 @@ public class FaseManager3 : MonoBehaviour
     public AudioSource backSound;
     private int podeTocar;
 
+    public AudioSource fala_personagens;
+    public AudioSource back_void;
+
+    private bool umaVezBack;
+
     void Start()
     {
+        umaVezBack = false;
+        back_void.Play();
         podeTocar = 0;
         painel_falas.SetActive(true);
         pode_comecar_3 = false;
@@ -61,6 +68,7 @@ public class FaseManager3 : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_3) {
+            fala_personagens.Play();
             contagem_falas_3++;
         }
 
@@ -78,6 +86,7 @@ public class FaseManager3 : MonoBehaviour
             case 8:
                 if(podeTocar <= 0) {
                     backSound.Play();
+                    back_void.Stop();
                     podeTocar++;
                 }
                 PlayerControle.pode_mexer = true;
@@ -128,6 +137,10 @@ public class FaseManager3 : MonoBehaviour
                 break;
             case -3:
                 backSound.Stop();
+                if(!umaVezBack) {
+                    back_void.Play();
+                    umaVezBack = true;
+                }
                 Destroy(BarraVida3);
                 Destroy(vidinha3);
                 break;        

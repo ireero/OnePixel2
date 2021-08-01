@@ -27,11 +27,17 @@ public class FaseManager7 : MonoBehaviour
 
     private float tempo_spawn;
     public Sprite back_2;
+    public Sprite back_1;
 
     public GameObject painel_derrota;
 
+    public GameObject chefao;
+    public GameObject vida_chefao;
+
     void Start()
     {
+        back.sprite = back_1;
+        back.color = Color.white;
         tempo_spawn = 10.5f;
         valor_momentaneo = 0;;
         liberado = true;
@@ -45,6 +51,11 @@ public class FaseManager7 : MonoBehaviour
     {
 
         BarraVida();
+
+        if(AtivarChefao.ativarOlhao == true) {
+            chefao.SetActive(true);
+            vida_chefao.SetActive(true);
+        }
 
         if(PlayerControle.player_morto == true) {
             painel_derrota.SetActive(true);
@@ -67,6 +78,7 @@ public class FaseManager7 : MonoBehaviour
         }
 
         if(Chefao06.ta_mortin) {
+            Destroy(BarraVidaMaior);
             back.color = Color.white;
         }
 

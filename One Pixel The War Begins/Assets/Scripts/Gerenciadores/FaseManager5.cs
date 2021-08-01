@@ -49,14 +49,19 @@ public class FaseManager5 : MonoBehaviour
     public AudioSource back_som;
     private int podeTocar;
 
+    public AudioSource back_void;
+    public AudioSource som_fala;
+
     void Start()
     {
+        back_void.Play();
         podeTocar = 0;
         painel_falas.SetActive(true);
         pode_comecar_5 = false;
         contagem_falas_5 = 0;
         PlayerControle.podeAtirar = false;
         PlayerControle.pode_mexer = false;
+        TiroPequenoChefao.modoHard = false;
         umaVez = false;
         contador = 0;
     }
@@ -65,11 +70,13 @@ public class FaseManager5 : MonoBehaviour
     void Update()
     {
 
+
         if(PlayerControle.player_morto == true) {
             painel_derrota.SetActive(true);
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_5) {
+            som_fala.Play();
             contagem_falas_5++;
         }
 
@@ -96,8 +103,9 @@ public class FaseManager5 : MonoBehaviour
             case 7:
                 if(podeTocar <= 0) {
                     back_som.Play();
+                    back_void.Stop();
                     podeTocar++;
-                }
+                } 
                 PlayerControle.pode_mexer = true;
                 PlayerControle.podeAtirar = true;
                 painel_falas.SetActive(false);
@@ -142,6 +150,7 @@ public class FaseManager5 : MonoBehaviour
         }
 
         if(Chefao04.vida_chefao == 0) {
+            back_void.Play();
             back_som.Stop();
             Destroy(BarraVidaMaior);
         } else if(Chefao04.vida_chefao <= 25 && Chefao04.vida_chefao > 0) {

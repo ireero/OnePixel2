@@ -40,15 +40,22 @@ public class FaseManager2 : MonoBehaviour
 
     public AudioSource back;
     private int tocaSom;
+    public AudioSource som_fala;
+
+    public AudioSource back_void;
+
+    public GameObject escada;
 
     void Start()
     {
+        back_void.Play();
         tocaSom = 0;
         pode_comecar = false;
         contagem_falas_2 = 0;
         painel_falas.SetActive(true);
         PlayerControle.pode_mexer = false;
         PlayerControle.podeAtirar = false;
+        TiroPequenoChefao.modoHard = false;
     }
 
     // Update is called once per frame
@@ -72,6 +79,7 @@ public class FaseManager2 : MonoBehaviour
                      break;
                 case 3:
                     if(tocaSom <= 0) {
+                        back_void.Stop();
                         back.Play();
                         tocaSom += 1;
                     }
@@ -81,6 +89,8 @@ public class FaseManager2 : MonoBehaviour
                     painel_falas.SetActive(false);
                     break;
                 case 4:
+                    back.Stop();
+                    back_void.Play();
                     PlayerControle.pode_mexer = false;
                     PlayerControle.podeAtirar = false;
                     imagem.sprite = cabeca_base_normal;
@@ -90,13 +100,15 @@ public class FaseManager2 : MonoBehaviour
                     imagem.sprite = cabeca_base_vingativa; 
                     break;
                 case 6:
-                    back.Stop();
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
                     CabecaBase.todosMortos = true;
                     painel_falas.SetActive(false);
                     break;                  
             }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar) {
+            som_fala.Play();
             contagem_falas_2++;
         }
 
@@ -108,6 +120,7 @@ public class FaseManager2 : MonoBehaviour
         }
 
         if((cabeca1_morta && cabeca2_morta && cabeca3_morta & cabeca4_morta) && pode_comecar) {
+            escada.SetActive(true);
             Destroy(BarraVidaMaior);
             contagem_falas_2 = 4;
             TiroPequenoChefao.modoHard = false;

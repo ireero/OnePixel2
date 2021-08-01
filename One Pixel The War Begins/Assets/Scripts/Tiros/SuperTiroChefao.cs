@@ -5,12 +5,12 @@ using UnityEngine;
 public class SuperTiroChefao : MonoBehaviour
 {
 
-    private float speed = -1.2f;
+    private float speed = -1.75f;
     private float timeDestroy;
     private Animator anim;
     private BoxCollider2D collider;
     private float contador;
-    private int vida = 5;
+    private int vida = 6;
     private SpriteRenderer sr;
 
     public static bool modoHard;
@@ -30,12 +30,12 @@ public class SuperTiroChefao : MonoBehaviour
     void Update()
     {
         contador += Time.deltaTime;
-        if(contador >= 1.5f) {
+        if(contador >= 1.2f) {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
 
         if(modoHard) {
-            speed = -2f;
+            speed = -2.5f;
             sr.color = Color.red;
         }
 
@@ -57,12 +57,12 @@ public class SuperTiroChefao : MonoBehaviour
     }
 
     IEnumerator morre() {
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(1.65f);
         Destroy(this.gameObject);
 	}
 
     IEnumerator ativarIdle() {
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(0.85f);
         anim.SetBool("idle", true);
     }
 

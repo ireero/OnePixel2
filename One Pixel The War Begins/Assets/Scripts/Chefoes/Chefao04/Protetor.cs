@@ -68,7 +68,7 @@ public class Protetor : MonoBehaviour
         }
 
         if(chefao_vermelho) {
-            tempo_de_tiro = 0.5f;
+            tempo_de_tiro = 0.65f;
             sr.color = Color.red;
             potenciaRot = 1.25f;
         } 

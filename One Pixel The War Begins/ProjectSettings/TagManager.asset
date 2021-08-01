@@ -17,6 +17,7 @@ TagManager:
   - alerta_falas
   - monstro_base
   - tijolo
+  - nextFase
   layers:
   - Default
   - TransparentFX

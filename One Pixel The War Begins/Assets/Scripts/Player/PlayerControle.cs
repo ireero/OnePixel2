@@ -52,7 +52,7 @@ public class PlayerControle : MonoBehaviour {
 
    public Sprite icon_morte;
 
-   public Animator anim_poeira;
+   public Animator anim_gatilhos;
    public ParticleSystem dust;
 
    private SpriteRenderer sr;
@@ -61,8 +61,18 @@ public class PlayerControle : MonoBehaviour {
    public Animator anim_pet;
 
    public GameObject vida_pet;
+
+   public static bool parado;
+
+   private bool doubleJump;
+
+   public static bool jaPodePularDuas;
+   public GameObject simbuloVoador;
  
    void Start () {  
+      jaPodePularDuas = false;
+      doubleJump = true;
+      parado = true;
       player_morto = false;
       pet_ativado = true;
       pode_mexer = true;
@@ -82,6 +92,18 @@ public class PlayerControle : MonoBehaviour {
    }
  
    void Update () {
+
+      if(jaPodePularDuas) {
+         simbuloVoador.SetActive(true);
+      } else {
+         simbuloVoador.SetActive(false);
+      }
+
+      if(rb2d.velocity == new Vector2(0, 0)) {
+         parado = true;
+      } else {
+         parado = false;
+      }
       
       if(pode_mexer) {
          inputCheck ();
@@ -93,9 +115,11 @@ public class PlayerControle : MonoBehaviour {
          podePor = true;
          anim.SetBool("pulou", false);
          anim.SetBool("idle", false);
-         anim_poeira.SetBool("poeira", false);
+         anim_gatilhos.SetBool("poeira", false);
       } else {
-         anim_poeira.SetBool("poeira", true);
+         anim_gatilhos.SetBool("asas", false);
+         doubleJump = true;
+         anim_gatilhos.SetBool("poeira", true);
          podePor = false;
          caiu = true;
          anim.SetBool("caiu", true);
@@ -116,6 +140,12 @@ public class PlayerControle : MonoBehaviour {
       } else if(((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isGrounded) && caiu) {
          jump = true;
          anim.SetBool("caiu", false);
+      } else if((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && !isGrounded && doubleJump) {
+         if(jaPodePularDuas) {
+            jump = true;
+            doubleJump = false;
+            anim_gatilhos.SetBool("asas", true);
+         }
       }
 
       if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
@@ -186,11 +216,6 @@ public class PlayerControle : MonoBehaviour {
       anim.SetBool("idle", true);
    }
 
-   IEnumerator voltarPoeira() {
-      yield return new WaitForSeconds(0.35f);
-      anim_poeira.SetBool("poeira", false);
-   } 
-
    void Fire() {
 
       GerenciadorAudio.inst.PlayTiro(som_tiro);
@@ -206,24 +231,8 @@ public class PlayerControle : MonoBehaviour {
 	}
 
    private void OnCollisionEnter2D(Collision2D other) {
-      if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") ) {
-         if(!pet_ativado) {
-            player_morto = true;
-            GerenciadorAudio.inst.PlayMorte(som_morte);
-            Camera.tremer = true;
-            pode_mexer = false;
-            anim.SetBool("morreu", true);
-            player_collider.isTrigger = true;
-            rb2d.bodyType = RigidbodyType2D.Static;
-            Barra_de_vida.fillAmount = 0;
-            BarraVidaMaior.sprite = icon_morte;
-            Destroy(valor_vida);
-            Destroy(this.gameObject, 3.2f);
-         } else {
-            Camera.tremer = true;
-            anim_pet.SetBool("sacrificar", true);
-            StartCoroutine("petSumir");
-         }
+      if(other.gameObject.CompareTag("monstro")) {
+         Morrer();
       } else if(other.gameObject.CompareTag("moeda_rir")) {
          player_collider.isTrigger = true;
          rb2d.bodyType = RigidbodyType2D.Static;
@@ -287,6 +296,27 @@ public class PlayerControle : MonoBehaviour {
 
    void CreateDust() {
       dust.Play();
+   }
+
+   void Morrer() {
+      simbuloVoador.SetActive(false);
+      if(!pet_ativado) {
+         player_morto = true;
+         GerenciadorAudio.inst.PlayMorte(som_morte);
+         Camera.tremer = true;
+         pode_mexer = false;
+         anim.SetBool("morreu", true);
+         player_collider.isTrigger = true;
+         rb2d.bodyType = RigidbodyType2D.Static;
+         Barra_de_vida.fillAmount = 0;
+         BarraVidaMaior.sprite = icon_morte;
+         Destroy(valor_vida);
+         Destroy(this.gameObject, 3.2f);
+         } else {
+            Camera.tremer = true;
+            anim_pet.SetBool("sacrificar", true);
+            StartCoroutine("petSumir");
+         }
    }
 
 }

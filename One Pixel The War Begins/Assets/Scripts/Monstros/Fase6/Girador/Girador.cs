@@ -65,6 +65,7 @@ public class Girador : MonoBehaviour
 	}
 
     private void Morrer() {
+        sr.color = Color.white;
         anim.SetBool("morreu", true);
         collider.isTrigger = true;
         corpo.gravityScale += 0.1f;

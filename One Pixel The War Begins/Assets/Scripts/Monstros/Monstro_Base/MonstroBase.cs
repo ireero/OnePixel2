@@ -8,6 +8,7 @@ public class MonstroBase : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D collider;
     private AudioSource audio_morte;
+    private SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class MonstroBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         audio_morte = GetComponent<AudioSource>();
+        sr = GetComponent<SpriteRenderer>();
         StartCoroutine("esperarCair");
     }
 
@@ -27,15 +29,9 @@ public class MonstroBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("chao") || FaseManager.chefao_vivo == false) {
-            audio_morte.Play();
-            anim.SetBool("morte_caiu", true);
-            Morte();
-            Destroy(this.gameObject, 2f);
+            Morte(0);
         } else if(other.gameObject.CompareTag("bullet")) {
-            audio_morte.Play();
-            anim.SetBool("morte_tiro", true);
-            Morte();
-            Destroy(this.gameObject, 2f);
+            Morte(1);
         } else if(other.gameObject.CompareTag("Chefoes")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
@@ -47,8 +43,17 @@ public class MonstroBase : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
-    private void Morte() {
+    private void Morte(int qual) {
+        sr.color = Color.white;
         collider.isTrigger = true;
         rb.bodyType = RigidbodyType2D.Static;
+        audio_morte.Play();
+        if(qual == 0) {
+            anim.SetBool("morte_caiu", true);
+            Destroy(gameObject, 0.55f);
+        } else if(qual == 1) {
+            anim.SetBool("morte_tiro", true);
+            Destroy(gameObject, 1.2f);
+        }
     }
 }
