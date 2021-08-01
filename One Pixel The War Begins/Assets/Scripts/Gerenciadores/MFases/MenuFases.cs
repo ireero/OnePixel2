@@ -8,7 +8,7 @@ public class MenuFases : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -18,46 +18,46 @@ public class MenuFases : MonoBehaviour
     }
 
     public void Tutorial() {
-        SceneManager.LoadScene(11);
+        SceneLoader.Instance.LoadSceneAsync("Tutorial");
     }
 
     public void Fase1() {
-        SceneManager.LoadScene(1);
+        SceneLoader.Instance.LoadSceneAsync("Fase1");
     }
 
     public void Fase2() {
-        SceneManager.LoadScene(2);
+        SceneLoader.Instance.LoadSceneAsync("Fase2");
     }
 
     public void Fase3() {
-        SceneManager.LoadScene(3);
+        SceneLoader.Instance.LoadSceneAsync("Fase3");
     }
 
     public void Fase4() {
-        SceneManager.LoadScene(4);
+        SceneLoader.Instance.LoadSceneAsync("Fase4");
     }
 
     public void Fase5() {
-        SceneManager.LoadScene(5);
+        SceneLoader.Instance.LoadSceneAsync("Fase5");
     }
 
     public void Fase6() {
-        SceneManager.LoadScene(6);
+        SceneLoader.Instance.LoadSceneAsync("Fase6");
     }
 
     public void Fase7() {
-        SceneManager.LoadScene(7);
+        SceneLoader.Instance.LoadSceneAsync("Fase7");
     }
 
     public void Fase8() {
-        SceneManager.LoadScene(8);
+        SceneLoader.Instance.LoadSceneAsync("Fase8");
     }
 
     public void Fase9() {
-        SceneManager.LoadScene(9);
+        SceneLoader.Instance.LoadSceneAsync("Fase9");
     }
 
     public void Fase10() {
-        SceneManager.LoadScene(10);
+        SceneLoader.Instance.LoadSceneAsync("Fase10");
     }
 }

@@ -44,8 +44,6 @@ public class FaseManager2 : MonoBehaviour
 
     public AudioSource back_void;
 
-    public GameObject escada;
-
     void Start()
     {
         back_void.Play();
@@ -120,7 +118,6 @@ public class FaseManager2 : MonoBehaviour
         }
 
         if((cabeca1_morta && cabeca2_morta && cabeca3_morta & cabeca4_morta) && pode_comecar) {
-            escada.SetActive(true);
             Destroy(BarraVidaMaior);
             contagem_falas_2 = 4;
             TiroPequenoChefao.modoHard = false;

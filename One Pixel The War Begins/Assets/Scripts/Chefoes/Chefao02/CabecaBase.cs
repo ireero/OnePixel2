@@ -29,6 +29,8 @@ public class CabecaBase : MonoBehaviour
     private AudioSource rugido;
     private bool umaVez;
 
+    public GameObject escada;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -143,6 +145,7 @@ public class CabecaBase : MonoBehaviour
 
     IEnumerator morrer() {
         yield return new WaitForSeconds(2.35f);
+        escada.SetActive(true);
         desintegrando.Stop();
         Destroy(this.gameObject);
     }

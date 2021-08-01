@@ -215,7 +215,7 @@ public class TextoTutorial : MonoBehaviour
                 controles_pause.SetActive(false);
                 break;   
             case 8:
-                SceneManager.LoadScene(1);   
+                SceneLoader.Instance.LoadSceneAsync("Fase1");  
                 break;  
         }
 

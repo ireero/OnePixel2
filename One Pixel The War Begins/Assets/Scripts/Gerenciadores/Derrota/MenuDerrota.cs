@@ -15,10 +15,10 @@ public class MenuDerrota : MonoBehaviour
     }
 
     public void Reiniciar() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader.Instance.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
     public void IrMenu() {
-        SceneManager.LoadScene("Menu");
+        SceneLoader.Instance.LoadSceneAsync("Menu");
     }
 }

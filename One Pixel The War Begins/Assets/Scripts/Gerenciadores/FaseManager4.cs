@@ -72,6 +72,7 @@ public class FaseManager4 : MonoBehaviour
             case 6:
                 imagem.sprite = meditador_olhao;
                 if(!umaVezGanho) {
+                    PlayerControle.jaPodePularDuas = true;
                     achievemente.Play();
                     umaVezGanho = true;
                 }

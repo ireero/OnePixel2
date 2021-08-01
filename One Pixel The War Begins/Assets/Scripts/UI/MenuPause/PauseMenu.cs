@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour {
    public Slider BarraVolume;
    public Toggle CaixaModoJanela;
    public Dropdown Resolucoes, Qualidades;
-   public Button BotaoVoltar, BotaoSalvarPref;
+   public Button BotaoReiniciar, BotaoVoltar, BotaoSalvarPref;
    [Space(20)]
    public Text textoVol;
    public string nomeCenaMenu = "Menu";
@@ -97,7 +97,9 @@ public class PauseMenu : MonoBehaviour {
       BotaoRetornarAoJogo.onClick = new Button.ButtonClickedEvent();
       BotaoVoltar.onClick = new Button.ButtonClickedEvent();
       BotaoSalvarPref.onClick = new Button.ButtonClickedEvent();
+      BotaoReiniciar.onClick = new Button.ButtonClickedEvent();
       //
+      BotaoReiniciar.onClick.AddListener(() => ReiniciarCena());
       BotaoVoltarAoMenu.onClick.AddListener(() => VoltarAoMenu());
       BotaoOpcoes.onClick.AddListener(() => Opcoes(false,true));
       BotaoRetornarAoJogo.onClick.AddListener(() => Opcoes(false,false));
@@ -152,6 +154,7 @@ public class PauseMenu : MonoBehaviour {
       Qualidades.captionText.text = "Qualidade";
    }
    private void Opcoes(bool ativarOP, bool ativarOP2){
+      BotaoReiniciar.gameObject.SetActive(ativarOP);
       BotaoVoltarAoMenu.gameObject.SetActive (ativarOP);
       BotaoOpcoes.gameObject.SetActive (ativarOP);
       BotaoRetornarAoJogo.gameObject.SetActive (ativarOP);
@@ -200,6 +203,11 @@ public class PauseMenu : MonoBehaviour {
       Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width,resolucoesSuportadas[resolucaoSalveIndex].height,telaCheiaAtivada);
    }
    private void VoltarAoMenu(){
-      SceneManager.LoadScene (nomeCenaMenu);
+      SceneLoader.Instance.LoadSceneAsync(nomeCenaMenu);
+   }
+
+   private void ReiniciarCena() {
+      SceneLoader.Instance.LoadSceneAsync(SceneManager.GetActiveScene().name);
+      Time.timeScale = 1;
    }
 }
