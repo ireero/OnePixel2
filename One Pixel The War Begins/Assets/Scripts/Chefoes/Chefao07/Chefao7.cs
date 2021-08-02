@@ -9,6 +9,7 @@ public class Chefao7 : MonoBehaviour
     private bool umaVez;
     public static bool possuido;
     public static bool bateu_nele;
+    private BoxCollider2D collider;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class Chefao7 : MonoBehaviour
         umaVez = false;
         rindo = false;
         anim = GetComponent<Animator>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,13 @@ public class Chefao7 : MonoBehaviour
         if(Portal.atira_ae_po == 5 && !umaVez) {
             umaVez = true;
             anim.SetBool("transformar", true);
-            StartCoroutine("idleMeiaVida");
+            collider.isTrigger = true;
+        }
+
+        if(FaseManager9.acabou == true) {
+            Camera.tremer_bastante = true;
+            anim.SetBool("transformar", false);
+            StartCoroutine("voltarNormal");
         }
         
     }
@@ -52,8 +60,12 @@ public class Chefao7 : MonoBehaviour
         anim.SetBool("rindo", false);
     }
 
-    IEnumerator idleMeiaVida() {
-        yield return new WaitForSeconds(1.35f);
-        anim.SetBool("transformar", false);
+    IEnumerator voltarNormal() {
+        yield return new WaitForSeconds(5f);
+        possuido = false;
+        FaseManager9.acabou = false;
+        Camera.tremer_bastante = false;
+        anim.SetBool("sumir", true);
+        collider.isTrigger = false;
     }
 }

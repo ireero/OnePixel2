@@ -40,9 +40,15 @@ public class FaseManager9 : MonoBehaviour
 
     public Image BarraVidaMaior;
     public Sprite chefao_meia_vida;
+    public Sprite chefao_normal;
+
+    public GameObject cara_vermelha;
+
+    public static bool acabou;
 
     void Start()
     {
+        acabou = false;
         valor_provisorio = 0;
         valor_aleatorio = 0;
         cont_lobo = 0;
@@ -71,7 +77,13 @@ public class FaseManager9 : MonoBehaviour
 
         if(segunda_parte) {
 
+            if(Chefao7.possuido == false) {
+            BarraVidaMaior.color = Color.white;
+            BarraVidaMaior.sprite = chefao_normal;
+        }
+
             if(!umaVezTempo) {
+                cara_vermelha.SetActive(true);
                 BarraVidaMaior.sprite = chefao_meia_vida;
                 BarraVidaMaior.color = Color.red;
                 tempo_sobreviver = 75f;
@@ -82,13 +94,16 @@ public class FaseManager9 : MonoBehaviour
                 mao_1.SetActive(true);
                 mao_2.SetActive(true);
             } else if(tempo_sobreviver <= 25f && tempo_sobreviver > 0) {
+                if(tempo_sobreviver <= 0.1) {
+                acabou = true;
+                }
                 valor_aleatorio = Random.Range(0, 9);
                 cont_lobo += Time.deltaTime;
                 if(cont_lobo > 1f) {
                         if(valor_aleatorio == valor_provisorio) {
                             if(valor_aleatorio == 8) {
                                 valor_aleatorio--;
-                            } else if(valor_aleatorio == 0) {
+                            } else {
                                 valor_aleatorio++;
                             }
                         }
@@ -116,6 +131,7 @@ public class FaseManager9 : MonoBehaviour
             }
         }
     }
+
 
     IEnumerator segundaParte() {
         yield return new WaitForSeconds(2f);

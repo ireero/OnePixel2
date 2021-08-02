@@ -59,7 +59,7 @@ public class MoveRaposa : MonoBehaviour
     }
 
     IEnumerator sumir() {
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

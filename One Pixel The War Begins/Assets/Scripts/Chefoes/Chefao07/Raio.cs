@@ -18,10 +18,10 @@ public class Raio : MonoBehaviour
     void Update()
     {
         contador += Time.deltaTime;
-        if(contador >= 1.2f && contador < 1.7f) {
+        if(contador >= 1.2f && contador < 1.6f) {
             collider.enabled = true;
             anim.SetBool("cair", true);
-        } else if(contador >= 1.7f) {
+        } else if(contador >= 1.6f) {
             FaseManager9.soltarRaio = false;
             Destroy(gameObject);
         }

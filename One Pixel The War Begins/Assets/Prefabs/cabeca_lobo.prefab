@@ -148,4 +148,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn_tiro: {fileID: 3514165397231746513}
-  tiro: {fileID: 4270269240317715694, guid: c8c28ba044392a64396e6f0496731fbc, type: 3}
+  tiro: {fileID: 3814897251748414297, guid: fb6cb7d79c111ac4b9a83ca3b8e3bb37, type: 3}
