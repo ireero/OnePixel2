@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class TextoTutorial : MonoBehaviour
 {
     private string[] instrucoes = {"One Pixel The War Begins", "Use as setas ou AWSD para andar e pular", 
-    "Atire apertando a tecla Z ou o lado esquerdo do mouse", "Conjure uma plataforma apertando a tecla X ou o lado direito do mouse, Lembre-se que voce não pode conjurar plataformas estando no chão ou em outra plataforma", "Apertando espaço você pode dar um Dash e avançar mais rápido, no ar pode ser usado apenas uma vez e no chão infinitas", 
+    "Atire apertando a tecla Z ou o lado esquerdo do mouse", "Conjure uma plataforma apertando a tecla X ou o lado direito do mouse, Lembre-se que voce não pode conjurar plataformas estando no chão ou em outra plataforma, também pode apagar a que você está em cima apertando SHIFT", "Apertando espaço você pode dar um Dash e avançar mais rápido, no ar pode ser usado apenas uma vez e no chão infinitas", 
     "Aqui você pode ver sua barra de vida que só tem 1 de HP", "Apertando Esc você pausa e despausa o jogo", "Agora que você aprendeu tudo está na hora de ir, Aliás você tem um reino para salvar"};
 
     public Text txtTutorial;

@@ -5397,7 +5397,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &7442106555223898367
 MonoBehaviour:
@@ -5457,6 +5457,7 @@ MonoBehaviour:
   CaixaModoJanela: {fileID: 0}
   Resolucoes: {fileID: 0}
   Qualidades: {fileID: 0}
+  BotaoReiniciar: {fileID: 0}
   BotaoVoltar: {fileID: 0}
   BotaoSalvarPref: {fileID: 0}
   textoVol: {fileID: 0}

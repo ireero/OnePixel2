@@ -49,6 +49,8 @@ public class Chefao03 : MonoBehaviour
     private AudioSource audio_dano;
     public AudioSource rugido_meia_vida;
 
+    public GameObject escada;
+
     void Start()
     {
         mais_speed = 0.005f;
@@ -232,6 +234,7 @@ public class Chefao03 : MonoBehaviour
     IEnumerator morrer() {
         yield return new WaitForSeconds(3.4f);
         desintegracao.Stop();
+        escada.SetActive(true);
         Destroy(this.gameObject);
     }
 }

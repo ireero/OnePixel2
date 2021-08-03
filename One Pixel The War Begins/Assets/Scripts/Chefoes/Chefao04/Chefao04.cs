@@ -39,6 +39,8 @@ public class Chefao04 : MonoBehaviour
 
     public AudioSource dano_chefao;
 
+    public GameObject escada;
+
     void Start()
     {
         umaVezMeiaVida = false;
@@ -148,6 +150,7 @@ public class Chefao04 : MonoBehaviour
 
     IEnumerator morrer() {
         yield return new WaitForSeconds(3.9f);
+        escada.SetActive(true);
         desintegrando.Stop();
         Destroy(this.gameObject);
     }

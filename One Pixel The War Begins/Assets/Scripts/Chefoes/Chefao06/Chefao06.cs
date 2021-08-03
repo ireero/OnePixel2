@@ -15,6 +15,8 @@ public class Chefao06 : MonoBehaviour
     public static bool meia_vida;
     public static bool ta_mortin;
 
+    public GameObject escada;
+
     void Start()
     {
         meia_vida = false;
@@ -95,6 +97,7 @@ public class Chefao06 : MonoBehaviour
 
     IEnumerator morrer() {
         yield return new WaitForSeconds(2f);
+        escada.SetActive(true);
         Destroy(this.gameObject);
     }
 }

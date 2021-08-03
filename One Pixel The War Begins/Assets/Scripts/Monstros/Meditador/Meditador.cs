@@ -6,6 +6,7 @@ public class Meditador : MonoBehaviour
 {
     public static bool podeMorrer;
     private Animator anim;
+    public GameObject escada;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class Meditador : MonoBehaviour
 
     IEnumerator sumir() {
         yield return new WaitForSeconds(2.1f);
+        escada.SetActive(true);
         Destroy(this.gameObject);
     } 
 }

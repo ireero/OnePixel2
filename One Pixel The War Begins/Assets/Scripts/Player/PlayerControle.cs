@@ -68,9 +68,16 @@ public class PlayerControle : MonoBehaviour {
 
    public static bool jaPodePularDuas;
    public GameObject simbuloVoador;
+
+   private int pularPegar;
  
    void Start () {  
-      jaPodePularDuas = false;
+      pularPegar = PlayerPrefs.GetInt("PularDuas");
+      if(pularPegar == 1) {
+         jaPodePularDuas = true;
+      } else {
+         jaPodePularDuas = false;
+      }
       doubleJump = true;
       parado = true;
       player_morto = false;
@@ -244,6 +251,24 @@ public class PlayerControle : MonoBehaviour {
          jumpForce -= 50;
          sr.color = Color.grey;
          StartCoroutine("tijolada");
+      } else if(other.gameObject.CompareTag("plataforma")) {
+      if(Input.GetKey(KeyCode.LeftShift)) {
+            Destroy(other.gameObject);
+         }
+      }
+   }
+
+   private void OnCollisionStay2D(Collision2D other) {
+   if(other.gameObject.CompareTag("plataforma")) {
+      if(Input.GetKey(KeyCode.LeftShift)) {
+            Destroy(other.gameObject);
+         }
+      }
+   }
+
+   private void OnTriggerEnter2D(Collider2D other) {
+      if(other.gameObject.CompareTag("alerta_falas")) {
+         rb2d.velocity = new Vector2(0, 0);
       }
    }
 

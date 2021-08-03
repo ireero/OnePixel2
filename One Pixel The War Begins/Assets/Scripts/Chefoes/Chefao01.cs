@@ -34,6 +34,8 @@ public class Chefao01 : MonoBehaviour
     public AudioSource som_morte;
     public AudioSource dano;
 
+    public GameObject escada;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -203,6 +205,7 @@ public class Chefao01 : MonoBehaviour
 
     IEnumerator morrerDeVez() {
         yield return new WaitForSeconds(1.1f);
+        escada.SetActive(true);
         Destroy(this.gameObject);
     }
 

@@ -113,7 +113,6 @@ public class PauseMenu : MonoBehaviour {
             menuParte2Ativo = false;
             Opcoes (true, false);
             Time.timeScale = 0;
-            AudioListener.volume = 0;
          } else if (menuParte1Ativo == true && menuParte2Ativo == false) {
             menuParte1Ativo = menuParte2Ativo = false;
             Opcoes (false, false);
@@ -125,7 +124,6 @@ public class PauseMenu : MonoBehaviour {
             menuParte2Ativo = false;
             Opcoes (true, false);
             Time.timeScale = 0;
-            AudioListener.volume = 0;
          }
       }
       if (menuParte1Ativo == true || menuParte2Ativo == true) {
@@ -204,6 +202,7 @@ public class PauseMenu : MonoBehaviour {
    }
    private void VoltarAoMenu(){
       SceneLoader.Instance.LoadSceneAsync(nomeCenaMenu);
+      Time.timeScale = 1;
    }
 
    private void ReiniciarCena() {

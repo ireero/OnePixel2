@@ -7,7 +7,7 @@ public class FaseManager8 : MonoBehaviour
 {
     private string[] falas_cientista = {"O.... Oi Imperador", "sinceramente não imaginei que você fosse chegar até aqui", "Faziam meses que você não pisava no castelo", 
     "Me diga como foi sua expedição em busca de novas terras?", "Não está muito bem humorado não é mesmo?", "Entendo......", "Serei bem sincero com você imperador, eu não gosto de brigas", 
-    "Então faça ai o que você quiser e vá pra onde você quiser que eu não ligo"};
+    "Então faça ai o que você quiser e vá pra onde você quiser que eu não ligo", "Tome esse presente por me deixar ir, tenho certeza que vai lhe ajudar bastante com os inimigos a frente"};
 
     public Text txtFalas;
 
@@ -38,11 +38,11 @@ public class FaseManager8 : MonoBehaviour
             contagem_falas_8++;
         }
 
-        if(contagem_falas_8 <= 7 && contagem_falas_8 >= 0) {
+        if(contagem_falas_8 <= 8 && contagem_falas_8 >= 0) {
             txtFalas.text = falas_cientista[contagem_falas_8];
         }
 
-        if(contagem_falas_8 == 8) {
+        if(contagem_falas_8 == 9) {
             jabateuUmPapo = true;
             pode_comecar_8 = false;
             painel_falas.SetActive(false);
