@@ -63,6 +63,7 @@ public class FaseManager : MonoBehaviour
     public AudioSource som_fala;
 
     private bool falarUmaVez;
+    public GameObject vida_chefao;
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +72,6 @@ public class FaseManager : MonoBehaviour
         som_fala.Play();
         painel_falas.SetActive(true);
         falas_terminaram = false;
-        BarraVidaMaior.enabled = false;
         chefao_vivo = true;
         chefao_nasceu = false;
         podeSpawn = false;
@@ -82,6 +82,7 @@ public class FaseManager : MonoBehaviour
         PlayerControle.pode_mexer = false;
         PlayerControle.podeAtirar = false;
         back_void.Play();
+        Chefao01.bateu_chao = false;
     }
 
     // Update is called once per frame
@@ -94,6 +95,7 @@ public class FaseManager : MonoBehaviour
 
         if(Chefao01.bateu_chao == true) {
             if(!uma_batida) {
+                vida_chefao.SetActive(true);
                 som_caida.Play();
                 uma_batida = true;
             }
@@ -105,7 +107,6 @@ public class FaseManager : MonoBehaviour
             if(!chefao_nasceu && falas_terminaram) {
                 back_void.Pause();
                 background.Play();
-                BarraVidaMaior.enabled = true;
                 chefao.SetActive(true);
                 chefao_nasceu = true;
             }

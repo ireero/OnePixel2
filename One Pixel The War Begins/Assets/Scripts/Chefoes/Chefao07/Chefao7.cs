@@ -35,6 +35,10 @@ public class Chefao7 : MonoBehaviour
             anim.SetBool("transformar", false);
             StartCoroutine("voltarNormal");
         }
+
+        if(FaseManager9.cabo_tudo) {
+            Destroy(gameObject);
+        }
         
     }
 

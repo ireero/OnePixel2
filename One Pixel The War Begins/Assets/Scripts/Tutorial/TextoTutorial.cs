@@ -63,9 +63,12 @@ public class TextoTutorial : MonoBehaviour
 
     public Animator space_dash;
     public Animator botao_esq;
+
+    private bool umaVez;
     
     void Start()
     {
+        umaVez = false;
         pausado = false;
         deu_dash = false;
         dash_controles = false;
@@ -215,7 +218,10 @@ public class TextoTutorial : MonoBehaviour
                 controles_pause.SetActive(false);
                 break;   
             case 8:
-                SceneLoader.Instance.LoadSceneAsync("Fase1");  
+                if(!umaVez) {
+                    SceneLoader.Instance.LoadSceneAsync("Fase1"); 
+                    umaVez = true;
+                } 
                 break;  
         }
 

@@ -43,7 +43,9 @@ public class FaseManager7 : MonoBehaviour
         liberado = true;
         valor_aleatorio = 0;
         cont = 8.5f;
-        monstros_nascidos = 0;    
+        monstros_nascidos = 0;   
+        Chefao06.meia_vida = false; 
+        Chefao06.camuflado_ja = false;
     }
 
     // Update is called once per frame
@@ -78,8 +80,9 @@ public class FaseManager7 : MonoBehaviour
         }
 
         if(Chefao06.ta_mortin) {
-            Destroy(BarraVidaMaior);
+            Destroy(vida_chefao);
             back.color = Color.white;
+            AtivarChefao.ativarOlhao = false;
         }
 
         if(Chefao06.camuflado_ja) {

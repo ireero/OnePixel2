@@ -14,11 +14,14 @@ public class MenuDerrota : MonoBehaviour
     private string[] frases = {"Você tem que aprender sozinho como passar dos chefões :)", "Continue a tentar... Continue a tentar...",
     "Te avisei dês do trailer que ia ser dificil", "Era uma vez um player ruinzinho (Brinks) ;)", "Sei o que falar mais não",
     "Eu prefiro gatos, mas cachorros são legais também.", "Minha namorada mandou não botar isso no jogo, segundo ela é muito 'Nada a ver', tu acha?", 
-    "Pra mim aliens existem", "Ta gostando do jogo ae?, deixa uma review top lá :)", "Aqui jás uma frase cringe", "Vai ficar tudo bem, estou aqui para você :)"};
+    "Pra mim aliens existem", "Ta gostando do jogo ae?, deixa uma review top lá :)", "Aqui jás uma frase cringe", "Vai ficar tudo bem, estou aqui para você :)", 
+    "Curiosidade: Os Pixels não tem Sexo definido", "Curiosidade: A idéia do jogo veio de outro jogo que eu resolvi cancelar por ser longo de mais", "Curiosidade: Todos os Pixels Pretos e Brancos tem Acromatopsia", 
+    "Curiosidade: O nome do mundo dos Pixels é Big Pixel", "Indique o jogo para amigos que você odeia ;)", "Curiosidade: A idéia inicial era um mundo de gatos mas eu não sei desenhar eles", 
+    "Curiosidade: O primeiro One Pixel foi o primeiro jogo que criei na minha vida"};
 
     void Start()
     {
-        valor_alet = Random.Range(0, 11);
+        valor_alet = Random.Range(0, 18);
     }
 
     // Update is called once per frame
@@ -29,9 +32,11 @@ public class MenuDerrota : MonoBehaviour
 
     public void Reiniciar() {
         SceneLoader.Instance.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
     }
 
     public void IrMenu() {
         SceneLoader.Instance.LoadSceneAsync("Menu");
+        Time.timeScale = 1;
     }
 }

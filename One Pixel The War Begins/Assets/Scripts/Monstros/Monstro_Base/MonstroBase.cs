@@ -28,12 +28,10 @@ public class MonstroBase : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("chao") || FaseManager.chefao_vivo == false) {
+        if(other.gameObject.CompareTag("chao") || FaseManager.chefao_vivo == false || other.gameObject.CompareTag("Chefoes")) {
             Morte(0);
         } else if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player")) {
             Morte(1);
-        } else if(other.gameObject.CompareTag("Chefoes")) {
-            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 

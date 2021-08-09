@@ -108,6 +108,8 @@ public class PauseMenu : MonoBehaviour {
    }
    void Update(){
       if (Input.GetKeyDown (KeyCode.Escape)) {
+         PlayerControle.podeAtirar = false;
+         PlayerControle.pode_mexer = false;
          if (menuParte1Ativo == false && menuParte2Ativo == false) {
             menuParte1Ativo = true;
             menuParte2Ativo = false;
@@ -128,10 +130,10 @@ public class PauseMenu : MonoBehaviour {
       }
       if (menuParte1Ativo == true || menuParte2Ativo == true) {
          painel_de_pause.SetActive(true);
-         PlayerControle.podeAtirar = false;
       } else {
          painel_de_pause.SetActive(false);
          PlayerControle.podeAtirar = true;
+         PlayerControle.pode_mexer = true;
       }
    }
    //=========VOIDS DE CHECAGEM==========//

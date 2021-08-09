@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8531960725529248647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531505773108543267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334f088cb20cefd46b91078d00d8daaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &4172634706481528188
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.1533558
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0732308
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612123, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612125, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_FlipY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155301498245612127, guid: 4ac9240278b30a64dbe258733b4da409,
+        type: 3}
+      propertyPath: m_Name
+      value: bola_de_fogo_caindo
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 338139111, guid: 4ac9240278b30a64dbe258733b4da409, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 4ac9240278b30a64dbe258733b4da409, type: 3}
+--- !u!1 &6531505773108543267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7155301498245612127, guid: 4ac9240278b30a64dbe258733b4da409,
+    type: 3}
+  m_PrefabInstance: {fileID: 4172634706481528188}
+  m_PrefabAsset: {fileID: 0}

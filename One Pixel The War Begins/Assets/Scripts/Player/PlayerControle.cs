@@ -330,18 +330,25 @@ public class PlayerControle : MonoBehaviour {
          GerenciadorAudio.inst.PlayMorte(som_morte);
          Camera.tremer = true;
          pode_mexer = false;
+         podeAtirar = false;
          anim.SetBool("morreu", true);
          player_collider.isTrigger = true;
          rb2d.bodyType = RigidbodyType2D.Static;
          Barra_de_vida.fillAmount = 0;
          BarraVidaMaior.sprite = icon_morte;
          Destroy(valor_vida);
-         Destroy(this.gameObject, 3.2f);
+         StartCoroutine("morrerDeVez");
          } else {
             Camera.tremer = true;
             anim_pet.SetBool("sacrificar", true);
             StartCoroutine("petSumir");
          }
+   }
+
+   IEnumerator morrerDeVez() {
+      yield return new WaitForSeconds(3.2f);
+      Time.timeScale = 0;
+      Destroy(this.gameObject, 3.2f);
    }
 
 }
