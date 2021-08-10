@@ -35,6 +35,7 @@ public class FaseManager4 : MonoBehaviour
     {
         umaVezGanho = false;
         umaVez = false;
+        PlayerControle.conversando = false;
         PlayerControle.pode_mexer = true;
         PlayerControle.podeAtirar = true;
         pode_comecar_4 = false;
@@ -47,6 +48,7 @@ public class FaseManager4 : MonoBehaviour
     {
 
         if(pode_comecar_4) {
+            PlayerControle.conversando = true;
             painel_falas.SetActive(true);
         }
 
@@ -86,12 +88,13 @@ public class FaseManager4 : MonoBehaviour
                 if(!umaVez) {
                     som_morte.Play();
                     umaVez = true;
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
                 }
                 Meditador.podeMorrer = true;
                 pode_comecar_4 = false;
                 painel_falas.SetActive(false);
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
+                PlayerControle.conversando = false;
                 break;            
         }
     }

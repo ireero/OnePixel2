@@ -59,8 +59,6 @@ public class FaseManager5 : MonoBehaviour
         painel_falas.SetActive(true);
         pode_comecar_5 = false;
         contagem_falas_5 = 0;
-        PlayerControle.podeAtirar = false;
-        PlayerControle.pode_mexer = false;
         TiroPequenoChefao.modoHard = false;
         umaVez = false;
         contador = 0;
@@ -101,13 +99,16 @@ public class FaseManager5 : MonoBehaviour
                 imagem.sprite = palhaco_ameacador;
                 break;     
             case 7:
+                PlayerControle.conversando = false;
                 if(podeTocar <= 0) {
                     back_som.Play();
                     back_void.Stop();
                     podeTocar++;
                 } 
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
+                if(!pode_comecar_5) {
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                }
                 painel_falas.SetActive(false);
                 pode_comecar_5 = true;
                 break; 
@@ -115,8 +116,7 @@ public class FaseManager5 : MonoBehaviour
                 imagem.sprite = palhaco_normal_mv;
                 pode_comecar_5 = false;
                 painel_falas.SetActive(true);
-                PlayerControle.pode_mexer = false;
-                PlayerControle.podeAtirar = false;
+                PlayerControle.conversando = true;
                 break;    
             case 9:
                 imagem.sprite = palhaco_triste_mv;
@@ -131,8 +131,11 @@ public class FaseManager5 : MonoBehaviour
                 imagem.sprite = palhaco_ameacador_mv;
                 break;
             case 14:
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
+                PlayerControle.conversando = false;
+                if(!pode_comecar_5) {
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                }
                 painel_falas.SetActive(false);
                 pode_comecar_5 = true;      
                 break;                      

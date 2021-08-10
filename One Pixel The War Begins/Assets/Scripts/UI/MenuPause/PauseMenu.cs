@@ -132,8 +132,6 @@ public class PauseMenu : MonoBehaviour {
          painel_de_pause.SetActive(true);
       } else {
          painel_de_pause.SetActive(false);
-         PlayerControle.podeAtirar = true;
-         PlayerControle.pode_mexer = true;
       }
    }
    //=========VOIDS DE CHECAGEM==========//
@@ -175,6 +173,10 @@ public class PauseMenu : MonoBehaviour {
          menuParte2Ativo = true;
       }
       else if (ativarOP == false && ativarOP2 == false) {
+         if(PlayerControle.conversando == false) {
+            PlayerControle.podeAtirar = true;
+            PlayerControle.pode_mexer = true;
+         }
          menuParte1Ativo = false;
          menuParte2Ativo = false;
          Time.timeScale = 1;

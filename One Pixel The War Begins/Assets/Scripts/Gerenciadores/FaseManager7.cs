@@ -46,6 +46,9 @@ public class FaseManager7 : MonoBehaviour
         monstros_nascidos = 0;   
         Chefao06.meia_vida = false; 
         Chefao06.camuflado_ja = false;
+        PlayerControle.conversando = false;
+        PlayerControle.pode_mexer = true;
+        PlayerControle.podeAtirar = true;
     }
 
     // Update is called once per frame

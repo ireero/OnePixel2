@@ -88,8 +88,6 @@ public class FaseManager9 : MonoBehaviour
         umaVez = false;
         segunda_parte = false;
         tempo_sobreviver = 75f;
-        PlayerControle.pode_mexer = false;
-        PlayerControle.podeAtirar = false;
         painel_falas.SetActive(true);   
     }
 
@@ -147,8 +145,11 @@ public class FaseManager9 : MonoBehaviour
                 imagem.sprite = poker_face;
                 break;
             case 12:
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
+                PlayerControle.conversando = false;
+                if(!pode_comecar_9) {
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                }
                 painel_falas.SetActive(false);
                 pode_comecar_9 = true;
                 break;
@@ -162,8 +163,11 @@ public class FaseManager9 : MonoBehaviour
                 imagem.sprite = cara_sorrindo;
                 break;
             case 18:
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
+                PlayerControle.conversando = false;
+                if(!cabo_tudo) {
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                }
                 painel_falas.SetActive(false);
                 cabo_tudo = true;
                 break;            
@@ -243,8 +247,7 @@ public class FaseManager9 : MonoBehaviour
 
     IEnumerator falasFinais() {
         yield return new WaitForSeconds(7f);
-        PlayerControle.pode_mexer = false;
-        PlayerControle.podeAtirar = false;
+        PlayerControle.conversando = true;
         imagem.sprite = cara_irritado;
         painel_falas.SetActive(true);
         pode_comecar_9 = false;

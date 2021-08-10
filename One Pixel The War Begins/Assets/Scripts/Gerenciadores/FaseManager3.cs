@@ -89,22 +89,27 @@ public class FaseManager3 : MonoBehaviour
                     back_void.Stop();
                     podeTocar++;
                 }
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
+                PlayerControle.conversando = false;
+                if(!pode_comecar_3) {
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                }
                 painel_falas.SetActive(false);
                 pode_comecar_3 = true;
                 break; 
             case 9:
                 pode_comecar_3 = false;
                 imagem.sprite = chefao_meia_vida;
-                PlayerControle.pode_mexer = false;
-                PlayerControle.podeAtirar = false;
+                PlayerControle.conversando = true;
                 painel_falas.SetActive(true);
                 break;  
             case 10:
+                PlayerControle.conversando = false;
+                if(!pode_comecar_3) {
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                }
                 pode_comecar_3 = true;
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
                 painel_falas.SetActive(false);
                 break;             
         }

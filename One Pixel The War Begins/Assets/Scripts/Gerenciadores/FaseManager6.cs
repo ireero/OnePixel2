@@ -85,8 +85,6 @@ public class FaseManager6 : MonoBehaviour
         contador = 0;
         podeCair = false;
         valor_alet = 0;
-        PlayerControle.pode_mexer = false;
-        PlayerControle.podeAtirar = false;
         painel_falas.SetActive(true);
         fala_1.Play();
     }
@@ -160,8 +158,11 @@ public class FaseManager6 : MonoBehaviour
                     back_pode = true;
                 }
                 fala_2.Stop();
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
+                PlayerControle.conversando = false;
+                if(!pode_comecar_6) {
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                }
                 painel_falas.SetActive(false);
                 pode_comecar_6 = true;
                 break;
@@ -171,15 +172,17 @@ public class FaseManager6 : MonoBehaviour
                     tocarMusica = 2;
                 }
                 imagem.sprite = sprite_meia_vida;
-                PlayerControle.pode_mexer = false;
-                PlayerControle.podeAtirar = false;
+                PlayerControle.conversando = true;
                 painel_falas.SetActive(true);
                 pode_comecar_6 = false;
                 break;
             case 4:
+                PlayerControle.conversando = false;
                 fala_3.Stop();
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
+                if(!pode_comecar_6) {
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                }
                 painel_falas.SetActive(false);
                 pode_comecar_6 = true;
                 break;   
@@ -194,8 +197,7 @@ public class FaseManager6 : MonoBehaviour
                     tocarMusica = 3;
                 }
                 imagem.sprite = sprite_base;
-                PlayerControle.pode_mexer = false;
-                PlayerControle.podeAtirar = false;
+                PlayerControle.conversando = true;
                 painel_falas.SetActive(true);
                 pode_comecar_6 = false;
                 break;
@@ -215,8 +217,11 @@ public class FaseManager6 : MonoBehaviour
                 break;        
             case 8:
                 fala_6.Stop();
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
+                PlayerControle.conversando = false;
+                if(!pode_comecar_6) {
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
+                }
                 painel_falas.SetActive(false);
                 pode_comecar_6 = true;
                 break;    

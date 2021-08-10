@@ -22,7 +22,6 @@ public class PlayerControle : MonoBehaviour {
 
    public Transform bulletSpawn;
    public GameObject bulletObject;
-   
 
    public static bool podeAtirar;
    public static bool pode_mexer;
@@ -70,21 +69,29 @@ public class PlayerControle : MonoBehaviour {
    public GameObject simbuloVoador;
 
    private int pularPegar;
+
+   public static bool conversando;
+
+   private float vida;
+   private float vida_maxima = 3f;
+   public static bool podeTomarDano;
  
    void Start () {  
+      vida = 3f;
+      podeTomarDano = true;
       pularPegar = PlayerPrefs.GetInt("PularDuas");
       if(pularPegar == 1) {
          jaPodePularDuas = true;
       } else {
          jaPodePularDuas = false;
       }
+      conversando = true;
       doubleJump = true;
       parado = true;
       player_morto = false;
       pet_ativado = true;
-      pode_mexer = true;
-      podeAtirar = true;
-      Barra_de_vida.fillAmount = 1;
+      pode_mexer = false;
+      podeAtirar = false;
       isDashing = false;
       canDash = true;
       dashSpeed = 20;
@@ -100,10 +107,17 @@ public class PlayerControle : MonoBehaviour {
  
    void Update () {
 
+      BarraVida();
+
       if(jaPodePularDuas) {
          simbuloVoador.SetActive(true);
       } else {
          simbuloVoador.SetActive(false);
+      }
+
+      if(conversando) {
+         pode_mexer = false;
+         podeAtirar = false;
       }
 
       if(rb2d.velocity == new Vector2(0, 0)) {
@@ -239,7 +253,10 @@ public class PlayerControle : MonoBehaviour {
 
    private void OnCollisionEnter2D(Collision2D other) {
       if(other.gameObject.CompareTag("monstro")) {
-         Morrer();
+         if(podeTomarDano) {
+            rb2d.AddForce(new Vector2(-1400f, 0));
+            Morrer();
+         }
       } else if(other.gameObject.CompareTag("moeda_rir")) {
          player_collider.isTrigger = true;
          rb2d.bodyType = RigidbodyType2D.Static;
@@ -282,7 +299,6 @@ public class PlayerControle : MonoBehaviour {
 
    IEnumerator petSumir() {
       yield return new WaitForSeconds(0.7f);
-      pet_ativado = false;
       pet.SetActive(false);
       anim_pet.SetBool("sacrificar", false);
    }
@@ -324,24 +340,30 @@ public class PlayerControle : MonoBehaviour {
    }
 
    void Morrer() {
-      simbuloVoador.SetActive(false);
-      if(!pet_ativado) {
+      vida--;
+      sr.color = new Color(0.101f, 0.101f, 0.101f, 1f);
+      Camera.tremer = true;
+      podeTomarDano = false;
+      if(!pet_ativado && vida <= -1f) {
+         jaPodePularDuas = false;
+         simbuloVoador.SetActive(false);
          player_morto = true;
          GerenciadorAudio.inst.PlayMorte(som_morte);
-         Camera.tremer = true;
          pode_mexer = false;
          podeAtirar = false;
          anim.SetBool("morreu", true);
          player_collider.isTrigger = true;
          rb2d.bodyType = RigidbodyType2D.Static;
-         Barra_de_vida.fillAmount = 0;
          BarraVidaMaior.sprite = icon_morte;
          Destroy(valor_vida);
          StartCoroutine("morrerDeVez");
-         } else {
-            Camera.tremer = true;
+         } else if(pet_ativado && vida <= -1f){
+            pet_ativado = false;
             anim_pet.SetBool("sacrificar", true);
             StartCoroutine("petSumir");
+            StartCoroutine("tempoDano");
+         } else {
+            StartCoroutine("tempoDano");
          }
    }
 
@@ -350,5 +372,15 @@ public class PlayerControle : MonoBehaviour {
       Time.timeScale = 0;
       Destroy(this.gameObject, 3.2f);
    }
+
+   IEnumerator tempoDano() {
+      yield return new WaitForSeconds(4f);
+      sr.color = Color.white;
+      podeTomarDano = true;
+   }
+
+   private void BarraVida() {
+        Barra_de_vida.fillAmount = vida / vida_maxima; 
+    }
 
 }

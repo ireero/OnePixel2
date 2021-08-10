@@ -51,8 +51,6 @@ public class FaseManager2 : MonoBehaviour
         pode_comecar = false;
         contagem_falas_2 = 0;
         painel_falas.SetActive(true);
-        PlayerControle.pode_mexer = false;
-        PlayerControle.podeAtirar = false;
         TiroPequenoChefao.modoHard = false;
     }
 
@@ -81,16 +79,18 @@ public class FaseManager2 : MonoBehaviour
                         back.Play();
                         tocaSom += 1;
                     }
-                    PlayerControle.pode_mexer = true;
-                    PlayerControle.podeAtirar = true;
+                    PlayerControle.conversando = false;
+                    if(!pode_comecar) {
+                        PlayerControle.pode_mexer = true;
+                        PlayerControle.podeAtirar = true;
+                    }
                     pode_comecar = true;
                     painel_falas.SetActive(false);
                     break;
                 case 4:
                     back.Stop();
                     back_void.Play();
-                    PlayerControle.pode_mexer = false;
-                    PlayerControle.podeAtirar = false;
+                    PlayerControle.conversando = true;
                     imagem.sprite = cabeca_base_normal;
                     painel_falas.SetActive(true); 
                     break; 
@@ -98,6 +98,7 @@ public class FaseManager2 : MonoBehaviour
                     imagem.sprite = cabeca_base_vingativa; 
                     break;
                 case 6:
+                    PlayerControle.conversando = false;
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;
                     CabecaBase.todosMortos = true;

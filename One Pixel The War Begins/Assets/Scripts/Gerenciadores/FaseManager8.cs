@@ -20,17 +20,19 @@ public class FaseManager8 : MonoBehaviour
 
     void Start()
     {
-        PlayerControle.pode_mexer = true;
-        PlayerControle.podeAtirar = true;
         pode_comecar_8 = false;
         jabateuUmPapo = false;
         contagem_falas_8 = 0;
+        PlayerControle.conversando = false;
+        PlayerControle.pode_mexer = true;
+        PlayerControle.podeAtirar = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(pode_comecar_8) {
+            PlayerControle.conversando = true;
             painel_falas.SetActive(true);
         }
 

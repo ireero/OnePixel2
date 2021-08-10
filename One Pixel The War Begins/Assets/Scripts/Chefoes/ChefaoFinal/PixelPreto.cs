@@ -41,6 +41,8 @@ public class PixelPreto : MonoBehaviour
 
     private SpriteRenderer sr;
 
+    private Vector3 myScale;
+
     void Start()
     {
         estaNaDireita = true;
@@ -54,7 +56,7 @@ public class PixelPreto : MonoBehaviour
         podeAtirar = false;
         tirosDados = 0;
         atirarUmaVez = false;
-        forca_pulo = 410f;
+        forca_pulo = 380f;
         contador = 0;
         vida = 1000;
         anim = GetComponent<Animator>();
@@ -81,21 +83,31 @@ public class PixelPreto : MonoBehaviour
             atirar_normal = false;
             corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
             if(estaNaDireita) {
+                corpo.bodyType = RigidbodyType2D.Kinematic;
                 transform.position = Vector2.MoveTowards(transform.position, ponto_esquerda.position, speed * Time.deltaTime);
                 if(transform.position.x <= ponto_esquerda.position.x) {
+                    corpo.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                    corpo.bodyType = RigidbodyType2D.Dynamic;
                     anim.SetBool("pulando", true);
                     anim.SetBool("andando", false);
-                    sr.flipX = !sr.flipX;
+                    myScale = transform.localScale;
+                    myScale.x *= -1;
+                    transform.localScale = myScale;
                     pularUmaVez = true;
                     corpo.AddForce(new Vector2(0, forca_pulo));
                     estaNaDireita = false;
                 }
             } else {
+                corpo.bodyType = RigidbodyType2D.Kinematic;
                 transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
                 if(transform.position.x >= ponto_direita.position.x) {
+                    corpo.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                    corpo.bodyType = RigidbodyType2D.Dynamic;
                     anim.SetBool("pulando", true);
                     anim.SetBool("andando", false);
-                    sr.flipX = !sr.flipX;
+                    myScale = transform.localScale;
+                    myScale.x *= -1;
+                    transform.localScale = myScale;
                     pularUmaVez = true;
                     corpo.AddForce(new Vector2(0, forca_pulo));
                     estaNaDireita = true;
@@ -148,8 +160,11 @@ public class PixelPreto : MonoBehaviour
     IEnumerator Tirao() {
         yield return new WaitForSeconds(0.8f);
         if(contador2 >= 2.5f) {
-                Instantiate(bala, spawn_tiro_bala.position, spawn_tiro_bala.rotation);
+                GameObject cloneBullet = Instantiate(bala, spawn_tiro_bala.position, spawn_tiro_bala.rotation);
                 contador2 = 0;
+
+		    if(!estaNaDireita)
+			    cloneBullet.transform.eulerAngles = new Vector3(0, 0, 180);
             }
     }
 

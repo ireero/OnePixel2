@@ -1530,26 +1530,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 189892535, guid: ce49866eef6f55f4b878608aeec5cced, type: 3}
-      propertyPath: scalingMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1271992931, guid: ce49866eef6f55f4b878608aeec5cced, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1271992931, guid: ce49866eef6f55f4b878608aeec5cced, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1271992931, guid: ce49866eef6f55f4b878608aeec5cced, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1271992931, guid: ce49866eef6f55f4b878608aeec5cced, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7442106555223898305, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: m_Name
@@ -1612,40 +1592,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
-      propertyPath: pet
-      value: 
-      objectReference: {fileID: 281051273}
-    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
-        type: 3}
-      propertyPath: anim_pet
-      value: 
-      objectReference: {fileID: 281051272}
-    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
-        type: 3}
-      propertyPath: som_tiro
-      value: 
-      objectReference: {fileID: 8300000, guid: 36b8413de2bb71c419bad47ab7843e0d, type: 3}
-    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
-        type: 3}
       propertyPath: vida_pet
       value: 
       objectReference: {fileID: 1723526775}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
-      propertyPath: icon_morte
-      value: 
-      objectReference: {fileID: 21300000, guid: c95103f45eadb944e947187215ee1c40,
-        type: 3}
-    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
-        type: 3}
       propertyPath: valor_vida
       value: 
       objectReference: {fileID: 263898024}
-    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
-        type: 3}
-      propertyPath: anim_poeira
-      value: 
-      objectReference: {fileID: 281051271}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: Barra_de_vida
@@ -1656,11 +1610,6 @@ PrefabInstance:
       propertyPath: BarraVidaMaior
       value: 
       objectReference: {fileID: 990044457}
-    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
-        type: 3}
-      propertyPath: anim_ground_check
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: textoVol
@@ -1723,24 +1672,6 @@ PrefabInstance:
       objectReference: {fileID: 1108263239}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce49866eef6f55f4b878608aeec5cced, type: 3}
---- !u!95 &281051271 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1271992932, guid: ce49866eef6f55f4b878608aeec5cced,
-    type: 3}
-  m_PrefabInstance: {fileID: 281051270}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &281051272 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1318920442, guid: ce49866eef6f55f4b878608aeec5cced,
-    type: 3}
-  m_PrefabInstance: {fileID: 281051270}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &281051273 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1318920441, guid: ce49866eef6f55f4b878608aeec5cced,
-    type: 3}
-  m_PrefabInstance: {fileID: 281051270}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &281079973
 GameObject:
   m_ObjectHideFlags: 0
@@ -8973,8 +8904,6 @@ MonoBehaviour:
   txtFalas: {fileID: 1734280408}
   painel_derrota: {fileID: 1879815990}
   monstros_base: {fileID: 914893320538042150, guid: 65ac2dbd02999f94cb1589a2a8930b1d,
-    type: 3}
-  monstro_sprite: {fileID: 914893320538042144, guid: 65ac2dbd02999f94cb1589a2a8930b1d,
     type: 3}
   spawn_1: {fileID: 782582593}
   spawn_2: {fileID: 48553528}

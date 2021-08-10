@@ -187,6 +187,7 @@ public class Chefao01 : MonoBehaviour
         FaseManager.podeSpawn = true;
         anim.SetBool("idle", true);
         anim.SetBool("apareceu", false);
+        PlayerControle.conversando = false;
         PlayerControle.pode_mexer = true;
         PlayerControle.podeAtirar = true;
     }

@@ -18,7 +18,6 @@ public class FaseManager : MonoBehaviour
     public GameObject painel_derrota;
 
     public GameObject monstros_base;
-    public SpriteRenderer monstro_sprite;
 
     public Transform spawn_1;
     public Transform spawn_2;
@@ -79,10 +78,9 @@ public class FaseManager : MonoBehaviour
         uma_batida = false;
         contagem = 0;
         contagem_falas = 0;
-        PlayerControle.pode_mexer = false;
-        PlayerControle.podeAtirar = false;
         back_void.Play();
         Chefao01.bateu_chao = false;
+        PlayerControle.conversando = true;
     }
 
     // Update is called once per frame
@@ -155,14 +153,14 @@ public class FaseManager : MonoBehaviour
                     som_fala.Play();
                     falarUmaVez = true;
                 }
-                PlayerControle.pode_mexer = false;
-                PlayerControle.podeAtirar = false;
+                PlayerControle.conversando = true;
                 imagem.sprite = chefao_normal;
                 painel_falas.SetActive(true);
             } else if(contagem_falas == 8 && !chefao_vivo) {
                 imagem.sprite = chefao_lamentando;
             }
         } else{
+            PlayerControle.conversando = false;
             PlayerControle.pode_mexer = true;
             PlayerControle.podeAtirar = true;
             Chefao01.morrer_de_vez = true;
@@ -190,9 +188,7 @@ public class FaseManager : MonoBehaviour
     private void MetadeVida() {
         if(Chefao01.metade_vida == true) {
             contagem = 2.25f;
-            monstro_sprite.color = Color.red;   
         } else {
-            monstro_sprite.color = Color.white;
             contagem = 0;
         }
     }
