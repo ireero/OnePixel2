@@ -46,6 +46,7 @@ public class FaseManager2 : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SalvarSit(1, "Fase2");
         back_void.Play();
         tocaSom = 0;
         pode_comecar = false;
@@ -120,6 +121,7 @@ public class FaseManager2 : MonoBehaviour
 
         if((cabeca1_morta && cabeca2_morta && cabeca3_morta & cabeca4_morta) && pode_comecar) {
             Destroy(BarraVidaMaior);
+            GameManager.Instance.SalvarSit(2, "Fase2");
             contagem_falas_2 = 4;
             TiroPequenoChefao.modoHard = false;
             pode_comecar = false;

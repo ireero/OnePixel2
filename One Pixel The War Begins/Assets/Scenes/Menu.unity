@@ -1821,7 +1821,7 @@ GameObject:
   - component: {fileID: 1689474996}
   - component: {fileID: 1689474998}
   m_Layer: 5
-  m_Name: Dash_tap
+  m_Name: Lineart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

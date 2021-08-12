@@ -37,7 +37,8 @@ public class Chefao7 : MonoBehaviour
         }
 
         if(FaseManager9.cabo_tudo) {
-            Destroy(gameObject);
+            anim.SetBool("embora", true);
+            Destroy(gameObject, 0.8f);
         }
         
     }

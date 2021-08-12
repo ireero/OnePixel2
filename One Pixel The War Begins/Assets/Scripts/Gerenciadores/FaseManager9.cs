@@ -74,8 +74,12 @@ public class FaseManager9 : MonoBehaviour
 
     public static bool cabo_tudo;
 
+    public GameObject barra_vida;
+
     void Start()
     {
+        GameManager.Instance.SalvarSit(1, "Fase9");
+        FaseManager6.pode_comecar_6 = true;
         contagem_falas_9 = 0;
         pode_comecar_9 = false;
         TiroPequenoChefao.modoHard = false;
@@ -89,6 +93,8 @@ public class FaseManager9 : MonoBehaviour
         segunda_parte = false;
         tempo_sobreviver = 75f;
         painel_falas.SetActive(true);   
+        Portal.atira_ae_po = 0;
+        cabo_tudo = false;
     }
 
     // Update is called once per frame
@@ -165,6 +171,7 @@ public class FaseManager9 : MonoBehaviour
             case 18:
                 PlayerControle.conversando = false;
                 if(!cabo_tudo) {
+                    GameManager.Instance.SalvarSit(2, "Fase9");
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;
                 }
@@ -252,7 +259,7 @@ public class FaseManager9 : MonoBehaviour
         painel_falas.SetActive(true);
         pode_comecar_9 = false;
         contagem_falas_9 = 14;
-        Destroy(BarraVidaMaior);
+        Destroy(barra_vida);
         Destroy(txt_tempo);
     }
 }

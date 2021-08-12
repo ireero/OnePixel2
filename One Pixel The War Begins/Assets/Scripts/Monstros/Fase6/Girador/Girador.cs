@@ -41,6 +41,10 @@ public class Girador : MonoBehaviour
             }
         }
 
+        if(FaseManager6.pode_comecar_6 == false) {
+            Morrer();
+        }
+
         if(Portal.atira_ae_po == 3) {
             velocidade = 2.5f;
             sr.color = Color.white;
@@ -53,9 +57,7 @@ public class Girador : MonoBehaviour
         }
 
         if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("tijolo")) {
-            morreu = true;
             Morrer();
-            StartCoroutine("morre");
         }
     }
 
@@ -65,10 +67,12 @@ public class Girador : MonoBehaviour
 	}
 
     private void Morrer() {
+        morreu = true;
         sr.color = Color.white;
         anim.SetBool("morreu", true);
         collider.isTrigger = true;
         corpo.gravityScale += 0.1f;
         velocidade = 0;
+        StartCoroutine("morre");
     }
 }

@@ -7905,6 +7905,7 @@ MonoBehaviour:
   chefao_meia_vida: {fileID: 21300000, guid: 1eec1d76df09b304997ae525c273acbd, type: 3}
   icon_metade_da_vida: {fileID: 21300000, guid: 4c42ce7db91901242bd566b02aea1e8a,
     type: 3}
+  icon_vida_normal: {fileID: 21300000, guid: 1647adb9d8cc5994aabe5709ad8d5ee6, type: 3}
   painel_derrota: {fileID: 1595097769}
   backSound: {fileID: 553280290}
   fala_personagens: {fileID: 404645482}

@@ -5,21 +5,30 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    private int fase1;
-    private int fase2;
-    private int fase3;
-    private int fase4;
-    private int fase5;
-    private int fase6;
-    private int fase7;
-    private int fase8;
-    private int fase9;
-    private int fase10;
-    private int tutorial;
+    public static int fase1;
+    public static int fase2;
+    public static int fase3;
+    public static int fase4;
+    public static int fase5;
+    public static int fase6;
+    public static int fase7;
+    public static int fase8;
+    public static int fase9;
+    public static int fase10;
 
     public static GameManager Instance {get; private set;}
 
     private void Awake() {
+        SalvarSit(1, "Fase1");
+        SalvarSit(1, "Fase2");
+        SalvarSit(1, "Fase3");
+        SalvarSit(1, "Fase4");
+        SalvarSit(1, "Fase5");
+        SalvarSit(1, "Fase6");
+        SalvarSit(1, "Fase7");
+        SalvarSit(1, "Fase8");
+        SalvarSit(1, "Fase9");
+        SalvarSit(1, "Fase10");
 
         // valor 0 = Nem chegou nela (Nem vai aparecer na tela de menu de fases)
         // valor 1 = Chegou nela (vai aparecer na tela de menu de fases)
@@ -35,8 +44,6 @@ public class GameManager : MonoBehaviour
         fase8 = PlayerPrefs.GetInt("Fase8");
         fase9 = PlayerPrefs.GetInt("Fase9");
         fase10 = PlayerPrefs.GetInt("Fase10");
-
-        tutorial = PlayerPrefs.GetInt("Tutorial");
         
         if(Instance == null) {
             Instance = this;

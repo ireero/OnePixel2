@@ -33,6 +33,7 @@ public class FaseManager4 : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SalvarSit(1, "Fase4");
         umaVezGanho = false;
         umaVez = false;
         PlayerControle.conversando = false;
@@ -86,6 +87,7 @@ public class FaseManager4 : MonoBehaviour
                 break;     
             case 8:
                 if(!umaVez) {
+                    GameManager.Instance.SalvarSit(2, "Fase4");
                     som_morte.Play();
                     umaVez = true;
                     PlayerControle.pode_mexer = true;

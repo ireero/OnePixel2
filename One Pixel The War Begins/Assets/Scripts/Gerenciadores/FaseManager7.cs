@@ -36,6 +36,7 @@ public class FaseManager7 : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SalvarSit(1, "Fase7");
         back.sprite = back_1;
         back.color = Color.white;
         tempo_spawn = 10.5f;
@@ -83,6 +84,7 @@ public class FaseManager7 : MonoBehaviour
         }
 
         if(Chefao06.ta_mortin) {
+            GameManager.Instance.SalvarSit(2, "Fase7");
             Destroy(vida_chefao);
             back.color = Color.white;
             AtivarChefao.ativarOlhao = false;

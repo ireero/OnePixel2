@@ -37,6 +37,7 @@ public class FaseManager3 : MonoBehaviour
     public Sprite chefao_meia_vida;
 
     public Sprite icon_metade_da_vida;
+    public Sprite icon_vida_normal;
 
     public GameObject painel_derrota;
     public AudioSource backSound;
@@ -49,6 +50,13 @@ public class FaseManager3 : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SalvarSit(1, "Fase3");
+        BarraVida1.sprite = icon_vida_normal;
+        BarraVida2.sprite = icon_vida_normal;
+        BarraVida3.sprite = icon_vida_normal;
+        BarraVida1.color = Color.white;
+        BarraVida2.color = Color.white;
+        BarraVida3.color = Color.white;
         umaVezBack = false;
         back_void.Play();
         podeTocar = 0;
@@ -143,6 +151,7 @@ public class FaseManager3 : MonoBehaviour
             case -3:
                 backSound.Stop();
                 if(!umaVezBack) {
+                    GameManager.Instance.SalvarSit(2, "Fase3");
                     back_void.Play();
                     umaVezBack = true;
                 }

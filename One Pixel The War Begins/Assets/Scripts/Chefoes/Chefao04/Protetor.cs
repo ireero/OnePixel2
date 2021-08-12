@@ -43,6 +43,8 @@ public class Protetor : MonoBehaviour
             if(!chefao_vermelho) {
                 anim.SetBool("nascer", true);
             } else {
+                anim.SetBool("sumir", false);
+                anim.SetBool("nascer", false);
                 anim.SetBool("meia_vida_nascer", true);
             }
             transform.Rotate(new Vector3(x: 0, y: 0, z: potenciaRot));

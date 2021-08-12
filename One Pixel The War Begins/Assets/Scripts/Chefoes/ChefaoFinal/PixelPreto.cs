@@ -43,8 +43,16 @@ public class PixelPreto : MonoBehaviour
 
     private Vector3 myScale;
 
+    public GameObject explosao;
+    public Transform spawn_explosao;
+    private bool pode_explosao;
+
+    public static float vida_pixel_preto;
+
     void Start()
     {
+        vida_pixel_preto = 500f;
+        pode_explosao = false;
         estaNaDireita = true;
         speed = 5f;
         pularUmaVez = false;
@@ -87,6 +95,7 @@ public class PixelPreto : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, ponto_esquerda.position, speed * Time.deltaTime);
                 if(transform.position.x <= ponto_esquerda.position.x) {
                     corpo.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                    pode_explosao = true;
                     corpo.bodyType = RigidbodyType2D.Dynamic;
                     anim.SetBool("pulando", true);
                     anim.SetBool("andando", false);
@@ -102,6 +111,7 @@ public class PixelPreto : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
                 if(transform.position.x >= ponto_direita.position.x) {
                     corpo.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                    pode_explosao = true;
                     corpo.bodyType = RigidbodyType2D.Dynamic;
                     anim.SetBool("pulando", true);
                     anim.SetBool("andando", false);
@@ -148,6 +158,14 @@ public class PixelPreto : MonoBehaviour
         if(other.gameObject.CompareTag("chao")) {
             Camera.tremer_chao = true;
             anim.SetBool("pulando", false);
+            if(pode_explosao) {
+                Instantiate(explosao, spawn_explosao.position, spawn_explosao.rotation);
+                spawn_explosao.Rotate(new Vector3(0, 180, 0), Space.Self);
+                pode_explosao = false;
+            }
+        }
+        if(other.gameObject.CompareTag("bullet")) {
+            vida_pixel_preto--;
         }
     }
 

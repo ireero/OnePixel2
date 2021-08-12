@@ -13,10 +13,12 @@ public class MonstroBomba : MonoBehaviour
     private Rigidbody2D corpo;
     private bool morreu;
     private SpriteRenderer sr;
+    private bool explodindo;
 
     // Start is called before the first frame update
     void Start()
     {
+      explodindo = false;
       morreu = false;
       speed = 2.8f;
       anim = GetComponent<Animator>();
@@ -35,25 +37,26 @@ public class MonstroBomba : MonoBehaviour
             transform.LookAt(target.position);
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        }   
+        } else {
+            speed = 0;
+        }
+
+        if(FaseManager6.pode_comecar_6 == false) {
+            Morte();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("tijolo")) {
-            sr.color = Color.white;
-            morreu = true;
-            corpo.gravityScale += 0.1f;
-            speed = 0;
-            anim.SetBool("morreu", true);
-            collider.isTrigger = true;
-            StartCoroutine("morre");
+        if((other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("tijolo")) && !explodindo) {
+            Morte();
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("chao")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) {
+        if(other.gameObject.CompareTag("Player") && !morreu) {
+            explodindo = true;
             rastreador_collider.enabled = false;
             speed = 0;
             anim.SetBool("explode", true);
@@ -69,5 +72,15 @@ public class MonstroBomba : MonoBehaviour
     IEnumerator morreExplode() {
         yield return new WaitForSeconds(1.6f);
         Destroy(this.gameObject);
+    }
+
+    private void Morte() {
+        sr.color = Color.white;
+        morreu = true;
+        corpo.gravityScale += 0.1f;
+        speed = 0;
+        anim.SetBool("morreu", true);
+        collider.isTrigger = true;
+        StartCoroutine("morre");
     }
 }

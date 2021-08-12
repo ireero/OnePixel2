@@ -55,6 +55,7 @@ public class FaseManager : MonoBehaviour
     public Sprite chefao_lamentando;
 
     public Sprite icon_meia_vida;
+    public Sprite icon_normal;
     public Image icon_atual;
 
     public AudioSource som_caida;
@@ -64,23 +65,35 @@ public class FaseManager : MonoBehaviour
     private bool falarUmaVez;
     public GameObject vida_chefao;
 
+    public GameObject base_branco;
+
     // Start is called before the first frame update
     void Start()
     {
-        falarUmaVez = false;
-        som_fala.Play();
-        painel_falas.SetActive(true);
-        falas_terminaram = false;
-        chefao_vivo = true;
-        chefao_nasceu = false;
-        podeSpawn = false;
-        valor_alet = 0;
-        uma_batida = false;
-        contagem = 0;
-        contagem_falas = 0;
-        back_void.Play();
-        Chefao01.bateu_chao = false;
-        PlayerControle.conversando = true;
+        if(GameManager.fase1 == 0) {
+            GameManager.Instance.SalvarSit(1, "Fase1");
+        }
+        if(GameManager.fase1 == 1) {
+            falarUmaVez = false;
+            som_fala.Play();
+            painel_falas.SetActive(true);
+            falas_terminaram = false;
+            chefao_vivo = true;
+            chefao_nasceu = false;
+            podeSpawn = false;
+            valor_alet = 0;
+            uma_batida = false;
+            contagem = 0;
+            contagem_falas = 0;
+            back_void.Play();
+            Chefao01.bateu_chao = false;
+            PlayerControle.conversando = true;
+        } else {
+            base_branco.SetActive(false);
+            PlayerControle.conversando = false;
+            PlayerControle.pode_mexer = true;
+            PlayerControle.podeAtirar = true;
+        }
     }
 
     // Update is called once per frame
@@ -94,6 +107,8 @@ public class FaseManager : MonoBehaviour
         if(Chefao01.bateu_chao == true) {
             if(!uma_batida) {
                 vida_chefao.SetActive(true);
+                icon_atual.sprite = icon_normal;
+                icon_atual.color = Color.white;
                 som_caida.Play();
                 uma_batida = true;
             }
@@ -171,6 +186,7 @@ public class FaseManager : MonoBehaviour
             icon_atual.sprite = icon_meia_vida;
             BarraVidaMaior.color = Color.red;
         } else if(Chefao01.vida < 0) {
+            GameManager.Instance.SalvarSit(2, "Fase1");
             background.Stop();
             Destroy(BarraVidaMaior);
         }

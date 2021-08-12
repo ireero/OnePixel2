@@ -14,6 +14,9 @@ public class FaseManager5 : MonoBehaviour
 
     public static int contagem_falas_5;
 
+    public Transform[] spawn_slimes;
+    public GameObject slime;
+
     public Image imagem;
     public GameObject painel_falas;
 
@@ -36,6 +39,9 @@ public class FaseManager5 : MonoBehaviour
     private float contador;
     private bool umaVez;
 
+    private float cont_spawn;
+    public static int slimes_vivos;
+
     public Image BarraDeVida;
     public Image BarraVidaMaior;
 
@@ -52,8 +58,16 @@ public class FaseManager5 : MonoBehaviour
     public AudioSource back_void;
     public AudioSource som_fala;
 
+    private int valor_alet;
+    private int valor_prov;
+
     void Start()
     {
+        GameManager.Instance.SalvarSit(1, "Fase5");
+        valor_prov = 0;
+        valor_alet = 0;
+        cont_spawn = 0;
+        slimes_vivos = 0;
         back_void.Play();
         podeTocar = 0;
         painel_falas.SetActive(true);
@@ -141,6 +155,26 @@ public class FaseManager5 : MonoBehaviour
                 break;                      
         }
 
+        if(pode_comecar_5 && Chefao04.vida_chefao > 0) {
+            cont_spawn += Time.deltaTime;
+            valor_alet = Random.Range(0, 6);
+
+            if(cont_spawn >= 2f && slimes_vivos <= 5) {
+                if(valor_alet == valor_prov) {
+                    if(valor_alet == 5) {
+                        valor_alet--;
+                    } else {
+                        valor_alet++;
+                    }
+                }
+                Instantiate(slime, spawn_slimes[valor_alet].position, spawn_slimes[valor_alet].rotation);
+                valor_prov = valor_alet;
+                slimes_vivos++;
+                cont_spawn = 0;
+            }
+
+        }
+
         BarraVida();
 
         if(Chefao04.tirosDados == 0) {
@@ -153,6 +187,7 @@ public class FaseManager5 : MonoBehaviour
         }
 
         if(Chefao04.vida_chefao == 0) {
+            GameManager.Instance.SalvarSit(2, "Fase5");
             back_void.Play();
             back_som.Stop();
             Destroy(BarraVidaMaior);

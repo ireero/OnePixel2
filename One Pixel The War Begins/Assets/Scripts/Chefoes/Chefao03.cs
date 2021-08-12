@@ -32,7 +32,7 @@ public class Chefao03 : MonoBehaviour
 
     public Transform posicao_inicial;
 
-    public static int vida_chefao = 3;
+    public static int vida_chefao;
 
     private bool meia_vida = false;
 
@@ -53,6 +53,7 @@ public class Chefao03 : MonoBehaviour
 
     void Start()
     {
+        vida_chefao = 3;
         mais_speed = 0.005f;
         podeTomarDano = true;
         morreu = false;

@@ -8924,10 +8924,12 @@ MonoBehaviour:
   chefao_normal: {fileID: 21300000, guid: d19f4c26a81054040ad90b938c520465, type: 3}
   chefao_lamentando: {fileID: 21300000, guid: 06ed1b9b828744b4c84d3c675e85984a, type: 3}
   icon_meia_vida: {fileID: 21300000, guid: fb1ce73088b175146b07504d54ba6a8f, type: 3}
+  icon_normal: {fileID: 21300000, guid: d8bd33aabd70b8448b13f00615c6d6bc, type: 3}
   icon_atual: {fileID: 966383531}
   som_caida: {fileID: 1330213471}
   som_fala: {fileID: 2085896676}
   vida_chefao: {fileID: 966383529}
+  base_branco: {fileID: 1441667024}
 --- !u!4 &1937575496
 Transform:
   m_ObjectHideFlags: 0

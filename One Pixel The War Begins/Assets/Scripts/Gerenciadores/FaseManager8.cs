@@ -18,8 +18,12 @@ public class FaseManager8 : MonoBehaviour
     public static bool pode_comecar_8;
     public static bool jabateuUmPapo;
 
+    private bool umaVezGanho;
+
     void Start()
     {
+        GameManager.Instance.SalvarSit(1, "Fase8");
+        umaVezGanho = false;
         pode_comecar_8 = false;
         jabateuUmPapo = false;
         contagem_falas_8 = 0;
@@ -44,7 +48,16 @@ public class FaseManager8 : MonoBehaviour
             txtFalas.text = falas_cientista[contagem_falas_8];
         }
 
+        if(contagem_falas_8 == 8) {
+            if(!umaVezGanho) {
+                PlayerControle.pet_ativado = true;
+                PlayerPrefs.SetInt("Pet", 1);
+                umaVezGanho = true;
+            }
+        }
+
         if(contagem_falas_8 == 9) {
+            GameManager.Instance.SalvarSit(2, "Fase8");
             jabateuUmPapo = true;
             pode_comecar_8 = false;
             painel_falas.SetActive(false);

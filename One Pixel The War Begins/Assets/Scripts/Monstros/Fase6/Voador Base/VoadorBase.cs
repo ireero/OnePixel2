@@ -41,17 +41,15 @@ public class VoadorBase : MonoBehaviour
                 speed = 2.75f;
             }
         }
+
+        if(FaseManager6.pode_comecar_6 == false) {
+            Morrer();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("tijolo")) {
-            sr.color = Color.white;
-            morreu = true;
-            speed = 0;
-            anim.SetBool("morreu", true);
-            collider.isTrigger = true;
-            corpo.gravityScale += 0.1f;
-            StartCoroutine("morre");
+            Morrer();
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("chao")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
@@ -60,5 +58,15 @@ public class VoadorBase : MonoBehaviour
     IEnumerator morre() {
         yield return new WaitForSeconds(1.45f);
         Destroy(this.gameObject);
+    }
+
+    private void Morrer() {
+        sr.color = Color.white;
+        morreu = true;
+        speed = 0;
+        anim.SetBool("morreu", true);
+        collider.isTrigger = true;
+        corpo.gravityScale += 0.1f;
+        StartCoroutine("morre");
     }
 }

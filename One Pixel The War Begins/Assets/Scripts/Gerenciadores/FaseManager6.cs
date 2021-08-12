@@ -76,6 +76,7 @@ public class FaseManager6 : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SalvarSit(1, "Fase6");
         back_pode = false;
         back_void.Play();
         tocarMusica = 0;
@@ -106,6 +107,7 @@ public class FaseManager6 : MonoBehaviour
        contador += Time.deltaTime;
 
        if(Chefao05.vida <= 0) {
+           GameManager.Instance.SalvarSit(2, "Fase6");
            Destroy(BarraVidaMaior);
        } else if(Chefao05.vida <= 300 && Chefao05.vida > 0) {
            tempo_de_cair = 0.85f;

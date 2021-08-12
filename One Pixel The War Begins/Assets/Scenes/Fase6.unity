@@ -381,8 +381,9 @@ RectTransform:
   - {fileID: 2118200388}
   - {fileID: 763887040}
   - {fileID: 1248832737}
+  - {fileID: 2026289375}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -950,7 +951,7 @@ Transform:
   - {fileID: 1788940161}
   - {fileID: 733987623}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &196984285
 GameObject:
@@ -6334,7 +6335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.14149253, y: 0.45520636}
   m_AnchorMax: {x: 0.38300002, y: 0.5307885}
-  m_AnchoredPosition: {x: -1.3899841, y: 2.5}
+  m_AnchoredPosition: {x: -1.3899689, y: 2.5}
   m_SizeDelta: {x: -2, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1490495445
@@ -8231,12 +8232,6 @@ PrefabInstance:
       objectReference: {fileID: 529835006}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
-      propertyPath: icon_morte
-      value: 
-      objectReference: {fileID: 21300000, guid: c95103f45eadb944e947187215ee1c40,
-        type: 3}
-    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
-        type: 3}
       propertyPath: valor_vida
       value: 
       objectReference: {fileID: 758427766}
@@ -8825,16 +8820,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &2026289375
-Transform:
+--- !u!224 &2026289375
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026289373}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8, y: -0.7, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 75, y: 75, z: 75}
   m_Children:
   - {fileID: 1967804854}
   - {fileID: 1413442322}
@@ -8845,9 +8840,14 @@ Transform:
   - {fileID: 196984286}
   - {fileID: 1370657382}
   - {fileID: 1650773971}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 23026423}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.70000005, y: 0.2688889}
+  m_AnchorMax: {x: 0.82500005, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -3}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2026289376
 Animator:
   serializedVersion: 3

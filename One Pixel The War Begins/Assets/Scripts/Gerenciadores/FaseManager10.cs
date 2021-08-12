@@ -21,6 +21,11 @@ public class FaseManager10 : MonoBehaviour
     private float contador;
 
     public Image BarraVidaMaior;
+    public Image vida_restante;
+
+    public Sprite cara_transformado;
+
+    private float vida_maxima = 500f;
 
     void Start()
     {
@@ -35,6 +40,7 @@ public class FaseManager10 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BarraVida();
         if(PixelPreto.AtirouJa) {
             valor_aleatorio = Random.Range(0, 6);
             contador += Time.deltaTime;
@@ -46,5 +52,9 @@ public class FaseManager10 : MonoBehaviour
                 PixelPreto.atirarUmaVez = false;
             }
         }
+    }
+
+    private void BarraVida() {
+        vida_restante.fillAmount = PixelPreto.vida_pixel_preto / vida_maxima;
     }
 }
