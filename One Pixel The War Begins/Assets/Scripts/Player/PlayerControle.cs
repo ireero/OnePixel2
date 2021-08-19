@@ -78,6 +78,11 @@ public class PlayerControle : MonoBehaviour {
    public static bool podeTomarDano;
 
    private float cont_pisca_dano;
+
+   public Sprite qtd_vida_3;
+   public Sprite qtd_vida_2;
+   public Sprite qtd_vida_1;
+   public Sprite qtd_vida_0;
  
    void Start () {  
       vida = 3f;
@@ -117,6 +122,21 @@ public class PlayerControle : MonoBehaviour {
    void Update () {
 
       BarraVida();
+
+      switch(vida) {
+         case 3:
+            valor_vida.sprite = qtd_vida_3;
+            break;
+         case 2:
+            valor_vida.sprite = qtd_vida_2;
+            break;
+         case 1:
+            valor_vida.sprite = qtd_vida_1;
+            break;
+         case 0:
+            valor_vida.sprite = qtd_vida_0;
+            break;   
+      }
 
       if(jaPodePularDuas) {
          simbuloVoador.SetActive(true);
@@ -272,7 +292,7 @@ public class PlayerControle : MonoBehaviour {
 	}
 
    private void OnCollisionEnter2D(Collision2D other) {
-      if(other.gameObject.CompareTag("monstro")) {
+      if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga")) {
          if(podeTomarDano) {
             if(lookingRight) {
                rb2d.AddForce(new Vector2(-1800f, 0));
@@ -332,7 +352,7 @@ public class PlayerControle : MonoBehaviour {
    }
 
    void Dash() {
-      if(Input.GetKey(KeyCode.Space) && canDash) {
+      if((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(2)) && canDash) {
          if(dashAtual <= 0) {
             StopDash();
          } else {
@@ -373,7 +393,7 @@ public class PlayerControle : MonoBehaviour {
       podeTomarDano = false;
       Time.timeScale = 0.1f;
       StartCoroutine("lentoDano");
-      if(!pet_ativado && vida <= -1f) {
+      if(!pet_ativado && vida <= 0f) {
          jaPodePularDuas = false;
          simbuloVoador.SetActive(false);
          player_morto = true;
@@ -386,7 +406,7 @@ public class PlayerControle : MonoBehaviour {
          BarraVidaMaior.sprite = icon_morte;
          Destroy(valor_vida);
          StartCoroutine("morrerDeVez");
-         } else if(pet_ativado && vida <= -1f){
+         } else if(pet_ativado && vida <= 0f){
             pet_ativado = false;
             anim_pet.SetBool("sacrificar", true);
             StartCoroutine("petSumir");

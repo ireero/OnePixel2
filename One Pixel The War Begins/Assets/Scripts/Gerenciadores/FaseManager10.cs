@@ -24,11 +24,20 @@ public class FaseManager10 : MonoBehaviour
     public Image vida_restante;
 
     public Sprite cara_transformado;
+    public Sprite vida_transformado;
 
     private float vida_maxima = 500f;
 
+    public GameObject paredona;
+
+    public Transform lado_esquerdo;
+    public Transform lado_direito;
+
+    private bool umaVez;
+
     void Start()
     {
+        umaVez = false;
         contador = 0;
         valor_aleatorio = 0;
         delayTiro = 1.5f;    
@@ -40,6 +49,12 @@ public class FaseManager10 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(PixelPreto.evo_pixel == 1) {
+            BarraVidaMaior.sprite = cara_transformado;
+            vida_restante.sprite = vida_transformado;
+        }
+
         BarraVida();
         if(PixelPreto.AtirouJa) {
             valor_aleatorio = Random.Range(0, 6);
@@ -50,6 +65,14 @@ public class FaseManager10 : MonoBehaviour
                 contador = 0;
             } else if(PixelPreto.tirosDados == 0) {
                 PixelPreto.atirarUmaVez = false;
+            }
+        }
+
+        if(PixelPreto.meia_vida) {
+            if(!umaVez) {
+                Instantiate(paredona, lado_direito.position, lado_direito.rotation);
+                Instantiate(paredona, lado_esquerdo.position, lado_esquerdo.rotation);
+                umaVez = true;
             }
         }
     }

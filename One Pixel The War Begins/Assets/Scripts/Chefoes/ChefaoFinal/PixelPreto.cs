@@ -37,7 +37,7 @@ public class PixelPreto : MonoBehaviour
 
     private float speed;
 
-    private bool estaNaDireita;
+    public static bool estaNaDireita;
 
     private SpriteRenderer sr;
 
@@ -47,10 +47,15 @@ public class PixelPreto : MonoBehaviour
     public Transform spawn_explosao;
     private bool pode_explosao;
 
+    public static int evo_pixel;
+
     public static float vida_pixel_preto;
+    public static bool meia_vida;
 
     void Start()
     {
+        meia_vida = false;
+        evo_pixel = 0;
         vida_pixel_preto = 500f;
         pode_explosao = false;
         estaNaDireita = true;
@@ -71,6 +76,7 @@ public class PixelPreto : MonoBehaviour
         collider = GetComponent<PolygonCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        StartCoroutine("transformou");
     }
 
     // Update is called once per frame
@@ -166,6 +172,9 @@ public class PixelPreto : MonoBehaviour
         }
         if(other.gameObject.CompareTag("bullet")) {
             vida_pixel_preto--;
+            if(vida_pixel_preto <= 250) {
+                meia_vida = true;
+            }
         }
     }
 
@@ -180,10 +189,12 @@ public class PixelPreto : MonoBehaviour
         if(contador2 >= 2.5f) {
                 GameObject cloneBullet = Instantiate(bala, spawn_tiro_bala.position, spawn_tiro_bala.rotation);
                 contador2 = 0;
-
-		    if(!estaNaDireita)
-			    cloneBullet.transform.eulerAngles = new Vector3(0, 0, 180);
             }
+    }
+
+    IEnumerator transformou() {
+        yield return new WaitForSeconds(1.6f);
+        evo_pixel = 1;
     }
 
 }

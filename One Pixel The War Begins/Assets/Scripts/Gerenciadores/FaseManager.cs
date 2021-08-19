@@ -67,13 +67,22 @@ public class FaseManager : MonoBehaviour
 
     public GameObject base_branco;
 
+    public GameObject escada;
+
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.CarregarDados();
         if(GameManager.fase1 == 0) {
+            GameManager.Instance.SalvarSit(1, "Comecou");
             GameManager.Instance.SalvarSit(1, "Fase1");
         }
-        if(GameManager.fase1 == 1) {
+
+        if(GameManager.progresso <= 0) {
+            GameManager.Instance.SalvarSit(1, "Progresso");
+        }
+
+        if(GameManager.fase1 == 1 || GameManager.fase1 == 0) {
             falarUmaVez = false;
             som_fala.Play();
             painel_falas.SetActive(true);
@@ -89,6 +98,14 @@ public class FaseManager : MonoBehaviour
             Chefao01.bateu_chao = false;
             PlayerControle.conversando = true;
         } else {
+            escada.SetActive(true);
+            Destroy(chefao);
+            Destroy(spawn_1);
+            Destroy(spawn_2);
+            Destroy(spawn_3);
+            Destroy(spawn_4);
+            Destroy(spawn_5);
+            Destroy(spawn_6);
             base_branco.SetActive(false);
             PlayerControle.conversando = false;
             PlayerControle.pode_mexer = true;

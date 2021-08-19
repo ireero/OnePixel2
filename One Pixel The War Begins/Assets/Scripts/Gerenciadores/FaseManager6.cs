@@ -74,27 +74,51 @@ public class FaseManager6 : MonoBehaviour
 
     private bool back_pode;
 
+    public GameObject chefao;
+    private bool pode_normal;
+    public GameObject escada;
+
     void Start()
     {
-        GameManager.Instance.SalvarSit(1, "Fase6");
-        back_pode = false;
-        back_void.Play();
-        tocarMusica = 0;
-        contagem_falas_6 = 0;
-        pode_comecar_6 = false;
-        tempo_de_cair = 1.5f;
-        contador = 0;
-        podeCair = false;
-        valor_alet = 0;
-        painel_falas.SetActive(true);
-        fala_1.Play();
+        GameManager.Instance.CarregarDados();
+        if(GameManager.fase6 == 0) {   
+            GameManager.Instance.SalvarSit(1, "Fase6");
+        }
+
+        if(GameManager.progresso <= 5) {
+            GameManager.Instance.SalvarSit(6, "Progresso");
+        }
+
+        if(GameManager.fase6 == 0 || GameManager.fase6 == 1) {
+            back_pode = false;
+            pode_normal = true;
+            back_void.Play();
+            tocarMusica = 0;
+            contagem_falas_6 = 0;
+            pode_comecar_6 = false;
+            tempo_de_cair = 1.5f;
+            contador = 0;
+            podeCair = false;
+            valor_alet = 0;
+            painel_falas.SetActive(true);
+            fala_1.Play();
+        } else {
+            pode_normal = false;
+            Destroy(chefao);
+            escada.SetActive(true);
+            BarraVidaMaior.enabled = false;
+            BarraDeVida.enabled = false;
+            PlayerControle.conversando = false;
+            PlayerControle.podeAtirar = true;
+            PlayerControle.pode_mexer = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if(PlayerControle.player_morto == true) {
+        if(pode_normal) {
+            if(PlayerControle.player_morto == true) {
             painel_derrota.SetActive(true);
         }
 
@@ -228,6 +252,7 @@ public class FaseManager6 : MonoBehaviour
                 pode_comecar_6 = true;
                 break;    
 
+        }
         }
     }
 

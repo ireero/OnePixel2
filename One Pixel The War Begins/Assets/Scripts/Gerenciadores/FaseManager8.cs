@@ -20,13 +20,31 @@ public class FaseManager8 : MonoBehaviour
 
     private bool umaVezGanho;
 
+    public GameObject cientista;
+    public GameObject gatilho;
+    public GameObject escada;
+
     void Start()
     {
-        GameManager.Instance.SalvarSit(1, "Fase8");
-        umaVezGanho = false;
-        pode_comecar_8 = false;
-        jabateuUmPapo = false;
-        contagem_falas_8 = 0;
+        GameManager.Instance.CarregarDados();
+        if(GameManager.fase8 == 0) {
+            GameManager.Instance.SalvarSit(1, "Fase8");
+        }
+
+        if(GameManager.progresso <= 7) {
+            GameManager.Instance.SalvarSit(8, "Progresso");
+        }
+
+        if(GameManager.fase8 == 0 || GameManager.fase8 == 1) {
+            umaVezGanho = false;
+            pode_comecar_8 = false;
+            jabateuUmPapo = false;
+            contagem_falas_8 = 0;
+        } else {
+            Destroy(cientista);
+            Destroy(gatilho);
+            escada.SetActive(true);
+        }
         PlayerControle.conversando = false;
         PlayerControle.pode_mexer = true;
         PlayerControle.podeAtirar = true;

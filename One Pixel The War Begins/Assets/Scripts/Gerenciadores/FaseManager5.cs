@@ -61,140 +61,165 @@ public class FaseManager5 : MonoBehaviour
     private int valor_alet;
     private int valor_prov;
 
+    public GameObject chefao;
+    private bool pode_normal;
+    public GameObject escada;
+
+
     void Start()
     {
-        GameManager.Instance.SalvarSit(1, "Fase5");
-        valor_prov = 0;
-        valor_alet = 0;
-        cont_spawn = 0;
-        slimes_vivos = 0;
-        back_void.Play();
-        podeTocar = 0;
-        painel_falas.SetActive(true);
-        pode_comecar_5 = false;
-        contagem_falas_5 = 0;
-        TiroPequenoChefao.modoHard = false;
-        umaVez = false;
-        contador = 0;
+        GameManager.Instance.CarregarDados();
+        if(GameManager.fase5 == 0) {
+            GameManager.Instance.SalvarSit(1, "Fase5");
+        }
+
+        if(GameManager.progresso <= 4) {
+            GameManager.Instance.SalvarSit(5, "Progresso");
+        }
+
+        if(GameManager.fase5 == 1 || GameManager.fase5 == 0) {
+            pode_normal = true;
+            valor_prov = 0;
+            valor_alet = 0;
+            cont_spawn = 0;
+            slimes_vivos = 0;
+            back_void.Play();
+            podeTocar = 0;
+            painel_falas.SetActive(true);
+            pode_comecar_5 = false;
+            contagem_falas_5 = 0;
+            TiroPequenoChefao.modoHard = false;
+            umaVez = false;
+            contador = 0;
+        } else {
+            pode_normal = false;
+            escada.SetActive(true);
+            Destroy(chefao);
+            BarraVidaMaior.enabled = false;
+            BarraDeVida.enabled = false;
+            PlayerControle.conversando = false;
+            PlayerControle.podeAtirar = true;
+            PlayerControle.pode_mexer = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-        if(PlayerControle.player_morto == true) {
+        if(pode_normal) {
+            if(PlayerControle.player_morto == true) {
             painel_derrota.SetActive(true);
         }
 
-        if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_5) {
-            som_fala.Play();
-            contagem_falas_5++;
-        }
-
-        if(contagem_falas_5 <= 13 && contagem_falas_5 >= 0) {
-            txtFalas.text = falas_palhaco[contagem_falas_5];
-        }
-
-        switch(contagem_falas_5) {
-            case 2:
-                imagem.sprite = palhaco_surpreso;
-                break;
-            case 3:
-                imagem.sprite = palhaco_normal;
-                break;   
-            case 4:
-                imagem.sprite = palhaco_surpreso;
-                break;
-            case 5:
-                imagem.sprite = palhaco_triste;
-                break;
-            case 6:
-                imagem.sprite = palhaco_ameacador;
-                break;     
-            case 7:
-                PlayerControle.conversando = false;
-                if(podeTocar <= 0) {
-                    back_som.Play();
-                    back_void.Stop();
-                    podeTocar++;
-                } 
-                if(!pode_comecar_5) {
-                    PlayerControle.pode_mexer = true;
-                    PlayerControle.podeAtirar = true;
-                }
-                painel_falas.SetActive(false);
-                pode_comecar_5 = true;
-                break; 
-            case 8:
-                imagem.sprite = palhaco_normal_mv;
-                pode_comecar_5 = false;
-                painel_falas.SetActive(true);
-                PlayerControle.conversando = true;
-                break;    
-            case 9:
-                imagem.sprite = palhaco_triste_mv;
-                break;      
-            case 10:
-                imagem.sprite = palhaco_euforico_mv;
-                break;
-            case 11:
-                imagem.sprite = palhaco_triste_mv;
-                break;
-            case 13:
-                imagem.sprite = palhaco_ameacador_mv;
-                break;
-            case 14:
-                PlayerControle.conversando = false;
-                if(!pode_comecar_5) {
-                    PlayerControle.pode_mexer = true;
-                    PlayerControle.podeAtirar = true;
-                }
-                painel_falas.SetActive(false);
-                pode_comecar_5 = true;      
-                break;                      
-        }
-
-        if(pode_comecar_5 && Chefao04.vida_chefao > 0) {
-            cont_spawn += Time.deltaTime;
-            valor_alet = Random.Range(0, 6);
-
-            if(cont_spawn >= 2f && slimes_vivos <= 5) {
-                if(valor_alet == valor_prov) {
-                    if(valor_alet == 5) {
-                        valor_alet--;
-                    } else {
-                        valor_alet++;
-                    }
-                }
-                Instantiate(slime, spawn_slimes[valor_alet].position, spawn_slimes[valor_alet].rotation);
-                valor_prov = valor_alet;
-                slimes_vivos++;
-                cont_spawn = 0;
+            if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_5) {
+                som_fala.Play();
+                contagem_falas_5++;
             }
 
-        }
+            if(contagem_falas_5 <= 13 && contagem_falas_5 >= 0) {
+                txtFalas.text = falas_palhaco[contagem_falas_5];
+            }
 
-        BarraVida();
+            switch(contagem_falas_5) {
+                case 2:
+                    imagem.sprite = palhaco_surpreso;
+                    break;
+                case 3:
+                    imagem.sprite = palhaco_normal;
+                    break;   
+                case 4:
+                    imagem.sprite = palhaco_surpreso;
+                    break;
+                case 5:
+                    imagem.sprite = palhaco_triste;
+                    break;
+                case 6:
+                    imagem.sprite = palhaco_ameacador;
+                    break;     
+                case 7:
+                    PlayerControle.conversando = false;
+                    if(podeTocar <= 0) {
+                        back_som.Play();
+                        back_void.Stop();
+                        podeTocar++;
+                    } 
+                    if(!pode_comecar_5) {
+                        PlayerControle.pode_mexer = true;
+                        PlayerControle.podeAtirar = true;
+                    }
+                    painel_falas.SetActive(false);
+                    pode_comecar_5 = true;
+                    break; 
+                case 8:
+                    imagem.sprite = palhaco_normal_mv;
+                    pode_comecar_5 = false;
+                    painel_falas.SetActive(true);
+                    PlayerControle.conversando = true;
+                    break;    
+                case 9:
+                    imagem.sprite = palhaco_triste_mv;
+                    break;      
+                case 10:
+                    imagem.sprite = palhaco_euforico_mv;
+                    break;
+                case 11:
+                    imagem.sprite = palhaco_triste_mv;
+                    break;
+                case 13:
+                    imagem.sprite = palhaco_ameacador_mv;
+                    break;
+                case 14:
+                    PlayerControle.conversando = false;
+                    if(!pode_comecar_5) {
+                        PlayerControle.pode_mexer = true;
+                        PlayerControle.podeAtirar = true;
+                    }
+                    painel_falas.SetActive(false);
+                    pode_comecar_5 = true;      
+                    break;                      
+            }
 
-        if(Chefao04.tirosDados == 0) {
-            umaVez = false;
-        }
+            if(pode_comecar_5 && Chefao04.vida_chefao > 0) {
+                cont_spawn += Time.deltaTime;
+                valor_alet = Random.Range(0, 6);
 
-        if(Chefao04.tirosDados >= valor_tiros_dados && !umaVez) {
-                Instantiate(moeda_risada, ponto_baixo.position, ponto_baixo.rotation);
-                umaVez = true;
-        }
+                if(cont_spawn >= 2f && slimes_vivos <= 5) {
+                    if(valor_alet == valor_prov) {
+                        if(valor_alet == 5) {
+                            valor_alet--;
+                        } else {
+                            valor_alet++;
+                        }
+                    }
+                    Instantiate(slime, spawn_slimes[valor_alet].position, spawn_slimes[valor_alet].rotation);
+                    valor_prov = valor_alet;
+                    slimes_vivos++;
+                    cont_spawn = 0;
+                }
 
-        if(Chefao04.vida_chefao == 0) {
-            GameManager.Instance.SalvarSit(2, "Fase5");
-            back_void.Play();
-            back_som.Stop();
-            Destroy(BarraVidaMaior);
-        } else if(Chefao04.vida_chefao <= 25 && Chefao04.vida_chefao > 0) {
-            BarraVidaMaior.sprite = icon_metade_vida;
-            TiroPequenoChefao.modoHard = true;
-            BarraVidaMaior.color = Color.red;
+            }
+
+            BarraVida();
+
+            if(Chefao04.tirosDados == 0) {
+                umaVez = false;
+            }
+
+            if(Chefao04.tirosDados >= valor_tiros_dados && !umaVez) {
+                    Instantiate(moeda_risada, ponto_baixo.position, ponto_baixo.rotation);
+                    umaVez = true;
+            }
+
+            if(Chefao04.vida_chefao == 0) {
+                GameManager.Instance.SalvarSit(2, "Fase5");
+                back_void.Play();
+                back_som.Stop();
+                Destroy(BarraVidaMaior);
+            } else if(Chefao04.vida_chefao <= 25 && Chefao04.vida_chefao > 0) {
+                BarraVidaMaior.sprite = icon_metade_vida;
+                TiroPequenoChefao.modoHard = true;
+                BarraVidaMaior.color = Color.red;
+            }
         }
     }
 

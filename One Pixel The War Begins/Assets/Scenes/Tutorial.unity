@@ -434,7 +434,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128628137
 GameObject:
@@ -3552,7 +3552,7 @@ GameObject:
   - component: {fileID: 895599956}
   - component: {fileID: 895599955}
   m_Layer: 5
-  m_Name: tecla_space
+  m_Name: tecla_espaco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3574,7 +3574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.0069999695}
   m_SizeDelta: {x: 213.33333, y: 213.33333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &895599955
@@ -3724,6 +3724,7 @@ GameObject:
   - component: {fileID: 903423842}
   - component: {fileID: 903423844}
   - component: {fileID: 903423843}
+  - component: {fileID: 903423845}
   m_Layer: 5
   m_Name: painel_controlhes
   m_TagString: Untagged
@@ -3791,6 +3792,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903423841}
   m_CullTransparentMesh: 1
+--- !u!223 &903423845
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903423841}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -4
+  m_TargetDisplay: 0
 --- !u!1 &920186789
 GameObject:
   m_ObjectHideFlags: 0
@@ -4269,7 +4291,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Pressione Q para avanca\xE7ar"
+  m_Text: "Pressione 'Q' para avanca\xE7ar"
 --- !u!222 &953864218
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5657,6 +5679,7 @@ GameObject:
   - component: {fileID: 1313199759}
   - component: {fileID: 1313199761}
   - component: {fileID: 1313199760}
+  - component: {fileID: 1313199762}
   m_Layer: 5
   m_Name: painel_esq
   m_TagString: Untagged
@@ -5723,6 +5746,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313199758}
   m_CullTransparentMesh: 1
+--- !u!223 &1313199762
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313199758}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -4
+  m_TargetDisplay: 0
 --- !u!1 &1390209878
 GameObject:
   m_ObjectHideFlags: 0
@@ -5903,6 +5947,7 @@ GameObject:
   - component: {fileID: 1433332935}
   - component: {fileID: 1433332937}
   - component: {fileID: 1433332936}
+  - component: {fileID: 1433332938}
   m_Layer: 5
   m_Name: BarraDeVidaPlayer
   m_TagString: Untagged
@@ -5969,6 +6014,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433332934}
   m_CullTransparentMesh: 0
+--- !u!223 &1433332938
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433332934}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -1
+  m_TargetDisplay: 0
 --- !u!1 &1439973068
 GameObject:
   m_ObjectHideFlags: 0
@@ -6801,7 +6867,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.2}
   m_AnchorMax: {x: 0.9187676, y: 1}
-  m_AnchoredPosition: {x: 0.010009766, y: -0.07999992}
+  m_AnchoredPosition: {x: 0.010009766, y: -0.07999897}
   m_SizeDelta: {x: 0.020000458, y: 0.15999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1605196746
@@ -6857,6 +6923,7 @@ GameObject:
   - component: {fileID: 1652571973}
   - component: {fileID: 1652571975}
   - component: {fileID: 1652571974}
+  - component: {fileID: 1652571976}
   m_Layer: 5
   m_Name: painel_tiros
   m_TagString: Untagged
@@ -6924,6 +6991,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652571972}
   m_CullTransparentMesh: 1
+--- !u!223 &1652571976
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652571972}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -4
+  m_TargetDisplay: 0
 --- !u!1 &1659270647
 GameObject:
   m_ObjectHideFlags: 0
@@ -7261,7 +7349,7 @@ RectTransform:
   - {fileID: 1313199759}
   - {fileID: 427051669}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7701,7 +7789,7 @@ Transform:
   - {fileID: 979072169}
   - {fileID: 1208265106}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835220734
 GameObject:
@@ -7810,6 +7898,7 @@ GameObject:
   - component: {fileID: 1872534330}
   - component: {fileID: 1872534329}
   - component: {fileID: 1872534331}
+  - component: {fileID: 1872534332}
   m_Layer: 5
   m_Name: txt_instrucoes
   m_TagString: Untagged
@@ -7894,6 +7983,27 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!223 &1872534332
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872534327}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1874449550
 GameObject:
   m_ObjectHideFlags: 0
@@ -8122,6 +8232,7 @@ GameObject:
   - component: {fileID: 1879849627}
   - component: {fileID: 1879849629}
   - component: {fileID: 1879849628}
+  - component: {fileID: 1879849630}
   m_Layer: 5
   m_Name: painel_botar_plataforma
   m_TagString: Untagged
@@ -8189,6 +8300,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879849626}
   m_CullTransparentMesh: 1
+--- !u!223 &1879849630
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879849626}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -4
+  m_TargetDisplay: 0
 --- !u!1 &1890444133
 GameObject:
   m_ObjectHideFlags: 0
@@ -8299,6 +8431,7 @@ GameObject:
   - component: {fileID: 1915092726}
   - component: {fileID: 1915092725}
   - component: {fileID: 1915092727}
+  - component: {fileID: 1915092728}
   m_Layer: 5
   m_Name: seta_apontando
   m_TagString: Untagged
@@ -8382,6 +8515,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!223 &1915092728
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915092723}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -3
+  m_TargetDisplay: 0
 --- !u!1 &1934466399
 GameObject:
   m_ObjectHideFlags: 0
@@ -8611,6 +8765,7 @@ GameObject:
   - component: {fileID: 2054330712}
   - component: {fileID: 2054330714}
   - component: {fileID: 2054330713}
+  - component: {fileID: 2054330715}
   m_Layer: 5
   m_Name: painel_dash
   m_TagString: Untagged
@@ -8677,6 +8832,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054330711}
   m_CullTransparentMesh: 1
+--- !u!223 &2054330715
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054330711}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -4
+  m_TargetDisplay: 0
 --- !u!1 &2100034134
 GameObject:
   m_ObjectHideFlags: 0
@@ -8713,7 +8889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0642985, y: 0.12200001}
   m_AnchorMax: {x: 0.294, y: 0.20039156}
-  m_AnchoredPosition: {x: -1.5, y: 3}
+  m_AnchoredPosition: {x: -1.4999695, y: 3}
   m_SizeDelta: {x: 5, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2100034136
@@ -9135,7 +9311,7 @@ PrefabInstance:
     - target: {fileID: 7442106555223898307, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7442106555223898307, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}

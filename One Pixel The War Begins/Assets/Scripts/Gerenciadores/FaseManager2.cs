@@ -44,15 +44,36 @@ public class FaseManager2 : MonoBehaviour
 
     public AudioSource back_void;
 
+    public GameObject chefao;
+    public GameObject escada;
+
     void Start()
     {
-        GameManager.Instance.SalvarSit(1, "Fase2");
-        back_void.Play();
-        tocaSom = 0;
-        pode_comecar = false;
-        contagem_falas_2 = 0;
-        painel_falas.SetActive(true);
-        TiroPequenoChefao.modoHard = false;
+        GameManager.Instance.CarregarDados();
+        if(GameManager.fase2 == 0) {
+            GameManager.Instance.SalvarSit(1, "Fase2");
+        }
+
+        if(GameManager.progresso <= 1) {
+            GameManager.Instance.SalvarSit(2, "Progresso");
+        }
+
+        if(GameManager.fase2 == 1 || GameManager.fase2 == 0) {
+            back_void.Play();
+            tocaSom = 0;
+            pode_comecar = false;
+            contagem_falas_2 = 0;
+            painel_falas.SetActive(true);
+            TiroPequenoChefao.modoHard = false;
+            TiroRedondo.modoHardRedondo = false;
+        } else {
+            escada.SetActive(true);
+            Destroy(chefao);
+            BarraVidaMaior.enabled = false;
+            PlayerControle.conversando = false;
+            PlayerControle.pode_mexer = true;
+            PlayerControle.podeAtirar = true;
+        }
     }
 
     // Update is called once per frame
@@ -123,6 +144,7 @@ public class FaseManager2 : MonoBehaviour
             Destroy(BarraVidaMaior);
             GameManager.Instance.SalvarSit(2, "Fase2");
             contagem_falas_2 = 4;
+            TiroRedondo.modoHardRedondo = false;
             TiroPequenoChefao.modoHard = false;
             pode_comecar = false;
         }
@@ -133,6 +155,7 @@ public class FaseManager2 : MonoBehaviour
         BarraVidaMaior.color = Color.red;
         TiroPequenoChefao.modoHard = true;
         SuperTiroChefao.modoHard = true;
+        TiroRedondo.modoHardRedondo = true;
 
         Cabeca01.podeRenascer = true;
         Cabeca01.locaute = false;

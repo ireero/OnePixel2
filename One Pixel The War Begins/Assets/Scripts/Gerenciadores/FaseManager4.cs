@@ -31,17 +31,38 @@ public class FaseManager4 : MonoBehaviour
     private bool umaVez;
     private bool umaVezGanho;
 
+    public GameObject meditador;
+    public GameObject gatilho;
+    public GameObject escada;
+
     void Start()
     {
-        GameManager.Instance.SalvarSit(1, "Fase4");
-        umaVezGanho = false;
-        umaVez = false;
-        PlayerControle.conversando = false;
-        PlayerControle.pode_mexer = true;
-        PlayerControle.podeAtirar = true;
-        pode_comecar_4 = false;
-        jaConversou = false;
-        contagem_falas_4 = 0;
+        GameManager.Instance.CarregarDados();
+        if(GameManager.fase4 == 0) {
+            GameManager.Instance.SalvarSit(1, "Fase4");
+        }
+
+        if(GameManager.progresso <= 3) {
+            GameManager.Instance.SalvarSit(4, "Progresso");
+        }
+
+        if(GameManager.fase4 == 1 || GameManager.fase4 == 0) {
+            umaVezGanho  = false;
+            umaVez = false; 
+            PlayerControle.conversando = false;
+            PlayerControle.pode_mexer = true;
+            PlayerControle.podeAtirar = true;
+            pode_comecar_4 = false;
+            jaConversou = false;
+            contagem_falas_4 = 0;
+        } else {
+            Destroy(gatilho);
+            Destroy(meditador);
+            escada.SetActive(true);
+            PlayerControle.conversando = false;
+            PlayerControle.pode_mexer = true;
+            PlayerControle.podeAtirar = true;
+        }
     }
 
     // Update is called once per frame

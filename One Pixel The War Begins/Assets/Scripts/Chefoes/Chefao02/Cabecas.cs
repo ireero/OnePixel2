@@ -17,6 +17,8 @@ public class Cabecas : MonoBehaviour
 
     public Animator anim;
 
+    public int valor_aleatorio_cara;
+
     public void Renascer() {
         anim.SetBool("renascer", true);
         podeAtirar = false;

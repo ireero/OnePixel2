@@ -31,6 +31,7 @@ public class MenuDerrota : MonoBehaviour
     }
 
     public void Reiniciar() {
+        GameManager.Instance.CarregarDados();
         SceneLoader.Instance.LoadSceneAsync(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
     }

@@ -34,22 +34,42 @@ public class FaseManager7 : MonoBehaviour
     public GameObject chefao;
     public GameObject vida_chefao;
 
+    public GameObject gatilho;
+    public GameObject escada;
+
     void Start()
     {
-        GameManager.Instance.SalvarSit(1, "Fase7");
-        back.sprite = back_1;
-        back.color = Color.white;
-        tempo_spawn = 10.5f;
-        valor_momentaneo = 0;;
-        liberado = true;
-        valor_aleatorio = 0;
-        cont = 8.5f;
-        monstros_nascidos = 0;   
-        Chefao06.meia_vida = false; 
-        Chefao06.camuflado_ja = false;
+        GameManager.Instance.CarregarDados();
+        if(GameManager.fase7 == 0) { 
+            GameManager.Instance.SalvarSit(1, "Fase7");
+        }
+
+        if(GameManager.progresso <= 6) {
+            GameManager.Instance.SalvarSit(7, "Progresso");
+        }
+
         PlayerControle.conversando = false;
         PlayerControle.pode_mexer = true;
         PlayerControle.podeAtirar = true;
+
+        if(GameManager.fase7 == 0 || GameManager.fase7 == 1) {
+            back.sprite = back_1;
+            back.color = Color.white;
+            tempo_spawn = 10.5f;
+            valor_momentaneo = 0;;
+            liberado = true;
+            TiroPequenoChefao.modoHard = false;
+            valor_aleatorio = 0;
+            cont = 8.5f;
+            monstros_nascidos = 0;   
+            Chefao06.meia_vida = false; 
+            Chefao06.camuflado_ja = false;
+        } else {
+            escada.SetActive(true);
+            Destroy(gatilho);
+            back.sprite = back_2;
+            back.color = Color.white;
+        }
     }
 
     // Update is called once per frame

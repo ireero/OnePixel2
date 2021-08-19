@@ -342,15 +342,15 @@ RectTransform:
   m_GameObject: {fileID: 29432954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.000303, y: 2.000303, z: 0.9997763}
+  m_LocalScale: {x: 1, y: 1, z: 0.9997763}
   m_Children: []
   m_Father: {fileID: 23026423}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.78749996, y: 0.1622222}
-  m_AnchorMax: {x: 0.91, y: 0.38222224}
-  m_AnchoredPosition: {x: 1.1000366, y: 0.6000061}
-  m_SizeDelta: {x: 2, y: 1}
+  m_AnchorMin: {x: 0.8762501, y: 0.06888888}
+  m_AnchorMax: {x: 1, y: 0.29344448}
+  m_AnchoredPosition: {x: -0.49996948, y: -0.1000061}
+  m_SizeDelta: {x: 1, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &29432956
 MonoBehaviour:
@@ -624,7 +624,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_TargetDisplay: 0
 --- !u!1 &104833348
 GameObject:
@@ -3648,6 +3648,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtFalas: {fileID: 501253576}
   painel_falas: {fileID: 2033506196}
+  cientista: {fileID: 679252510}
+  gatilho: {fileID: 225978617}
+  escada: {fileID: 29432954}
 --- !u!1 &976915966
 GameObject:
   m_ObjectHideFlags: 0
@@ -7375,12 +7378,12 @@ PrefabInstance:
     - target: {fileID: 7442106555223898307, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.2
+      value: -5.06
       objectReference: {fileID: 0}
     - target: {fileID: 7442106555223898307, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.79
+      value: -2.27
       objectReference: {fileID: 0}
     - target: {fileID: 7442106555223898307, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}

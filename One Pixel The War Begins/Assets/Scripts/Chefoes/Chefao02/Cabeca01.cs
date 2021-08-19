@@ -5,6 +5,7 @@ using UnityEngine;
 public class Cabeca01 : MonoBehaviour
 {
     public GameObject Bullet;
+    public GameObject bala_redonda;
     public Transform Spawn_Bullet;
 
     public AudioSource somDano;
@@ -40,6 +41,8 @@ public class Cabeca01 : MonoBehaviour
     void Update()
     {
 
+        cabeca1.valor_aleatorio_cara = Random.Range(0, 4);
+
         if(FaseManager2.pode_comecar && !locaute) {
             cabeca1.podeAtirar = true;
         }
@@ -53,7 +56,11 @@ public class Cabeca01 : MonoBehaviour
 
         contador += Time.deltaTime;
         if(contador >= cabeca1.tempoDeTiro && cabeca1.podeAtirar && !locaute) {
-            Instantiate(Bullet, Spawn_Bullet.position, Spawn_Bullet.rotation);
+            if(cabeca1.valor_aleatorio_cara == 3) {
+                Instantiate(bala_redonda, Spawn_Bullet.position, Spawn_Bullet.rotation);
+            } else {
+                Instantiate(Bullet, Spawn_Bullet.position, Spawn_Bullet.rotation);
+            }
             contador = 0;
         }
 

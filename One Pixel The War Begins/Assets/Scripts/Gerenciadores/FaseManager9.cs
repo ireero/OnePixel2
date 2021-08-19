@@ -35,6 +35,8 @@ public class FaseManager9 : MonoBehaviour
     public GameObject portal_3;
     public GameObject portal_4;
 
+    public GameObject escada;
+
     private bool segunda_parte;
     private bool umaVez;
     private bool umaVezTempo;
@@ -55,6 +57,9 @@ public class FaseManager9 : MonoBehaviour
     public GameObject cabeca_lobo;
 
     public Image BarraVidaMaior;
+    public Image BarraDeVida;
+    public Image infinito;
+    
     public Sprite chefao_meia_vida;
     public Sprite chefao_normal;
 
@@ -76,32 +81,60 @@ public class FaseManager9 : MonoBehaviour
 
     public GameObject barra_vida;
 
+    public GameObject chefao;
+
+    private bool pode_normal;
+
     void Start()
     {
-        GameManager.Instance.SalvarSit(1, "Fase9");
-        FaseManager6.pode_comecar_6 = true;
-        contagem_falas_9 = 0;
-        pode_comecar_9 = false;
-        TiroPequenoChefao.modoHard = false;
-        acabou = false;
-        valor_provisorio = 0;
-        valor_aleatorio = 0;
-        cont_lobo = 0;
-        soltarRaio = false;
-        umaVezTempo = false;
-        umaVez = false;
-        segunda_parte = false;
-        tempo_sobreviver = 75f;
-        painel_falas.SetActive(true);   
-        Portal.atira_ae_po = 0;
-        cabo_tudo = false;
+        GameManager.Instance.CarregarDados();
+        if(GameManager.fase9 == 0) {
+            GameManager.Instance.SalvarSit(1, "Fase9");
+        }
+
+        if(GameManager.progresso <= 8) {
+            GameManager.Instance.SalvarSit(9, "Progresso");
+        }
+
+        if(GameManager.fase9 == 0 || GameManager.fase9 == 1) {
+            pode_normal = true;
+            FaseManager6.pode_comecar_6 = true;
+            contagem_falas_9 = 0;
+            pode_comecar_9 = false;
+            TiroPequenoChefao.modoHard = false;
+            SuperTiroChefao.modoHard = false;
+            acabou = false;
+            valor_provisorio = 0;
+            valor_aleatorio = 0;
+            cont_lobo = 0;
+            soltarRaio = false;
+            umaVezTempo = false;
+            umaVez = false;
+            segunda_parte = false;
+            tempo_sobreviver = 75f;
+            painel_falas.SetActive(true);   
+            Portal.atira_ae_po = 0;
+            cabo_tudo = false;
+        } else {
+            pode_normal = false;
+            Destroy(chefao);
+            Destroy(raposa);
+            escada.SetActive(true);
+            PlayerControle.conversando = false;
+            PlayerControle.pode_mexer = true;
+            PlayerControle.podeAtirar = true;
+            BarraVidaMaior.enabled = false;
+            BarraDeVida.enabled = false;
+            txt_tempo.enabled = false;
+            infinito.enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if(PlayerControle.player_morto == true) {
+        if(pode_normal) {
+            if(PlayerControle.player_morto == true) {
             painel_derrota.SetActive(true);
         }
 
@@ -176,6 +209,7 @@ public class FaseManager9 : MonoBehaviour
                     PlayerControle.podeAtirar = true;
                 }
                 painel_falas.SetActive(false);
+                escada.SetActive(true);
                 cabo_tudo = true;
                 break;            
 
@@ -239,6 +273,7 @@ public class FaseManager9 : MonoBehaviour
                 }
             }
         }
+        }
     }
 
 
@@ -261,5 +296,10 @@ public class FaseManager9 : MonoBehaviour
         contagem_falas_9 = 14;
         Destroy(barra_vida);
         Destroy(txt_tempo);
+    }
+
+    IEnumerator escadaAparecer() {
+        yield return new WaitForSeconds(1.5f);
+        escada.SetActive(true);
     }
 }

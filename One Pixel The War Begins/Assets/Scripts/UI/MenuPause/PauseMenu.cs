@@ -110,6 +110,7 @@ public class PauseMenu : MonoBehaviour {
       if (Input.GetKeyDown (KeyCode.Escape)) {
          PlayerControle.podeAtirar = false;
          PlayerControle.pode_mexer = false;
+         AudioListener.volume = 0;
          if (menuParte1Ativo == false && menuParte2Ativo == false) {
             menuParte1Ativo = true;
             menuParte2Ativo = false;

@@ -50,6 +50,8 @@ public class Chefao05 : MonoBehaviour
     public AudioSource somTerremoto;
     private bool umTerremoto;
 
+    public GameObject escada;
+
     void Start()
     {
         umTerremoto = false;
@@ -175,6 +177,7 @@ public class Chefao05 : MonoBehaviour
 
     IEnumerator morrendo() {
         yield return new WaitForSeconds(3.5f);
+        escada.SetActive(true);
         FaseManager6.contagem_falas_6 = 5;
         Destroy(this.gameObject);
     }

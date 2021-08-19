@@ -15,7 +15,15 @@ public class OlharPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(target.position);
+
+        Vector3 relativePosition = target.position - transform.position;
+
+        if(!PixelPreto.estaNaDireita) {
+            transform.rotation = Quaternion.LookRotation(-relativePosition);
+        } else {
+            transform.rotation = Quaternion.LookRotation(relativePosition);
+        }
+
         transform.Rotate(new Vector3(0, 90, 0), Space.Self);
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
