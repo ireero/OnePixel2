@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4270269240317715691}
   - component: {fileID: 4270269240317715690}
   - component: {fileID: 4270269240317715685}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tiro_laser
   m_TagString: bullet_inimiga
   m_Icon: {fileID: 0}

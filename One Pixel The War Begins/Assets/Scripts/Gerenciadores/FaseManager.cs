@@ -8,8 +8,12 @@ public class FaseManager : MonoBehaviour
 {
 
     private string[] falas = {"Aleluia, você chegou!", "Meu senhor o castelo foi tomado!", "Todos morreram lá dentro", "Por favor meu lorde nos ajude", 
-    "EU TE IMPLORO SENHOR QUE NOS AJUDE!"," ", "Existem alguns verdadeiros monstros nesse castelo agora", 
-    "Fuja em quanto ainda tem chance", "Diga a todos que sinto muito...."};
+    "TE IMPLORO SENHOR QUE NOS AJUDE!"," ", "Existem alguns verdadeiros monstros nesse castelo agora", 
+    "Fuja em quanto ainda tem chance", "Diga a todos que sinto muito."};
+
+    private string[] falas_ingles = {"Hallelujah, you are here!", "My lord, the castle has been taken!", "Everyone died inside", "Please my lord help us", 
+    "I BEG YOU LORD HELP US!"," ", "There are some real monsters in this castle now", 
+    "Escape while you still have the chance", "Tell everyone I'm sorry."};
 
     public Text txtFalas;
 

@@ -82,6 +82,7 @@ public class Chefao05 : MonoBehaviour
         nextFire += Time.deltaTime;
 
         if(FaseManager6.pode_comecar_6 == false) {
+            somTerremoto.Stop();
             contador = 0;
             nextFire = 0;
         }

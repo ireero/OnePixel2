@@ -6,9 +6,13 @@ using UnityEngine.UI;
 public class FaseManager4 : MonoBehaviour
 {
 
-    private string[] falas_meditador = {"Sinto muito imperador....", "Eramos aproximadamente 50 soldados de alto nível e mesmo assim fomos tods derrotados", 
-    "Graças ao sacrificio de todos nós ainda conseguimos eliminar 1 deles", "Eles se revoltaram do nada.....", "Quando notamos o perigo já era tarde de mais, estavámos sercados",
-    "Sinto muito meu senhor, espero que nossas mortes não sejam em vão", "O monstro que matamos deixou isso cair, espero que lhe ajude em algo", "Por favor meu imperador, salve nosso povo......"};
+    private string[] falas_meditador = {"Sinto muito imperador...", "Éramos aproximadamente 50 soldados de alto nível neste andar e mesmo assim fomos todos derrotados", 
+    "Graças ao sacrifício de todos, nós ainda conseguimos eliminar 1 deles", "Eles se revoltaram do nada...", "Quando notamos o perigo já era tarde de mais, estávamos cercados",
+    "Sinto muito meu senhor, espero que nossas mortes não sejam em vão", "O monstro que matamos deixou isso cair, espero que lhe ajude em algo", "Por favor meu imperador, salve nosso povo..."};
+
+    private string[] falas_meditador_ingles = {"I'm sorry Emperor...", "There were approximately 50 high-level soldiers on this floor and yet we were all defeated", 
+    "Thanks to the sacrifice of all of us, we still managed to eliminate 1 of them", "They revolted out of nowhere.", "When we noticed the danger it was already too late, we were surrounded",
+    "I am sorry my lord, I hope our deaths are not in vain", "The monster we killed dropped this, I hope it helps you", "Please my emperor, save our people..."};
 
     public Text txtFalas;
 
@@ -113,6 +117,7 @@ public class FaseManager4 : MonoBehaviour
                     umaVez = true;
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;
+                    Destroy(gatilho);
                 }
                 Meditador.podeMorrer = true;
                 pode_comecar_4 = false;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3105257714826688945}
   - component: {fileID: 3105257714826688944}
   - component: {fileID: 998104294}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: raio
   m_TagString: monstro
   m_Icon: {fileID: 0}

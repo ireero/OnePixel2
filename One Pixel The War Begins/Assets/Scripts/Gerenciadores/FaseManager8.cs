@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class FaseManager8 : MonoBehaviour
 {
-    private string[] falas_cientista = {"O.... Oi Imperador", "sinceramente não imaginei que você fosse chegar até aqui", "Faziam meses que você não pisava no castelo", 
-    "Me diga como foi sua expedição em busca de novas terras?", "Não está muito bem humorado não é mesmo?", "Entendo......", "Serei bem sincero com você imperador, eu não gosto de brigas", 
-    "Então faça ai o que você quiser e vá pra onde você quiser que eu não ligo", "Tome esse presente por me deixar ir, tenho certeza que vai lhe ajudar bastante com os inimigos a frente"};
+    private string[] falas_cientista = {"O... Oi Imperador", "Sinceramente não imaginei que você fosse chegar até aqui", "Faziam meses que você não pisava no castelo", 
+    "Me diga como foi sua expedição em busca de novas terras?", "Não está muito bem-humorado não é mesmo?", "Entendo...", "Serei bem sincero com você imperador, eu não gosto de brigas", 
+    "Então faça ai o que você quiser e vá para onde você quiser que eu não ligo", "Tome esse presente por me deixar ir, tenho certeza que vai-lhe ajudar bastante com os inimigos a frente"};
+
+    private string[] falas_cientista_ingles = {"H... Hi Emperor", "I honestly did not imagine that you would get this far", "It has been months since you set foot in the castle", 
+    "Tell me how was your expedition in search of new lands?", "Not in a very good mood are you?", "I see...", "I will be very honest with you Emperor, I do not like fighting", 
+    "So do there what you want and go where you want and I don't care", "Take this gift for letting me go, I'm sure it will help you a lot with the enemies ahead"};
 
     public Text txtFalas;
 

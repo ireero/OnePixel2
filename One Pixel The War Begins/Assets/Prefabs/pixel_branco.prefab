@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 189892533}
   - component: {fileID: 189892535}
   - component: {fileID: 189892534}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4815,7 +4815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 412241844}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spawn_Chao
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -4846,7 +4846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 503093462}
   - component: {fileID: 503093463}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: simbulo_voador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4930,7 +4930,7 @@ GameObject:
   - component: {fileID: 1271992930}
   - component: {fileID: 1271992932}
   - component: {fileID: 1271992931}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: gatilhos
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -5033,7 +5033,7 @@ GameObject:
   - component: {fileID: 1318920444}
   - component: {fileID: 1318920443}
   - component: {fileID: 1318920442}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pet_pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5134,7 +5134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1765947388}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spawn_Shoot
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -5165,7 +5165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7442106553959249607}
   - component: {fileID: 1179850023}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -5253,7 +5253,7 @@ GameObject:
   - component: {fileID: 7442106555223898364}
   - component: {fileID: 7442106555223898367}
   - component: {fileID: 7442106555341568671}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pixel_branco
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5425,7 +5425,7 @@ MonoBehaviour:
     type: 3}
   chaoSpawn: {fileID: 412241844}
   som_pulo: {fileID: 8300000, guid: 425e4db5bd2ed964b8bd2860515b79ba, type: 3}
-  som_morte: {fileID: 8300000, guid: 6be58b8395bbe3c488872bb5e6ae0c83, type: 3}
+  som_morte: {fileID: 8300000, guid: 77a74442a62d4694c995182d8b2c1ba1, type: 3}
   som_tiro: {fileID: 8300000, guid: 36b8413de2bb71c419bad47ab7843e0d, type: 3}
   Barra_de_vida: {fileID: 0}
   valor_vida: {fileID: 0}
@@ -5439,7 +5439,7 @@ MonoBehaviour:
   simbuloVoador: {fileID: 503093461}
   qtd_vida_3: {fileID: 21300000, guid: ac1dbffb09e1be74896fd4936f47023a, type: 3}
   qtd_vida_2: {fileID: 21300000, guid: a3b30a91547388d45be1a3332e979877, type: 3}
-  qtd_vida_1: {fileID: 21300000, guid: 5df8599ac2efe8144b3a6cffe04e7679, type: 3}
+  qtd_vida_1: {fileID: 21300000, guid: bb0b239a1cdfa4d4b9a38465be1ab507, type: 3}
   qtd_vida_0: {fileID: 21300000, guid: 21438bb376a445147baf35a98837a6a0, type: 3}
 --- !u!114 &7442106555341568671
 MonoBehaviour:

@@ -6,11 +6,17 @@ using UnityEngine.UI;
 public class FaseManager9 : MonoBehaviour
 {
 
-    private string[] falas = {"Eita! você chegou até aqui", "Me falaram que você estava vindo mas sinceramente eu nunca imaginaria que chegaria em mim",
-    "Que tal irmos direto ao assunto? eu gostaria de ir no banheiro urgentemente", "Infelizmente para você eu sou imortal e nada do que fizer vai me matar ou mesmo me machucar", 
-    "Então que tal você dar meia volta e me deixar cagar em paz? ", "Não?", "Mas você com certeza vai morrer amigo", "Não se importa?", "É um idiota mesmo....", "MAS EU GOSTO DA SUA DETERMINAÇÃO!!!!", "Sobreviva aos meus ataques por 75 segundos e eu te deixo passar", 
-    "Mas se você não se importar irei ficar parado pois estou em um estado de concentração aqui, você entende né?","", "Você acredita na audacia desse cara?", "Não lembro de ter autorizado ninguém a me controlar assim", "Enfim Imperador, você passou no meu teste", 
-    "Tomara que você venca eles", "Boa sorte lá, Tchau!"};
+    private string[] falas = {"Eita!, Você chegou até aqui", "Me falaram que você estava vindo mas sinceramente eu nunca imaginaria que chegaria em mim",
+    "Que tal irmos direto ao assunto?, Eu gostaria de ir no banheiro urgentemente", "Infelizmente para você eu sou imortal e nada do que fizer vai-me matar ou mesmo me machucar", 
+    "Então que tal você dar meia volta e me deixar cagar em paz?", "Não?", "Mas você com certeza vai morrer amigo", "Não se importa?", "É um idiota mesmo...", "MAS EU GOSTO DA SUA DETERMINAÇÃO!", "Sobreviva aos meus ataques por 75 segundos e eu te deixo passar", 
+    "Mas se você não se importar irei ficar parado pois estou em um estado de concentração aqui, você entende né?","", "Você acredita na audácia desse cara?", "Não lembro de ter autorizado ninguém a me controlar assim", "Enfim Imperador, você passou no meu teste", 
+    "Tomara que você vença eles", "Boa sorte lá, Tchau!"};
+
+    private string[] falas_ingles = {"damn!, You have come this far", "I was told that you were coming but honestly I never would have imagined that you would come to me",
+    "How about we cut to the chase, I would like to go to the bathroom urgently", "Unfortunately for you I am immortal and nothing you do will kill me or even hurt me", 
+    "So how about you turn around and let me shit in peace?", "No?", "But you will surely die friend", "Don't you care?", "He's a real jerk...", "BUT I LIKE YOUR DETERMINATION!", "Survive my attacks for 75 seconds and I let you go", 
+    "But if you don't mind I will stay still because I am in a state of concentration here, you understand?","", "Can you believe the audacity of this guy?", "I don't remember ever allowing anyone to control me like that", "Anyway Emperoyr, ou passed my test", 
+    "Hopefully you will beat them", "Good luck there, bye!"};
 
     public Text txtFalas;
 
@@ -135,8 +141,8 @@ public class FaseManager9 : MonoBehaviour
     {
         if(pode_normal) {
             if(PlayerControle.player_morto == true) {
-            painel_derrota.SetActive(true);
-        }
+                painel_derrota.SetActive(true);
+            }
 
         if(contagem_falas_9 <= 17 && contagem_falas_9 >= 0) {
             txtFalas.text = falas[contagem_falas_9];

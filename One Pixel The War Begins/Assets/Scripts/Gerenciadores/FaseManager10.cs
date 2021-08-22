@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class FaseManager10 : MonoBehaviour
 {
 
-    private string[] falas_pixel_preto = {"...", "Olá", "Não esperava te ver de novo", "Ao menos não nessa situação....", "Sabe, eu juro que tentei evitar tudo isso", "Eu juro que....", 
-    "Deixa, não á nenhuma explicação que justifique esse massacre", "Infelizmente eu não tenho como voltar atrás", "é uma pena todo um povo sofrer por decisões de seus governantes, você não acha?", 
-    "é uma pena um grupo especifico ser diminuido", "é uma pena que após anos de convivência em harmonia do nada viramos rivais", "não temos mais representante no trono", 
-    "não temos mais nenhuma voz", "não somos mais todos iguais", "Somos constantemente ameaçados", "Vivemos com medo de ser atacados", "Dormimos com medo de ser assassinados", "Acordamos com medo de ser exterminados", 
-    "E um dia simplesmente cansamos de ser humilhados e resolvemos revidar com retaliação....", "Desculpe, mas chegou a hora de você descansar."};
+    private string[] falas_pixel_preto = {"...", "Olá", "Não esperava vê-lo de novo", "Ao menos não nessa situação...", "Sabe, eu juro que tentei evitar tudo isso", "Eu juro que...", 
+    "Deixa, não à nenhuma explicação que justifique esse massacre", "Infelizmente eu não tenho como voltar atrás", "É uma pena todo um povo sofrer por decisões de seus governantes, você não acha?", 
+    "É uma pena um grupo específico ser diminuído", "É uma pena que após anos de convivência em harmonia do nada viramos rivais", "Não temos mais representante no trono", 
+    "Não temos mais nenhuma voz", "Não somos mais todos iguais", "Somos constantemente ameaçados", "Vivemos com medo de sofrer um ataque", "Dormimos com medo de nunca acordar", "Acordamos com medo de sofrer extermínio", 
+    "E um dia simplesmente cansamos de toda humilhação e resolvemos revidar com retaliação...", "Desculpe, mas chegou a hora de você descansar."};
 
     public GameObject bolaFogo;
     private float delayTiro;
@@ -33,6 +33,8 @@ public class FaseManager10 : MonoBehaviour
     public Transform lado_esquerdo;
     public Transform lado_direito;
 
+    public GameObject painel_derrota;
+
     private bool umaVez;
 
     void Start()
@@ -49,6 +51,10 @@ public class FaseManager10 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(PlayerControle.player_morto == true) {
+                painel_derrota.SetActive(true);
+            }
 
         if(PixelPreto.evo_pixel == 1) {
             BarraVidaMaior.sprite = cara_transformado;

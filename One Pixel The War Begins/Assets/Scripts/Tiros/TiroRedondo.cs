@@ -16,6 +16,11 @@ public class TiroRedondo : MonoBehaviour
     public Transform spawn_direita;
     public Transform spawn_baixo;
 
+    public Transform spawn_cima_diagonal_direita;
+    public Transform spawn_cima_diagonal_esquerda;
+    public Transform spawn_baixo_diagonal_direita;
+    public Transform spawn_baixo_diagonal_esquerda;
+
     public static bool modoHardRedondo;
 
     private bool umaVez;
@@ -65,6 +70,12 @@ public class TiroRedondo : MonoBehaviour
             Instantiate(tiro_normal, spawn_esquerda.position, spawn_esquerda.rotation);
             Instantiate(tiro_normal, spawn_direita.position, spawn_direita.rotation);
             Instantiate(tiro_normal, spawn_baixo.position, spawn_baixo.rotation);
+            if(modoHardRedondo) {
+                Instantiate(tiro_normal, spawn_baixo_diagonal_direita.position, spawn_baixo_diagonal_direita.rotation);
+                Instantiate(tiro_normal, spawn_baixo_diagonal_esquerda.position, spawn_baixo_diagonal_esquerda.rotation);
+                Instantiate(tiro_normal, spawn_cima_diagonal_direita.position, spawn_cima_diagonal_direita.rotation);
+                Instantiate(tiro_normal, spawn_cima_diagonal_esquerda.position, spawn_cima_diagonal_esquerda.rotation);
+            }
             umaVez = true;
         }
         speed = 0;

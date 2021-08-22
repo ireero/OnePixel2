@@ -7,7 +7,10 @@ public class FaseManager2 : MonoBehaviour
 {
 
     private string[] falas_chefao = {"Vá em bora agora!", "Aproveite em quanto nosso Pai dorme e suma!", "Você vai morrer!", " ", 
-    "Meus filhos morreram porque fui fraco de mais.....", "Meu senhor este castelo é o seu túmulo, VOCÊ VAI MORRER!!!"};
+    "Meus filhos morreram porque fui fraco de mais...", "Meu senhor este castelo é o seu túmulo, VOCÊ VAI MORRER!"};
+
+    private string[] falas_chefao_ingles = {"Go away now!", "Enjoy while our Father sleeps and be gone!", "You are going to die!", " ", 
+    "My children died because I was too weak...", "My lord, this castle is your tomb, YOU WILL DIE!"};
 
     public Text txtFalas;
 

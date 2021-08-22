@@ -7,9 +7,14 @@ public class FaseManager3 : MonoBehaviour
 {
 
     private string[] falas_chefao = {"Quem diria que você chegaria até aqui", "Tenho que dizer que estou impressionado pela sua força de vontade", 
-    "Tenho que lhe contar uma coisa Imperador", "Esses monstros que você está matando são nada mais nada menos do que cidadões do seu Reino", 
-    "Graças ao imperador Pixel Preto agora temos o poder que precisavamos", "Finalmente iremos deixar de ser a minoria", "Finalmente seremos nós a tomar grande decisões", 
-    "Sua sorte acaba aqui Imperador Pixel Branco, prepare-se para morrer", " ", "Chega de brincadeira, irei lhe mostrar a força de todo um povo diminuido, amargurado e pronto para VINGANÇA!!"}; // 9
+    "Tenho que lhe contar uma coisa Imperador", "Esses monstros que você está matando são nada mais, nada menos do que cidadãos do seu Reino", 
+    "Graças ao imperador Pixel Preto agora temos o poder que precisávamos", "Finalmente iremos deixar de ser a minoria", "Finalmente seremos nós a tomar grandes decisões", 
+    "Sua sorte acaba aqui Imperador Pixel Branco, prepare-se para morrer", " ", "Chega de brincadeira, irei-lhe mostrar a força de todo um povo diminuído, amargurado e pronto para VINGANÇA!"}; // 9
+
+    private string[] falas_chefao_ingles = {"Who would have thought you would get this far", "I have to say that I am impressed by your willpower", 
+    "I have to tell you something, Emperor", "These monsters you are killing are nothing more and nothing less than citizens of your Kingdom", 
+    "Thanks to Emperor Black Pixel we now have the power we needed", "Finally we will stop being the minority", "Finally we will be the ones making the big decisions", 
+    "Your luck runs out here Emperor White Pixel, prepare to die", " ", "Enough fooling around, I will show you the strength of a whole people diminished, embittered and ready for VENGEANCE!"};
 
     public Text txtFalas;
 

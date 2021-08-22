@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8007955609317914608}
   - component: {fileID: 8007955609317914609}
   - component: {fileID: 6361584015817252255}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: super_tiro_chefao
   m_TagString: super_bullet_inimiga
   m_Icon: {fileID: 0}

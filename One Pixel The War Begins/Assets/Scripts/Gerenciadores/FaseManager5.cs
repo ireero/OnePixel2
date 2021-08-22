@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class FaseManager5 : MonoBehaviour
 {
-    private string[] falas_palhaco = {"EI, Olá!", "Você não me parece muito bem", "Se eu vou te deixar passar?", "Claro que não amigo :)", 
-    "Por que estou fazendo isso?", "Existem vários motivos sabe....", "Mas o maior deles é porque o caos me faz sorrir","", "Você é realmente forte imperador", 
-    "Eu aguardei loucamente por esse momento dês do dia que você mandou seus vassalos me deixarem cego", "O Pixel preto me acolheu, me deu forças, me deu PODER!!!", 
-    "E agora finalmente posso lhe matar. É uma pena que eu não posso lhe ver sofrer meu imperador.....",  "Isso é realmente.....", "Engraçado..."};
+    private string[] falas_palhaco = {"EI, Olá!", "Você não me parece muito bem", "Se eu vou deixá-lo deixar passar?", "Claro que não amigo :)", 
+    "Por que estou fazendo isso?", "Existem vários motivos sabe...", "Mas o maior deles é porque o caos me faz sorrir!","", "Você é realmente forte imperador", 
+    "Eu aguardei loucamente por esse momento dês do dia que você mandou seus vassalos me deixarem cego", "O Pixel preto me acolheu, me deu forças, me deu PODER!", 
+    "E agora finalmente posso-lhe matar. É uma pena que eu não possa vê-lo ver sofrer meu imperador...",  "Isso é realmente...", "ENGRAÇADO!"};
+
+     private string[] falas_palhaco_ingles = {"EI, Hello!", "You don't look so good", "Will I let it go?", "Of course not, my friend :)", 
+    "Why am I doing this?", "There are several reasons you know...", "But the greatest of them is because chaos makes me smile!","", "You are really strong emperor", 
+    "I have waited madly for this moment since the day you sent your vassals to make me blind", "The black Pixel took me in, gave me strength, gave me POWER!", 
+    "And now I can finally kill him. It's a pity that I can't watch him suffer my emperor.",  "That's really...", "FUNNY!"};
 
     public Text txtFalas;
 

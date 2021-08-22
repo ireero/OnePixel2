@@ -54,5 +54,6 @@ public class GameManager : MonoBehaviour
         fase9 = PlayerPrefs.GetInt("Fase9");
         fase10 = PlayerPrefs.GetInt("Fase10");
         progresso = PlayerPrefs.GetInt("Progresso");
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
     }
 }

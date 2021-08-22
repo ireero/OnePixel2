@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 371692764588559196}
   - component: {fileID: 8857063814854618020}
   - component: {fileID: 8857063814854618023}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monstro_girador
   m_TagString: monstro
   m_Icon: {fileID: 0}

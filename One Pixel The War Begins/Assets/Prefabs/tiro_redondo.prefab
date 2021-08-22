@@ -1,5 +1,125 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &525503550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 525503551}
+  m_Layer: 9
+  m_Name: spawn_diagonal_top_direita
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &525503551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525503550}
+  m_LocalRotation: {x: 0, y: 0, z: -0.92387956, w: 0.38268343}
+  m_LocalPosition: {x: 0.087, y: 0.093, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5182592896305993481}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -135}
+--- !u!1 &1159038762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1159038763}
+  m_Layer: 9
+  m_Name: spawn_diagonal_top_esquerda
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1159038763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159038762}
+  m_LocalRotation: {x: 0, y: -0, z: 0.34202027, w: -0.9396926}
+  m_LocalPosition: {x: -0.105, y: 0.093, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5182592896305993481}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 320}
+--- !u!1 &1359371679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1359371680}
+  m_Layer: 9
+  m_Name: spawn_diagonal_baixo_esquerda
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1359371680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359371679}
+  m_LocalRotation: {x: -0, y: 0, z: -0.3826835, w: -0.92387956}
+  m_LocalPosition: {x: -0.095, y: -0.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5182592896305993481}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -315}
+--- !u!1 &1666517114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666517115}
+  m_Layer: 9
+  m_Name: spawn_diagonal_baixo_direita
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1666517115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666517114}
+  m_LocalRotation: {x: 0, y: 0, z: 0.953717, w: 0.30070582}
+  m_LocalPosition: {x: 0.097, y: -0.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5182592896305993481}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 145}
 --- !u!1 &5182592895223776682
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5182592895223776683}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spawn_tiro_esquerda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5182592895889683176}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spawn_tiro_cima
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +193,7 @@ GameObject:
   - component: {fileID: 5182592896305993486}
   - component: {fileID: 5182592896305993487}
   - component: {fileID: 5182592896305993484}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tiro_redondo
   m_TagString: bullet_inimiga
   m_Icon: {fileID: 0}
@@ -95,6 +215,10 @@ Transform:
   - {fileID: 5182592895223776683}
   - {fileID: 5182592896413649549}
   - {fileID: 5182592896916529033}
+  - {fileID: 525503551}
+  - {fileID: 1666517115}
+  - {fileID: 1359371680}
+  - {fileID: 1159038763}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -203,6 +327,10 @@ MonoBehaviour:
   spawn_esquerda: {fileID: 5182592895223776683}
   spawn_direita: {fileID: 5182592896413649549}
   spawn_baixo: {fileID: 5182592896916529033}
+  spawn_cima_diagonal_direita: {fileID: 525503551}
+  spawn_cima_diagonal_esquerda: {fileID: 1159038763}
+  spawn_baixo_diagonal_direita: {fileID: 1666517115}
+  spawn_baixo_diagonal_esquerda: {fileID: 1359371680}
 --- !u!1 &5182592896413649548
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5182592896413649549}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spawn_tiro_direita
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5182592896916529033}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spawn_tiro_baixo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

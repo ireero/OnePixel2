@@ -114,6 +114,7 @@ public class PlayerControle : MonoBehaviour {
       player_collider = GetComponent<BoxCollider2D>();
       podePor = false;
       caiu = false;
+      Physics2D.IgnoreLayerCollision(3, 9, false);
       anim = GetComponent<Animator>();
       rb2d = GetComponent<Rigidbody2D>();
       sr = GetComponent<SpriteRenderer>();
@@ -300,6 +301,8 @@ public class PlayerControle : MonoBehaviour {
                rb2d.AddForce(new Vector2(1800f, 0));
             }
             Morrer();
+         } else {
+            Physics2D.IgnoreLayerCollision(3, 9);
          }
       } else if(other.gameObject.CompareTag("moeda_rir")) {
          player_collider.isTrigger = true;
@@ -325,6 +328,15 @@ public class PlayerControle : MonoBehaviour {
    if(other.gameObject.CompareTag("plataforma")) {
       if(Input.GetKey(KeyCode.LeftShift)) {
             Destroy(other.gameObject);
+         }
+      } else if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga")) {
+         if(podeTomarDano) {
+            if(lookingRight) {
+               rb2d.AddForce(new Vector2(-1800f, 0));
+            } else {
+               rb2d.AddForce(new Vector2(1800f, 0));
+            }
+            Morrer();
          }
       }
    }
@@ -389,6 +401,7 @@ public class PlayerControle : MonoBehaviour {
 
    void Morrer() {
       vida--;
+      GerenciadorAudio.inst.PlayMorte(som_morte);
       Camera.tremer = true;
       podeTomarDano = false;
       Time.timeScale = 0.1f;
@@ -397,7 +410,6 @@ public class PlayerControle : MonoBehaviour {
          jaPodePularDuas = false;
          simbuloVoador.SetActive(false);
          player_morto = true;
-         GerenciadorAudio.inst.PlayMorte(som_morte);
          pode_mexer = false;
          podeAtirar = false;
          anim.SetBool("morreu", true);
@@ -427,6 +439,7 @@ public class PlayerControle : MonoBehaviour {
       sr.color = Color.white;
       podeTomarDano = true;
       cont_pisca_dano = 0;
+      Physics2D.IgnoreLayerCollision(3, 9, false);
    }
 
    IEnumerator lentoDano() {

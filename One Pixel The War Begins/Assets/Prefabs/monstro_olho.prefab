@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 764814089}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spawn_tiro
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3013354842981735464}
   - component: {fileID: 3013354842981735467}
   - component: {fileID: 1985747325}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monstro_olho
   m_TagString: monstro
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2994689835118052867}
   - component: {fileID: 2994689835118052894}
   - component: {fileID: 7920568060206386949}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tiro_pequeno_chefao
   m_TagString: bullet_inimiga
   m_Icon: {fileID: 0}

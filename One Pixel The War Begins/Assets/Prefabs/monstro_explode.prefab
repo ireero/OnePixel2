@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6345512434618425500}
   - component: {fileID: 7114952385517869970}
   - component: {fileID: 677445997363460834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monstro_explode
   m_TagString: monstro
   m_Icon: {fileID: 0}

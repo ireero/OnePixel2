@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8259937269443774205}
   - component: {fileID: 8259937269443773952}
   - component: {fileID: 8259937269443773953}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: adaga
   m_TagString: bullet
   m_Icon: {fileID: 0}

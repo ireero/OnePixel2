@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 914893320538042157}
   - component: {fileID: 6061987255191824706}
   - component: {fileID: 511504796}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monstro_que_cai
   m_TagString: monstro
   m_Icon: {fileID: 0}
