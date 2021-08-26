@@ -21,6 +21,8 @@ public class PauseMenu : MonoBehaviour {
    private bool telaCheiaAtivada, menuParte1Ativo, menuParte2Ativo;
    private Resolution[] resolucoesSuportadas;
 
+   public AudioSource som_click;
+
    void Awake(){
       resolucoesSuportadas = Screen.resolutions;
    }
@@ -111,7 +113,6 @@ public class PauseMenu : MonoBehaviour {
          PlayerControle.podeAtirar = false;
          PlayerControle.pode_mexer = false;
          if (menuParte1Ativo == false && menuParte2Ativo == false) {
-            AudioListener.volume = VOLUME;
             menuParte1Ativo = true;
             menuParte2Ativo = false;
             Opcoes (true, false);
@@ -188,6 +189,7 @@ public class PauseMenu : MonoBehaviour {
    }
    //=========VOIDS DE SALVAMENTO==========//
    private void SalvarPreferencias(){
+      som_click.Play();
       if (CaixaModoJanela.isOn == true) {
          modoJanelaAtivo = 1;
          telaCheiaAtivada = false;
@@ -208,12 +210,14 @@ public class PauseMenu : MonoBehaviour {
       Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width,resolucoesSuportadas[resolucaoSalveIndex].height,telaCheiaAtivada);
    }
    private void VoltarAoMenu(){
+      som_click.Play();
       SceneLoader.Instance.LoadSceneAsync(nomeCenaMenu);
       AudioListener.volume = VOLUME;
       Time.timeScale = 1;
    }
 
    private void ReiniciarCena() {
+      som_click.Play();
       SceneLoader.Instance.LoadSceneAsync(SceneManager.GetActiveScene().name);
       AudioListener.volume = VOLUME;
       Time.timeScale = 1;

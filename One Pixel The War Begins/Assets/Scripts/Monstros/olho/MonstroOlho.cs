@@ -18,6 +18,7 @@ public class MonstroOlho : MonoBehaviour
     private float cont_tiro;
     private bool pode_meter_bala;
     private float tempo_pra_morrer;
+    private AudioSource som_morte;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class MonstroOlho : MonoBehaviour
         anim = GetComponent<Animator>();
         collider = GetComponent<CircleCollider2D>();
         corpo = GetComponent<Rigidbody2D>(); 
+        som_morte = GetComponent<AudioSource>();
         if(Chefao06.meia_vida == true) {
             anim.SetBool("meia_vida", true);
         } else {
@@ -83,6 +85,7 @@ public class MonstroOlho : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            som_morte.Play();
             Chefao06.vida_restante--;
             Chefao06.dano_tomado++;
             morreu = true;

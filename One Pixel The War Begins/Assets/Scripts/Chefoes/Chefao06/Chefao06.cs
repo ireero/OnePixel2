@@ -14,11 +14,16 @@ public class Chefao06 : MonoBehaviour
     public static int dano_tomado;
     public static bool meia_vida;
     public static bool ta_mortin;
+    private AudioSource som_dano;
+    public AudioSource terremoto;
 
     public GameObject escada;
 
+    private bool umTerremoto;
+
     void Start()
     {
+        umTerremoto = false;
         meia_vida = false;
         ta_mortin = false;
         dano_tomado = 0;
@@ -29,6 +34,7 @@ public class Chefao06 : MonoBehaviour
         atacando = false;
         contador = 0;
         anim = GetComponent<Animator>();
+        som_dano = GetComponent<AudioSource>();
         StartCoroutine("idleAposNascer");
     }
 
@@ -37,6 +43,11 @@ public class Chefao06 : MonoBehaviour
     {
         contador += Time.deltaTime;
         if(contador >= 5f && !camuflado_ja) {
+            Camera.tremer_bastante = true;
+            if(!umTerremoto) {
+                terremoto.Play();
+                umTerremoto = true;
+            }
             anim.SetBool("atacar", true);
             anim.SetBool("idle", false);
             StartCoroutine("horaDoAtaque");
@@ -55,6 +66,7 @@ public class Chefao06 : MonoBehaviour
         }
 
         if(dano_tomado >= 50) {
+            som_dano.Play();
             atacando = false;
             camuflado_ja = false;
             contador = -5f;
@@ -79,6 +91,9 @@ public class Chefao06 : MonoBehaviour
 
     IEnumerator horaDoAtaque() {
         yield return new WaitForSeconds(5f);
+        umTerremoto = false;
+        terremoto.Stop();
+        Camera.tremer_bastante = false;
         umaVez = false;
         atacando = true;
         anim.SetBool("atacar", false);

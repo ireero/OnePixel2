@@ -70,6 +70,8 @@ public class FaseManager5 : MonoBehaviour
     private bool pode_normal;
     public GameObject escada;
 
+    public GameObject vida_chefao;
+
 
     void Start()
     {
@@ -83,6 +85,7 @@ public class FaseManager5 : MonoBehaviour
         }
 
         if(GameManager.fase5 == 1 || GameManager.fase5 == 0) {
+            som_fala.Play();
             pode_normal = true;
             valor_prov = 0;
             valor_alet = 0;
@@ -117,7 +120,9 @@ public class FaseManager5 : MonoBehaviour
         }
 
             if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_5) {
-                som_fala.Play();
+                if(contagem_falas_5 != 6 && contagem_falas_5 != 13) {
+                    som_fala.Play();
+                }
                 contagem_falas_5++;
             }
 
@@ -156,6 +161,10 @@ public class FaseManager5 : MonoBehaviour
                     pode_comecar_5 = true;
                     break; 
                 case 8:
+                    if(podeTocar <= 1) {
+                        som_fala.Play();
+                        podeTocar++;
+                    }
                     imagem.sprite = palhaco_normal_mv;
                     pode_comecar_5 = false;
                     painel_falas.SetActive(true);
@@ -219,7 +228,7 @@ public class FaseManager5 : MonoBehaviour
                 GameManager.Instance.SalvarSit(2, "Fase5");
                 back_void.Play();
                 back_som.Stop();
-                Destroy(BarraVidaMaior);
+                Destroy(vida_chefao);
             } else if(Chefao04.vida_chefao <= 25 && Chefao04.vida_chefao > 0) {
                 BarraVidaMaior.sprite = icon_metade_vida;
                 TiroPequenoChefao.modoHard = true;

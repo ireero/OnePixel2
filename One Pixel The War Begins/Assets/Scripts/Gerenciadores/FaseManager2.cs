@@ -50,6 +50,8 @@ public class FaseManager2 : MonoBehaviour
     public GameObject chefao;
     public GameObject escada;
 
+    public GameObject vida_chefao;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -62,6 +64,7 @@ public class FaseManager2 : MonoBehaviour
         }
 
         if(GameManager.fase2 == 1 || GameManager.fase2 == 0) {
+            som_fala.Play();
             back_void.Play();
             tocaSom = 0;
             pode_comecar = false;
@@ -115,6 +118,10 @@ public class FaseManager2 : MonoBehaviour
                 case 4:
                     back.Stop();
                     back_void.Play();
+                    if(tocaSom <= 1) {
+                        som_fala.Play();
+                        tocaSom++;
+                    }
                     PlayerControle.conversando = true;
                     imagem.sprite = cabeca_base_normal;
                     painel_falas.SetActive(true); 
@@ -132,7 +139,9 @@ public class FaseManager2 : MonoBehaviour
             }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar) {
-            som_fala.Play();
+            if(contagem_falas_2 != 2 && contagem_falas_2 != 5) {
+                som_fala.Play();
+            }
             contagem_falas_2++;
         }
 
@@ -144,7 +153,7 @@ public class FaseManager2 : MonoBehaviour
         }
 
         if((cabeca1_morta && cabeca2_morta && cabeca3_morta & cabeca4_morta) && pode_comecar) {
-            Destroy(BarraVidaMaior);
+            Destroy(vida_chefao);
             GameManager.Instance.SalvarSit(2, "Fase2");
             contagem_falas_2 = 4;
             TiroRedondo.modoHardRedondo = false;

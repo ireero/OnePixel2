@@ -24,6 +24,8 @@ public class TiroRedondo : MonoBehaviour
     public static bool modoHardRedondo;
 
     private bool umaVez;
+
+    private AudioSource som_partindo;
     // Start is called before the first frame update
     void Start()
     {   
@@ -35,6 +37,7 @@ public class TiroRedondo : MonoBehaviour
         if(modoHardRedondo) {
             anim.SetBool("meia_vida", true);
         }
+        som_partindo = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,6 +54,7 @@ public class TiroRedondo : MonoBehaviour
         if(other.gameObject.CompareTag("paredesSumir") || other.gameObject.CompareTag("chao")) {
             Destroy(this.gameObject);
         } else if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("plataforma")) {
+            som_partindo.Play();
             Morrer();
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga") || 
             other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("moeda_rir")) {

@@ -14,6 +14,7 @@ public class MonstroBomba : MonoBehaviour
     private bool morreu;
     private SpriteRenderer sr;
     private bool explodindo;
+    private AudioSource som_morte;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class MonstroBomba : MonoBehaviour
       corpo = GetComponent<Rigidbody2D>();
       target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
       sr = GetComponent<SpriteRenderer>();
+      som_morte = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,6 +50,7 @@ public class MonstroBomba : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if((other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("tijolo")) && !explodindo) {
+            som_morte.Play();
             Morte();
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("chao")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());

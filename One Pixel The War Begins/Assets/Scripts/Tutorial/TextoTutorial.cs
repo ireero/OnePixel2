@@ -10,6 +10,10 @@ public class TextoTutorial : MonoBehaviour
     "Atire apertando a tecla Z ou o lado esquerdo do mouse", "Conjure uma plataforma apertando a tecla X ou o lado direito do mouse, Lembre-se que voce não pode conjurar plataformas estando no chão ou em outra plataforma, também pode apagar a que você está em cima apertando SHIFT", "Apertando a tecla espaço ou o botão no meio do mouse você pode dar um Dash e avançar mais rápido, no ar pode ser usado apenas uma vez e no chão infinitas", 
     "Aqui você pode ver sua barra de vida", "Apertando Esc você pausa e despausa o jogo", "Agora que você aprendeu tudo está na hora de ir, Aliás você tem um reino para salvar"};
 
+    private string[] instrucoes_ingles = {"One Pixel The War Begins", "Use the arrow keys or AWSD to walk and jump", 
+    "Shoot by pressing the Z key or the left mouse button", "Conjure a platform by pressing the X key or the right mouse button, remember that you can't conjure platforms on the ground or on another platform, you can also delete the one you are on by pressing SHIFT", "By pressing the space key or the middle mouse button you can Dash and advance faster, in the air it can be used only once and on the ground infinitely", 
+    "Here you can see your life bar", "By pressing Esc you pause and unpause the game", "Now that you've learned everything it's time to go, by the way you have a kingdom to save"};
+
     public Text txtTutorial;
     private int contagem;
 
@@ -68,6 +72,7 @@ public class TextoTutorial : MonoBehaviour
     
     void Start()
     {
+        GameManager.Instance.CarregarDados();
         umaVez = false;
         pausado = false;
         deu_dash = false;
@@ -83,6 +88,7 @@ public class TextoTutorial : MonoBehaviour
         atirou = false;
         botou_plataforma = false;
         contagem = 0;
+        PlayerControle.conversando = true;
     }
 
     // Update is called once per frame

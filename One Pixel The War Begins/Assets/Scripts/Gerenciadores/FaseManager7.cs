@@ -37,6 +37,13 @@ public class FaseManager7 : MonoBehaviour
     public GameObject gatilho;
     public GameObject escada;
 
+    public AudioSource som_spawn_tentaculos;
+
+    public AudioSource som_void;
+    public AudioSource musica_background;
+
+    private int musicas_at;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -47,12 +54,14 @@ public class FaseManager7 : MonoBehaviour
         if(GameManager.progresso <= 6) {
             GameManager.Instance.SalvarSit(7, "Progresso");
         }
+        som_void.Play();
 
         PlayerControle.conversando = false;
         PlayerControle.pode_mexer = true;
         PlayerControle.podeAtirar = true;
 
         if(GameManager.fase7 == 0 || GameManager.fase7 == 1) {
+            musicas_at = 0;
             back.sprite = back_1;
             back.color = Color.white;
             tempo_spawn = 10.5f;
@@ -79,6 +88,11 @@ public class FaseManager7 : MonoBehaviour
         BarraVida();
 
         if(AtivarChefao.ativarOlhao == true) {
+            if(musicas_at == 0) {
+                som_void.Stop();
+                musica_background.Play();
+                musicas_at++;
+            }
             chefao.SetActive(true);
             vida_chefao.SetActive(true);
         }
@@ -104,6 +118,10 @@ public class FaseManager7 : MonoBehaviour
         }
 
         if(Chefao06.ta_mortin) {
+            if(musicas_at == 1) {
+                som_void.Play();
+                musica_background.Stop();
+            }
             GameManager.Instance.SalvarSit(2, "Fase7");
             Destroy(vida_chefao);
             back.color = Color.white;
@@ -124,6 +142,7 @@ public class FaseManager7 : MonoBehaviour
                 }
             }
             Instantiate(tentaculos, lista_baixo_spawns[valor_aleatorio].position, lista_baixo_spawns[valor_aleatorio].rotation);
+            StartCoroutine("somNascerTent");
             valor_momentaneo = valor_aleatorio;
         }
     }
@@ -137,5 +156,10 @@ public class FaseManager7 : MonoBehaviour
 
     private void BarraVida() {
         BarraDeVida.fillAmount = Chefao06.vida_restante / vida_maxima;
+    }
+
+    IEnumerator somNascerTent() {
+        yield return new WaitForSeconds(1f);
+        som_spawn_tentaculos.Play();
     }
 }

@@ -11,6 +11,8 @@ public class MenuDerrota : MonoBehaviour
 
     private int valor_alet;
 
+    public AudioSource som_click;
+
     private string[] frases = {"Você tem que aprender sozinho como passar dos chefões :)", "Continue a tentar... Continue a tentar...",
     "Te avisei dês do trailer que ia ser dificil", "Era uma vez um player ruinzinho (Brinks) ;)", "Sei o que falar mais não",
     "Eu prefiro gatos, mas cachorros são legais também.", "Minha namorada mandou não botar isso no jogo, segundo ela é muito 'Nada a ver', tu acha?", 
@@ -31,12 +33,14 @@ public class MenuDerrota : MonoBehaviour
     }
 
     public void Reiniciar() {
+        som_click.Play();
         GameManager.Instance.CarregarDados();
         SceneLoader.Instance.LoadSceneAsync(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
     }
 
     public void IrMenu() {
+        som_click.Play();
         SceneLoader.Instance.LoadSceneAsync("Menu");
         Time.timeScale = 1;
     }

@@ -78,6 +78,8 @@ public class FaseManager6 : MonoBehaviour
     private bool pode_normal;
     public GameObject escada;
 
+    public GameObject vida_chefao;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -132,7 +134,7 @@ public class FaseManager6 : MonoBehaviour
 
        if(Chefao05.vida <= 0) {
            GameManager.Instance.SalvarSit(2, "Fase6");
-           Destroy(BarraVidaMaior);
+           Destroy(vida_chefao);
        } else if(Chefao05.vida <= 300 && Chefao05.vida > 0) {
            tempo_de_cair = 0.85f;
            BarraVidaMaior.sprite = icon_meia_vida_ne;

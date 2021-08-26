@@ -39,6 +39,10 @@ public class FaseManager4 : MonoBehaviour
     public GameObject gatilho;
     public GameObject escada;
 
+    public GameObject painel_instrucao;
+
+    private int tocaSom;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -51,6 +55,7 @@ public class FaseManager4 : MonoBehaviour
         }
 
         if(GameManager.fase4 == 1 || GameManager.fase4 == 0) {
+            tocaSom = 0;
             umaVezGanho  = false;
             umaVez = false; 
             PlayerControle.conversando = false;
@@ -75,11 +80,17 @@ public class FaseManager4 : MonoBehaviour
 
         if(pode_comecar_4) {
             PlayerControle.conversando = true;
+            if(tocaSom <= 0) {
+                falaSom.Play();
+                tocaSom++;
+            }
             painel_falas.SetActive(true);
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && pode_comecar_4) {
-            falaSom.Play();
+            if(contagem_falas_4 != 5 && contagem_falas_4 != 7) {
+                falaSom.Play();
+            }
             contagem_falas_4++;
         }
 
@@ -100,6 +111,7 @@ public class FaseManager4 : MonoBehaviour
             case 6:
                 imagem.sprite = meditador_olhao;
                 if(!umaVezGanho) {
+                    painel_instrucao.SetActive(true);
                     PlayerControle.jaPodePularDuas = true;
                     PlayerPrefs.SetInt("PularDuas", 1);
                     achievemente.Play();
@@ -108,6 +120,7 @@ public class FaseManager4 : MonoBehaviour
                 PlayerControle.jaPodePularDuas = true;
                 break;   
             case 7:
+            painel_instrucao.SetActive(false);
                 imagem.sprite= meditador_chorando;
                 break;     
             case 8:

@@ -8,6 +8,7 @@ public class GerenciadorAudio : MonoBehaviour
     public AudioSource som_pulo;
     public AudioSource som_tiro;
     public AudioSource som_morte;
+    public AudioSource som_dash;
 
     public static GerenciadorAudio inst = null;
 
@@ -32,6 +33,11 @@ public class GerenciadorAudio : MonoBehaviour
     public void PlayMorte(AudioClip clipAudio) {
         som_morte.clip = clipAudio;
         som_morte.Play();
+    }
+
+    public void PlayDash(AudioClip clipAudio) {
+        som_dash.clip = clipAudio;
+        som_dash.Play();
     }
 
 }

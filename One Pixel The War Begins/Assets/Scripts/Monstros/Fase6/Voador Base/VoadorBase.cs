@@ -12,6 +12,7 @@ public class VoadorBase : MonoBehaviour
     private Rigidbody2D corpo;
     private bool morreu;
     private SpriteRenderer sr;
+    private AudioSource som_morte;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class VoadorBase : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         corpo = GetComponent<Rigidbody2D>(); 
         sr = GetComponent<SpriteRenderer>();
+        som_morte = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,6 +51,7 @@ public class VoadorBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("tijolo")) {
+            som_morte.Play();
             Morrer();
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("chao")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());

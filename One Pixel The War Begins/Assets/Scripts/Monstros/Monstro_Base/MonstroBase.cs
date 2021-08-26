@@ -83,11 +83,11 @@ public class MonstroBase : MonoBehaviour
         morreu = true;
         collider.isTrigger = true;
         rb.bodyType = RigidbodyType2D.Static;
-        audio_morte.Play();
         if(qual == 0) {
             anim.SetBool("morte_caiu", true);
             Destroy(gameObject, 0.55f);
         } else if(qual == 1) {
+            audio_morte.Play();
             anim.SetBool("morte_tiro", true);
             Destroy(gameObject, 1.2f);
         }

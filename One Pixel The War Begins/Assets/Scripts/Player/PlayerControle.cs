@@ -36,6 +36,7 @@ public class PlayerControle : MonoBehaviour {
    public AudioClip som_pulo;
    public AudioClip som_morte;
    public AudioClip som_tiro;
+   public AudioClip dash_sound;
 
    private BoxCollider2D player_collider;
 
@@ -94,7 +95,6 @@ public class PlayerControle : MonoBehaviour {
          jaPodePularDuas = false;
       }
       cont_pisca_dano = 0;
-      conversando = true;
       doubleJump = true;
       parado = true;
       player_morto = false;
@@ -104,8 +104,7 @@ public class PlayerControle : MonoBehaviour {
       } else {
          pet_ativado = false;
       }
-      pode_mexer = false;
-      podeAtirar = false;
+      valor_vida.color = Color.black;
       isDashing = false;
       canDash = true;
       dashSpeed = 20;
@@ -132,6 +131,7 @@ public class PlayerControle : MonoBehaviour {
             valor_vida.sprite = qtd_vida_2;
             break;
          case 1:
+            valor_vida.color = Color.white;
             valor_vida.sprite = qtd_vida_1;
             break;
          case 0:
@@ -295,6 +295,7 @@ public class PlayerControle : MonoBehaviour {
    private void OnCollisionEnter2D(Collision2D other) {
       if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga")) {
          if(podeTomarDano) {
+            anim.SetBool("tomou_dano", true);
             if(lookingRight) {
                rb2d.AddForce(new Vector2(-1800f, 0));
             } else {
@@ -331,6 +332,7 @@ public class PlayerControle : MonoBehaviour {
          }
       } else if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga")) {
          if(podeTomarDano) {
+            anim.SetBool("tomou_dano", true);
             if(lookingRight) {
                rb2d.AddForce(new Vector2(-1800f, 0));
             } else {
@@ -365,6 +367,7 @@ public class PlayerControle : MonoBehaviour {
 
    void Dash() {
       if((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(2)) && canDash) {
+         GerenciadorAudio.inst.PlayDash(dash_sound);
          if(dashAtual <= 0) {
             StopDash();
          } else {
@@ -444,6 +447,7 @@ public class PlayerControle : MonoBehaviour {
 
    IEnumerator lentoDano() {
       yield return new WaitForSeconds(0.05f);
+      anim.SetBool("tomou_dano", false);
       Time.timeScale = 1;
    }
 

@@ -12,6 +12,8 @@ public class MenuFases : MonoBehaviour
 
     public bool[] podeclicar;
 
+    public AudioSource som_click;
+
     void Start()
     {
         Time.timeScale = 1;
@@ -74,64 +76,75 @@ public class MenuFases : MonoBehaviour
     }
 
     public void Tutorial() {
+        som_click.Play();
         SceneLoader.Instance.LoadSceneAsync("Tutorial");
     }
 
     public void Fase1() {
+        som_click.Play();
         if(podeclicar[0] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase1");
         }
     }
 
     public void Fase2() {
+        som_click.Play();
         if(podeclicar[1] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase2");
         }
     }
 
     public void Fase3() {
+        som_click.Play();
         if(podeclicar[2] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase3");
         }
     }
 
     public void Fase4() {
+        som_click.Play();
         if(podeclicar[3] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase4");
         }
     }
 
     public void Fase5() {
+        som_click.Play();
         if(podeclicar[4] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase5");
         }
     }
 
     public void Fase6() {
+        som_click.Play();
         if(podeclicar[5] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase6");
         }
     }
 
     public void Fase7() {
+        som_click.Play();
         if(podeclicar[6] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase7");
         }
     }
 
     public void Fase8() {
+        som_click.Play();
         if(podeclicar[7] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase8");
         }
     }
 
     public void Fase9() {
+        som_click.Play();
         if(podeclicar[8] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase9");
         }
     }
 
     public void Fase10() {
+        som_click.Play();
         if(podeclicar[9] == true) {
             SceneLoader.Instance.LoadSceneAsync("Fase10");
         }

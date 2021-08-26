@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 914893320538042146}
   - component: {fileID: 914893320538042157}
   - component: {fileID: 6061987255191824706}
-  - component: {fileID: 511504796}
+  - component: {fileID: 1311346671}
   m_Layer: 9
   m_Name: monstro_que_cai
   m_TagString: monstro
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f11431102aa2ef4ebe9f227831c5bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &511504796
+--- !u!82 &1311346671
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,13 +178,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7e5b024601fd0cc44ad7ee820a56f9da, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 182
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

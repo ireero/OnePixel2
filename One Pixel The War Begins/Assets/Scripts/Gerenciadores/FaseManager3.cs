@@ -30,6 +30,8 @@ public class FaseManager3 : MonoBehaviour
     public Image BarraVida3;
     public Image vidinha3;
 
+    public GameObject[] vidas;
+
     private int vida_chefao;
 
     public Image imagem;
@@ -68,6 +70,7 @@ public class FaseManager3 : MonoBehaviour
         }
 
         if(GameManager.fase3 == 1 || GameManager.fase3 == 0) {
+            fala_personagens.Play();
             BarraVida1.sprite = icon_vida_normal;
             BarraVida2.sprite = icon_vida_normal;
             BarraVida3.sprite = icon_vida_normal;
@@ -106,7 +109,9 @@ public class FaseManager3 : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_3) {
-            fala_personagens.Play();
+            if(contagem_falas_3 != 7 && contagem_falas_3 != 9) {
+                fala_personagens.Play();
+            }
             contagem_falas_3++;
         }
 
@@ -136,6 +141,10 @@ public class FaseManager3 : MonoBehaviour
                 pode_comecar_3 = true;
                 break; 
             case 9:
+                if(podeTocar <= 1) {
+                    fala_personagens.Play();
+                    podeTocar++;
+                }
                 pode_comecar_3 = false;
                 imagem.sprite = chefao_meia_vida;
                 PlayerControle.conversando = true;
@@ -171,12 +180,10 @@ public class FaseManager3 : MonoBehaviour
                 BarraVida3.color = Color.red;
                 break;  
             case -1:
-                Destroy(BarraVida1);
-                Destroy(vidinha1);
+                Destroy(vidas[0]);
                 break;
             case -2:
-                Destroy(BarraVida2);
-                Destroy(vidinha2);
+                Destroy(vidas[1]);
                 break;
             case -3:
                 backSound.Stop();
@@ -185,8 +192,7 @@ public class FaseManager3 : MonoBehaviour
                     back_void.Play();
                     umaVezBack = true;
                 }
-                Destroy(BarraVida3);
-                Destroy(vidinha3);
+                Destroy(vidas[2]);
                 break;        
         }
     }

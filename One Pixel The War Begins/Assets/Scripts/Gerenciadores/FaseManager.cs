@@ -77,6 +77,7 @@ public class FaseManager : MonoBehaviour
     void Start()
     {
         GameManager.Instance.CarregarDados();
+        
         if(GameManager.fase1 == 0) {
             GameManager.Instance.SalvarSit(1, "Comecou");
             GameManager.Instance.SalvarSit(1, "Fase1");
@@ -209,13 +210,13 @@ public class FaseManager : MonoBehaviour
         } else if(Chefao01.vida < 0) {
             GameManager.Instance.SalvarSit(2, "Fase1");
             background.Stop();
-            Destroy(BarraVidaMaior);
+            Destroy(vida_chefao);
         }
 
         if(Input.GetKeyDown(KeyCode.Q)) {
             if(contagem_falas == 8) {
                 back_void.Play();
-            } else {
+            } else if(contagem_falas != 4){
                 som_fala.Play();
             }
             contagem_falas++;

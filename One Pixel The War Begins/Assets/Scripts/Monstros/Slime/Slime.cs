@@ -5,10 +5,12 @@ using UnityEngine;
 public class Slime : MonoBehaviour
 {
     private Animator anim;
+    private AudioSource help;
 
     void Start()
     {
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>(); 
+        help = GetComponent<AudioSource>();   
     }
 
     // Update is called once per frame
@@ -23,6 +25,7 @@ public class Slime : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player")) {
+            help.Play();
             FaseManager5.slimes_vivos--;
             anim.SetBool("sumir", true);
             Destroy(gameObject, 0.4f);

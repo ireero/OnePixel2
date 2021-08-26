@@ -11,6 +11,7 @@ public class Girador : MonoBehaviour
     private Transform target;
     private bool morreu;
     private SpriteRenderer sr;
+    private AudioSource som_morte;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class Girador : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sr = GetComponent<SpriteRenderer>();
+        som_morte = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -57,6 +59,7 @@ public class Girador : MonoBehaviour
         }
 
         if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("tijolo")) {
+            som_morte.Play();
             Morrer();
         }
     }

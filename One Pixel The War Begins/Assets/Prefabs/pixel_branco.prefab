@@ -5427,6 +5427,7 @@ MonoBehaviour:
   som_pulo: {fileID: 8300000, guid: 425e4db5bd2ed964b8bd2860515b79ba, type: 3}
   som_morte: {fileID: 8300000, guid: 77a74442a62d4694c995182d8b2c1ba1, type: 3}
   som_tiro: {fileID: 8300000, guid: 36b8413de2bb71c419bad47ab7843e0d, type: 3}
+  dash_sound: {fileID: 8300000, guid: e1a487741241c3540aebb544522991f6, type: 3}
   Barra_de_vida: {fileID: 0}
   valor_vida: {fileID: 0}
   BarraVidaMaior: {fileID: 0}
@@ -5437,10 +5438,10 @@ MonoBehaviour:
   anim_pet: {fileID: 1318920442}
   vida_pet: {fileID: 0}
   simbuloVoador: {fileID: 503093461}
-  qtd_vida_3: {fileID: 21300000, guid: ac1dbffb09e1be74896fd4936f47023a, type: 3}
-  qtd_vida_2: {fileID: 21300000, guid: a3b30a91547388d45be1a3332e979877, type: 3}
-  qtd_vida_1: {fileID: 21300000, guid: bb0b239a1cdfa4d4b9a38465be1ab507, type: 3}
-  qtd_vida_0: {fileID: 21300000, guid: 21438bb376a445147baf35a98837a6a0, type: 3}
+  qtd_vida_3: {fileID: 21300000, guid: 10e2feebdcce42445b881ae15c9a16fc, type: 3}
+  qtd_vida_2: {fileID: 21300000, guid: 1816dea9a26eff44c9075653d39e3f90, type: 3}
+  qtd_vida_1: {fileID: 21300000, guid: 42bd90f979ba5c64497d8822306949b6, type: 3}
+  qtd_vida_0: {fileID: 21300000, guid: 5b0c586582ff7eb4eae379572d73112a, type: 3}
 --- !u!114 &7442106555341568671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5466,3 +5467,4 @@ MonoBehaviour:
   BotaoSalvarPref: {fileID: 0}
   textoVol: {fileID: 0}
   nomeCenaMenu: Menu
+  som_click: {fileID: 0}

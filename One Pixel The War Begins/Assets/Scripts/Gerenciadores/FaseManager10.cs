@@ -24,7 +24,6 @@ public class FaseManager10 : MonoBehaviour
     public Image vida_restante;
 
     public Sprite cara_transformado;
-    public Sprite vida_transformado;
 
     private float vida_maxima = 500f;
 
@@ -58,7 +57,6 @@ public class FaseManager10 : MonoBehaviour
 
         if(PixelPreto.evo_pixel == 1) {
             BarraVidaMaior.sprite = cara_transformado;
-            vida_restante.sprite = vida_transformado;
         }
 
         BarraVida();

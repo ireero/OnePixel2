@@ -111,8 +111,8 @@ public class Chefao03 : MonoBehaviour
             cont = 4;
             potenciaRot = 0f;
             if(meia_vida) {
-                mais_speed = 0.006f;
-                speed = 13f;
+                mais_speed = 0.0061f;
+                speed = 13.5f;
             } else {
                 speed = 8f;
             }

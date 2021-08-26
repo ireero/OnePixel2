@@ -28,6 +28,8 @@ public class FaseManager8 : MonoBehaviour
     public GameObject gatilho;
     public GameObject escada;
 
+    public GameObject painel_instrucao;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -72,6 +74,7 @@ public class FaseManager8 : MonoBehaviour
 
         if(contagem_falas_8 == 8) {
             if(!umaVezGanho) {
+                painel_instrucao.SetActive(true);
                 PlayerControle.pet_ativado = true;
                 PlayerPrefs.SetInt("Pet", 1);
                 umaVezGanho = true;
@@ -79,6 +82,7 @@ public class FaseManager8 : MonoBehaviour
         }
 
         if(contagem_falas_8 == 9) {
+            painel_instrucao.SetActive(false);
             GameManager.Instance.SalvarSit(2, "Fase8");
             jabateuUmPapo = true;
             pode_comecar_8 = false;

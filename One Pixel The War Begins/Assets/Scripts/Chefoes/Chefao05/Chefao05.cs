@@ -48,12 +48,18 @@ public class Chefao05 : MonoBehaviour
     private float pausa_de_tiro;
 
     public AudioSource somTerremoto;
+    public AudioSource somDano;
+    public AudioSource desintegrando;
+
     private bool umTerremoto;
 
     public GameObject escada;
 
+    public bool umaMorte;
+
     void Start()
     {
+        umaMorte = false;
         umTerremoto = false;
         pausa_de_tiro = 2f;
         tempo_para_atirar = 7f;
@@ -134,6 +140,11 @@ public class Chefao05 : MonoBehaviour
         }
 
         if(vida <= 0) {
+            if(!umaMorte) {
+                desintegrando.Play();
+                umaMorte = true;
+            }
+            somTerremoto.Stop();
             collider.isTrigger = true;
             FaseManager6.podeCair = false;
             Camera.tremer_bastante = false;
@@ -148,6 +159,7 @@ public class Chefao05 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            somDano.Play();
             vida--;
             contagem_danos++;
             if(vida <= 300f && !umaVez) {
@@ -179,6 +191,7 @@ public class Chefao05 : MonoBehaviour
     IEnumerator morrendo() {
         yield return new WaitForSeconds(3.5f);
         escada.SetActive(true);
+        desintegrando.Stop();
         FaseManager6.contagem_falas_6 = 5;
         Destroy(this.gameObject);
     }
