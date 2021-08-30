@@ -6,11 +6,17 @@ using UnityEngine.UI;
 public class FaseManager10 : MonoBehaviour
 {
 
-    private string[] falas_pixel_preto = {"...", "Olá", "Não esperava vê-lo de novo", "Ao menos não nessa situação...", "Sabe, eu juro que tentei evitar tudo isso", "Eu juro que...", 
+    private string[] falas_pixel_preto = {"...", "Olá", "Não esperava vê-lo de novo", "Ao menos não nesta situação...", "Sabe, eu juro que tentei evitar tudo isso", "Eu juro que...", 
     "Deixa, não à nenhuma explicação que justifique esse massacre", "Infelizmente eu não tenho como voltar atrás", "É uma pena todo um povo sofrer por decisões de seus governantes, você não acha?", 
     "É uma pena um grupo específico ser diminuído", "É uma pena que após anos de convivência em harmonia do nada viramos rivais", "Não temos mais representante no trono", 
     "Não temos mais nenhuma voz", "Não somos mais todos iguais", "Somos constantemente ameaçados", "Vivemos com medo de sofrer um ataque", "Dormimos com medo de nunca acordar", "Acordamos com medo de sofrer extermínio", 
-    "E um dia simplesmente cansamos de toda humilhação e resolvemos revidar com retaliação...", "Desculpe, mas chegou a hora de você descansar."};
+    "E um dia simplesmente cansamos de toda humilhação e resolvemos revidar...", "Desculpe, mas chegou a hora de você descansar."};
+
+    private string[] falas_pixel_preto_ingles = {"...", "Hello", "I didn't expect to see him again", "At least not in this situation...", "You know, I swear I tried to avoid all this", "I swear...", 
+    "Leave it, there is no explanation that justifies this massacre", "Unfortunately I have no way back", "It is a shame that a whole people suffers because of the decisions of its rulers, don't you think?", 
+    "It is a pity that a specific group is diminished", "It is a pity that after years of living together in harmony we suddenly become rivals", "We no longer have a representative on the throne", 
+    "We no longer have any voice", "We are no longer all the same", "We are constantly threatened", "We live in fear of having an attack", "We sleep with the fear of never waking up", "We wake up in fear of extermination", 
+    "And one day we simply got tired of all the humiliation and decided to fight back...", "Sorry, but it is time for you to rest."};
 
     public GameObject bolaFogo;
     private float delayTiro;
@@ -51,6 +57,8 @@ public class FaseManager10 : MonoBehaviour
     void Update()
     {
 
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
         if(PlayerControle.player_morto == true) {
                 painel_derrota.SetActive(true);
             }
@@ -69,14 +77,6 @@ public class FaseManager10 : MonoBehaviour
                 contador = 0;
             } else if(PixelPreto.tirosDados == 0) {
                 PixelPreto.atirarUmaVez = false;
-            }
-        }
-
-        if(PixelPreto.meia_vida) {
-            if(!umaVez) {
-                Instantiate(paredona, lado_direito.position, lado_direito.rotation);
-                Instantiate(paredona, lado_esquerdo.position, lado_esquerdo.rotation);
-                umaVez = true;
             }
         }
     }

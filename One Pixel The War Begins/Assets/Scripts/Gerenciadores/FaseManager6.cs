@@ -87,6 +87,8 @@ public class FaseManager6 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase6");
         }
 
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
         if(GameManager.progresso <= 5) {
             GameManager.Instance.SalvarSit(6, "Progresso");
         }

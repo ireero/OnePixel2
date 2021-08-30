@@ -51,6 +51,8 @@ public class FaseManager7 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase7");
         }
 
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
         if(GameManager.progresso <= 6) {
             GameManager.Instance.SalvarSit(7, "Progresso");
         }
@@ -61,6 +63,7 @@ public class FaseManager7 : MonoBehaviour
         PlayerControle.podeAtirar = true;
 
         if(GameManager.fase7 == 0 || GameManager.fase7 == 1) {
+            Chefao06.atacando = false;
             musicas_at = 0;
             back.sprite = back_1;
             back.color = Color.white;

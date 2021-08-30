@@ -85,6 +85,7 @@ public class FaseManager5 : MonoBehaviour
         }
 
         if(GameManager.fase5 == 1 || GameManager.fase5 == 0) {
+            MoedaRisada.moeda_ativou = false;
             som_fala.Play();
             pode_normal = true;
             valor_prov = 0;
@@ -114,6 +115,9 @@ public class FaseManager5 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        
         if(pode_normal) {
             if(PlayerControle.player_morto == true) {
             painel_derrota.SetActive(true);

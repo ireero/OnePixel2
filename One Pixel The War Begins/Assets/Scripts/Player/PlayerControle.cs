@@ -412,7 +412,6 @@ public class PlayerControle : MonoBehaviour {
       if(!pet_ativado && vida <= 0f) {
          jaPodePularDuas = false;
          simbuloVoador.SetActive(false);
-         player_morto = true;
          pode_mexer = false;
          podeAtirar = false;
          anim.SetBool("morreu", true);
@@ -432,7 +431,8 @@ public class PlayerControle : MonoBehaviour {
    }
 
    IEnumerator morrerDeVez() {
-      yield return new WaitForSeconds(3.2f);
+      yield return new WaitForSeconds(2.5f);
+      player_morto = true;
       Time.timeScale = 0;
       Destroy(this.gameObject, 3.2f);
    }

@@ -88,7 +88,7 @@ public class Chefao03 : MonoBehaviour
                 transform.Rotate(new Vector3(x: 0, y: 0, z: potenciaRot));
                 potenciaRot += 0.005f;
                 speed += mais_speed;
-                if(corpo.velocity.y == 0f && (cont == 1 || cont == 2 || cont == 3 || cont == 4)) {
+                if(cont == 1 || cont == 2 || cont == 3 || cont == 4) {
                     IrParaPosicao(valor_alet, cont);
                 }
     }
@@ -132,43 +132,48 @@ public class Chefao03 : MonoBehaviour
             rodar = false;
             contador = 1f;
             meia_vida = true;
+            speed = 13.5f;
             StartCoroutine("metadeDaVida");
         }
     }
     public void IrParaPosicao(int i, int lados) {
         switch(lados) {
             case 1: // cima
-                this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaCima[i].position, speed * Time.deltaTime);
-                if(transform.position.x <= pontosIdaCima[i].position.x) {
+                if(transform.position.y >= pontosIdaCima[i].position.y) {
                     som_batida.Play();
                     Camera.tremer_chao = true;
                     cont = 2;
                     umaVez = false;
+                } else {
+                    this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaCima[i].position, speed * Time.deltaTime);
                 }
                 break;
             case 2: // esquerda
-                this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaEsquerda[i].position, speed * Time.deltaTime);
                 if(transform.position.x <= pontosIdaEsquerda[i].position.x) {
                     som_batida.Play();
                     cont = 3;
                     umaVez = false;
+                } else {
+                    this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaEsquerda[i].position, speed * Time.deltaTime);
                 }
                 break;  
             case 3: // baixo
-                this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaBaixo[i].position, speed * Time.deltaTime);
-                if(transform.position.x >= pontosIdaBaixo[i].position.x) {
+                if(transform.position.y <= pontosIdaBaixo[i].position.y) {
                     som_batida.Play();
                     Camera.tremer_chao = true;
                     cont = 4;
                     umaVez = false;
+                } else {
+                    this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaBaixo[i].position, speed * Time.deltaTime);
                 }
                 break;
             case 4: // direita
-                this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaDireita[i].position, speed * Time.deltaTime);
                 if(transform.position.x >= pontosIdaDireita[i].position.x) {
                     som_batida.Play();
                     cont = 1;
                     umaVez = false;
+                } else {
+                    this.gameObject.transform.position = Vector2.MoveTowards(transform.position, pontosIdaDireita[i].position, speed * Time.deltaTime);
                 }
                 break;       
         }

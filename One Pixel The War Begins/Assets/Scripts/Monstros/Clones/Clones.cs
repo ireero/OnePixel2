@@ -10,12 +10,18 @@ public class Clones : MonoBehaviour
     private float contador;
 
     private float speed = 6f;
+    private Animator anim;
 
     public Transform local_chefao;
+    private BoxCollider2D collider;
+    private bool podeIr;
     // Start is called before the first frame update
     void Start()
     {
+        podeIr = true;
         contador = 0;
+        anim = GetComponent<Animator>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -27,15 +33,20 @@ public class Clones : MonoBehaviour
             contador = 0;
         }
 
-        if(PixelPreto.meia_vida) {
+        if(PixelPreto.sugando) {
             contador = 0;
-            transform.position = Vector2.MoveTowards(transform.position, local_chefao.position, speed * Time.deltaTime);
+            if(podeIr) {
+                transform.position = Vector2.MoveTowards(transform.position, local_chefao.position, speed * Time.deltaTime);
+            }
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Chefoes")) {
-            Destroy(this.gameObject);
+            anim.SetBool("morrer", true);
+            podeIr = false;
+            Destroy(gameObject, 1f);
+            collider.isTrigger = true;
         }
     }
 }

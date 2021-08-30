@@ -98,6 +98,8 @@ public class TextoTutorial : MonoBehaviour
             txtTutorial.text = instrucoes[contagem];
         } 
 
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
         if(Input.GetKeyDown(KeyCode.Escape)) {
             botao_esq.SetBool("apertando", true);
         }

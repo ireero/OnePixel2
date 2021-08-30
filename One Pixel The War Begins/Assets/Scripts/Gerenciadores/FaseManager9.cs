@@ -91,6 +91,10 @@ public class FaseManager9 : MonoBehaviour
 
     private bool pode_normal;
 
+    public AudioSource som_void;
+    public AudioSource musica_fase;
+    public AudioSource som_fala;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -102,7 +106,10 @@ public class FaseManager9 : MonoBehaviour
             GameManager.Instance.SalvarSit(9, "Progresso");
         }
 
+        som_void.Play();
+
         if(GameManager.fase9 == 0 || GameManager.fase9 == 1) {
+            som_fala.Play();
             pode_normal = true;
             FaseManager6.pode_comecar_6 = true;
             contagem_falas_9 = 0;
@@ -139,6 +146,9 @@ public class FaseManager9 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        
         if(pode_normal) {
             if(PlayerControle.player_morto == true) {
                 painel_derrota.SetActive(true);
@@ -152,6 +162,9 @@ public class FaseManager9 : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_9) {
             contagem_falas_9++;
+            if(contagem_falas_9 != 11 || contagem_falas_9 != 17) {
+                som_fala.Play();
+            }
         }
 
         if(tempo_sobreviver > 0 && pode_comecar_9) {
@@ -194,6 +207,8 @@ public class FaseManager9 : MonoBehaviour
                 if(!pode_comecar_9) {
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;
+                    som_void.Stop();
+                    musica_fase.Play();
                 }
                 painel_falas.SetActive(false);
                 pode_comecar_9 = true;
@@ -210,6 +225,8 @@ public class FaseManager9 : MonoBehaviour
             case 18:
                 PlayerControle.conversando = false;
                 if(!cabo_tudo) {
+                    som_void.Play();
+                    musica_fase.Stop();
                     GameManager.Instance.SalvarSit(2, "Fase9");
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;

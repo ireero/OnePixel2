@@ -30,6 +30,11 @@ public class FaseManager8 : MonoBehaviour
 
     public GameObject painel_instrucao;
 
+    public AudioSource falaSom;
+    public AudioSource achievemente;
+
+    private int tocarMusica;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -42,6 +47,7 @@ public class FaseManager8 : MonoBehaviour
         }
 
         if(GameManager.fase8 == 0 || GameManager.fase8 == 1) {
+            tocarMusica = 0;
             umaVezGanho = false;
             pode_comecar_8 = false;
             jabateuUmPapo = false;
@@ -59,13 +65,23 @@ public class FaseManager8 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
         if(pode_comecar_8) {
             PlayerControle.conversando = true;
+            if(tocarMusica == 0) {
+                falaSom.Play();
+                tocarMusica++;
+            }
             painel_falas.SetActive(true);
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && pode_comecar_8) {
             contagem_falas_8++;
+            if(contagem_falas_8 != 8) {
+                falaSom.Play();
+            }
         }
 
         if(contagem_falas_8 <= 8 && contagem_falas_8 >= 0) {
@@ -77,6 +93,7 @@ public class FaseManager8 : MonoBehaviour
                 painel_instrucao.SetActive(true);
                 PlayerControle.pet_ativado = true;
                 PlayerPrefs.SetInt("Pet", 1);
+                achievemente.Play();
                 umaVezGanho = true;
             }
         }

@@ -90,6 +90,8 @@ public class FaseManager2 : MonoBehaviour
             painel_derrota.SetActive(true);
         }
 
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
         if(contagem_falas_2 <= 5 && contagem_falas_2 >= 0) {
             txtFalas.text = falas_chefao[contagem_falas_2];
             }

@@ -108,6 +108,8 @@ public class FaseManager3 : MonoBehaviour
             painel_derrota.SetActive(true);
         }
 
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_3) {
             if(contagem_falas_3 != 7 && contagem_falas_3 != 9) {
                 fala_personagens.Play();

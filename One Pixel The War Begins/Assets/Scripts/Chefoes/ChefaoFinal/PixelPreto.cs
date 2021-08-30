@@ -52,8 +52,14 @@ public class PixelPreto : MonoBehaviour
     public static float vida_pixel_preto;
     public static bool meia_vida;
 
+    private bool pode_comecar;
+
+    public static bool sugando;
+
     void Start()
     {
+        sugando = false;
+        pode_comecar = false;
         meia_vida = false;
         evo_pixel = 0;
         vida_pixel_preto = 500f;
@@ -83,7 +89,8 @@ public class PixelPreto : MonoBehaviour
     void Update()
     {
         contador += Time.deltaTime;
-        if(contador >= 5f && !atirarUmaVez) {
+        if(!meia_vida) {
+            if(contador >= 5f && !atirarUmaVez) {
             AtirouJa = false;
             anim.SetBool("atirar_cima", true);
             anim.SetBool("idle", false);
@@ -91,71 +98,63 @@ public class PixelPreto : MonoBehaviour
             StartCoroutine("Atirar");
         }
 
-        if(contador >= 25f && !pularUmaVez) {
-            anim.SetBool("rugindo", false);
-            anim.SetBool("andando", true);
-            atirar_normal = false;
-            corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
-            if(estaNaDireita) {
-                corpo.bodyType = RigidbodyType2D.Kinematic;
-                transform.position = Vector2.MoveTowards(transform.position, ponto_esquerda.position, speed * Time.deltaTime);
-                if(transform.position.x <= ponto_esquerda.position.x) {
-                    corpo.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-                    pode_explosao = true;
-                    corpo.bodyType = RigidbodyType2D.Dynamic;
-                    anim.SetBool("pulando", true);
-                    anim.SetBool("andando", false);
-                    myScale = transform.localScale;
-                    myScale.x *= -1;
-                    transform.localScale = myScale;
-                    pularUmaVez = true;
-                    corpo.AddForce(new Vector2(0, forca_pulo));
-                    estaNaDireita = false;
+            if(contador >= 25f && !pularUmaVez) {
+                anim.SetBool("rugindo", false);
+                anim.SetBool("andando", true);
+                atirar_normal = false;
+                corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
+                if(estaNaDireita) {
+                    corpo.bodyType = RigidbodyType2D.Kinematic;
+                    transform.position = Vector2.MoveTowards(transform.position, ponto_esquerda.position, speed * Time.deltaTime);
+                    if(transform.position.x <= ponto_esquerda.position.x) {
+                        Pular();
+                        estaNaDireita = false;
+                    }
+                } else {
+                    corpo.bodyType = RigidbodyType2D.Kinematic;
+                    transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
+                    if(transform.position.x >= ponto_direita.position.x) {
+                        Pular();
+                        estaNaDireita = true;
+                    }
                 }
+            }
+
+            if(podeAtirar) {
+                i += Time.deltaTime;
+                if(i > delayTiro && tirosDados <= 19) {
+                    Instantiate(bola_fogo, spawn_tiro.position, spawn_tiro.rotation);
+                    tirosDados++;
+                    i = 0;
+                }
+            }
+
+            if(tirosDados >= 20) {
+                AtirouJa = true;
+                atirar_normal = true;
+                podeAtirar = false;
+                anim.SetBool("idle", true);
+                anim.SetBool("atirar_cima", false);
+                contador = 0;
+                pularUmaVez = false;
+            }
+
+            if(AtirouJa && atirar_normal) {
+                contador2 += Time.deltaTime;
+                if(contador >= 3.5f) {
+                    anim.SetBool("rugindo", true);
+                    anim.SetBool("idle", false);
+                    StartCoroutine("Tirao");
+                }
+            }
+        } else {
+            if(!pode_comecar) {
+                anim.SetBool("meia_vida", true);
+                corpo.bodyType = RigidbodyType2D.Dynamic;
+                corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
+                StartCoroutine("sugandoAqui");
             } else {
-                corpo.bodyType = RigidbodyType2D.Kinematic;
-                transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
-                if(transform.position.x >= ponto_direita.position.x) {
-                    corpo.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-                    pode_explosao = true;
-                    corpo.bodyType = RigidbodyType2D.Dynamic;
-                    anim.SetBool("pulando", true);
-                    anim.SetBool("andando", false);
-                    myScale = transform.localScale;
-                    myScale.x *= -1;
-                    transform.localScale = myScale;
-                    pularUmaVez = true;
-                    corpo.AddForce(new Vector2(0, forca_pulo));
-                    estaNaDireita = true;
-                }
-            }
-        }
-
-        if(podeAtirar) {
-            i += Time.deltaTime;
-            if(i > delayTiro && tirosDados <= 19) {
-                Instantiate(bola_fogo, spawn_tiro.position, spawn_tiro.rotation);
-                tirosDados++;
-                i = 0;
-            }
-        }
-
-        if(tirosDados >= 20) {
-            AtirouJa = true;
-            atirar_normal = true;
-            podeAtirar = false;
-            anim.SetBool("idle", true);
-            anim.SetBool("atirar_cima", false);
-            contador = 0;
-            pularUmaVez = false;
-        }
-
-        if(AtirouJa && atirar_normal) {
-            contador2 += Time.deltaTime;
-            if(contador >= 3.5f) {
-                anim.SetBool("rugindo", true);
-                anim.SetBool("idle", false);
-                StartCoroutine("Tirao");
+                anim.SetBool("meia_vida", false);
             }
         }
     }
@@ -174,6 +173,12 @@ public class PixelPreto : MonoBehaviour
             vida_pixel_preto--;
             if(vida_pixel_preto <= 250) {
                 meia_vida = true;
+            }
+        }
+
+        if(other.gameObject.CompareTag("monstro")) {
+            if(meia_vida) {
+                StartCoroutine("podeComecarAe");
             }
         }
     }
@@ -195,6 +200,29 @@ public class PixelPreto : MonoBehaviour
     IEnumerator transformou() {
         yield return new WaitForSeconds(1.6f);
         evo_pixel = 1;
+    }
+
+    IEnumerator podeComecarAe() {
+        yield return new WaitForSeconds(1.2f);
+        pode_comecar = true;
+    }
+
+    IEnumerator sugandoAqui() {
+        yield return new WaitForSeconds(1.5f);
+        sugando = true;
+    }
+
+    void Pular() {
+        corpo.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        pode_explosao = true;
+        corpo.bodyType = RigidbodyType2D.Dynamic;
+        myScale = transform.localScale;
+        myScale.x *= -1;
+        transform.localScale = myScale;
+        pularUmaVez = true;
+        corpo.AddForce(new Vector2(0, forca_pulo));
+        anim.SetBool("pulando", true);
+        anim.SetBool("andando", false);
     }
 
 }
