@@ -82,79 +82,86 @@ public class PixelPreto : MonoBehaviour
         collider = GetComponent<PolygonCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        StartCoroutine("transformou");
     }
 
     // Update is called once per frame
     void Update()
     {
-        contador += Time.deltaTime;
-        if(!meia_vida) {
-            if(contador >= 5f && !atirarUmaVez) {
-            AtirouJa = false;
-            anim.SetBool("atirar_cima", true);
-            anim.SetBool("idle", false);
-            corpo.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-            StartCoroutine("Atirar");
-        }
-
-            if(contador >= 25f && !pularUmaVez) {
-                anim.SetBool("rugindo", false);
-                anim.SetBool("andando", true);
-                atirar_normal = false;
-                corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
-                if(estaNaDireita) {
-                    corpo.bodyType = RigidbodyType2D.Kinematic;
-                    transform.position = Vector2.MoveTowards(transform.position, ponto_esquerda.position, speed * Time.deltaTime);
-                    if(transform.position.x <= ponto_esquerda.position.x) {
-                        Pular();
-                        estaNaDireita = false;
-                    }
-                } else {
-                    corpo.bodyType = RigidbodyType2D.Kinematic;
-                    transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
-                    if(transform.position.x >= ponto_direita.position.x) {
-                        Pular();
-                        estaNaDireita = true;
-                    }
-                }
+        if(FaseManager10.pode_comecar_10) {
+            if(evo_pixel == 0) {
+                anim.SetBool("transformar", true);
+                StartCoroutine("adicionarEvo");
+            } else if(evo_pixel == 1) {
+                anim.SetBool("transformar", false);
             }
-
-            if(podeAtirar) {
-                i += Time.deltaTime;
-                if(i > delayTiro && tirosDados <= 19) {
-                    Instantiate(bola_fogo, spawn_tiro.position, spawn_tiro.rotation);
-                    tirosDados++;
-                    i = 0;
-                }
-            }
-
-            if(tirosDados >= 20) {
-                AtirouJa = true;
-                atirar_normal = true;
-                podeAtirar = false;
-                anim.SetBool("idle", true);
-                anim.SetBool("atirar_cima", false);
-                contador = 0;
-                pularUmaVez = false;
-            }
-
-            if(AtirouJa && atirar_normal) {
-                contador2 += Time.deltaTime;
-                if(contador >= 3.5f) {
-                    anim.SetBool("rugindo", true);
+            contador += Time.deltaTime;
+            if(!meia_vida) {
+                if(contador >= 5f && !atirarUmaVez) {
+                    AtirouJa = false;
+                    anim.SetBool("atirar_cima", true);
                     anim.SetBool("idle", false);
-                    StartCoroutine("Tirao");
-                }
+                    corpo.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+                    StartCoroutine("Atirar");
             }
-        } else {
-            if(!pode_comecar) {
-                anim.SetBool("meia_vida", true);
-                corpo.bodyType = RigidbodyType2D.Dynamic;
-                corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
-                StartCoroutine("sugandoAqui");
+
+                if(contador >= 25f && !pularUmaVez) {
+                    anim.SetBool("rugindo", false);
+                    anim.SetBool("andando", true);
+                    atirar_normal = false;
+                    corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
+                    if(estaNaDireita) {
+                        corpo.bodyType = RigidbodyType2D.Kinematic;
+                        transform.position = Vector2.MoveTowards(transform.position, ponto_esquerda.position, speed * Time.deltaTime);
+                        if(transform.position.x <= ponto_esquerda.position.x) {
+                            Pular();
+                            estaNaDireita = false;
+                        }
+                    } else {
+                        corpo.bodyType = RigidbodyType2D.Kinematic;
+                        transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
+                        if(transform.position.x >= ponto_direita.position.x) {
+                            Pular();
+                            estaNaDireita = true;
+                        }
+                    }
+                }
+
+                if(podeAtirar) {
+                    i += Time.deltaTime;
+                    if(i > delayTiro && tirosDados <= 19) {
+                        Instantiate(bola_fogo, spawn_tiro.position, spawn_tiro.rotation);
+                        tirosDados++;
+                        i = 0;
+                    }
+                }
+
+                if(tirosDados >= 20) {
+                    AtirouJa = true;
+                    atirar_normal = true;
+                    podeAtirar = false;
+                    anim.SetBool("idle", true);
+                    anim.SetBool("atirar_cima", false);
+                    contador = 0;
+                    pularUmaVez = false;
+                }
+
+                if(AtirouJa && atirar_normal) {
+                    contador2 += Time.deltaTime;
+                    if(contador >= 3.5f) {
+                        anim.SetBool("rugindo", true);
+                        anim.SetBool("idle", false);
+                        StartCoroutine("Tirao");
+                    }
+                }
             } else {
-                anim.SetBool("meia_vida", false);
+                if(!pode_comecar) {
+                    anim.SetBool("meia_vida", true);
+                    corpo.bodyType = RigidbodyType2D.Dynamic;
+                    corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
+                    StartCoroutine("sugandoAqui");
+                } else {
+                    anim.SetBool("meia_vida", false);
+                }
             }
         }
     }
@@ -171,7 +178,7 @@ public class PixelPreto : MonoBehaviour
         }
         if(other.gameObject.CompareTag("bullet")) {
             vida_pixel_preto--;
-            if(vida_pixel_preto <= 250) {
+            if(vida_pixel_preto <= 480) {
                 meia_vida = true;
             }
         }
@@ -197,13 +204,14 @@ public class PixelPreto : MonoBehaviour
             }
     }
 
-    IEnumerator transformou() {
-        yield return new WaitForSeconds(1.6f);
-        evo_pixel = 1;
+    IEnumerator adicionarEvo() {
+        yield return new WaitForSeconds(0.2f);
+        evo_pixel++;
     }
 
     IEnumerator podeComecarAe() {
         yield return new WaitForSeconds(1.2f);
+        sr.color = Color.red;
         pode_comecar = true;
     }
 

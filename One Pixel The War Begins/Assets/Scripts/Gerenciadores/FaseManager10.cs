@@ -26,6 +26,15 @@ public class FaseManager10 : MonoBehaviour
 
     private float contador;
 
+    public static bool pode_comecar_10;
+
+    public Image img_carinha;
+    public Text txt_falas;
+
+     public static int contagem_falas_10;
+
+    public GameObject painel_conversas;
+
     public Image BarraVidaMaior;
     public Image vida_restante;
 
@@ -40,17 +49,30 @@ public class FaseManager10 : MonoBehaviour
 
     public GameObject painel_derrota;
 
+    public Sprite[] sprites_caras;
+    public Sprite[] sprites_painel_conversas;
+    public Image contorno_painel;
+
     private bool umaVez;
 
     void Start()
     {
+        GameManager.Instance.CarregarDados();
+        if(GameManager.fase10 == 0) {
+            GameManager.Instance.SalvarSit(1, "Fase10");
+        }
+
+        if(GameManager.progresso <= 9) {
+            GameManager.Instance.SalvarSit(10, "Progresso");
+        }
+
+        pode_comecar_10 = false;
         umaVez = false;
         contador = 0;
         valor_aleatorio = 0;
         delayTiro = 1.5f;    
-        PlayerControle.conversando = false;
-        PlayerControle.pode_mexer = true;
-        PlayerControle.podeAtirar = true;
+        PlayerControle.conversando = true;
+        painel_conversas.SetActive(true);
     }
 
     // Update is called once per frame
@@ -58,6 +80,14 @@ public class FaseManager10 : MonoBehaviour
     {
 
         AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
+        if(contagem_falas_10 <= 19 && contagem_falas_10 >= 0) {
+            txt_falas.text = falas_pixel_preto[contagem_falas_10];
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_10) {
+            contagem_falas_10++;
+        }
 
         if(PlayerControle.player_morto == true) {
                 painel_derrota.SetActive(true);
@@ -78,6 +108,46 @@ public class FaseManager10 : MonoBehaviour
             } else if(PixelPreto.tirosDados == 0) {
                 PixelPreto.atirarUmaVez = false;
             }
+        }
+
+        switch(contagem_falas_10) {
+            case 3:
+                img_carinha.sprite = sprites_caras[6];
+                break;
+            case 6:
+                img_carinha.sprite = sprites_caras[0];
+                break;
+            case 7:
+                img_carinha.sprite = sprites_caras[1];
+                break;
+             case 8:
+                img_carinha.sprite = sprites_caras[4];
+                contorno_painel.sprite = sprites_painel_conversas[0]; 
+                break;
+            case 11:
+                img_carinha.sprite = sprites_caras[2];      
+                break;
+            case 12:
+                img_carinha.sprite = sprites_caras[6];  
+                break;
+            case 13:
+                img_carinha.sprite = sprites_caras[1];
+                contorno_painel.sprite = sprites_painel_conversas[1];  
+                break;
+            case 18:
+                img_carinha.sprite = sprites_caras[4];
+                break;
+            case 19:  
+                img_carinha.sprite = sprites_caras[3];
+                contorno_painel.sprite = sprites_painel_conversas[2];
+                break;
+            case 20:
+                painel_conversas.SetActive(false);
+                PlayerControle.conversando = false;
+                PlayerControle.podeAtirar = true;
+                PlayerControle.pode_mexer = true;
+                pode_comecar_10 = true;
+                break;                             
         }
     }
 

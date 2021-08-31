@@ -5244,6 +5244,9 @@ MonoBehaviour:
   - {fileID: 1579546541}
   - {fileID: 359335442}
   - {fileID: 586540673}
+  img_carinha: {fileID: 2096272621}
+  txt_falas: {fileID: 501253576}
+  painel_conversas: {fileID: 2033506196}
   BarraVidaMaior: {fileID: 1952137712}
   vida_restante: {fileID: 1104511800}
   cara_transformado: {fileID: 21300000, guid: 9d41890cf497c9041ac952c1542cd128, type: 3}
@@ -5251,6 +5254,20 @@ MonoBehaviour:
   lado_esquerdo: {fileID: 1161415812}
   lado_direito: {fileID: 547658457}
   painel_derrota: {fileID: 1256574421}
+  sprites_caras:
+  - {fileID: 21300000, guid: c303938c2bdc7d74a8c52e0d160c01bc, type: 3}
+  - {fileID: 21300000, guid: d7da827483dd5ca4992e1fdd4a5c22aa, type: 3}
+  - {fileID: 21300000, guid: c8f7cbae3e105f9479a4c24f541516cc, type: 3}
+  - {fileID: 21300000, guid: 8858ab581dcb4764f8b102aea6b93589, type: 3}
+  - {fileID: 21300000, guid: de9427aebd77bae41a0a8a406e04a26a, type: 3}
+  - {fileID: 21300000, guid: ed5f8b83aca221846ae63ba4b89c580f, type: 3}
+  - {fileID: 21300000, guid: 4108be6168017d94797b187c4c5c97c2, type: 3}
+  sprites_painel_conversas:
+  - {fileID: 21300000, guid: fd553d1bff07d0748bf84572abfb4c27, type: 3}
+  - {fileID: 21300000, guid: 8a1717c0154f3da42bc02dba0158da74, type: 3}
+  - {fileID: 21300000, guid: 2f04d3351ebb4154ba9896284b6a523b, type: 3}
+  - {fileID: 21300000, guid: dabde760a3855454e9cb068775d8d882, type: 3}
+  contorno_painel: {fileID: 250154753}
 --- !u!223 &962926089
 Canvas:
   m_ObjectHideFlags: 0
@@ -10902,10 +10919,10 @@ RectTransform:
   m_Father: {fileID: 23026423}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.87875015, y: 0.7807778}
-  m_AnchorMax: {x: 0.95875, y: 0.9244444}
-  m_AnchoredPosition: {x: -0.6000061, y: -0.099990845}
-  m_SizeDelta: {x: 0, y: -1}
+  m_AnchorMin: {x: 0.87875015, y: 0.7896668}
+  m_AnchorMax: {x: 0.95875, y: 0.9311111}
+  m_AnchoredPosition: {x: 0, y: -0.1000061}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1952137711
 Canvas:
@@ -11111,12 +11128,12 @@ PrefabInstance:
     - target: {fileID: 7442106555223898307, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.2
+      value: -4.87
       objectReference: {fileID: 0}
     - target: {fileID: 7442106555223898307, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.79
+      value: -2.29
       objectReference: {fileID: 0}
     - target: {fileID: 7442106555223898307, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}

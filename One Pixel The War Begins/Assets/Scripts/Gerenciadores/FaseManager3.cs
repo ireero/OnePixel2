@@ -83,8 +83,7 @@ public class FaseManager3 : MonoBehaviour
             painel_falas.SetActive(true);
             pode_comecar_3 = false;
             contagem_falas_3 = 0;
-            PlayerControle.podeAtirar = false;
-            PlayerControle.pode_mexer = false;
+            PlayerControle.conversando = true;
         } else {
             Destroy(chefao);
             escada.SetActive(true);

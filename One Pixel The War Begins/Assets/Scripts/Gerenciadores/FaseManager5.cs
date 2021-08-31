@@ -100,6 +100,7 @@ public class FaseManager5 : MonoBehaviour
             TiroPequenoChefao.modoHard = false;
             umaVez = false;
             contador = 0;
+            PlayerControle.conversando = true;
         } else {
             pode_normal = false;
             escada.SetActive(true);

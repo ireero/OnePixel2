@@ -72,6 +72,7 @@ public class FaseManager2 : MonoBehaviour
             painel_falas.SetActive(true);
             TiroPequenoChefao.modoHard = false;
             TiroRedondo.modoHardRedondo = false;
+            PlayerControle.conversando = true;
         } else {
             escada.SetActive(true);
             Destroy(chefao);

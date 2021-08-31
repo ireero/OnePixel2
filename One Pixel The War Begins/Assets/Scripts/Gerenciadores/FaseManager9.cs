@@ -128,6 +128,7 @@ public class FaseManager9 : MonoBehaviour
             painel_falas.SetActive(true);   
             Portal.atira_ae_po = 0;
             cabo_tudo = false;
+            PlayerControle.conversando = true;
         } else {
             pode_normal = false;
             Destroy(chefao);

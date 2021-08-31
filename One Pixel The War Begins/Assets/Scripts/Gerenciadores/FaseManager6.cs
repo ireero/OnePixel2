@@ -106,6 +106,7 @@ public class FaseManager6 : MonoBehaviour
             valor_alet = 0;
             painel_falas.SetActive(true);
             fala_1.Play();
+            PlayerControle.conversando = true;
         } else {
             pode_normal = false;
             Destroy(chefao);

@@ -28,15 +28,17 @@ public class Clones : MonoBehaviour
     void Update()
     {
         contador += Time.deltaTime;
-        if(contador >= 2f) {
-            Instantiate(tiro, spawn_tiro.position, spawn_tiro.rotation);
-            contador = 0;
-        }
+        if(FaseManager10.pode_comecar_10) {
+            if(contador >= 2f) {
+                Instantiate(tiro, spawn_tiro.position, spawn_tiro.rotation);
+                contador = 0;
+            }
 
-        if(PixelPreto.sugando) {
-            contador = 0;
-            if(podeIr) {
-                transform.position = Vector2.MoveTowards(transform.position, local_chefao.position, speed * Time.deltaTime);
+            if(PixelPreto.sugando) {
+                contador = 0;
+                if(podeIr) {
+                    transform.position = Vector2.MoveTowards(transform.position, local_chefao.position, speed * Time.deltaTime);
+                }
             }
         }
     }

@@ -86,8 +86,10 @@ public class Chefao03 : MonoBehaviour
             
             if(rodar && !morreu) {
                 transform.Rotate(new Vector3(x: 0, y: 0, z: potenciaRot));
-                potenciaRot += 0.005f;
-                speed += mais_speed;
+                if(Time.timeScale != 0) {
+                    potenciaRot += 0.005f;
+                    speed += mais_speed;
+                }
                 if(cont == 1 || cont == 2 || cont == 3 || cont == 4) {
                     IrParaPosicao(valor_alet, cont);
                 }
