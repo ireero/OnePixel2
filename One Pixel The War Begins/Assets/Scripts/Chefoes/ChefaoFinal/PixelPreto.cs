@@ -6,7 +6,6 @@ public class PixelPreto : MonoBehaviour
 {
     public float contador;
     private Animator anim;
-    private int vida;
     private PolygonCollider2D collider;
     private Rigidbody2D corpo;
 
@@ -54,10 +53,18 @@ public class PixelPreto : MonoBehaviour
 
     private bool pode_comecar;
 
+    public Transform ponto_meio;
+
     public static bool sugando;
+
+    private bool voltarCv;
+    public static bool atirarAdagas;
+    private float cont_adaga;
 
     void Start()
     {
+        cont_adaga = 0;
+        atirarAdagas = false;
         sugando = false;
         pode_comecar = false;
         meia_vida = false;
@@ -77,7 +84,7 @@ public class PixelPreto : MonoBehaviour
         atirarUmaVez = false;
         forca_pulo = 380f;
         contador = 0;
-        vida = 1000;
+        voltarCv = false;
         anim = GetComponent<Animator>();
         collider = GetComponent<PolygonCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
@@ -94,6 +101,7 @@ public class PixelPreto : MonoBehaviour
             } else if(evo_pixel == 1) {
                 anim.SetBool("transformar", false);
             }
+
             contador += Time.deltaTime;
             if(!meia_vida) {
                 if(contador >= 5f && !atirarUmaVez) {
@@ -160,7 +168,38 @@ public class PixelPreto : MonoBehaviour
                     corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
                     StartCoroutine("sugandoAqui");
                 } else {
-                    anim.SetBool("meia_vida", false);
+                    if(!voltarCv) {
+                        FaseManager10.contagem_falas_10 = 21;
+                        anim.SetBool("meia_vida", false);
+                        StartCoroutine("voltarOCv");
+                    } else {
+                        if(FaseManager10.pode_comecar_10) {
+                            cont_adaga += Time.deltaTime;
+                            if(evo_pixel == 1) {
+                                sr.color = Color.white;
+                                Vector3 vetor = transform.localScale;
+                                vetor.x *= -1;
+                                transform.localScale = vetor;
+                                anim.SetBool("modo_caveira", true);
+                                corpo.bodyType = RigidbodyType2D.Kinematic;
+                                evo_pixel++;
+                            }
+                            transform.position = Vector2.MoveTowards(transform.position, ponto_meio.position, speed * Time.deltaTime);
+
+                            if(transform.position.y >= ponto_meio.position.y ) {
+                                anim.SetBool("idle", true);
+                            }
+                            if(cont_adaga >= 2.5f) {
+                                anim.SetBool("atirar_adaga", true);
+                                atirarAdagas = true;
+                                cont_adaga = 0;
+                            }
+
+                            if(!atirarAdagas) {
+                                anim.SetBool("atirar_adaga", false);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -206,7 +245,12 @@ public class PixelPreto : MonoBehaviour
 
     IEnumerator adicionarEvo() {
         yield return new WaitForSeconds(0.2f);
-        evo_pixel++;
+        evo_pixel = 1;
+    }
+
+    IEnumerator voltarOCv() {
+        yield return new WaitForSeconds(0.5f);
+        voltarCv = true;
     }
 
     IEnumerator podeComecarAe() {

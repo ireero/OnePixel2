@@ -38,6 +38,11 @@ public class MenuManager : MonoBehaviour
         SceneLoader.Instance.LoadSceneAsync("MenuFases");
     }
 
+    public void IrCreditos() {
+        som_click.Play();
+        SceneLoader.Instance.LoadSceneAsync("Creditos");
+    }
+
     public void CarregarJogo() {
         som_click.Play();
         switch(GameManager.progresso) {

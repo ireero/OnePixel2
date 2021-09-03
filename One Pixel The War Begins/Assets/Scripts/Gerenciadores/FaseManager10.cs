@@ -10,7 +10,13 @@ public class FaseManager10 : MonoBehaviour
     "Deixa, não à nenhuma explicação que justifique esse massacre", "Infelizmente eu não tenho como voltar atrás", "É uma pena todo um povo sofrer por decisões de seus governantes, você não acha?", 
     "É uma pena um grupo específico ser diminuído", "É uma pena que após anos de convivência em harmonia do nada viramos rivais", "Não temos mais representante no trono", 
     "Não temos mais nenhuma voz", "Não somos mais todos iguais", "Somos constantemente ameaçados", "Vivemos com medo de sofrer um ataque", "Dormimos com medo de nunca acordar", "Acordamos com medo de sofrer extermínio", 
-    "E um dia simplesmente cansamos de toda humilhação e resolvemos revidar...", "Desculpe, mas chegou a hora de você descansar."};
+    "E um dia simplesmente cansamos de toda humilhação e resolvemos revidar...", "Desculpe, mas chegou a hora de você descansar.","", "Vejo que você adquiriu algumas coisas no seu caminho até aqui", 
+    "é irônico você estar usando fruto de pesquisas que eu iniciei, não acha?", "Você nunca quis estudar nada", "Nunca quis apoiar e remunarar aqueles que procuravam maneiras de evoluirmos", "Olhe para você agora, todo equipado...", 
+    "Deixa eu te atualizar do que você andou perdendo...", "Pesquisas mostram que somos a menor estrutura molecular de tudo", "Somos o inicio e fim de tudo", "Temos o poder de nos transformar em qualquer coisa", 
+    "Mas com grandes poderes vem grandes responsabilidades não é mesmo?", "Para um grande poder precisamos de uma grande energia, grandes modificações, grande treinamento e muito mais", "Graças ao Pixel vermelho temos tudo o que precisavámos para finalmente tomar o poder", 
+    "Foi mais fácil do que parece, você acredita?", "Um governante burro que deixa sua cidade várias e várias vezes com a desculpa de buscar novos recursos", "Um governante que não se importa com o que acontece nos becos de sua cidade", 
+    "Você praticamente pediu por isso Pixel Branco", "O que vou te mostrar agora está além de tudo que você já viu", "Está além dessa sua mente fechada e estupida", "Quando eu terminar você não estará mais aqui para poder contemplar o meu plano", 
+    "AGORA MORRA PARA AQUELE QUE VOCÊ SEMPRE MENOSPREZOU!"};
 
     private string[] falas_pixel_preto_ingles = {"...", "Hello", "I didn't expect to see him again", "At least not in this situation...", "You know, I swear I tried to avoid all this", "I swear...", 
     "Leave it, there is no explanation that justifies this massacre", "Unfortunately I have no way back", "It is a shame that a whole people suffers because of the decisions of its rulers, don't you think?", 
@@ -55,6 +61,15 @@ public class FaseManager10 : MonoBehaviour
 
     private bool umaVez;
 
+    public GameObject adaga;
+    public Sprite meia_vida_caveira;
+    private int i;
+
+    public Transform spawn_paredona_direita;
+    public Transform spawn_paredona_esquerda;
+
+    private bool umaParedona;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -65,7 +80,9 @@ public class FaseManager10 : MonoBehaviour
         if(GameManager.progresso <= 9) {
             GameManager.Instance.SalvarSit(10, "Progresso");
         }
-
+        TiroPequenoChefao.modoHard = true;
+        umaParedona = false;
+        i = 0;
         pode_comecar_10 = false;
         umaVez = false;
         contador = 0;
@@ -81,7 +98,7 @@ public class FaseManager10 : MonoBehaviour
 
         AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
 
-        if(contagem_falas_10 <= 19 && contagem_falas_10 >= 0) {
+        if(contagem_falas_10 <= 40 && contagem_falas_10 >= 0) {
             txt_falas.text = falas_pixel_preto[contagem_falas_10];
         }
 
@@ -95,11 +112,29 @@ public class FaseManager10 : MonoBehaviour
 
         if(PixelPreto.evo_pixel == 1) {
             BarraVidaMaior.sprite = cara_transformado;
+        } else if(PixelPreto.evo_pixel == 2) {
+            BarraVidaMaior.sprite = meia_vida_caveira;
+        }
+
+        if(PixelPreto.meia_vida && PixelPreto.atirarAdagas) {
+            if(!umaParedona) {
+                Instantiate(paredona, lado_direito.position, lado_direito.rotation);
+                Instantiate(paredona, lado_esquerdo.position, lado_esquerdo.rotation);
+                umaParedona = true;
+            }
+            if(i <= 12) {
+                Instantiate(adaga, spawn_cima[i].position, spawn_cima[i].rotation);
+                i++;
+                if(i == 12) {
+                    i = 0;
+                    PixelPreto.atirarAdagas = false;
+                }
+            }
         }
 
         BarraVida();
         if(PixelPreto.AtirouJa) {
-            valor_aleatorio = Random.Range(0, 6);
+            valor_aleatorio = Random.Range(0, 13);
             contador += Time.deltaTime;
             if(PixelPreto.tirosDados > 0 && contador > delayTiro) {
                 Instantiate(bolaFogo, spawn_cima[valor_aleatorio].position, spawn_cima[valor_aleatorio].rotation);
@@ -147,7 +182,34 @@ public class FaseManager10 : MonoBehaviour
                 PlayerControle.podeAtirar = true;
                 PlayerControle.pode_mexer = true;
                 pode_comecar_10 = true;
-                break;                             
+                break;
+            case 21:
+                pode_comecar_10 = false;
+                painel_conversas.SetActive(true);
+                PlayerControle.conversando = true;
+                img_carinha.color = Color.red;
+                img_carinha.sprite = sprites_caras[0];
+                contorno_painel.sprite = sprites_painel_conversas[3];
+                break;
+            case 22:
+                img_carinha.sprite = sprites_caras[2];    
+                break;
+            case 24:
+                img_carinha.sprite = sprites_caras[4];
+                break; 
+            case 25:
+                img_carinha.sprite = sprites_caras[2];
+                break;
+            case 26:
+                img_carinha.sprite = sprites_caras[0];
+                break;
+            case 41:
+                painel_conversas.SetActive(false);
+                PlayerControle.conversando = false;
+                PlayerControle.pode_mexer = true;
+                PlayerControle.podeAtirar = true;
+                pode_comecar_10 = true;
+                break;                                                
         }
     }
 
