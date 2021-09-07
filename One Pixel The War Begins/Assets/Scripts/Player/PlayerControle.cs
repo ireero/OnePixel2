@@ -84,8 +84,11 @@ public class PlayerControle : MonoBehaviour {
    public Sprite qtd_vida_2;
    public Sprite qtd_vida_1;
    public Sprite qtd_vida_0;
+
+   private bool somDash;
  
    void Start () {  
+      somDash = false;
       vida = 3f;
       podeTomarDano = true;
       pularPegar = PlayerPrefs.GetInt("PularDuas");
@@ -367,7 +370,9 @@ public class PlayerControle : MonoBehaviour {
 
    void Dash() {
       if((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(2)) && canDash) {
-         GerenciadorAudio.inst.PlayDash(dash_sound);
+         if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2)) {
+            GerenciadorAudio.inst.PlayDash(dash_sound);
+         }
          if(dashAtual <= 0) {
             StopDash();
          } else {

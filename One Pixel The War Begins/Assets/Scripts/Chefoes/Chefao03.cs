@@ -126,7 +126,9 @@ public class Chefao03 : MonoBehaviour
 
         if(vida_chefao == 0 && !meia_vida) {
             rugido_meia_vida.Play();
-            FaseManager3.contagem_falas_3 = 9;
+            if(GameManager.sem_dialogos == 0) {
+                FaseManager3.contagem_falas_3 = 9;
+            }
             podeTomarDano = false;
             sr.color = Color.red;
             anim.SetBool("meia_vida", true);

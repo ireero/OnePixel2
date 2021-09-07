@@ -117,7 +117,9 @@ public class Chefao04 : MonoBehaviour
             sr.color = Color.red;
             valor_para_voltar = 6f;
             if(vida_chefao == 25 && !umaVezMeiaVida) {
-                FaseManager5.contagem_falas_5 = 8;
+                if(GameManager.sem_dialogos == 0) {
+                    FaseManager5.contagem_falas_5 = 8;
+                }
                 umaVezMeiaVida = true;
                 anim.SetBool("meia_vida", true);
                 StartCoroutine("meiaVida");

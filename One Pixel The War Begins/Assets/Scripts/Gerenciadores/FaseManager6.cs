@@ -96,23 +96,30 @@ public class FaseManager6 : MonoBehaviour
         if(GameManager.fase6 == 0 || GameManager.fase6 == 1) {
             back_pode = false;
             pode_normal = true;
-            back_void.Play();
             tocarMusica = 0;
-            contagem_falas_6 = 0;
-            pode_comecar_6 = false;
             tempo_de_cair = 1.5f;
+            if(GameManager.sem_dialogos == 0) {
+                contagem_falas_6 = 0;
+                pode_comecar_6 = false;
+                back_void.Play();
+                painel_falas.SetActive(true);
+                fala_1.Play();
+                PlayerControle.conversando = true;
+            } else {
+                back.Play();
+                pode_comecar_6 = true;
+                PlayerControle.conversando = false;
+                PlayerControle.podeAtirar = true;
+                PlayerControle.pode_mexer = true;
+            }
             contador = 0;
             podeCair = false;
             valor_alet = 0;
-            painel_falas.SetActive(true);
-            fala_1.Play();
-            PlayerControle.conversando = true;
         } else {
             pode_normal = false;
             Destroy(chefao);
             escada.SetActive(true);
-            BarraVidaMaior.enabled = false;
-            BarraDeVida.enabled = false;
+            Destroy(vida_chefao);
             PlayerControle.conversando = false;
             PlayerControle.podeAtirar = true;
             PlayerControle.pode_mexer = true;
@@ -137,6 +144,13 @@ public class FaseManager6 : MonoBehaviour
 
        if(Chefao05.vida <= 0) {
            GameManager.Instance.SalvarSit(2, "Fase6");
+           if(GameManager.sem_dialogos == 1) {
+               if(!back_pode) {
+                   back_void.Stop();
+                   back.Play();
+                   back_pode = true;
+               }
+           }
            Destroy(vida_chefao);
        } else if(Chefao05.vida <= 300 && Chefao05.vida > 0) {
            tempo_de_cair = 0.85f;

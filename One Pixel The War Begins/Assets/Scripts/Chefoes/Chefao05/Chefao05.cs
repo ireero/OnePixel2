@@ -163,7 +163,11 @@ public class Chefao05 : MonoBehaviour
             vida--;
             contagem_danos++;
             if(vida <= 300f && !umaVez) {
-                FaseManager6.contagem_falas_6 = 3;
+                if(GameManager.sem_dialogos == 0) {
+                    FaseManager6.contagem_falas_6 = 3;
+                }
+                somTerremoto.Stop();
+                umTerremoto = false;
                 pausa_de_tiro = 1.65f;
                 tempo_para_atirar = 3.5f;
                 girador_sr.color = Color.red;
@@ -192,7 +196,9 @@ public class Chefao05 : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
         escada.SetActive(true);
         desintegrando.Stop();
-        FaseManager6.contagem_falas_6 = 5;
+        if(GameManager.sem_dialogos == 0) {
+            FaseManager6.contagem_falas_6 = 5;
+        }
         Destroy(this.gameObject);
     }
 

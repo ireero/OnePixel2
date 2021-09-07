@@ -11,7 +11,11 @@ public class Meditador : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        podeMorrer = false;    
+        if(GameManager.sem_dialogos == 0) {
+            podeMorrer = false;   
+        } else {
+            podeMorrer = true;
+        }
     }
 
     // Update is called once per frame

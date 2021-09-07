@@ -28,7 +28,11 @@ public class MoveMao : MonoBehaviour
     {
         sortearUmaVez = false;
         valor_alet = 0;
-        temp_movendo = 2.2f;
+        if(GameManager.sem_dialogos == 1) {
+            temp_movendo = 1.8f;
+        } else {
+            temp_movendo = 2.2f;
+        }
         umaVez = false;
         speed = 4f;
         contador = 0;

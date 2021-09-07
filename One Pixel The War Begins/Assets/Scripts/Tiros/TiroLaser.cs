@@ -13,7 +13,11 @@ public class TiroLaser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed_laser = -6f;
+        if(GameManager.sem_dialogos == 0) {
+            speed_laser = -6f;
+        } else {
+            speed_laser = -7f;
+        }
         anim = GetComponent<Animator>();
         timeDestroy = 2.5f;
         Destroy(gameObject, timeDestroy);

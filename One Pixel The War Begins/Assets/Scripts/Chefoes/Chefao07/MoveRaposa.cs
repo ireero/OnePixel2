@@ -33,7 +33,11 @@ public class MoveRaposa : MonoBehaviour
             anim.SetBool("correndo", true);
             if(!voltar) {
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
-                aux.motorSpeed = 3.5f;
+                if(GameManager.sem_dialogos == 0) {
+                    aux.motorSpeed = 3.5f;
+                } else {
+                    aux.motorSpeed = 5f;
+                }
                 slider.motor = aux;
             }
             
@@ -44,7 +48,11 @@ public class MoveRaposa : MonoBehaviour
         if(slider.limitState == JointLimitState2D.UpperLimit) {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
             voltar = true;
-            aux.motorSpeed = -3.5f;
+            if(GameManager.sem_dialogos == 0) {
+                aux.motorSpeed = -3.5f;
+            } else {
+                aux.motorSpeed = -5f;
+            }
             slider.motor = aux;
             }
         } else {

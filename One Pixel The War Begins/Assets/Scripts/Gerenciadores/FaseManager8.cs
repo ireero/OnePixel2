@@ -50,16 +50,25 @@ public class FaseManager8 : MonoBehaviour
             tocarMusica = 0;
             umaVezGanho = false;
             pode_comecar_8 = false;
-            jabateuUmPapo = false;
-            contagem_falas_8 = 0;
+            if(GameManager.sem_dialogos == 0) {
+                jabateuUmPapo = false;
+                contagem_falas_8 = 0;
+                PlayerControle.conversando = false;
+                PlayerControle.pode_mexer = true;
+                PlayerControle.podeAtirar = true;
+            } else {
+                painel_instrucao.SetActive(true);
+                PlayerControle.pet_ativado = true;
+                PlayerPrefs.SetInt("Pet", 1);
+                achievemente.Play();
+                PlayerControle.conversando = true;
+                jabateuUmPapo = true;
+            }
         } else {
             Destroy(cientista);
             Destroy(gatilho);
             escada.SetActive(true);
         }
-        PlayerControle.conversando = false;
-        PlayerControle.pode_mexer = true;
-        PlayerControle.podeAtirar = true;
     }
 
     // Update is called once per frame

@@ -86,27 +86,34 @@ public class FaseManager5 : MonoBehaviour
 
         if(GameManager.fase5 == 1 || GameManager.fase5 == 0) {
             MoedaRisada.moeda_ativou = false;
-            som_fala.Play();
             pode_normal = true;
             valor_prov = 0;
             valor_alet = 0;
             cont_spawn = 0;
             slimes_vivos = 0;
-            back_void.Play();
             podeTocar = 0;
-            painel_falas.SetActive(true);
-            pode_comecar_5 = false;
-            contagem_falas_5 = 0;
+            if(GameManager.sem_dialogos == 0) {
+                som_fala.Play();
+                back_void.Play();
+                painel_falas.SetActive(true);
+                pode_comecar_5 = false;
+                contagem_falas_5 = 0;
+                PlayerControle.conversando = true;
+            } else {
+                PlayerControle.conversando = false;
+                PlayerControle.podeAtirar = true;
+                PlayerControle.pode_mexer = true;
+                pode_comecar_5 = true;
+                back_som.Play();
+            }
             TiroPequenoChefao.modoHard = false;
             umaVez = false;
             contador = 0;
-            PlayerControle.conversando = true;
         } else {
             pode_normal = false;
             escada.SetActive(true);
             Destroy(chefao);
-            BarraVidaMaior.enabled = false;
-            BarraDeVida.enabled = false;
+            Destroy(vida_chefao);
             PlayerControle.conversando = false;
             PlayerControle.podeAtirar = true;
             PlayerControle.pode_mexer = true;

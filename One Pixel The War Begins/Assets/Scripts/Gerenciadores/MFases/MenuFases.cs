@@ -72,7 +72,9 @@ public class MenuFases : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            SceneLoader.Instance.LoadSceneAsync("Menu");
+        }
     }
 
     public void Tutorial() {

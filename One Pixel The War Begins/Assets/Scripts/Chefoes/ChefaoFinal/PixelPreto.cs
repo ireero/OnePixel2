@@ -61,8 +61,22 @@ public class PixelPreto : MonoBehaviour
     public static bool atirarAdagas;
     private float cont_adaga;
 
+    private int atirou_adagas;
+
+    public static bool hora_do_socao;
+    public static bool suga_as_pedra;
+
+    public GameObject explosao_meia_vida;
+
+    public Transform spawn_tiro_segunda_explosao;
+
+    public GameObject getsuga;
+
     void Start()
     {
+        suga_as_pedra = false;
+        hora_do_socao = false;
+        atirou_adagas = 0;
         cont_adaga = 0;
         atirarAdagas = false;
         sugando = false;
@@ -184,15 +198,45 @@ public class PixelPreto : MonoBehaviour
                                 corpo.bodyType = RigidbodyType2D.Kinematic;
                                 evo_pixel++;
                             }
-                            transform.position = Vector2.MoveTowards(transform.position, ponto_meio.position, speed * Time.deltaTime);
 
-                            if(transform.position.y >= ponto_meio.position.y ) {
+                            if(transform.position.y >= ponto_meio.position.y && !atirarAdagas) {
                                 anim.SetBool("idle", true);
+                            } else if(atirou_adagas <= 3) {
+                                transform.position = Vector2.MoveTowards(transform.position, ponto_meio.position, speed * Time.deltaTime);
                             }
-                            if(cont_adaga >= 2.5f) {
+                            if(cont_adaga >= 2.5f && atirou_adagas <= 2) {
                                 anim.SetBool("atirar_adaga", true);
                                 atirarAdagas = true;
                                 cont_adaga = 0;
+                                atirou_adagas++;
+                            } else if(atirou_adagas == 3) {
+                                Paredona.sumir = true;
+                                hora_do_socao = true;
+                            }
+
+                            if(cont_adaga >= 2.5f && atirou_adagas == 3 && hora_do_socao) {
+                                anim.SetBool("socao_time", true);
+                                cont_adaga = 0;
+                                hora_do_socao = false;
+                                StartCoroutine("voltarAnimSoco");
+                                StartCoroutine("seguirPlay");
+                            }
+
+                            if(atirou_adagas == 4) {
+                                anim.SetBool("idle", false);
+                                if(estaNaDireita) {
+                                    transform.position = Vector2.MoveTowards(transform.position, ponto_esquerda.position, speed * Time.deltaTime);
+                                    if(transform.position.x <= ponto_esquerda.position.x) {
+                                        Vector3 vetor = transform.localScale;
+                                        vetor.x *= -1;
+                                        transform.localScale = vetor;
+                                        estaNaDireita = false;
+                                        atirou_adagas++;
+                                        anim.SetBool("pousando", true);
+                                    }
+                                } else {
+                                    transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
+                                }
                             }
 
                             if(!atirarAdagas) {
@@ -233,6 +277,17 @@ public class PixelPreto : MonoBehaviour
         yield return new WaitForSeconds(1f);
         podeAtirar = true;
         atirarUmaVez = true;
+    }
+
+    IEnumerator voltarAnimSoco() {
+        yield return new WaitForSeconds(0.55f);
+        Instantiate(explosao_meia_vida, spawn_tiro_segunda_explosao.position, spawn_tiro_segunda_explosao.rotation);
+        anim.SetBool("socao_time", false);
+    }
+
+    IEnumerator seguirPlay() {
+        yield return new WaitForSeconds(1.2f);
+        atirou_adagas++;
     }
 
     IEnumerator Tirao() {

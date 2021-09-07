@@ -62,8 +62,13 @@ public class FaseManager4 : MonoBehaviour
             PlayerControle.pode_mexer = true;
             PlayerControle.podeAtirar = true;
             pode_comecar_4 = false;
-            jaConversou = false;
             contagem_falas_4 = 0;
+            if(GameManager.sem_dialogos == 0) {
+                jaConversou = false;
+            } else {
+                som_morte.Play();
+                jaConversou = true;
+            }
         } else {
             Destroy(gatilho);
             Destroy(meditador);
@@ -119,7 +124,6 @@ public class FaseManager4 : MonoBehaviour
                     achievemente.Play();
                     umaVezGanho = true;
                 }
-                PlayerControle.jaPodePularDuas = true;
                 break;   
             case 7:
             painel_instrucao.SetActive(false);

@@ -16,10 +16,17 @@ public class PortalDiagonal : MonoBehaviour
 
     private Animator anim;
 
+    private float[] tempos = {2.5f, 1f, 4f};
+
     void Start()
     {
         contador = 0;
         anim = GetComponent<Animator>();
+        if(GameManager.sem_dialogos == 1) {
+            tempos[0] = 2.25f;
+            tempos[1] = 0.75f;
+            tempos[2] = 3.75f;
+        }
         StartCoroutine("idle");
     }
 
@@ -30,17 +37,17 @@ public class PortalDiagonal : MonoBehaviour
         contador2 += Time.deltaTime;
         contador3 += Time.deltaTime;
 
-        if(contador >= 2.5f) {
+        if(contador >= tempos[0]) {
             Instantiate(laser, spawn_laser.position, spawn_laser.rotation);
             contador = 0;
         }
 
-        if(contador2 >= 1f) {
+        if(contador2 >= tempos[1]) {
             Instantiate(laser, spawn_laser2.position, spawn_laser2.rotation);
             contador2 = 0;
         }
 
-        if(contador3 >= 4f) {
+        if(contador3 >= tempos[2]) {
             Instantiate(laser, spawn_laser3.position, spawn_laser3.rotation);
             contador3 = 0;
         }

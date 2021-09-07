@@ -64,19 +64,28 @@ public class FaseManager2 : MonoBehaviour
         }
 
         if(GameManager.fase2 == 1 || GameManager.fase2 == 0) {
-            som_fala.Play();
-            back_void.Play();
             tocaSom = 0;
-            pode_comecar = false;
-            contagem_falas_2 = 0;
-            painel_falas.SetActive(true);
             TiroPequenoChefao.modoHard = false;
             TiroRedondo.modoHardRedondo = false;
-            PlayerControle.conversando = true;
+            if(GameManager.sem_dialogos == 0) {
+                back_void.Play();
+                som_fala.Play();
+                painel_falas.SetActive(true);
+                PlayerControle.conversando = true;
+                pode_comecar = false;
+                contagem_falas_2 = 0;
+            } else {
+                back.Play();
+                pode_comecar = true;
+                PlayerControle.conversando = false;
+                PlayerControle.pode_mexer = true;
+                PlayerControle.podeAtirar = true;
+            }
         } else {
+            back_void.Play();
             escada.SetActive(true);
             Destroy(chefao);
-            BarraVidaMaior.enabled = false;
+            Destroy(vida_chefao);
             PlayerControle.conversando = false;
             PlayerControle.pode_mexer = true;
             PlayerControle.podeAtirar = true;
@@ -158,10 +167,20 @@ public class FaseManager2 : MonoBehaviour
         if((cabeca1_morta && cabeca2_morta && cabeca3_morta & cabeca4_morta) && pode_comecar) {
             Destroy(vida_chefao);
             GameManager.Instance.SalvarSit(2, "Fase2");
-            contagem_falas_2 = 4;
             TiroRedondo.modoHardRedondo = false;
             TiroPequenoChefao.modoHard = false;
-            pode_comecar = false;
+            if(GameManager.sem_dialogos == 0) {
+                pode_comecar = false;
+                contagem_falas_2 = 4;
+            } else {
+                if(tocaSom <= 0) {
+                    back_void.Play();
+                    back.Pause();
+                    tocaSom++;
+                }
+                CabecaBase.todosMortos = true;
+                pode_comecar = true;
+            }
         }
     }
 

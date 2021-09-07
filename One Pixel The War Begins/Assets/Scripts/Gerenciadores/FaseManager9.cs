@@ -12,6 +12,8 @@ public class FaseManager9 : MonoBehaviour
     "Mas se você não se importar irei ficar parado pois estou em um estado de concentração aqui, você entende né?","", "Você acredita na audácia desse cara?", "Não lembro de ter autorizado ninguém a me controlar assim", "Enfim Imperador, você passou no meu teste", 
     "Tomara que você vença eles", "Boa sorte lá, Tchau!"};
 
+    private string fala_mutado = "Você realmente se acha Deus calando os outros assim não é?";
+
     private string[] falas_ingles = {"damn!, You have come this far", "I was told that you were coming but honestly I never would have imagined that you would come to me",
     "How about we cut to the chase, I would like to go to the bathroom urgently", "Unfortunately for you I am immortal and nothing you do will kill me or even hurt me", 
     "So how about you turn around and let me shit in peace?", "No?", "But you will surely die friend", "Don't you care?", "He's a real jerk...", "BUT I LIKE YOUR DETERMINATION!", "Survive my attacks for 75 seconds and I let you go", 
@@ -156,16 +158,30 @@ public class FaseManager9 : MonoBehaviour
             }
 
         if(contagem_falas_9 <= 17 && contagem_falas_9 >= 0) {
-            txtFalas.text = falas[contagem_falas_9];
+            if(GameManager.sem_dialogos == 0) {
+                txtFalas.text = falas[contagem_falas_9];
+            } else {
+                txtFalas.text = fala_mutado;
+            }
         }
 
         txt_tempo.text = tempo_sobreviver.ToString("F0");
 
-        if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_9) {
+        if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_9 && GameManager.sem_dialogos == 0) {
             contagem_falas_9++;
             if(contagem_falas_9 != 11 || contagem_falas_9 != 17) {
                 som_fala.Play();
             }
+        } else if(Input.GetKeyDown(KeyCode.Q) && GameManager.sem_dialogos == 1 && !pode_comecar_9) {
+            painel_falas.SetActive(false);
+            if(!pode_comecar_9) {
+                PlayerControle.conversando = false;
+                PlayerControle.pode_mexer = true;
+                PlayerControle.podeAtirar = true;
+                som_void.Stop();
+                musica_fase.Play();
+            }
+            pode_comecar_9 = true;
         }
 
         if(tempo_sobreviver > 0 && pode_comecar_9) {
@@ -315,11 +331,24 @@ public class FaseManager9 : MonoBehaviour
         yield return new WaitForSeconds(7f);
         PlayerControle.conversando = true;
         imagem.sprite = cara_irritado;
-        painel_falas.SetActive(true);
-        pode_comecar_9 = false;
-        contagem_falas_9 = 14;
+        if(GameManager.sem_dialogos == 0) {
+            painel_falas.SetActive(true);
+            pode_comecar_9 = false;
+            contagem_falas_9 = 14;
+        } else {
+            if(!cabo_tudo) {
+                som_void.Play();
+                musica_fase.Stop();
+                GameManager.Instance.SalvarSit(2, "Fase9");
+                cabo_tudo = true;
+                PlayerControle.conversando = false;
+                PlayerControle.pode_mexer = true;
+                PlayerControle.podeAtirar = true; 
+                escada.SetActive(true);
+            }
         Destroy(barra_vida);
         Destroy(txt_tempo);
+        }
     }
 
     IEnumerator escadaAparecer() {

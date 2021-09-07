@@ -28,6 +28,9 @@ public class Cientista : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("paredesSumir")) {
             escada.SetActive(true);
+            if(GameManager.sem_dialogos == 1) {
+                GameManager.Instance.SalvarSit(2, "Fase8");
+            }
             PlayerControle.conversando = false;
             PlayerControle.pode_mexer = true;
             PlayerControle.podeAtirar = true;

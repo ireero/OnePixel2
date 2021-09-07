@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AtivadorFalas : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject conquista;
+    public AudioSource conquista_som;
     void Start()
     {
         
@@ -22,6 +23,13 @@ public class AtivadorFalas : MonoBehaviour
                 PlayerControle.podeAtirar = false;
                 PlayerControle.pode_mexer = false;
                 FaseManager4.pode_comecar_4 = true;
+            } else if(FaseManager4.jaConversou) {
+                conquista_som.Play();
+                conquista.SetActive(true);
+                PlayerControle.jaPodePularDuas = true;
+                PlayerPrefs.SetInt("PularDuas", 1);
+                GameManager.Instance.SalvarSit(2, "Fase4");
+                Destroy(gameObject);
             }
         }
     }

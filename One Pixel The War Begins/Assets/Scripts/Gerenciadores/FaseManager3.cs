@@ -70,32 +70,37 @@ public class FaseManager3 : MonoBehaviour
         }
 
         if(GameManager.fase3 == 1 || GameManager.fase3 == 0) {
-            fala_personagens.Play();
             BarraVida1.sprite = icon_vida_normal;
             BarraVida2.sprite = icon_vida_normal;
             BarraVida3.sprite = icon_vida_normal;
             BarraVida1.color = Color.white;
             BarraVida2.color = Color.white;
             BarraVida3.color = Color.white;
+            if(GameManager.sem_dialogos == 0) {
+                fala_personagens.Play();
+                back_void.Play();
+                painel_falas.SetActive(true);
+                pode_comecar_3 = false;
+                contagem_falas_3 = 0;
+                PlayerControle.conversando = true;
+            } else {
+                PlayerControle.conversando = false;
+                PlayerControle.pode_mexer = true;
+                PlayerControle.podeAtirar = true;
+                backSound.Play();
+                pode_comecar_3 = true;
+            }
             umaVezBack = false;
-            back_void.Play();
             podeTocar = 0;
-            painel_falas.SetActive(true);
-            pode_comecar_3 = false;
-            contagem_falas_3 = 0;
-            PlayerControle.conversando = true;
         } else {
             Destroy(chefao);
             escada.SetActive(true);
             PlayerControle.conversando = false;
             PlayerControle.pode_mexer = true;
             PlayerControle.podeAtirar = true;
-            Destroy(BarraVida1);
-            Destroy(BarraVida2);
-            Destroy(BarraVida3);
-            Destroy(vidinha1);
-            Destroy(vidinha2);
-            Destroy(vidinha3);
+            Destroy(vidas[0]);
+            Destroy(vidas[1]);
+            Destroy(vidas[2]);
         }
     }
 

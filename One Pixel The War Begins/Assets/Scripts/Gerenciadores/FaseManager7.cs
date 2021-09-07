@@ -68,7 +68,7 @@ public class FaseManager7 : MonoBehaviour
             back.sprite = back_1;
             back.color = Color.white;
             tempo_spawn = 10.5f;
-            valor_momentaneo = 0;;
+            valor_momentaneo = 0;
             liberado = true;
             TiroPequenoChefao.modoHard = false;
             valor_aleatorio = 0;

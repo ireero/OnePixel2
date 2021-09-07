@@ -11,8 +11,13 @@ public class CabecaLobo : MonoBehaviour
     private float contador;
     private int tirosDados;
 
+    private float tempo = 0.5f;
+
     void Start()
     {
+        if(GameManager.sem_dialogos == 1) {
+            tempo = 0.3f;
+        }
         tirosDados = 0;
         podeAtirar = false;
         contador = 0;
@@ -26,7 +31,7 @@ public class CabecaLobo : MonoBehaviour
        contador += Time.deltaTime;
 
        if(podeAtirar) {
-           if(contador >= 0.5f) {
+           if(contador >= tempo) {
                Instantiate(tiro, spawn_tiro.position, spawn_tiro.rotation);
                tirosDados++;
                contador = 0;

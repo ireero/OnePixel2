@@ -5427,7 +5427,7 @@ MonoBehaviour:
   som_pulo: {fileID: 8300000, guid: 425e4db5bd2ed964b8bd2860515b79ba, type: 3}
   som_morte: {fileID: 8300000, guid: 77a74442a62d4694c995182d8b2c1ba1, type: 3}
   som_tiro: {fileID: 8300000, guid: 36b8413de2bb71c419bad47ab7843e0d, type: 3}
-  dash_sound: {fileID: 8300000, guid: e1a487741241c3540aebb544522991f6, type: 3}
+  dash_sound: {fileID: 8300000, guid: 31e9a9eb5d92738489699cf08bbdbb4e, type: 3}
   Barra_de_vida: {fileID: 0}
   valor_vida: {fileID: 0}
   BarraVidaMaior: {fileID: 0}

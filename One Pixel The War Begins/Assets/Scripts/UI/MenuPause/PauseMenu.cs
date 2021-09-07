@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour {
    [Space(20)]
    public Slider BarraVolume;
    public Toggle CaixaModoJanela;
+   public Toggle CaixaSemDialogo;
    public Dropdown Resolucoes, Qualidades;
    public Button BotaoReiniciar, BotaoVoltar, BotaoSalvarPref;
    [Space(20)]
@@ -82,6 +83,21 @@ public class PauseMenu : MonoBehaviour {
          PlayerPrefs.SetInt ("RESOLUCAO", resolucaoSalveIndex);
          Resolucoes.value = resolucaoSalveIndex;
       }
+
+      //=======SEM DIALOGOS=====//
+      if(PlayerPrefs.HasKey("semdialogos")) {
+         GameManager.sem_dialogos = PlayerPrefs.GetInt("semdialogos");
+         if(GameManager.sem_dialogos == 1) {
+            CaixaSemDialogo.isOn = true;
+         } else {
+            CaixaSemDialogo.isOn = false;
+         }
+      } else {
+         GameManager.sem_dialogos = 0;
+         PlayerPrefs.SetInt("semdialogos", GameManager.sem_dialogos);
+         CaixaSemDialogo.isOn = false;
+      }
+
       //=========QUALIDADES=========//
       if (PlayerPrefs.HasKey ("qualidadeGrafica")) {
          qualidadeGrafica = PlayerPrefs.GetInt ("qualidadeGrafica");
@@ -164,6 +180,7 @@ public class PauseMenu : MonoBehaviour {
       textoVol.gameObject.SetActive (ativarOP2);
       BarraVolume.gameObject.SetActive (ativarOP2);
       CaixaModoJanela.gameObject.SetActive (ativarOP2);
+      CaixaSemDialogo.gameObject.SetActive(ativarOP2);
       Resolucoes.gameObject.SetActive (ativarOP2);
       Qualidades.gameObject.SetActive (ativarOP2);
       BotaoVoltar.gameObject.SetActive (ativarOP2);
@@ -197,9 +214,17 @@ public class PauseMenu : MonoBehaviour {
          modoJanelaAtivo = 0;
          telaCheiaAtivada = true;
       }
+
+      if(CaixaSemDialogo.isOn == true) {
+         GameManager.sem_dialogos = 1;
+      } else {
+         GameManager.sem_dialogos = 0;
+      }
+
       PlayerPrefs.SetFloat ("VOLUME", BarraVolume.value);
       PlayerPrefs.SetInt ("qualidadeGrafica", Qualidades.value);
       PlayerPrefs.SetInt ("modoJanela", modoJanelaAtivo);
+      PlayerPrefs.SetInt ("semdialogos", GameManager.sem_dialogos);
       PlayerPrefs.SetInt ("RESOLUCAO", Resolucoes.value);
       resolucaoSalveIndex = Resolucoes.value;
       AplicarPreferencias ();

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public static int fase9;
     public static int fase10;
 
+    public static int sem_dialogos;
+
     public static int comecou_game;
 
     public static int progresso;

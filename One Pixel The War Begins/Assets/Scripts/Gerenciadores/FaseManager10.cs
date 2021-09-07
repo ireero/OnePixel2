@@ -63,12 +63,16 @@ public class FaseManager10 : MonoBehaviour
 
     public GameObject adaga;
     public Sprite meia_vida_caveira;
+    public Sprite cara_normal;
     private int i;
 
-    public Transform spawn_paredona_direita;
-    public Transform spawn_paredona_esquerda;
-
     private bool umaParedona;
+
+    public Transform[] lugares_na_esquerda;
+    public Transform[] lugares_na_direita;
+
+    public GameObject pedra_fina;
+    public GameObject pedra_pequena;
 
     void Start()
     {
@@ -83,6 +87,7 @@ public class FaseManager10 : MonoBehaviour
         TiroPequenoChefao.modoHard = true;
         umaParedona = false;
         i = 0;
+        contagem_falas_10 = 0;
         pode_comecar_10 = false;
         umaVez = false;
         contador = 0;
@@ -110,7 +115,7 @@ public class FaseManager10 : MonoBehaviour
                 painel_derrota.SetActive(true);
             }
 
-        if(PixelPreto.evo_pixel == 1) {
+        if(PixelPreto.evo_pixel == 1 && pode_comecar_10) {
             BarraVidaMaior.sprite = cara_transformado;
         } else if(PixelPreto.evo_pixel == 2) {
             BarraVidaMaior.sprite = meia_vida_caveira;
@@ -122,10 +127,10 @@ public class FaseManager10 : MonoBehaviour
                 Instantiate(paredona, lado_esquerdo.position, lado_esquerdo.rotation);
                 umaParedona = true;
             }
-            if(i <= 12) {
+            if(i <= 13) {
                 Instantiate(adaga, spawn_cima[i].position, spawn_cima[i].rotation);
                 i++;
-                if(i == 12) {
+                if(i == 13) {
                     i = 0;
                     PixelPreto.atirarAdagas = false;
                 }
@@ -188,6 +193,8 @@ public class FaseManager10 : MonoBehaviour
                 painel_conversas.SetActive(true);
                 PlayerControle.conversando = true;
                 img_carinha.color = Color.red;
+                BarraVidaMaior.sprite = cara_normal;
+                BarraVidaMaior.color = Color.red;
                 img_carinha.sprite = sprites_caras[0];
                 contorno_painel.sprite = sprites_painel_conversas[3];
                 break;
@@ -204,6 +211,7 @@ public class FaseManager10 : MonoBehaviour
                 img_carinha.sprite = sprites_caras[0];
                 break;
             case 41:
+                BarraVidaMaior.color = Color.white;
                 painel_conversas.SetActive(false);
                 PlayerControle.conversando = false;
                 PlayerControle.pode_mexer = true;
