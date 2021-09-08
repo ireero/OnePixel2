@@ -74,6 +74,13 @@ public class FaseManager10 : MonoBehaviour
     public GameObject pedra_fina;
     public GameObject pedra_pequena;
 
+    public int valor;
+    public int valor_prov;
+
+    public int valor_alet;
+    public int valor_alet_qual;
+    public float cont_spawn;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -84,6 +91,11 @@ public class FaseManager10 : MonoBehaviour
         if(GameManager.progresso <= 9) {
             GameManager.Instance.SalvarSit(10, "Progresso");
         }
+        valor_alet_qual = 0;
+        cont_spawn = 0;
+        valor_alet = 0;
+        valor_prov = 0;
+        valor = 0;
         TiroPequenoChefao.modoHard = true;
         umaParedona = false;
         i = 0;
@@ -147,6 +159,37 @@ public class FaseManager10 : MonoBehaviour
                 contador = 0;
             } else if(PixelPreto.tirosDados == 0) {
                 PixelPreto.atirarUmaVez = false;
+            }
+        }
+
+        if(PixelPreto.atirou_adagas == 6) {
+            valor_alet_qual = Random.Range(0, 2);
+            valor_alet = Random.Range(0, 10);
+            cont_spawn += Time.deltaTime;
+            if(PixelPreto.estaNaDireita) {
+                if(cont_spawn >= 0.65f && valor_alet != valor_prov) {
+                    if(valor_alet_qual == 0) {
+                        Instantiate(pedra_fina, lugares_na_esquerda[valor_alet].position, lugares_na_esquerda[valor_alet].rotation);
+                        Acrescenta();
+                    } else {
+                        Instantiate(pedra_pequena, lugares_na_esquerda[valor_alet].position, lugares_na_esquerda[valor_alet].rotation);
+                        Acrescenta();
+                    }
+                }
+            } else {
+                if(cont_spawn >= 0.65f && valor_alet != valor_prov) {
+                    if(valor_alet_qual == 0) {
+                        Instantiate(pedra_fina, lugares_na_direita[valor_alet].position, lugares_na_direita[valor_alet].rotation);
+                        Acrescenta();
+                    } else {
+                        Instantiate(pedra_pequena, lugares_na_direita[valor_alet].position, lugares_na_direita[valor_alet].rotation);
+                        Acrescenta();
+                    }
+                }
+            }
+
+            if(valor >= 30) {
+                PixelPreto.atirou_adagas++;
             }
         }
 
@@ -219,6 +262,12 @@ public class FaseManager10 : MonoBehaviour
                 pode_comecar_10 = true;
                 break;                                                
         }
+    }
+
+    private void Acrescenta() {
+        cont_spawn = 0;
+        valor_prov = valor_alet;
+        valor++;
     }
 
     private void BarraVida() {

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8274549330819536409}
   - component: {fileID: 8274549330819536408}
   - component: {fileID: 8274549330819536411}
+  - component: {fileID: -8118033295371904889}
+  - component: {fileID: 3765475181238054632}
   m_Layer: 9
   m_Name: pedra_fina
   m_TagString: bullet_inimiga
@@ -121,7 +123,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.9142857, y: 0.9142857}
+    oldSize: {x: 1.0666667, y: 1.0666667}
     newSize: {x: 0.9142857, y: 0.9142857}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -139,3 +141,36 @@ PolygonCollider2D:
       - {x: 0.086275324, y: -0.22947179}
       - {x: 0.0065231957, y: 0.2217091}
       - {x: -0.007592976, y: 0.28644487}
+--- !u!50 &-8118033295371904889
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274549330819536415}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0.05
+  m_Material: {fileID: 6200000, guid: 44ab45a8bc33bb74a95bd842c839849d, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &3765475181238054632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274549330819536415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8caf56470b78944a41b69df2344c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

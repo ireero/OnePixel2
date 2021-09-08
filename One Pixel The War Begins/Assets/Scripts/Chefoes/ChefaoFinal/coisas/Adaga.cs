@@ -29,7 +29,10 @@ public class Adaga : MonoBehaviour
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         } else if(other.gameObject.CompareTag("plataforma")) {
-            Destroy(gameObject);
+            collider.isTrigger = true;
+            anim.SetBool("sumir", true);
+            Destroy(gameObject, 0.6f);
+            corpo.bodyType = RigidbodyType2D.Static;
         }
     }
 

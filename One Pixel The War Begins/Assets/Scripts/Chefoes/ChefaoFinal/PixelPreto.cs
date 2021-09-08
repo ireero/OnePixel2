@@ -61,7 +61,7 @@ public class PixelPreto : MonoBehaviour
     public static bool atirarAdagas;
     private float cont_adaga;
 
-    private int atirou_adagas;
+    public static int atirou_adagas;
 
     public static bool hora_do_socao;
     public static bool suga_as_pedra;
@@ -72,8 +72,13 @@ public class PixelPreto : MonoBehaviour
 
     public GameObject getsuga;
 
+    private int getsugas_dados;
+
+    public GameObject sulgador;
+
     void Start()
     {
+        getsugas_dados = 0;
         suga_as_pedra = false;
         hora_do_socao = false;
         atirou_adagas = 0;
@@ -214,7 +219,7 @@ public class PixelPreto : MonoBehaviour
                                 hora_do_socao = true;
                             }
 
-                            if(cont_adaga >= 2.5f && atirou_adagas == 3 && hora_do_socao) {
+                            if(cont_adaga >= 1.8f && atirou_adagas == 3 && hora_do_socao) {
                                 anim.SetBool("socao_time", true);
                                 cont_adaga = 0;
                                 hora_do_socao = false;
@@ -237,6 +242,19 @@ public class PixelPreto : MonoBehaviour
                                 } else {
                                     transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
                                 }
+                            } else if(atirou_adagas == 5) {
+                                anim.SetBool("espadas", true);
+                                if(cont_adaga >= 2f && getsugas_dados <= 6) {
+                                    anim.SetBool("ataque_espadas", true);
+                                    cont_adaga = 0;
+                                    StartCoroutine("calmaEspada");
+                                    if(getsugas_dados == 6) {
+                                        atirou_adagas++;
+                                    }
+                                }
+                            } else if(atirou_adagas == 6) {
+                                sulgador.SetActive(true);
+                                anim.SetBool("espadas", false);
                             }
 
                             if(!atirarAdagas) {
@@ -283,6 +301,16 @@ public class PixelPreto : MonoBehaviour
         yield return new WaitForSeconds(0.55f);
         Instantiate(explosao_meia_vida, spawn_tiro_segunda_explosao.position, spawn_tiro_segunda_explosao.rotation);
         anim.SetBool("socao_time", false);
+    }
+
+    IEnumerator calmaEspada() {
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool("ataque_espadas", false);
+    }
+
+    public void atirarGetsuga() {
+        Instantiate(getsuga, spawn_tiro_bala.position, spawn_tiro_bala.rotation);
+        getsugas_dados++;
     }
 
     IEnumerator seguirPlay() {
