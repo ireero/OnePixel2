@@ -263,7 +263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15912768, y: 0.28500003}
   m_AnchorMax: {x: 0.845, y: 0.40448534}
-  m_AnchoredPosition: {x: -0.5, y: 0.0000076293945}
+  m_AnchoredPosition: {x: -0.5, y: 0.000015258789}
   m_SizeDelta: {x: -1, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &139050978
@@ -450,7 +450,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fases
+  m_Text: Phases
 --- !u!222 &235792229
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -529,7 +529,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Carregar
+  m_Text: Continue
 --- !u!222 &390436203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1358,7 +1358,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jogar
+  m_Text: Play
 --- !u!222 &977009235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1777,7 +1777,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sair
+  m_Text: Go Out
 --- !u!222 &1254630194
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1896,6 +1896,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   painel_alerta_iniciar: {fileID: 2024259067}
   som_click: {fileID: 1070107189}
+  txt_jogar: {fileID: 977009234}
+  txt_continuar: {fileID: 390436202}
+  txt_fases: {fileID: 235792228}
+  txt_creditos: {fileID: 1521284291}
+  txt_sair: {fileID: 1254630193}
 --- !u!4 &1276411348
 Transform:
   m_ObjectHideFlags: 0
@@ -2447,7 +2452,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Creditos
+  m_Text: Credits
 --- !u!222 &1521284292
 CanvasRenderer:
   m_ObjectHideFlags: 0

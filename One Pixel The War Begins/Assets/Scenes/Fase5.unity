@@ -1060,7 +1060,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sem Dialogos
+  m_Text: No Dialogues
 --- !u!222 &133882662
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1627,7 +1627,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reiniciar
+  m_Text: Restart
 --- !u!222 &360038828
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2441,7 +2441,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Salvar prefs
+  m_Text: Save Preferences
 --- !u!222 &497774672
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2908,7 +2908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Voltar
+  m_Text: Come Back
 --- !u!222 &621633395
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3108,7 +3108,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Modo Janela
+  m_Text: Window Mode
 --- !u!222 &652475024
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4388,7 +4388,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Voltar ao Menu
+  m_Text: Back To Menu
 --- !u!222 &877898077
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7800,7 +7800,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Op\xE7\xF5es"
+  m_Text: Options
 --- !u!222 &1706539188
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8075,6 +8075,11 @@ PrefabInstance:
       objectReference: {fileID: 952486995}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
+      propertyPath: txt_jogar
+      value: 
+      objectReference: {fileID: 800590950}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
       propertyPath: Qualidades
       value: 
       objectReference: {fileID: 92102172}
@@ -8083,6 +8088,21 @@ PrefabInstance:
       propertyPath: Resolucoes
       value: 
       objectReference: {fileID: 1183245816}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_opcoes
+      value: 
+      objectReference: {fileID: 1706539187}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_salvar
+      value: 
+      objectReference: {fileID: 497774671}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_voltar
+      value: 
+      objectReference: {fileID: 621633394}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BarraVolume
@@ -8098,6 +8118,11 @@ PrefabInstance:
       propertyPath: BotaoVoltar
       value: 
       objectReference: {fileID: 277412122}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_reiniciar
+      value: 
+      objectReference: {fileID: 360038827}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BotaoReiniciar
@@ -8123,6 +8148,21 @@ PrefabInstance:
       propertyPath: painel_de_pause
       value: 
       objectReference: {fileID: 1915836121}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_modo_janela
+      value: 
+      objectReference: {fileID: 652475023}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_voltar_menu
+      value: 
+      objectReference: {fileID: 877898076}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_sem_dialogos
+      value: 
+      objectReference: {fileID: 133882661}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BotaoVoltarAoMenu

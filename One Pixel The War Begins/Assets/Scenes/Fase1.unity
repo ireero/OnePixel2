@@ -1603,6 +1603,11 @@ PrefabInstance:
       objectReference: {fileID: 1437454949}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
+      propertyPath: txt_jogar
+      value: 
+      objectReference: {fileID: 1444686690}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
       propertyPath: Qualidades
       value: 
       objectReference: {fileID: 612565067}
@@ -1611,6 +1616,21 @@ PrefabInstance:
       propertyPath: Resolucoes
       value: 
       objectReference: {fileID: 1297253247}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_opcoes
+      value: 
+      objectReference: {fileID: 471911281}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_salvar
+      value: 
+      objectReference: {fileID: 1526439122}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_voltar
+      value: 
+      objectReference: {fileID: 328241323}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BarraVolume
@@ -1626,6 +1646,11 @@ PrefabInstance:
       propertyPath: BotaoVoltar
       value: 
       objectReference: {fileID: 866966544}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_reiniciar
+      value: 
+      objectReference: {fileID: 868775920}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BotaoReiniciar
@@ -1651,6 +1676,21 @@ PrefabInstance:
       propertyPath: painel_de_pause
       value: 
       objectReference: {fileID: 818160987}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_modo_janela
+      value: 
+      objectReference: {fileID: 1694586670}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_voltar_menu
+      value: 
+      objectReference: {fileID: 1504138858}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: txt_sem_dialogos
+      value: 
+      objectReference: {fileID: 1001780135}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BotaoVoltarAoMenu
@@ -2043,7 +2083,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Voltar
+  m_Text: "\rCome back"
 --- !u!222 &328241324
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2982,7 +3022,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Op\xE7\xF5es"
+  m_Text: Options
 --- !u!222 &471911282
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4980,7 +5020,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reiniciar
+  m_Text: Restart
 --- !u!222 &868775921
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5567,7 +5607,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sem Dialogos
+  m_Text: No dialogues
 --- !u!222 &1001780136
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7511,7 +7551,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Voltar ao Menu
+  m_Text: Back to Menu
 --- !u!222 &1504138859
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7687,7 +7727,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Salvar prefs
+  m_Text: save Preferences
 --- !u!222 &1526439123
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8084,7 +8124,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Modo Janela
+  m_Text: Window Mode
 --- !u!222 &1694586671
 CanvasRenderer:
   m_ObjectHideFlags: 0

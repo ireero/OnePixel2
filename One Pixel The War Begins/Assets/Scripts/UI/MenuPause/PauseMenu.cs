@@ -24,8 +24,37 @@ public class PauseMenu : MonoBehaviour {
 
    public AudioSource som_click;
 
+   public Text txt_reiniciar;
+   public Text txt_jogar;
+   public Text txt_opcoes;
+   public Text txt_voltar_menu;
+   public Text txt_modo_janela;
+   public Text txt_sem_dialogos;
+   public Text txt_voltar;
+   public Text txt_salvar;
+
+   public string text_reiniciar = "Reiniciar";
+   private string text_jogar = "Jogar";
+   private string text_opcoes = "Opções";
+   private string text_voltar_menu = "Voltar ao Menu";
+   private string text_modo_janela = "Modo Janela";
+   private string text_sem_dialogos = "Sem Diálogos";
+   private string text_voltar = "Voltar";
+   private string text_salvar = "Salvar Prefs";
+
    void Awake(){
       resolucoesSuportadas = Screen.resolutions;
+
+      if(Application.systemLanguage == SystemLanguage.Portuguese) {
+         txt_reiniciar.text = text_reiniciar;
+         txt_jogar.text = text_jogar;
+         txt_opcoes.text = text_opcoes;
+         txt_voltar_menu.text = text_voltar_menu;
+         txt_modo_janela.text = text_modo_janela;
+         txt_sem_dialogos.text = text_sem_dialogos;
+         txt_voltar.text = text_voltar;
+         txt_salvar.text = text_salvar;
+      }
    }
 
    void Start () {

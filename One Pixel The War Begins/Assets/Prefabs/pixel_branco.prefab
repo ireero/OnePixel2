@@ -5460,6 +5460,7 @@ MonoBehaviour:
   BotaoVoltarAoMenu: {fileID: 0}
   BarraVolume: {fileID: 0}
   CaixaModoJanela: {fileID: 0}
+  CaixaSemDialogo: {fileID: 0}
   Resolucoes: {fileID: 0}
   Qualidades: {fileID: 0}
   BotaoReiniciar: {fileID: 0}
@@ -5468,3 +5469,12 @@ MonoBehaviour:
   textoVol: {fileID: 0}
   nomeCenaMenu: Menu
   som_click: {fileID: 0}
+  txt_reiniciar: {fileID: 0}
+  txt_jogar: {fileID: 0}
+  txt_opcoes: {fileID: 0}
+  txt_voltar_menu: {fileID: 0}
+  txt_modo_janela: {fileID: 0}
+  txt_sem_dialogos: {fileID: 0}
+  txt_voltar: {fileID: 0}
+  txt_salvar: {fileID: 0}
+  text_reiniciar: Reiniciar
