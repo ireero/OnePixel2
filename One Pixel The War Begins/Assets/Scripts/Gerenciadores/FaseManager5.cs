@@ -139,7 +139,11 @@ public class FaseManager5 : MonoBehaviour
             }
 
             if(contagem_falas_5 <= 13 && contagem_falas_5 >= 0) {
-                txtFalas.text = falas_palhaco[contagem_falas_5];
+                if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                    txtFalas.text = falas_palhaco[contagem_falas_5];
+                } else {
+                    txtFalas.text = falas_palhaco_ingles[contagem_falas_5];
+                }
             }
 
             switch(contagem_falas_5) {

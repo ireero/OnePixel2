@@ -14,6 +14,9 @@ public class MenuFases : MonoBehaviour
 
     public AudioSource som_click;
 
+    public Text[] nome_fases;
+    private string[] text_nome_fases = {"Fase 1", "Fase 2", "Fase 3", "Fase 4", "Fase 5", "Fase 6", "Fase 7", "Fase 8", "Fase 9", "Fase 10"};
+
     void Start()
     {
         Time.timeScale = 1;
@@ -66,6 +69,12 @@ public class MenuFases : MonoBehaviour
         if(GameManager.fase10 != 0) {
             imagens_fases[9].sprite = sprites_fases[9];
             podeclicar[9] = true;
+        }
+
+        if(Application.systemLanguage == SystemLanguage.Portuguese) {
+            for(int i = 0; i <= 9; i++) {
+                nome_fases[i].text = text_nome_fases[i];
+            }
         }
     }
 

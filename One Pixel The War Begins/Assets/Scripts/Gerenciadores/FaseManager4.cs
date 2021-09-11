@@ -102,7 +102,11 @@ public class FaseManager4 : MonoBehaviour
         }
 
         if(contagem_falas_4 <= 7 && contagem_falas_4 >= 0) {
-            txtFalas.text = falas_meditador[contagem_falas_4];
+            if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                txtFalas.text = falas_meditador[contagem_falas_4];
+            } else {
+                txtFalas.text = falas_meditador_ingles[contagem_falas_4];
+            }
         }
 
         switch(contagem_falas_4) {

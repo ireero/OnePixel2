@@ -10,6 +10,7 @@ public class CabecaLobo : MonoBehaviour
     private bool podeAtirar;
     private float contador;
     private int tirosDados;
+    private AudioSource som_flecha;
 
     private float tempo = 0.5f;
 
@@ -23,6 +24,7 @@ public class CabecaLobo : MonoBehaviour
         contador = 0;
         StartCoroutine("atirar");
         anim = GetComponent<Animator>();
+        som_flecha = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class CabecaLobo : MonoBehaviour
 
        if(podeAtirar) {
            if(contador >= tempo) {
+               som_flecha.Play();
                Instantiate(tiro, spawn_tiro.position, spawn_tiro.rotation);
                tirosDados++;
                contador = 0;

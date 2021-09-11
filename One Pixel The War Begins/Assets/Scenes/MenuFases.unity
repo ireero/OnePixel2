@@ -441,7 +441,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 1
+  m_Text: Phase 1
 --- !u!222 &352265145
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 10
+  m_Text: Phase 10
 --- !u!222 &395421599
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -665,7 +665,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 9
+  m_Text: Phase 9
 --- !u!222 &416573493
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -865,7 +865,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 153714365}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.080661654
+  m_Size: 0.08224795
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -978,7 +978,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 8
+  m_Text: Phase 8
 --- !u!222 &496819144
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1057,7 +1057,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 7
+  m_Text: Phase 7
 --- !u!222 &503837316
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1571,7 +1571,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 3
+  m_Text: Phase 3
 --- !u!222 &843450956
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1873,7 +1873,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 6
+  m_Text: Phase 6
 --- !u!222 &962849780
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2168,7 +2168,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 2
+  m_Text: Phase 2
 --- !u!222 &1124099592
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2363,6 +2363,17 @@ MonoBehaviour:
   - {fileID: 2143084820}
   podeclicar: 00000000000000000000
   som_click: {fileID: 336226464}
+  nome_fases:
+  - {fileID: 352265144}
+  - {fileID: 1124099591}
+  - {fileID: 843450955}
+  - {fileID: 1400190921}
+  - {fileID: 1557466958}
+  - {fileID: 962849779}
+  - {fileID: 503837315}
+  - {fileID: 496819143}
+  - {fileID: 416573492}
+  - {fileID: 395421598}
 --- !u!4 &1230696054
 Transform:
   m_ObjectHideFlags: 0
@@ -2447,7 +2458,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 4
+  m_Text: Phase 4
 --- !u!222 &1400190922
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3025,7 +3036,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fase 5
+  m_Text: Phase 5
 --- !u!222 &1557466959
 CanvasRenderer:
   m_ObjectHideFlags: 0

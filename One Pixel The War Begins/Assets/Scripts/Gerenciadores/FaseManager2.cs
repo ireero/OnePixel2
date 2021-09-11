@@ -103,7 +103,11 @@ public class FaseManager2 : MonoBehaviour
         AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
 
         if(contagem_falas_2 <= 5 && contagem_falas_2 >= 0) {
-            txtFalas.text = falas_chefao[contagem_falas_2];
+            if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                txtFalas.text = falas_chefao[contagem_falas_2];
+            } else {
+                txtFalas.text = falas_chefao_ingles[contagem_falas_2];
+            }
             }
 
             switch(contagem_falas_2) {

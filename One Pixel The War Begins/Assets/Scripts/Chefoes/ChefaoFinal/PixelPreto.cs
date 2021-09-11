@@ -131,7 +131,7 @@ public class PixelPreto : MonoBehaviour
                     StartCoroutine("Atirar");
             }
 
-                if(contador >= 25f && !pularUmaVez) {
+                if(contador >= 30f && !pularUmaVez) {
                     anim.SetBool("rugindo", false);
                     anim.SetBool("andando", true);
                     atirar_normal = false;
@@ -240,6 +240,14 @@ public class PixelPreto : MonoBehaviour
                                         anim.SetBool("pousando", true);
                                     }
                                 } else {
+                                    if(transform.position.x <= ponto_esquerda.position.x) {
+                                        Vector3 vetor = transform.localScale;
+                                        vetor.x *= -1;
+                                        transform.localScale = vetor;
+                                        estaNaDireita = false;
+                                        atirou_adagas++;
+                                        anim.SetBool("pousando", true);
+                                    }
                                     transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
                                 }
                             } else if(atirou_adagas == 5) {
@@ -255,6 +263,15 @@ public class PixelPreto : MonoBehaviour
                             } else if(atirou_adagas == 6) {
                                 sulgador.SetActive(true);
                                 anim.SetBool("espadas", false);
+                                cont_adaga = 0;
+                            } else if(atirou_adagas == 7) {
+                                sulgador.SetActive(false);
+                                anim.SetBool("idle_pousado", true);
+                                if(cont_adaga >= 4f && atirou_adagas == 7) {
+                                    atirou_adagas = 0;
+                                    cont_adaga = 0;
+                                    FaseManager10.umaParedona = false;
+                                }
                             }
 
                             if(!atirarAdagas) {
@@ -279,7 +296,7 @@ public class PixelPreto : MonoBehaviour
         }
         if(other.gameObject.CompareTag("bullet")) {
             vida_pixel_preto--;
-            if(vida_pixel_preto <= 480) {
+            if(vida_pixel_preto <= 250) {
                 meia_vida = true;
             }
         }

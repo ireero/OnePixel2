@@ -21,6 +21,8 @@ public class Chefao06 : MonoBehaviour
 
     private bool umTerremoto;
 
+    public Animator do_background;
+
     void Start()
     {
         umTerremoto = false;
@@ -44,6 +46,7 @@ public class Chefao06 : MonoBehaviour
         contador += Time.deltaTime;
         if(contador >= 5f && !camuflado_ja) {
             Camera.tremer_bastante = true;
+            do_background.SetBool("mexer", true);
             if(!umTerremoto) {
                 terremoto.Play();
                 umTerremoto = true;
@@ -86,6 +89,7 @@ public class Chefao06 : MonoBehaviour
     IEnumerator idleAposNascer() {
         yield return new WaitForSeconds(1.5f);
         Camera.tremer_bastante = false;
+        do_background.SetBool("mexer", false);
         anim.SetBool("idle", true);
     }
 
@@ -94,6 +98,7 @@ public class Chefao06 : MonoBehaviour
         umTerremoto = false;
         terremoto.Stop();
         Camera.tremer_bastante = false;
+        do_background.SetBool("mexer", false);
         umaVez = false;
         atacando = true;
         anim.SetBool("atacar", false);

@@ -94,7 +94,11 @@ public class FaseManager8 : MonoBehaviour
         }
 
         if(contagem_falas_8 <= 8 && contagem_falas_8 >= 0) {
-            txtFalas.text = falas_cientista[contagem_falas_8];
+            if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                txtFalas.text = falas_cientista[contagem_falas_8];
+            } else {
+                txtFalas.text = falas_cientista_ingles[contagem_falas_8];
+            }
         }
 
         if(contagem_falas_8 == 8) {

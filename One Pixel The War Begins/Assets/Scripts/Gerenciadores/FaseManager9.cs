@@ -159,7 +159,11 @@ public class FaseManager9 : MonoBehaviour
 
         if(contagem_falas_9 <= 17 && contagem_falas_9 >= 0) {
             if(GameManager.sem_dialogos == 0) {
-                txtFalas.text = falas[contagem_falas_9];
+                if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                    txtFalas.text = falas[contagem_falas_9];
+                } else {
+                    txtFalas.text = falas_ingles[contagem_falas_9];
+                }
             } else {
                 txtFalas.text = fala_mutado;
             }

@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Voc\xEA Perdeu"
+  m_Text: You Lost
 --- !u!222 &9128803
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1718,7 +1718,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reiniciar
+  m_Text: Restart
 --- !u!222 &301150088
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3057,6 +3057,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt_frase: {fileID: 293996825}
   som_click: {fileID: 1573174543}
+  txt_perdeu: {fileID: 9128802}
+  txt_reiniciar: {fileID: 301150087}
+  txt_voltar_menu: {fileID: 1564390326}
 --- !u!1 &553280288
 GameObject:
   m_ObjectHideFlags: 0
@@ -7608,7 +7611,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Voltar ao Menu
+  m_Text: Back To Menu
 --- !u!222 &1564390327
 CanvasRenderer:
   m_ObjectHideFlags: 0

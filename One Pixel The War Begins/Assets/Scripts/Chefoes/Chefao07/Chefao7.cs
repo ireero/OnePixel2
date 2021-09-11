@@ -10,6 +10,7 @@ public class Chefao7 : MonoBehaviour
     public static bool possuido;
     public static bool bateu_nele;
     private BoxCollider2D collider;
+    public Animator do_background;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class Chefao7 : MonoBehaviour
 
         if(FaseManager9.acabou == true) {
             Camera.tremer_bastante = true;
+            do_background.SetBool("mexer", true);
             anim.SetBool("transformar", false);
             StartCoroutine("voltarNormal");
         }
@@ -70,6 +72,7 @@ public class Chefao7 : MonoBehaviour
         possuido = false;
         FaseManager9.acabou = false;
         Camera.tremer_bastante = false;
+        do_background.SetBool("mexer", false);
         anim.SetBool("sumir", true);
         collider.isTrigger = false;
     }

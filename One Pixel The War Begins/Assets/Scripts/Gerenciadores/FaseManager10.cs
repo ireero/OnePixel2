@@ -11,24 +11,30 @@ public class FaseManager10 : MonoBehaviour
     "É uma pena um grupo específico ser diminuído", "É uma pena que após anos de convivência em harmonia do nada viramos rivais", "Não temos mais representante no trono", 
     "Não temos mais nenhuma voz", "Não somos mais todos iguais", "Somos constantemente ameaçados", "Vivemos com medo de sofrer um ataque", "Dormimos com medo de nunca acordar", "Acordamos com medo de sofrer extermínio", 
     "E um dia simplesmente cansamos de toda humilhação e resolvemos revidar...", "Desculpe, mas chegou a hora de você descansar.","", "Vejo que você adquiriu algumas coisas no seu caminho até aqui", 
-    "é irônico você estar usando fruto de pesquisas que eu iniciei, não acha?", "Você nunca quis estudar nada", "Nunca quis apoiar e remunarar aqueles que procuravam maneiras de evoluirmos", "Olhe para você agora, todo equipado...", 
+    "É irônico você estar usando fruto de pesquisas que eu iniciei, não acha?", "Você nunca quis estudar nada", "Nunca quis apoiar e remunerar aqueles que procuravam maneiras de evoluirmos", "Olhe para você agora, todo equipado...", 
     "Deixa eu te atualizar do que você andou perdendo...", "Pesquisas mostram que somos a menor estrutura molecular de tudo", "Somos o inicio e fim de tudo", "Temos o poder de nos transformar em qualquer coisa", 
-    "Mas com grandes poderes vem grandes responsabilidades não é mesmo?", "Para um grande poder precisamos de uma grande energia, grandes modificações, grande treinamento e muito mais", "Graças ao Pixel vermelho temos tudo o que precisavámos para finalmente tomar o poder", 
+    "Mas com grandes poderes vem grandes responsabilidades não é mesmo?", "Para um grande poder precisamos de uma grande energia, grandes modificações, grande treinamento e muito mais", "Graças ao Pixel vermelho temos tudo o que precisávamos para finalmente tomar o poder", 
     "Foi mais fácil do que parece, você acredita?", "Um governante burro que deixa sua cidade várias e várias vezes com a desculpa de buscar novos recursos", "Um governante que não se importa com o que acontece nos becos de sua cidade", 
-    "Você praticamente pediu por isso Pixel Branco", "O que vou te mostrar agora está além de tudo que você já viu", "Está além dessa sua mente fechada e estupida", "Quando eu terminar você não estará mais aqui para poder contemplar o meu plano", 
+    "Você praticamente pediu por isso Pixel Branco", "O que vou-te mostrar agora está além de tudo que você já viu", "Está além dessa sua mente fechada e estúpida", "Está além de todos que você enfrentou até agora", 
     "AGORA MORRA PARA AQUELE QUE VOCÊ SEMPRE MENOSPREZOU!"};
 
     private string[] falas_pixel_preto_ingles = {"...", "Hello", "I didn't expect to see him again", "At least not in this situation...", "You know, I swear I tried to avoid all this", "I swear...", 
     "Leave it, there is no explanation that justifies this massacre", "Unfortunately I have no way back", "It is a shame that a whole people suffers because of the decisions of its rulers, don't you think?", 
     "It is a pity that a specific group is diminished", "It is a pity that after years of living together in harmony we suddenly become rivals", "We no longer have a representative on the throne", 
     "We no longer have any voice", "We are no longer all the same", "We are constantly threatened", "We live in fear of having an attack", "We sleep with the fear of never waking up", "We wake up in fear of extermination", 
-    "And one day we simply got tired of all the humiliation and decided to fight back...", "Sorry, but it is time for you to rest."};
+    "And one day we simply got tired of all the humiliation and decided to fight back...", "Sorry, but it is time for you to rest.", "", "I see that you have acquired some things on your way here", 
+    "It is ironic that you are using fruit from research I initiated, don't you think?", "You never wanted to study anything", "I never wanted to support and remunerate those who were looking for ways to evolve", "Look at you now, all equipped..", 
+    "Let me update you on what you have been missing...", "Research shows we are the smallest molecular structure of all", "We are the beginning and the end of everything", "We have the power to transform ourselves into anything", 
+    "But with great power comes great responsibility, doesn't it?", "For great power we need great energy, great modifications, great training and much more", "Thanks to the Red Pixel we have everything we needed to finally take power", 
+    "It was easier than it looks, can you believe it?", "A dumb governor who leaves his city over and over again with the excuse of seeking new resources", "A governor who doesn't care what happens in the back alleys of his city", 
+    "ou practically asked for it White Pixel", "What I will show you now is beyond anything you have ever seen", "It is beyond your closed and stupid mind", "It is beyond all that you have faced so far", 
+    "NOW DIE TO THE ONE YOU HAVE ALWAYS DESPISED!"};
 
     public GameObject bolaFogo;
     private float delayTiro;
 
     public Transform[] spawn_cima;
-    private int valor_aleatorio;
+    public static int valor_aleatorio;
 
     private float contador;
 
@@ -66,7 +72,7 @@ public class FaseManager10 : MonoBehaviour
     public Sprite cara_normal;
     private int i;
 
-    private bool umaParedona;
+    public static bool umaParedona;
 
     public Transform[] lugares_na_esquerda;
     public Transform[] lugares_na_direita;
@@ -116,7 +122,11 @@ public class FaseManager10 : MonoBehaviour
         AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
 
         if(contagem_falas_10 <= 40 && contagem_falas_10 >= 0) {
-            txt_falas.text = falas_pixel_preto[contagem_falas_10];
+            if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                txt_falas.text = falas_pixel_preto[contagem_falas_10];
+            } else {
+                txt_falas.text = falas_pixel_preto_ingles[contagem_falas_10];
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_10) {
@@ -158,7 +168,7 @@ public class FaseManager10 : MonoBehaviour
                 PixelPreto.tirosDados--;
                 contador = 0;
             } else if(PixelPreto.tirosDados == 0) {
-                PixelPreto.atirarUmaVez = false;
+                StartCoroutine("podeIr");
             }
         }
 
@@ -272,5 +282,10 @@ public class FaseManager10 : MonoBehaviour
 
     private void BarraVida() {
         vida_restante.fillAmount = PixelPreto.vida_pixel_preto / vida_maxima;
+    }
+
+    IEnumerator podeIr() {
+        yield return new WaitForSeconds(5f);
+        PixelPreto.atirarUmaVez = false;
     }
 }

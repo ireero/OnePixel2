@@ -95,7 +95,11 @@ public class TextoTutorial : MonoBehaviour
     private void Update() {
 
         if(contagem <= 7 && contagem >= 0) {
-            txtTutorial.text = instrucoes[contagem];
+            if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                txtTutorial.text = instrucoes[contagem];
+            } else {
+                txtTutorial.text = instrucoes_ingles[contagem];
+            }
         } 
 
         AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");

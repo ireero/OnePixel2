@@ -184,7 +184,11 @@ public class FaseManager : MonoBehaviour
         }
 
         if(contagem_falas <= 8 && contagem_falas >= 0) {
-            txtFalas.text = falas[contagem_falas];
+            if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                txtFalas.text = falas[contagem_falas];
+            } else {
+                txtFalas.text = falas_ingles[contagem_falas];
+            }
             if(contagem_falas >= 1 && contagem_falas <= 2) {
                 imagem.sprite = cara_raiva;
             } else if(contagem_falas >= 2 && contagem_falas <= 4) {

@@ -57,6 +57,8 @@ public class Chefao05 : MonoBehaviour
 
     public bool umaMorte;
 
+    public Animator do_background;
+
     void Start()
     {
         umaMorte = false;
@@ -130,6 +132,7 @@ public class Chefao05 : MonoBehaviour
             anim.SetBool("idle_atacando3", false);
             FaseManager6.podeCair = false;
             Camera.tremer_bastante = false;
+            do_background.SetBool("mexer", false);
             pode_atirar = false;
             StartCoroutine("voltarDoAtaque");
         }
@@ -148,6 +151,7 @@ public class Chefao05 : MonoBehaviour
             collider.isTrigger = true;
             FaseManager6.podeCair = false;
             Camera.tremer_bastante = false;
+            do_background.SetBool("mexer", false);
             morto = true;
             sr.color = Color.white;
             base_sr.color = Color.white;
@@ -175,6 +179,7 @@ public class Chefao05 : MonoBehaviour
                 umaVez = true;
                 FaseManager6.podeCair = false;
                 Camera.tremer_bastante = false;
+                do_background.SetBool("mexer", false);
                 metade_da_vida = true;
                 contador = -5f;
                 if(pode_atirar) {
@@ -249,6 +254,7 @@ public class Chefao05 : MonoBehaviour
         }
         FaseManager6.podeCair = true;
         Camera.tremer_bastante = true;
+        do_background.SetBool("mexer", true);
         if(valor == 1) {
             anim.SetBool("atacando", false);
             anim.SetBool("idle_atacando", true);

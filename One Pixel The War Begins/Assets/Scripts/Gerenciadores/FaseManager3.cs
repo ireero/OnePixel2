@@ -122,7 +122,11 @@ public class FaseManager3 : MonoBehaviour
         }
 
         if(contagem_falas_3 <= 9 && contagem_falas_3 >= 0) {
-            txtFalas.text = falas_chefao[contagem_falas_3];
+            if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                txtFalas.text = falas_chefao[contagem_falas_3];
+            } else {
+                txtFalas.text = falas_chefao_ingles[contagem_falas_3];
+            }
         }
 
         switch(contagem_falas_3) {
