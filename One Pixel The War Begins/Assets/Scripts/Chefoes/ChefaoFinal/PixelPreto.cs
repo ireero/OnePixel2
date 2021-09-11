@@ -131,7 +131,7 @@ public class PixelPreto : MonoBehaviour
                     StartCoroutine("Atirar");
             }
 
-                if(contador >= 30f && !pularUmaVez) {
+                if(contador >= 28f && !pularUmaVez) {
                     anim.SetBool("rugindo", false);
                     anim.SetBool("andando", true);
                     atirar_normal = false;
@@ -174,13 +174,20 @@ public class PixelPreto : MonoBehaviour
 
                 if(AtirouJa && atirar_normal) {
                     contador2 += Time.deltaTime;
-                    if(contador >= 3.5f) {
+                    if(contador >= 3f) {
                         anim.SetBool("rugindo", true);
                         anim.SetBool("idle", false);
                         StartCoroutine("Tirao");
                     }
                 }
             } else {
+
+                if(vida_pixel_preto <= 0) {
+                    collider.isTrigger = true;
+                    corpo.bodyType = RigidbodyType2D.Static;
+                    anim.SetBool("morrer", true);
+                }
+
                 if(!pode_comecar) {
                     anim.SetBool("meia_vida", true);
                     corpo.bodyType = RigidbodyType2D.Dynamic;
@@ -241,10 +248,7 @@ public class PixelPreto : MonoBehaviour
                                     }
                                 } else {
                                     if(transform.position.x <= ponto_esquerda.position.x) {
-                                        Vector3 vetor = transform.localScale;
-                                        vetor.x *= -1;
-                                        transform.localScale = vetor;
-                                        estaNaDireita = false;
+                                        estaNaDireita = true;
                                         atirou_adagas++;
                                         anim.SetBool("pousando", true);
                                     }
@@ -298,6 +302,7 @@ public class PixelPreto : MonoBehaviour
             vida_pixel_preto--;
             if(vida_pixel_preto <= 250) {
                 meia_vida = true;
+                AtirouJa = false;
             }
         }
 

@@ -45,6 +45,7 @@ public class MenuDerrota : MonoBehaviour
             txt_frase.text = frases[valor_alet];
             txt_perdeu.text = text_perdeu;
             txt_reiniciar.text = text_reiniciar;
+            txt_voltar_menu.text = text_voltar_menu;
         } else {
             txt_frase.text = frases_ingles[valor_alet];
         }

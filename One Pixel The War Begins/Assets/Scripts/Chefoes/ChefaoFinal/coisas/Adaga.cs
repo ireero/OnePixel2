@@ -26,6 +26,7 @@ public class Adaga : MonoBehaviour
             collider.isTrigger = true;
             anim.SetBool("sumir", true);
             Destroy(gameObject, 0.6f);
+            corpo.bodyType = RigidbodyType2D.Static;
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         } else if(other.gameObject.CompareTag("plataforma")) {
