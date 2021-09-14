@@ -86,6 +86,8 @@ public class PlayerControle : MonoBehaviour {
    public Sprite qtd_vida_0;
 
    private bool somDash;
+
+   public Transform teleporte;
  
    void Start () {  
       somDash = false;
@@ -325,6 +327,8 @@ public class PlayerControle : MonoBehaviour {
       if(Input.GetKey(KeyCode.LeftShift)) {
             Destroy(other.gameObject);
          }
+      }else if(other.gameObject.CompareTag("fora")) {
+         transform.position = teleporte.position;
       }
    }
 
@@ -439,7 +443,7 @@ public class PlayerControle : MonoBehaviour {
       yield return new WaitForSeconds(2.5f);
       player_morto = true;
       Time.timeScale = 0;
-      Destroy(this.gameObject, 3.2f);
+      Destroy(this.gameObject);
    }
 
    IEnumerator tempoDano() {

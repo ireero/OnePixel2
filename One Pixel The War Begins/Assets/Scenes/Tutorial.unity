@@ -4342,7 +4342,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Pressione 'Q' para avanca\xE7ar"
+  m_Text: Press 'Q' to advance
 --- !u!222 &953864218
 CanvasRenderer:
   m_ObjectHideFlags: 0

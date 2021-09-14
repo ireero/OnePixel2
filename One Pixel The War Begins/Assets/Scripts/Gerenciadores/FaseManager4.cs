@@ -16,6 +16,10 @@ public class FaseManager4 : MonoBehaviour
 
     public Text txtFalas;
 
+    public Text txtAvancar;
+
+    private string text_avancar = "Pressione 'Q' para avançar";
+
     public static int contagem_falas_4;
 
     public Image imagem;
@@ -43,6 +47,9 @@ public class FaseManager4 : MonoBehaviour
 
     private int tocaSom;
 
+    public Sprite fundo_ingles;
+    public Image fundo;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -52,6 +59,10 @@ public class FaseManager4 : MonoBehaviour
 
         if(GameManager.progresso <= 3) {
             GameManager.Instance.SalvarSit(4, "Progresso");
+        }
+
+        if(Application.systemLanguage == SystemLanguage.English) {
+            fundo.sprite = fundo_ingles;
         }
 
         if(GameManager.fase4 == 1 || GameManager.fase4 == 0) {
@@ -104,6 +115,7 @@ public class FaseManager4 : MonoBehaviour
         if(contagem_falas_4 <= 7 && contagem_falas_4 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
                 txtFalas.text = falas_meditador[contagem_falas_4];
+                txtAvancar.text = text_avancar;
             } else {
                 txtFalas.text = falas_meditador_ingles[contagem_falas_4];
             }

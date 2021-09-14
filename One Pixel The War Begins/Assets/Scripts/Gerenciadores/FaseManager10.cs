@@ -30,6 +30,9 @@ public class FaseManager10 : MonoBehaviour
     "ou practically asked for it White Pixel", "What I will show you now is beyond anything you have ever seen", "It is beyond your closed and stupid mind", "It is beyond all that you have faced so far", 
     "NOW DIE TO THE ONE YOU HAVE ALWAYS DESPISED!"};
 
+    public Text txtAvancar;
+    private string text_avancar = "Pressione 'Q' para avançar";
+
     public GameObject bolaFogo;
     private float delayTiro;
 
@@ -124,6 +127,7 @@ public class FaseManager10 : MonoBehaviour
         if(contagem_falas_10 <= 40 && contagem_falas_10 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
                 txt_falas.text = falas_pixel_preto[contagem_falas_10];
+                txtAvancar.text = text_avancar;
             } else {
                 txt_falas.text = falas_pixel_preto_ingles[contagem_falas_10];
             }

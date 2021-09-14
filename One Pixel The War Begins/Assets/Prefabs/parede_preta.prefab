@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 429658650100408916}
   - component: {fileID: 429658650100408937}
   - component: {fileID: 1346129302}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: parede_preta
   m_TagString: Chefoes
   m_Icon: {fileID: 0}

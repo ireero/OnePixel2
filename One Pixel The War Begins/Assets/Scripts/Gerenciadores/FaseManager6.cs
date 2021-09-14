@@ -24,6 +24,10 @@ public class FaseManager6 : MonoBehaviour
 
     public Text txtFalas;
 
+    public Text txtAvancar;
+
+    private string text_avancar = "Pressione 'Q' para avançar";
+
     public static int contagem_falas_6;       
 
     public Image imagem;

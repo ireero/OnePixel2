@@ -1196,6 +1196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2527ba4cb80cf1a45b7b5bf6f7c6add6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  txtInstrucao: {fileID: 1002973352}
+  txtEntendido: {fileID: 289946616}
 --- !u!1 &225668333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,7 +1442,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Aperte 'Q' para continuar
+  m_Text: Press 'Q' to advance
 --- !u!222 &256045620
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1601,6 +1603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2527ba4cb80cf1a45b7b5bf6f7c6add6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  txtInstrucao: {fileID: 0}
+  txtEntendido: {fileID: 0}
 --- !u!114 &270619930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1732,7 +1736,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Entendido!
+  m_Text: Understood!
 --- !u!222 &289946617
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3762,6 +3766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtFalas: {fileID: 252918571}
+  txtAvancar: {fileID: 256045619}
   imagem: {fileID: 225668335}
   painel_falas: {fileID: 270619928}
   meditador_olhao: {fileID: 21300000, guid: bf2d76b94e6d8474e84dfe7b9d9c666c, type: 3}
@@ -3774,6 +3779,8 @@ MonoBehaviour:
   gatilho: {fileID: 77971285}
   escada: {fileID: 50015078}
   painel_instrucao: {fileID: 221821921}
+  fundo_ingles: {fileID: 21300000, guid: e2598befa9467124ea0f273a03c2b73c, type: 3}
+  fundo: {fileID: 855862395}
 --- !u!114 &855862395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4332,8 +4339,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Apertando para pular estando no ar resulta em um DOUBLE JUMP que faz voc\xEA
-    pular novamente."
+  m_Text: Pressing to jump while airborne results in a DOUBLE JUMP that makes you
+    jump again.
 --- !u!222 &1002973353
 CanvasRenderer:
   m_ObjectHideFlags: 0

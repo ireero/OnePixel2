@@ -18,6 +18,10 @@ public class FaseManager3 : MonoBehaviour
 
     public Text txtFalas;
 
+    public Text txtAvancar;
+
+    private string text_avancar = "Pressione 'Q' para avançar";
+
     public static int contagem_falas_3;
 
     // Vidas
@@ -124,6 +128,7 @@ public class FaseManager3 : MonoBehaviour
         if(contagem_falas_3 <= 9 && contagem_falas_3 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
                 txtFalas.text = falas_chefao[contagem_falas_3];
+                txtAvancar.text = text_avancar;
             } else {
                 txtFalas.text = falas_chefao_ingles[contagem_falas_3];
             }

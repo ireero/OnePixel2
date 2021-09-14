@@ -19,6 +19,8 @@ public class TextoTutorial : MonoBehaviour
 
     public Text pressioneQ;
 
+    private string text_pressioneq = "Pressione 'Q' para avançar";
+
     private bool andou_direita;
     private bool andou_esquerda;
     private bool pulou;
@@ -97,6 +99,7 @@ public class TextoTutorial : MonoBehaviour
         if(contagem <= 7 && contagem >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
                 txtTutorial.text = instrucoes[contagem];
+                pressioneQ.text = text_pressioneq;
             } else {
                 txtTutorial.text = instrucoes_ingles[contagem];
             }

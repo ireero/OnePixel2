@@ -6,7 +6,7 @@ public class PixelPreto : MonoBehaviour
 {
     public float contador;
     private Animator anim;
-    private PolygonCollider2D collider;
+    private CapsuleCollider2D collider;
     private Rigidbody2D corpo;
 
     private float forca_pulo;
@@ -105,7 +105,7 @@ public class PixelPreto : MonoBehaviour
         contador = 0;
         voltarCv = false;
         anim = GetComponent<Animator>();
-        collider = GetComponent<PolygonCollider2D>();
+        collider = GetComponent<CapsuleCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
@@ -202,13 +202,20 @@ public class PixelPreto : MonoBehaviour
                         if(FaseManager10.pode_comecar_10) {
                             cont_adaga += Time.deltaTime;
                             if(evo_pixel == 1) {
-                                sr.color = Color.white;
-                                Vector3 vetor = transform.localScale;
-                                vetor.x *= -1;
-                                transform.localScale = vetor;
-                                anim.SetBool("modo_caveira", true);
-                                corpo.bodyType = RigidbodyType2D.Kinematic;
-                                evo_pixel++;
+                                if(estaNaDireita) {
+                                    sr.color = Color.white;
+                                    Vector3 vetor = transform.localScale;
+                                    vetor.x *= -1;
+                                    transform.localScale = vetor;
+                                    anim.SetBool("modo_caveira", true);
+                                    corpo.bodyType = RigidbodyType2D.Kinematic;
+                                    evo_pixel++;
+                                } else {
+                                    sr.color = Color.white;
+                                    anim.SetBool("modo_caveira", true);
+                                    corpo.bodyType = RigidbodyType2D.Kinematic;
+                                    evo_pixel++;
+                                }
                             }
 
                             if(transform.position.y >= ponto_meio.position.y && !atirarAdagas) {
@@ -304,6 +311,8 @@ public class PixelPreto : MonoBehaviour
                 meia_vida = true;
                 AtirouJa = false;
             }
+        } else if(other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("super_bullet_inimiga")) {
+            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
         if(other.gameObject.CompareTag("monstro")) {

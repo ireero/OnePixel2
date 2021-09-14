@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -12,7 +13,15 @@ public class SceneLoader : MonoBehaviour
 
     public static SceneLoader Instance {get; private set;}
 
+    public Text txtCarregando;
+
+    private string text_carregando = "Carregando...";
+
     private void Awake() {
+
+        if(Application.systemLanguage == SystemLanguage.Portuguese) {
+            txtCarregando.text = text_carregando;
+        }
         
         if(Instance == null) {
             Instance = this;

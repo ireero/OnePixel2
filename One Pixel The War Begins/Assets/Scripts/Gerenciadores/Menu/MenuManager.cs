@@ -31,6 +31,11 @@ public class MenuManager : MonoBehaviour
             txt_creditos.text = text_creditos;
             txt_sair.text = text_sair;
         }
+
+        if (PlayerPrefs.HasKey ("VOLUME")) {
+         AudioListener.volume = PlayerPrefs.GetFloat ("VOLUME");
+      }
+      
     }
 
     // Update is called once per frame
@@ -117,6 +122,7 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.SalvarSit(0, "PularDuas");
         GameManager.Instance.CarregarDados();
         SceneLoader.Instance.LoadSceneAsync("Menu");
+        GameManager.Instance.SalvarSit(0, "PONTO");
     }
 
     public void Cancelar() {

@@ -68,7 +68,7 @@ public class MonstroBase : MonoBehaviour
         } else if(other.gameObject.CompareTag("chao")) {
             anim.SetBool("levantar", true);
             StartCoroutine("liberarAndada");
-        } else if(other.gameObject.CompareTag("Chefoes")) {
+        } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }

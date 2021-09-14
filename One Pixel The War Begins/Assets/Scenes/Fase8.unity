@@ -2724,7 +2724,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Aperte 'Q' para continuar
+  m_Text: Press 'Q' to advance
 --- !u!222 &719044218
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3464,6 +3464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtFalas: {fileID: 501253576}
+  txtAvancar: {fileID: 719044217}
   painel_falas: {fileID: 2033506196}
   cientista: {fileID: 679252510}
   gatilho: {fileID: 225978617}
@@ -3811,8 +3812,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Voc\xEA acaba de ganhar um PET!, se voc\xEA chegar a 1 de vida esse fofo
-    bichano se sacrifica por voc\xEA, resumindo: +1 de VIDA!."
+  m_Text: 'You have just won a PET! if you reach 1 life this cute kitty will sacrifice
+    itself for you, in short: +1 LIFE!'
 --- !u!222 &1017278268
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7894,6 +7895,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2527ba4cb80cf1a45b7b5bf6f7c6add6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  txtInstrucao: {fileID: 1017278267}
+  qual: 1
+  txtEntendido: {fileID: 2044244097}
 --- !u!1 &1926351829
 GameObject:
   m_ObjectHideFlags: 0

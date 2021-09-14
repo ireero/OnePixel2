@@ -17,6 +17,10 @@ public class FaseManager5 : MonoBehaviour
 
     public Text txtFalas;
 
+    public Text txtAvancar;
+
+    private string text_avancar = "Pressione 'Q' para avançar";
+
     public static int contagem_falas_5;
 
     public Transform[] spawn_slimes;
@@ -141,6 +145,7 @@ public class FaseManager5 : MonoBehaviour
             if(contagem_falas_5 <= 13 && contagem_falas_5 >= 0) {
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
                     txtFalas.text = falas_palhaco[contagem_falas_5];
+                    txtAvancar.text = text_avancar;
                 } else {
                     txtFalas.text = falas_palhaco_ingles[contagem_falas_5];
                 }

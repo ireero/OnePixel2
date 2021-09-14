@@ -17,6 +17,10 @@ public class FaseManager : MonoBehaviour
 
     public Text txtFalas;
 
+    public Text txtAvancar;
+
+    private string text_avancar = "Pressione 'Q' para avançar";
+
     public static int contagem_falas;
 
     public GameObject painel_derrota;
@@ -186,6 +190,7 @@ public class FaseManager : MonoBehaviour
         if(contagem_falas <= 8 && contagem_falas >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
                 txtFalas.text = falas[contagem_falas];
+                txtAvancar.text = text_avancar;
             } else {
                 txtFalas.text = falas_ingles[contagem_falas];
             }

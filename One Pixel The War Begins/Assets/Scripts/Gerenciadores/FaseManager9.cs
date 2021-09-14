@@ -22,6 +22,10 @@ public class FaseManager9 : MonoBehaviour
 
     public Text txtFalas;
 
+    public Text txtAvancar;
+
+    private string text_avancar = "Pressione 'Q' para avançar";
+
     public static int contagem_falas_9;
 
     public Image imagem;
@@ -161,6 +165,7 @@ public class FaseManager9 : MonoBehaviour
             if(GameManager.sem_dialogos == 0) {
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
                     txtFalas.text = falas[contagem_falas_9];
+                    txtAvancar.text = text_avancar;
                 } else {
                     txtFalas.text = falas_ingles[contagem_falas_9];
                 }

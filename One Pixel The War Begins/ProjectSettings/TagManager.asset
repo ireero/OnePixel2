@@ -18,6 +18,7 @@ TagManager:
   - monstro_base
   - tijolo
   - nextFase
+  - fora
   layers:
   - Default
   - TransparentFX

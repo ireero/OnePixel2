@@ -36,6 +36,7 @@ public class FaseManager7 : MonoBehaviour
 
     public GameObject gatilho;
     public GameObject escada;
+    public GameObject pintura;
 
     public AudioSource som_spawn_tentaculos;
 
@@ -77,8 +78,11 @@ public class FaseManager7 : MonoBehaviour
             Chefao06.meia_vida = false; 
             Chefao06.camuflado_ja = false;
         } else {
+            pintura.SetActive(true);
+            liberado = false;
             escada.SetActive(true);
             Destroy(gatilho);
+            Destroy(chefao);
             back.sprite = back_2;
             back.color = Color.white;
         }
@@ -121,6 +125,7 @@ public class FaseManager7 : MonoBehaviour
         }
 
         if(Chefao06.ta_mortin) {
+            pintura.SetActive(true);
             if(musicas_at == 1) {
                 som_void.Play();
                 musica_background.Stop();
@@ -129,6 +134,7 @@ public class FaseManager7 : MonoBehaviour
             Destroy(vida_chefao);
             back.color = Color.white;
             AtivarChefao.ativarOlhao = false;
+            liberado = false;
         }
 
         if(Chefao06.camuflado_ja) {
