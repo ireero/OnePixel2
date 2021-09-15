@@ -279,11 +279,9 @@ public class PixelPreto : MonoBehaviour
                                     }
                                 }
                             } else if(atirou_adagas == 6) {
-                                sulgador.SetActive(true);
                                 anim.SetBool("espadas", false);
                                 cont_adaga = 0;
                             } else if(atirou_adagas == 7) {
-                                sulgador.SetActive(false);
                                 if(!sair_daqui) {
                                     anim.SetBool("idle_pousado", true);
                                     sair_daqui = true;
@@ -360,6 +358,14 @@ public class PixelPreto : MonoBehaviour
     public void atirarGetsuga() {
         Instantiate(getsuga, spawn_tiro_bala.position, spawn_tiro_bala.rotation);
         getsugas_dados++;
+    }
+
+    public void Sulgar() {
+        sulgador.SetActive(true);
+    }
+
+    public void PararSugar() {
+        sulgador.SetActive(false);
     }
 
     IEnumerator seguirPlay() {

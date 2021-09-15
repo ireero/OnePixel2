@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     public static int fase8;
     public static int fase9;
     public static int fase10;
+    private float tempo_de_jogo;
+    public static int tempo_min;
 
     public static int sem_dialogos;
 
@@ -25,6 +28,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set;}
 
     private void Awake() {
+
+        tempo_de_jogo = 0;
 
         // valor 0 = Nem chegou nela (Nem vai aparecer na tela de menu de fases)
         // valor 1 = Chegou nela (vai aparecer na tela de menu de fases)
@@ -37,6 +42,17 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    private void Update() {
+        if(SceneManager.GetActiveScene().name != "Menu" && SceneManager.GetActiveScene().name != "Creditos" && SceneManager.GetActiveScene().name != "MenuFases") {
+            tempo_de_jogo += Time.deltaTime;
+            if(tempo_de_jogo >= 60f) {
+                tempo_min++;
+                PlayerPrefs.SetInt("TEMPO", tempo_min);
+                tempo_de_jogo = 0;
+            }
+        }
     }
 
     public void SalvarSit(int sit, string nome_fase) {
@@ -57,5 +73,6 @@ public class GameManager : MonoBehaviour
         fase10 = PlayerPrefs.GetInt("Fase10");
         progresso = PlayerPrefs.GetInt("Progresso");
         AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        tempo_min = PlayerPrefs.GetInt("TEMPO");
     }
 }

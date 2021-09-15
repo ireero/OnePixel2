@@ -15,11 +15,16 @@ public class MenuManager : MonoBehaviour
     public Text txt_creditos;
     public Text txt_sair;
 
+    public Text txt_tempo_jogo;
+
     private string text_jogar = "Jogar";
     private string text_continuar = "Continuar";
     private string text_fases = "Fases";
     private string text_creditos = "Créditos";
     private string text_sair = "Sair";
+    private string segundos;
+
+    public GameObject painel_pause;
 
     void Start()
     {
@@ -30,7 +35,19 @@ public class MenuManager : MonoBehaviour
             txt_fases.text = text_fases;
             txt_creditos.text = text_creditos;
             txt_sair.text = text_sair;
+            segundos = " Minutos";
+        } else {
+            segundos = " Minutes";
         }
+
+        if(PlayerPrefs.HasKey("TEMPO")) {
+            GameManager.tempo_min = PlayerPrefs.GetInt("TEMPO");
+        } else {
+            GameManager.tempo_min = 0;
+            PlayerPrefs.SetInt("TEMPO", 0);
+        }
+
+        txt_tempo_jogo.text = GameManager.tempo_min.ToString("F0") + segundos;
       
     }
 
@@ -121,6 +138,12 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.CarregarDados();
         SceneLoader.Instance.LoadSceneAsync("Menu");
         GameManager.Instance.SalvarSit(0, "PONTO");
+        GameManager.Instance.SalvarSit(0, "TEMPO");
+    }
+
+    public void AtivarOpcoes() {
+        som_click.Play();
+        painel_pause.SetActive(true);
     }
 
     public void Cancelar() {

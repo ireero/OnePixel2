@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OlharPlayer : MonoBehaviour
+public class OlharPixel : MonoBehaviour
 {
     private Transform target;
     private float speed;
@@ -17,11 +17,10 @@ public class OlharPlayer : MonoBehaviour
     {
 
         Vector3 relativePosition = target.position - transform.position;
-
-        if(!PixelPreto.estaNaDireita) {
-            transform.rotation = Quaternion.LookRotation(-relativePosition);
-        } else {
+        if(PixelPreto.estaNaDireita) {
             transform.rotation = Quaternion.LookRotation(relativePosition);
+        } else {
+            transform.rotation = Quaternion.LookRotation(-relativePosition);
         }
 
         transform.Rotate(new Vector3(0, 90, 0), Space.Self);

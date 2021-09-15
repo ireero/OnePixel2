@@ -730,7 +730,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10.122192, y: -0.45288086}
+  m_AnchoredPosition: {x: 17.998993, y: -0.12583923}
   m_SizeDelta: {x: 39.74461, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &174854641
@@ -6089,7 +6089,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1273783343}
   - component: {fileID: 1273783344}
-  - component: {fileID: 1273783345}
   m_Layer: 9
   m_Name: spawn_tiro_bala
   m_TagString: Untagged
@@ -6125,19 +6124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1273783342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb532390903b8494b8c4476d4d892aaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1273783345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273783342}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48e1c5d56484e9143b6549ffc89cbeb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a44a4e888e8dbe4b99a5193f2c983d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1274054802

@@ -181,6 +181,9 @@ public class FaseManager9 : MonoBehaviour
                     txtFalas.text = falas_ingles[contagem_falas_9];
                 }
             } else {
+                if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                    txtAvancar.text = text_avancar;
+                }
                 txtFalas.text = fala_mutado;
             }
         }
@@ -194,6 +197,7 @@ public class FaseManager9 : MonoBehaviour
             contagem_falas_9++;
         } else if(Input.GetKeyDown(KeyCode.Q) && GameManager.sem_dialogos == 1 && !pode_comecar_9) {
             painel_falas.SetActive(false);
+            tempo_objeto.SetActive(true);
             if(!pode_comecar_9) {
                 PlayerControle.conversando = false;
                 PlayerControle.pode_mexer = true;

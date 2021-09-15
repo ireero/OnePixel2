@@ -46,7 +46,6 @@ public class MonstroOlho : MonoBehaviour
     void Update()
     {
         contador+= Time.deltaTime;
-        cont_tiro += Time.deltaTime;
 
         if(cont_tiro >= 1.85f) {
             pode_meter_bala = true;
@@ -54,13 +53,22 @@ public class MonstroOlho : MonoBehaviour
 
         if(Chefao06.meia_vida == true) {
             tempo_pra_morrer = 15f;
+            if(contador >= 13f) {
+                pode_meter_bala = false;
+                speed = 3.5f;
+            }
         }
 
         if(!achou) {
             transform.Translate(new Vector2(-speed * Time.deltaTime, 0));
         } else {
             if(!morreu) {
-                transform.LookAt(target.position);
+
+                cont_tiro += Time.deltaTime;
+
+                Vector3 relativePosition = target.position - transform.position;
+
+                transform.rotation = Quaternion.LookRotation(relativePosition);
                 transform.Rotate(new Vector3(0, 90, 0), Space.Self);
 
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
@@ -104,7 +112,9 @@ public class MonstroOlho : MonoBehaviour
             if(Chefao06.meia_vida == false) {
                 speed = 1.5f;
             } else {
-                speed = 0;
+                if(contador < 13f) {
+                    speed = 0;
+                }
             }
             achou = true;
         }
