@@ -36,6 +36,8 @@ public class Chefao01 : MonoBehaviour
 
     public GameObject escada;
 
+    public Animator anim_back;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -160,6 +162,7 @@ public class Chefao01 : MonoBehaviour
 
         if(other.gameObject.CompareTag("chao") && !bateu_chao) {
             Camera.tremer_chao = true;
+            anim_back.SetBool("tremer_chao", true);
             bateu_chao = true;
             anim.SetBool("apareceu", true);
             StartCoroutine("esperaAnimAparecer");

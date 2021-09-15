@@ -205,6 +205,8 @@ public class FaseManager10 : MonoBehaviour
             if(valor >= 30) {
                 PixelPreto.atirou_adagas++;
             }
+        } else if(PixelPreto.atirou_adagas == 0) {
+            valor = 0;
         }
 
         switch(contagem_falas_10) {

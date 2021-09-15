@@ -31,17 +31,15 @@ public class MenuManager : MonoBehaviour
             txt_creditos.text = text_creditos;
             txt_sair.text = text_sair;
         }
-
-        if (PlayerPrefs.HasKey ("VOLUME")) {
-         AudioListener.volume = PlayerPrefs.GetFloat ("VOLUME");
-      }
       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (PlayerPrefs.HasKey ("VOLUME")) {
+            AudioListener.volume = PlayerPrefs.GetFloat ("VOLUME");
+        }
     }
 
     public void Sair() {

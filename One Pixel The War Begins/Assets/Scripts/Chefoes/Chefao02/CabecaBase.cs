@@ -91,6 +91,7 @@ public class CabecaBase : MonoBehaviour
             podeAtirar = false;
             sr.color = Color.white;
             SuperTiroChefao.modoHard = false;
+            contador = 0;
             if(todosMortos) {
                 if(!umaVez) {
                     desintegrando.Play();

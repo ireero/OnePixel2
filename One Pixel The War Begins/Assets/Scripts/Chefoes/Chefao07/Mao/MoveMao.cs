@@ -24,6 +24,8 @@ public class MoveMao : MonoBehaviour
 
     private AudioSource som_batida;
 
+    public Animator anim_back;
+
     void Start()
     {
         sortearUmaVez = false;
@@ -154,6 +156,7 @@ public class MoveMao : MonoBehaviour
             explosao.SetActive(true);
             StartCoroutine("explosaoParar");
             Camera.tremer_chao = true;
+            anim_back.SetBool("tremer_chao", true);
             umaVez = false;
             corpo.bodyType = RigidbodyType2D.Kinematic;
             contador = 50f;

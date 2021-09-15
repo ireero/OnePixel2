@@ -76,6 +76,7 @@ public class FaseManager5 : MonoBehaviour
 
     public GameObject vida_chefao;
 
+    public GameObject protetor;
 
     void Start()
     {
@@ -116,6 +117,7 @@ public class FaseManager5 : MonoBehaviour
         } else {
             pode_normal = false;
             escada.SetActive(true);
+            Destroy(protetor);
             Destroy(chefao);
             Destroy(vida_chefao);
             PlayerControle.conversando = false;

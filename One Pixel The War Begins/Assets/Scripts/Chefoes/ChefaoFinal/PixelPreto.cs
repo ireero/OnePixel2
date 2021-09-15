@@ -76,8 +76,11 @@ public class PixelPreto : MonoBehaviour
 
     public GameObject sulgador;
 
+    private bool sair_daqui;
+
     void Start()
     {
+        sair_daqui = false;
         getsugas_dados = 0;
         suga_as_pedra = false;
         hora_do_socao = false;
@@ -220,6 +223,7 @@ public class PixelPreto : MonoBehaviour
 
                             if(transform.position.y >= ponto_meio.position.y && !atirarAdagas) {
                                 anim.SetBool("idle", true);
+                                anim.SetBool("calma", false);
                             } else if(atirou_adagas <= 3) {
                                 transform.position = Vector2.MoveTowards(transform.position, ponto_meio.position, speed * Time.deltaTime);
                             }
@@ -254,7 +258,10 @@ public class PixelPreto : MonoBehaviour
                                         anim.SetBool("pousando", true);
                                     }
                                 } else {
-                                    if(transform.position.x <= ponto_esquerda.position.x) {
+                                    if(transform.position.x >= ponto_direita.position.x) {
+                                        Vector3 vetor = transform.localScale;
+                                        vetor.x *= -1;
+                                        transform.localScale = vetor;
                                         estaNaDireita = true;
                                         atirou_adagas++;
                                         anim.SetBool("pousando", true);
@@ -277,11 +284,22 @@ public class PixelPreto : MonoBehaviour
                                 cont_adaga = 0;
                             } else if(atirou_adagas == 7) {
                                 sulgador.SetActive(false);
-                                anim.SetBool("idle_pousado", true);
+                                if(!sair_daqui) {
+                                    anim.SetBool("idle_pousado", true);
+                                    sair_daqui = true;
+                                }
+                                if(cont_adaga >= 1f && sair_daqui) {
+                                    anim.SetBool("idle", true);
+                                    anim.SetBool("idle_pousado", false);
+                                    anim.SetBool("calma", true);
+                                    anim.SetBool("pousando", false);
+                                }
                                 if(cont_adaga >= 4f && atirou_adagas == 7) {
                                     atirou_adagas = 0;
                                     cont_adaga = 0;
                                     FaseManager10.umaParedona = false;
+                                    getsugas_dados = 0;
+                                    sair_daqui = false;
                                 }
                             }
 
@@ -307,7 +325,7 @@ public class PixelPreto : MonoBehaviour
         }
         if(other.gameObject.CompareTag("bullet")) {
             vida_pixel_preto--;
-            if(vida_pixel_preto <= 250) {
+            if(vida_pixel_preto <= 480) {
                 meia_vida = true;
                 AtirouJa = false;
             }

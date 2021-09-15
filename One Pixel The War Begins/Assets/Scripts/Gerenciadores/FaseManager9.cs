@@ -101,6 +101,13 @@ public class FaseManager9 : MonoBehaviour
     public AudioSource musica_fase;
     public AudioSource som_fala;
 
+    private Animator anim;
+
+    public GameObject tempo_objeto;
+
+    public GameObject esquerda;
+    public GameObject direita;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -111,6 +118,8 @@ public class FaseManager9 : MonoBehaviour
         if(GameManager.progresso <= 8) {
             GameManager.Instance.SalvarSit(9, "Progresso");
         }
+
+        anim = GetComponent<Animator>();
 
         som_void.Play();
 
@@ -139,6 +148,8 @@ public class FaseManager9 : MonoBehaviour
             pode_normal = false;
             Destroy(chefao);
             Destroy(raposa);
+            Destroy(esquerda);
+            Destroy(direita);
             escada.SetActive(true);
             PlayerControle.conversando = false;
             PlayerControle.pode_mexer = true;
@@ -177,10 +188,10 @@ public class FaseManager9 : MonoBehaviour
         txt_tempo.text = tempo_sobreviver.ToString("F0");
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_9 && GameManager.sem_dialogos == 0) {
-            contagem_falas_9++;
-            if(contagem_falas_9 != 11 || contagem_falas_9 != 17) {
+            if(contagem_falas_9 != 11 && contagem_falas_9 != 17) {
                 som_fala.Play();
             }
+            contagem_falas_9++;
         } else if(Input.GetKeyDown(KeyCode.Q) && GameManager.sem_dialogos == 1 && !pode_comecar_9) {
             painel_falas.SetActive(false);
             if(!pode_comecar_9) {
@@ -231,6 +242,7 @@ public class FaseManager9 : MonoBehaviour
             case 12:
                 PlayerControle.conversando = false;
                 if(!pode_comecar_9) {
+                    tempo_objeto.SetActive(true);
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;
                     som_void.Stop();
@@ -239,6 +251,9 @@ public class FaseManager9 : MonoBehaviour
                 painel_falas.SetActive(false);
                 pode_comecar_9 = true;
                 break;
+            case 14:
+                som_fala.Play();
+                break;    
             case 15:
                 imagem.sprite = poker_face;
                 break;
@@ -251,8 +266,6 @@ public class FaseManager9 : MonoBehaviour
             case 18:
                 PlayerControle.conversando = false;
                 if(!cabo_tudo) {
-                    som_void.Play();
-                    musica_fase.Stop();
                     GameManager.Instance.SalvarSit(2, "Fase9");
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;
@@ -285,6 +298,10 @@ public class FaseManager9 : MonoBehaviour
             } else if(tempo_sobreviver <= 25f && tempo_sobreviver > 0 && pode_comecar_9) {
                 if(tempo_sobreviver <= 0.1 && !acabou) {
                     StartCoroutine("falasFinais");
+                    Destroy(esquerda);
+                    Destroy(direita);
+                    som_void.Play();
+                    musica_fase.Stop();
                     acabou = true;
                 }
                 valor_aleatorio = Random.Range(0, 9);
@@ -334,6 +351,10 @@ public class FaseManager9 : MonoBehaviour
         portal_2.SetActive(true);
         portal_3.SetActive(true);
         portal_4.SetActive(true);
+    }
+
+    public void PararTremedeira() {
+        anim.SetBool("tremer_chao", false);
     }
 
     IEnumerator falasFinais() {

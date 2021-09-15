@@ -4157,6 +4157,7 @@ MonoBehaviour:
   chefao: {fileID: 2077409990}
   escada: {fileID: 1533251307}
   vida_chefao: {fileID: 980712711}
+  protetor: {fileID: 851719792}
 --- !u!114 &855862395
 MonoBehaviour:
   m_ObjectHideFlags: 0

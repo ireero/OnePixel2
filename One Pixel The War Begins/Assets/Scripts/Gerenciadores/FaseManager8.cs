@@ -91,10 +91,10 @@ public class FaseManager8 : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && pode_comecar_8) {
-            contagem_falas_8++;
             if(contagem_falas_8 != 8) {
                 falaSom.Play();
             }
+            contagem_falas_8++;
         }
 
         if(contagem_falas_8 <= 8 && contagem_falas_8 >= 0) {

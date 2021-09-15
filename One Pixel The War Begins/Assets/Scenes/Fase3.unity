@@ -8463,6 +8463,7 @@ GameObject:
   - component: {fileID: 540548767}
   - component: {fileID: 540548768}
   - component: {fileID: 540548769}
+  - component: {fileID: 540548770}
   m_Layer: 5
   m_Name: background
   m_TagString: Untagged
@@ -8610,6 +8611,25 @@ MonoBehaviour:
   txt_perdeu: {fileID: 2044645325}
   txt_reiniciar: {fileID: 1547861951}
   txt_voltar_menu: {fileID: 1495171546}
+--- !u!95 &540548770
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540548763}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ca90f1af526c554285127bbbeb2097b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &553139637
 GameObject:
   m_ObjectHideFlags: 0
@@ -13316,6 +13336,7 @@ MonoBehaviour:
   desintegracao: {fileID: 1008782487}
   rugido_meia_vida: {fileID: 36645327}
   escada: {fileID: 799194426}
+  anim_back: {fileID: 540548770}
 --- !u!58 &1414868097
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -52,8 +52,6 @@ public class FaseManager7 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase7");
         }
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
-
         if(GameManager.progresso <= 6) {
             GameManager.Instance.SalvarSit(7, "Progresso");
         }
@@ -92,6 +90,8 @@ public class FaseManager7 : MonoBehaviour
     void Update()
     {
 
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
         BarraVida();
 
         if(AtivarChefao.ativarOlhao == true) {
@@ -129,6 +129,7 @@ public class FaseManager7 : MonoBehaviour
             if(musicas_at == 1) {
                 som_void.Play();
                 musica_background.Stop();
+                musicas_at++;
             }
             GameManager.Instance.SalvarSit(2, "Fase7");
             Destroy(vida_chefao);

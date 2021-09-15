@@ -51,6 +51,8 @@ public class Chefao03 : MonoBehaviour
 
     public GameObject escada;
 
+    public Animator anim_back;
+
     void Start()
     {
         vida_chefao = 3;
@@ -146,6 +148,7 @@ public class Chefao03 : MonoBehaviour
                 if(transform.position.y >= pontosIdaCima[i].position.y) {
                     som_batida.Play();
                     Camera.tremer_chao = true;
+                    anim_back.SetBool("tremer_chao", true);
                     cont = 2;
                     umaVez = false;
                 } else {
@@ -165,6 +168,7 @@ public class Chefao03 : MonoBehaviour
                 if(transform.position.y <= pontosIdaBaixo[i].position.y) {
                     som_batida.Play();
                     Camera.tremer_chao = true;
+                    anim_back.SetBool("tremer_chao", true);
                     cont = 4;
                     umaVez = false;
                 } else {

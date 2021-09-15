@@ -91,8 +91,6 @@ public class FaseManager6 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase6");
         }
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
-
         if(GameManager.progresso <= 5) {
             GameManager.Instance.SalvarSit(6, "Progresso");
         }
@@ -103,6 +101,9 @@ public class FaseManager6 : MonoBehaviour
             tocarMusica = 0;
             tempo_de_cair = 1.5f;
             if(GameManager.sem_dialogos == 0) {
+                if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                    txtAvancar.text = text_avancar;
+                }
                 contagem_falas_6 = 0;
                 pode_comecar_6 = false;
                 back_void.Play();
@@ -133,6 +134,9 @@ public class FaseManager6 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+
         if(pode_normal) {
             if(PlayerControle.player_morto == true) {
             painel_derrota.SetActive(true);

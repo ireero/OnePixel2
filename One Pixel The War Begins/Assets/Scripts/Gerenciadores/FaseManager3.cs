@@ -62,6 +62,8 @@ public class FaseManager3 : MonoBehaviour
     public GameObject chefao;
     public GameObject escada;
 
+    private Animator anim;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -72,6 +74,8 @@ public class FaseManager3 : MonoBehaviour
         if(GameManager.progresso <= 2) {
             GameManager.Instance.SalvarSit(3, "Progresso");
         }
+
+        anim = GetComponent<Animator>();
 
         if(GameManager.fase3 == 1 || GameManager.fase3 == 0) {
             BarraVida1.sprite = icon_vida_normal;
@@ -210,5 +214,9 @@ public class FaseManager3 : MonoBehaviour
                 Destroy(vidas[2]);
                 break;        
         }
+    }
+
+    public void PararTremedeira() {
+        anim.SetBool("tremer_chao", false);
     }
 }
