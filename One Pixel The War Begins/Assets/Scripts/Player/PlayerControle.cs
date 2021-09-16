@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
  
 public class PlayerControle : MonoBehaviour {
    public Transform groundCheck;
@@ -329,6 +330,11 @@ public class PlayerControle : MonoBehaviour {
          }
       }else if(other.gameObject.CompareTag("fora")) {
          transform.position = teleporte.position;
+      } else if(other.gameObject.CompareTag("paredesSumir")) {
+         if(SceneManager.GetActiveScene().name == "Fase0") {
+            SceneLoader.Instance.LoadSceneAsync("Fase1");
+            Destroy(this.gameObject);
+         }
       }
    }
 

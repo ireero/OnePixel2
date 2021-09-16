@@ -235,7 +235,7 @@ public class TextoTutorial : MonoBehaviour
                 break;   
             case 8:
                 if(!umaVez) {
-                    SceneLoader.Instance.LoadSceneAsync("Fase1"); 
+                    SceneLoader.Instance.LoadSceneAsync("Fase0"); 
                     umaVez = true;
                 } 
                 break;  

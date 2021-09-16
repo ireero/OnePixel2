@@ -65,7 +65,7 @@ public class MonstroBase : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
          if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player")) {
             Morte(1);
-        } else if(other.gameObject.CompareTag("chao")) {
+        } else if(other.gameObject.CompareTag("chao") || other.gameObject.CompareTag("fora")) {
             anim.SetBool("levantar", true);
             StartCoroutine("liberarAndada");
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro")) {

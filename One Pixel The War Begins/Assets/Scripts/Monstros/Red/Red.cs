@@ -10,7 +10,7 @@ public class Red : MonoBehaviour
     void Start()
     {
         corpo = GetComponent<Rigidbody2D>();
-        speed = 0.1f;
+        speed = 0.5f;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 

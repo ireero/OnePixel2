@@ -77,6 +77,8 @@ public class FaseManager : MonoBehaviour
 
     public GameObject escada;
 
+    private bool pode_comecar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,6 +96,7 @@ public class FaseManager : MonoBehaviour
         if(GameManager.fase1 == 1 || GameManager.fase1 == 0) {
             back_void.Play();
             falarUmaVez = false;
+            pode_comecar = false;
             if(GameManager.sem_dialogos == 0) {
                 som_fala.Play();
                 painel_falas.SetActive(true);
@@ -200,6 +203,7 @@ public class FaseManager : MonoBehaviour
                 imagem.sprite = cara_chorando;
             } else if(contagem_falas == 5) {
                 falas_terminaram = true;
+                pode_comecar = true;
                 painel_falas.SetActive(false);
             } else if((contagem_falas >= 6 && contagem_falas <= 7) && !chefao_vivo && GameManager.sem_dialogos == 0) {
                 if(!falarUmaVez) {
@@ -208,6 +212,7 @@ public class FaseManager : MonoBehaviour
                 }
                 PlayerControle.conversando = true;
                 imagem.sprite = chefao_normal;
+                pode_comecar = false;
                 painel_falas.SetActive(true);
             } else if(contagem_falas == 8 && !chefao_vivo) {
                 imagem.sprite = chefao_lamentando;
@@ -223,6 +228,7 @@ public class FaseManager : MonoBehaviour
             PlayerControle.pode_mexer = true;
             PlayerControle.podeAtirar = true;
             Chefao01.morrer_de_vez = true;
+            pode_comecar = true;
             painel_falas.SetActive(false);
         }
 
@@ -235,7 +241,7 @@ public class FaseManager : MonoBehaviour
             Destroy(vida_chefao);
         }
 
-        if(Input.GetKeyDown(KeyCode.Q)) {
+        if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar) {
             if(contagem_falas == 8) {
                 back_void.Play();
             } else if(contagem_falas != 4){

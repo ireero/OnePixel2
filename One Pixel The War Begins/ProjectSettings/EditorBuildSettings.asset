@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fase7_5.unity
     guid: f15bab7d26d6b5c46bb586fcd52194a4
+  - enabled: 1
+    path: Assets/Scenes/Fase0.unity
+    guid: e2b7a34335f09a647be9eabb6c37895b
   m_configObjects: {}
