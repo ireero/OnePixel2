@@ -6,8 +6,9 @@ public class Raio : MonoBehaviour
 {
     private Animator anim;
     private float contador;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_raio;
     private AudioSource som_trovao;
+    private bool umaMusica;
 
     private float[] tempos = {1.2f, 1.6f};
 
@@ -17,7 +18,8 @@ public class Raio : MonoBehaviour
             tempos[0] = 0.9f;
             tempos[1] = 1.3f;
         }
-        collider = GetComponent<BoxCollider2D>();
+        umaMusica = false;
+        collider_raio = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();    
         som_trovao = GetComponent<AudioSource>();
     }
@@ -27,8 +29,11 @@ public class Raio : MonoBehaviour
     {
         contador += Time.deltaTime;
         if(contador >= tempos[0] && contador < tempos[1]) {
-            som_trovao.Play();
-            collider.enabled = true;
+            if(!umaMusica) {
+                som_trovao.Play();
+                umaMusica = true;
+            }
+            collider_raio.enabled = true;
             anim.SetBool("cair", true);
         } else if(contador >= tempos[1]) {
             FaseManager9.soltarRaio = false;

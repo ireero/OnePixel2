@@ -17,7 +17,6 @@ public class PlayerControle : MonoBehaviour {
    private Rigidbody2D rb2d;
    private bool isGrounded = false;
    private bool jump = false;
-   private bool abaixado = true;
 
    private Animator anim;
 
@@ -43,7 +42,6 @@ public class PlayerControle : MonoBehaviour {
 
    private float dashAtual;
    private bool canDash;
-   private bool isDashing;
    private float duracaoDash;
    private float dashSpeed;
 
@@ -86,12 +84,14 @@ public class PlayerControle : MonoBehaviour {
    public Sprite qtd_vida_1;
    public Sprite qtd_vida_0;
 
-   private bool somDash;
-
    public Transform teleporte;
+
+   private bool red_var;
+   public static int type_red;
+   private float cont_red;
  
    void Start () {  
-      somDash = false;
+      cont_red = 0;
       vida = 3f;
       podeTomarDano = true;
       pularPegar = PlayerPrefs.GetInt("PularDuas");
@@ -102,6 +102,7 @@ public class PlayerControle : MonoBehaviour {
       }
       cont_pisca_dano = 0;
       doubleJump = true;
+      red_var = false;
       parado = true;
       player_morto = false;
       petPegar = PlayerPrefs.GetInt("Pet");
@@ -111,7 +112,6 @@ public class PlayerControle : MonoBehaviour {
          pet_ativado = false;
       }
       valor_vida.color = Color.black;
-      isDashing = false;
       canDash = true;
       dashSpeed = 20;
       duracaoDash = 0.1f;
@@ -123,9 +123,27 @@ public class PlayerControle : MonoBehaviour {
       anim = GetComponent<Animator>();
       rb2d = GetComponent<Rigidbody2D>();
       sr = GetComponent<SpriteRenderer>();
+      if(PlayerPrefs.HasKey("RED")) {
+         type_red = PlayerPrefs.GetInt("RED");
+         if(type_red == 1) {
+            sr.color = Color.red;
+            red_var = true;
+         }
+      } else {
+         red_var = false;
+      }
    }
  
    void Update () {
+
+      if(red_var) {
+         cont_red += Time.deltaTime;
+         if(cont_red >= 30f) {
+            red_var = false;
+            PlayerPrefs.SetInt("RED", 0);
+            sr.color = Color.white;
+         }
+      }
 
       BarraVida();
 
@@ -161,6 +179,12 @@ public class PlayerControle : MonoBehaviour {
             cont_pisca_dano = 0;
          }
       }
+
+      if(red_var) {
+            type_red = 1;
+            PlayerPrefs.SetInt("RED", type_red);
+            PlayerPrefs.SetInt("REDJA", type_red);
+         }
 
       if(conversando) {
          pode_mexer = false;
@@ -218,13 +242,11 @@ public class PlayerControle : MonoBehaviour {
 
       if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
          anim.SetBool("abaixou", true);
-         abaixado = true;
       }
 
       if(Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) {
          anim.SetBool("abaixou", false);
          anim.SetBool("levantou", true);
-         abaixado = false;
          StartCoroutine("levantar");
       }
 
@@ -278,8 +300,7 @@ public class PlayerControle : MonoBehaviour {
 
    IEnumerator pararDeRir() {
       yield return new WaitForSeconds(2f);
-      player_collider.isTrigger = false;
-      rb2d.bodyType = RigidbodyType2D.Dynamic;
+      Physics2D.IgnoreLayerCollision(3, 9, false);
       anim.SetBool("rir", false);
       anim.SetBool("idle", true);
    }
@@ -312,8 +333,7 @@ public class PlayerControle : MonoBehaviour {
             Physics2D.IgnoreLayerCollision(3, 9);
          }
       } else if(other.gameObject.CompareTag("moeda_rir")) {
-         player_collider.isTrigger = true;
-         rb2d.bodyType = RigidbodyType2D.Static;
+         Physics2D.IgnoreLayerCollision(3, 9);
          anim.SetBool("rir", true);
          StartCoroutine("pararDeRir");
       } else if(other.gameObject.CompareTag("tijolo")) {
@@ -330,10 +350,10 @@ public class PlayerControle : MonoBehaviour {
          }
       }else if(other.gameObject.CompareTag("fora")) {
          transform.position = teleporte.position;
-      } else if(other.gameObject.CompareTag("paredesSumir")) {
+      } else if(other.gameObject.CompareTag("paredeFase1")) {
          if(SceneManager.GetActiveScene().name == "Fase0") {
             SceneLoader.Instance.LoadSceneAsync("Fase1");
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
          }
       }
    }
@@ -359,6 +379,11 @@ public class PlayerControle : MonoBehaviour {
    private void OnTriggerEnter2D(Collider2D other) {
       if(other.gameObject.CompareTag("alerta_falas")) {
          rb2d.velocity = new Vector2(0, 0);
+      } else if(other.gameObject.CompareTag("the")) {
+         StartCoroutine("serEsmagado");
+         rb2d.bodyType = RigidbodyType2D.Static;
+         conversando = true;
+         red_var = true;
       }
    }
 
@@ -389,7 +414,6 @@ public class PlayerControle : MonoBehaviour {
             if(isGrounded) {
                CreateDust();
             }
-            isDashing = true;
             dashAtual -= Time.deltaTime;
             if(lookingRight) {
                rb2d.velocity = Vector2.right * dashSpeed;
@@ -400,7 +424,6 @@ public class PlayerControle : MonoBehaviour {
       }
 
       if(isGrounded) {
-         isDashing = false;
          canDash = true;
          dashAtual = duracaoDash;
       } 
@@ -409,7 +432,6 @@ public class PlayerControle : MonoBehaviour {
    private void StopDash() {
       rb2d.velocity = Vector2.zero;
       dashAtual = duracaoDash;
-      isDashing = false;
       canDash = false;
    }
 
@@ -450,6 +472,11 @@ public class PlayerControle : MonoBehaviour {
       player_morto = true;
       Time.timeScale = 0;
       Destroy(this.gameObject);
+   }
+
+   IEnumerator serEsmagado() {
+      yield return new WaitForSeconds(3f);
+      anim.SetBool("smash", true);
    }
 
    IEnumerator tempoDano() {

@@ -9,7 +9,7 @@ public class Chefao7 : MonoBehaviour
     private bool umaVez;
     public static bool possuido;
     public static bool bateu_nele;
-    private BoxCollider2D collider;
+    private BoxCollider2D colisor;
     public Animator do_background;
     public AudioSource som_terremoto;
     private bool som_umaVez;
@@ -22,7 +22,7 @@ public class Chefao7 : MonoBehaviour
         umaVez = false;
         rindo = false;
         anim = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider2D>();
+        colisor = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class Chefao7 : MonoBehaviour
         if(Portal.atira_ae_po == 5 && !umaVez) {
             umaVez = true;
             anim.SetBool("transformar", true);
-            collider.isTrigger = true;
+            colisor.isTrigger = true;
         }
 
         if(FaseManager9.acabou == true) {
@@ -82,6 +82,6 @@ public class Chefao7 : MonoBehaviour
         Camera.tremer_bastante = false;
         do_background.SetBool("mexer", false);
         anim.SetBool("sumir", true);
-        collider.isTrigger = false;
+        colisor.isTrigger = false;
     }
 }

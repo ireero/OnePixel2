@@ -6,7 +6,7 @@ public class MonstroBomba : MonoBehaviour
 {
 
     private Animator anim;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_bomba;
     private CircleCollider2D rastreador_collider;
     private Transform target;
     private float speed;
@@ -23,7 +23,7 @@ public class MonstroBomba : MonoBehaviour
       morreu = false;
       speed = 2.8f;
       anim = GetComponent<Animator>();
-      collider = GetComponent<BoxCollider2D>();  
+      collider_bomba = GetComponent<BoxCollider2D>();  
       rastreador_collider = GetComponent<CircleCollider2D>();
       corpo = GetComponent<Rigidbody2D>();
       target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -83,7 +83,7 @@ public class MonstroBomba : MonoBehaviour
         corpo.gravityScale += 0.1f;
         speed = 0;
         anim.SetBool("morreu", true);
-        collider.isTrigger = true;
+        collider_bomba.isTrigger = true;
         StartCoroutine("morre");
     }
 }

@@ -6,7 +6,7 @@ public class MonstroBase : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_monstro_base;
     private AudioSource audio_morte;
     private SpriteRenderer sr;
     private float velocidade;
@@ -20,7 +20,7 @@ public class MonstroBase : MonoBehaviour
         morreu = false;
         caiu = false;
         velocidade = 0.5f;
-        collider = GetComponent<BoxCollider2D>();
+        collider_monstro_base = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         audio_morte = GetComponent<AudioSource>();
@@ -81,7 +81,7 @@ public class MonstroBase : MonoBehaviour
 
     private void Morte(int qual) {
         morreu = true;
-        collider.isTrigger = true;
+        collider_monstro_base.isTrigger = true;
         rb.bodyType = RigidbodyType2D.Static;
         if(qual == 0) {
             anim.SetBool("morte_caiu", true);

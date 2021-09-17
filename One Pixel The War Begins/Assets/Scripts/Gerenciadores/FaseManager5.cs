@@ -45,7 +45,6 @@ public class FaseManager5 : MonoBehaviour
 
     public Transform ponto_baixo;
 
-    private float contador;
     private bool umaVez;
 
     private float cont_spawn;
@@ -113,7 +112,6 @@ public class FaseManager5 : MonoBehaviour
             }
             TiroPequenoChefao.modoHard = false;
             umaVez = false;
-            contador = 0;
         } else {
             pode_normal = false;
             escada.SetActive(true);

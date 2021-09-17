@@ -13,7 +13,6 @@ public class Cabecas : MonoBehaviour
 
     public SpriteRenderer sr;
     public Rigidbody2D corpo;
-    public PolygonCollider2D collider;
 
     public Animator anim;
 
@@ -32,7 +31,6 @@ public class Cabecas : MonoBehaviour
 
     public void Morrer() {
         if(vida <= 0) {
-            collider.isTrigger = true;
             sr.color = Color.white;
             anim.SetBool("morreu", true);
         }

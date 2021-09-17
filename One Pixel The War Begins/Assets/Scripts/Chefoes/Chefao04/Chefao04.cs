@@ -7,14 +7,13 @@ public class Chefao04 : MonoBehaviour
 
     // Variaveis relacionadas a componentes do Chefão 
     private SpriteRenderer sr;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_chefao4;
     private Rigidbody2D corpo;
     private Animator anim;
 
     // variaveis relacionadas a valores do Chefão
     public static float vida_chefao;
     private int contagem_danos;
-    private bool meia_vida;
 
     // Variaveis de controle
     public static float contador;
@@ -50,10 +49,9 @@ public class Chefao04 : MonoBehaviour
         contador = 0;
         contador_voltar = 0;
         valor_para_voltar = 7f;
-        meia_vida = false;
         vida_chefao = 50f;
         sr = GetComponent<SpriteRenderer>();
-        collider = GetComponent<BoxCollider2D>();
+        collider_chefao4 = GetComponent<BoxCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -72,7 +70,7 @@ public class Chefao04 : MonoBehaviour
             anim.SetBool("idle", false);
             anim.SetBool("tomou_dano", false);
             anim.SetBool("rir", false);
-            collider.isTrigger = false;
+            collider_chefao4.isTrigger = false;
 
             if(Protetor.pode_atirar == false) {
                 tirosDados++;

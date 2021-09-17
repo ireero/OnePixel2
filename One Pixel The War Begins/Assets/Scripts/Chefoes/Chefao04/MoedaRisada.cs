@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class MoedaRisada : MonoBehaviour
 {
-    private CircleCollider2D collider;
+    private CircleCollider2D collider_moeda;
     public static bool moeda_ativou;
 
     void Start()
     {
         moeda_ativou = false;
-        collider = GetComponent<CircleCollider2D>();
+        collider_moeda = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class MoedaRisada : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Player")) {
             moeda_ativou = true;
-            collider.isTrigger = true;
+            collider_moeda.isTrigger = true;
             Destroy(this.gameObject);
         }
     }

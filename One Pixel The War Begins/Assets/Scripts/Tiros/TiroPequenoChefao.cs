@@ -8,7 +8,7 @@ public class TiroPequenoChefao : MonoBehaviour
     private float speed = -2.8f;
     private float timeDestroy;
     private Animator anim;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_pequeno_tiro;
     private SpriteRenderer sr;
 
     public static bool modoHard;
@@ -19,7 +19,7 @@ public class TiroPequenoChefao : MonoBehaviour
         anim = GetComponent<Animator>();
         timeDestroy = 3.5f;
         Destroy(gameObject, timeDestroy);
-        collider = GetComponent<BoxCollider2D>();
+        collider_pequeno_tiro = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
     }
 
@@ -58,7 +58,7 @@ public class TiroPequenoChefao : MonoBehaviour
     private void Morrer() {
         anim.SetBool("morreu", true);
         speed = 0;
-        collider.isTrigger = true;
+        collider_pequeno_tiro.isTrigger = true;
         StartCoroutine("morre");
     }
 }

@@ -8,7 +8,7 @@ public class BolaFogoCaindo : MonoBehaviour
     private float speed_bola_fogo;
     private float timeDestroy;
     private Animator anim;
-    private CapsuleCollider2D collider;
+    private CapsuleCollider2D collider_fogo_caindo;
 
     private SpriteRenderer sr;
 
@@ -19,7 +19,7 @@ public class BolaFogoCaindo : MonoBehaviour
         anim = GetComponent<Animator>();
         timeDestroy = 2f;
         Destroy(gameObject, timeDestroy);
-        collider = GetComponent<CapsuleCollider2D>();
+        collider_fogo_caindo = GetComponent<CapsuleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
     }
 
@@ -46,7 +46,7 @@ public class BolaFogoCaindo : MonoBehaviour
     private void Morrer() {
         anim.SetBool("sumir", true);
         speed_bola_fogo = 0;
-        collider.isTrigger = true;
+        collider_fogo_caindo.isTrigger = true;
         StartCoroutine("morre");
     }
 }

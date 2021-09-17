@@ -8,7 +8,7 @@ public class CabecaBase : MonoBehaviour
     public Transform Spawn_Bullet;
     private Animator anim;
     private Rigidbody2D corpo;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_cabeca_base;
 
     private float contador;
     public static float vida_cabeca;
@@ -42,7 +42,7 @@ public class CabecaBase : MonoBehaviour
         podeAtirar = false;
         vida_cabeca = 50f;
         contador = 0;
-        collider = GetComponent<BoxCollider2D>();
+        collider_cabeca_base = GetComponent<BoxCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
@@ -97,7 +97,7 @@ public class CabecaBase : MonoBehaviour
                     desintegrando.Play();
                     umaVez = true;
                 }
-                collider.isTrigger = true;
+                collider_cabeca_base.isTrigger = true;
                 anim.SetBool("morreu", true);
                 StartCoroutine("morrer");
             } else {

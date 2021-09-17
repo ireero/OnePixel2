@@ -28,7 +28,6 @@ public class TextoTutorial : MonoBehaviour
 
     private bool atirou;
     private bool botou_plataforma;
-    private bool comecou;
     private bool deu_dash;
 
     public Image fundo_preto;
@@ -83,7 +82,6 @@ public class TextoTutorial : MonoBehaviour
         abaixou = false;
         controles = false;
         tiros_controles = false;
-        comecou = false;
         andou_direita = false;
         andou_esquerda = false;
         pulou = false;

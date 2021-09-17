@@ -8,7 +8,7 @@ public class TiroPequeno : MonoBehaviour
     private float speed = 4;
     private float timeDestroy;
     private Animator anim;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_tirinho;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class TiroPequeno : MonoBehaviour
         anim = GetComponent<Animator>();
         timeDestroy = 3.5f;
         Destroy(gameObject, timeDestroy);
-        collider = GetComponent<BoxCollider2D>();
+        collider_tirinho = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,7 +28,7 @@ public class TiroPequeno : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("paredesSumir")) {
+        if(other.gameObject.CompareTag("paredesSumir") || other.gameObject.CompareTag("paredeFase1")) {
             Destroy(this.gameObject);
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || 
         other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("super_bullet_inimiga")) {
@@ -47,7 +47,7 @@ public class TiroPequeno : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
         anim.SetBool("morreu", true);
         speed = 0;
-        collider.isTrigger = true;
+        collider_tirinho.isTrigger = true;
         StartCoroutine("morre");
     }
 

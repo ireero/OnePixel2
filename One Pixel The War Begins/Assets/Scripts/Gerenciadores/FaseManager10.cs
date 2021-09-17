@@ -68,8 +68,6 @@ public class FaseManager10 : MonoBehaviour
     public Sprite[] sprites_painel_conversas;
     public Image contorno_painel;
 
-    private bool umaVez;
-
     public GameObject adaga;
     public Sprite meia_vida_caveira;
     public Sprite cara_normal;
@@ -110,7 +108,6 @@ public class FaseManager10 : MonoBehaviour
         i = 0;
         contagem_falas_10 = 0;
         pode_comecar_10 = false;
-        umaVez = false;
         contador = 0;
         valor_aleatorio = 0;
         delayTiro = 1.5f;    

@@ -8,7 +8,7 @@ public class TiroRedondo : MonoBehaviour
     private float speed = -2.2f;
     private float timeDestroy;
     private Animator anim;
-    private CircleCollider2D collider;
+    private CircleCollider2D collider_redondo;
 
     public GameObject tiro_normal;
     public Transform spawn_cima;
@@ -33,7 +33,7 @@ public class TiroRedondo : MonoBehaviour
         anim = GetComponent<Animator>();
         timeDestroy = 5f;
         Destroy(gameObject, timeDestroy);
-        collider = GetComponent<CircleCollider2D>();
+        collider_redondo = GetComponent<CircleCollider2D>();
         if(modoHardRedondo) {
             anim.SetBool("meia_vida", true);
         }
@@ -83,7 +83,7 @@ public class TiroRedondo : MonoBehaviour
             umaVez = true;
         }
         speed = 0;
-        collider.isTrigger = true;
+        collider_redondo.isTrigger = true;
         StartCoroutine("morre");
     }
 }

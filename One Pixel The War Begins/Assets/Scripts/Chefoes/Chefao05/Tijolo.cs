@@ -6,13 +6,13 @@ public class Tijolo : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D corpo;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_tijolo;
     private float potenciaRot;
 
     void Start()
     {
         potenciaRot = 0.4f;
-        collider = GetComponent<BoxCollider2D>();
+        collider_tijolo = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         corpo = GetComponent<Rigidbody2D>();    
     }
@@ -26,7 +26,7 @@ public class Tijolo : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("chao") || other.gameObject.CompareTag("plataforma") || 
         other.gameObject.CompareTag("monstro")) {
-            collider.isTrigger = true;
+            collider_tijolo.isTrigger = true;
             corpo.bodyType = RigidbodyType2D.Static;
             anim.SetBool("quebrar", true);
             Destroy(this.gameObject, 0.5f);

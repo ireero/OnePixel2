@@ -8,7 +8,7 @@ public class TiroFlecha : MonoBehaviour
     private float speed_flecha;
     private float timeDestroy;
     private Animator anim;
-    private PolygonCollider2D collider;
+    private PolygonCollider2D collider_flecha;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class TiroFlecha : MonoBehaviour
         anim = GetComponent<Animator>();
         timeDestroy = 2f;
         Destroy(gameObject, timeDestroy);
-        collider = GetComponent<PolygonCollider2D>();
+        collider_flecha = GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class TiroFlecha : MonoBehaviour
     private void Morrer() {
         anim.SetBool("morrer", true);
         speed_flecha = 0;
-        collider.isTrigger = true;
+        collider_flecha.isTrigger = true;
         StartCoroutine("morre");
     }
 }

@@ -5,11 +5,9 @@ using UnityEngine;
 public class Explosao : MonoBehaviour
 {
     private Animator anim;
-    private float contador;
 
     void Start()
     {
-        contador = 0;
         anim = GetComponent<Animator>();    
         StartCoroutine("idle");
     }

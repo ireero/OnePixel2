@@ -10,7 +10,7 @@ public class SteamManager : MonoBehaviour
         try {
             Steamworks.SteamClient.Init(1757560);
         } catch(System.Exception e) {
-            Debug.Log("Falha ao rodar steam");
+            Debug.Log("Falha ao rodar steam" + e);
         } 
     }
 

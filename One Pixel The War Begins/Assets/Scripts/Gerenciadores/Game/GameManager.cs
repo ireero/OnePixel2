@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static int fase5;
     public static int fase6;
     public static int fase7;
+    public static int fase7_5;
     public static int fase8;
     public static int fase9;
     public static int fase10;

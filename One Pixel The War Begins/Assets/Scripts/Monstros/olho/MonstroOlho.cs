@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MonstroOlho : MonoBehaviour
 {   
-    private CircleCollider2D collider;
+    private CircleCollider2D collider_olho;
     private Animator anim;
     private Transform target;
     private float speed;
@@ -12,27 +13,37 @@ public class MonstroOlho : MonoBehaviour
     private bool achou;
     private bool morreu;
     private float contador;
-    private bool umaVez;
     public Transform spawn_tiro;
     public GameObject tiro;
     private float cont_tiro;
     private bool pode_meter_bala;
     private float tempo_pra_morrer;
     private AudioSource som_morte;
+    private bool umaVez;
 
     void Start()
     {
+        umaVez = false;
         tempo_pra_morrer = 12f;
         pode_meter_bala = false;
         cont_tiro = 0;
-        umaVez = false;
         contador = 0;
         morreu = false;
         achou = false;
-        speed = 0.8f;
+        if(SceneManager.GetActiveScene().name == "Fase10") {
+            speed = 1.2f;
+            if(!PixelPreto.estaNaDireita) {
+                speed *= -1;
+                Vector3 vetor = transform.localScale;
+                vetor.x *= -1;
+                transform.localScale = vetor;
+            }
+        } else {
+            speed = 0.8f;
+        }
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         anim = GetComponent<Animator>();
-        collider = GetComponent<CircleCollider2D>();
+        collider_olho = GetComponent<CircleCollider2D>();
         corpo = GetComponent<Rigidbody2D>(); 
         som_morte = GetComponent<AudioSource>();
         if(Chefao06.meia_vida == true) {
@@ -46,6 +57,19 @@ public class MonstroOlho : MonoBehaviour
     void Update()
     {
         contador+= Time.deltaTime;
+
+        if(PixelPreto.pularUmaVez) {
+            if(!umaVez) {
+                som_morte.Play();
+                umaVez = true;
+            }
+            morreu = true;
+            speed = 0;
+            collider_olho.isTrigger = true;
+            corpo.bodyType = RigidbodyType2D.Static;
+            anim.SetBool("morreu", true);
+            Destroy(this.gameObject, 0.8f);
+        }
 
         if(cont_tiro >= 1.85f) {
             pode_meter_bala = true;
@@ -68,7 +92,15 @@ public class MonstroOlho : MonoBehaviour
 
                 Vector3 relativePosition = target.position - transform.position;
 
-                transform.rotation = Quaternion.LookRotation(relativePosition);
+                if(SceneManager.GetActiveScene().name == "Fase10") {
+                    if(PixelPreto.estaNaDireita) {
+                        transform.rotation = Quaternion.LookRotation(relativePosition);
+                    } else {
+                        transform.rotation = Quaternion.LookRotation(-relativePosition);
+                    }
+                } else {
+                    transform.rotation = Quaternion.LookRotation(relativePosition);
+                }
                 transform.Rotate(new Vector3(0, 90, 0), Space.Self);
 
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
@@ -80,11 +112,11 @@ public class MonstroOlho : MonoBehaviour
             }
         }
 
-        if(Chefao06.atacando == false || contador >= tempo_pra_morrer) {
+        if((Chefao06.atacando == false || contador >= tempo_pra_morrer) && SceneManager.GetActiveScene().name != "Fase10") {
             morreu = true;
             pode_meter_bala = false;
             speed = 0;
-            collider.isTrigger = true;
+            collider_olho.isTrigger = true;
             corpo.bodyType = RigidbodyType2D.Static;
             anim.SetBool("morreu", true);
             Destroy(this.gameObject, 0.8f);
@@ -94,11 +126,13 @@ public class MonstroOlho : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
             som_morte.Play();
-            Chefao06.vida_restante--;
-            Chefao06.dano_tomado++;
+            if(SceneManager.GetActiveScene().name == "Fase7") {
+                Chefao06.vida_restante--;
+                Chefao06.dano_tomado++;
+            }
             morreu = true;
             speed = 0;
-            collider.isTrigger = true;
+            collider_olho.isTrigger = true;
             corpo.bodyType = RigidbodyType2D.Static;
             anim.SetBool("morreu", true);
             Destroy(this.gameObject, 0.8f);
@@ -112,6 +146,13 @@ public class MonstroOlho : MonoBehaviour
             if(Chefao06.meia_vida == false) {
                 speed = 1.5f;
             } else {
+                if(SceneManager.GetActiveScene().name == "Fase10") {
+                    if(!PixelPreto.estaNaDireita) {
+                        speed = -2f;
+                    } else {
+                        speed = 2f;
+                    }
+                }
                 if(contador < 13f) {
                     speed = 0;
                 }

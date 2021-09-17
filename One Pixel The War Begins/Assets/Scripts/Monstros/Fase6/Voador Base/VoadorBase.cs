@@ -6,7 +6,7 @@ public class VoadorBase : MonoBehaviour
 {
 
     private Animator anim;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_voador_base;
     private Transform target;
     private float speed;
     private Rigidbody2D corpo;
@@ -21,7 +21,7 @@ public class VoadorBase : MonoBehaviour
         speed = 2.5f;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         anim = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider2D>();
+        collider_voador_base = GetComponent<BoxCollider2D>();
         corpo = GetComponent<Rigidbody2D>(); 
         sr = GetComponent<SpriteRenderer>();
         som_morte = GetComponent<AudioSource>();
@@ -68,7 +68,7 @@ public class VoadorBase : MonoBehaviour
         morreu = true;
         speed = 0;
         anim.SetBool("morreu", true);
-        collider.isTrigger = true;
+        collider_voador_base.isTrigger = true;
         corpo.gravityScale += 0.1f;
         StartCoroutine("morre");
     }

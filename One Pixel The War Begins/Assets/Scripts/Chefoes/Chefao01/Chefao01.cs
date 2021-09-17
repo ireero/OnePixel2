@@ -9,13 +9,12 @@ public class Chefao01 : MonoBehaviour
     private Animator anim;
     private float contador = 0;
 
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_chefao1;
 
     private float velocidade;
 
     public static float vida;
 
-    private bool atacando;
     private bool atacou;
 
     public static bool bateu_chao;
@@ -49,10 +48,9 @@ public class Chefao01 : MonoBehaviour
         contagem_danos = 0;
         bateu_chao = false;
         atacou = false;
-        atacando = false;
         contador = 0;
         sr = GetComponent<SpriteRenderer>();
-        collider = GetComponent<BoxCollider2D>();
+        collider_chefao1 = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         corpo_vilao = GetComponent<Rigidbody2D>();
     }
@@ -92,7 +90,6 @@ public class Chefao01 : MonoBehaviour
                     somResp.Stop();
                     umaVez = false;
                     transform.Translate(new Vector2(-velocidade * Time.deltaTime, 0));
-                    atacando = true;
                 }
             } else if(contador >= 5f && atacou) {
                 anim.SetBool("atacar", true);
@@ -101,7 +98,6 @@ public class Chefao01 : MonoBehaviour
                    somResp.Stop();
                    umaVez = false;
                     transform.Translate(new Vector2(velocidade * Time.deltaTime, 0));
-                    atacando = false;
                }
             }
         } else {
@@ -116,7 +112,6 @@ public class Chefao01 : MonoBehaviour
                     somResp.Stop();
                     umaVez = false;
                     transform.Translate(new Vector2(-velocidade * Time.deltaTime, 0));
-                    atacando = true;
                 }
             } else if(contador >= 1.5f && atacou) {
                 anim.SetBool("atacar", true);
@@ -125,7 +120,6 @@ public class Chefao01 : MonoBehaviour
                     somResp.Stop();
                     umaVez = false;
                     transform.Translate(new Vector2(velocidade * Time.deltaTime, 0));
-                    atacando = false;
                }
             }
         }
@@ -143,7 +137,7 @@ public class Chefao01 : MonoBehaviour
                 FaseManager.podeSpawn = false;
                 velocidade = 0;
                 corpo_vilao.bodyType = RigidbodyType2D.Static;
-                collider.isTrigger = true;  
+                collider_chefao1.isTrigger = true;  
                 anim.SetBool("morreu", true);
                 StartCoroutine("esperarMorte");
             }

@@ -27,13 +27,6 @@ public class FaseManager : MonoBehaviour
 
     public GameObject monstros_base;
 
-    public Transform spawn_1;
-    public Transform spawn_2;
-    public Transform spawn_3;
-    public Transform spawn_4;
-    public Transform spawn_5;
-    public Transform spawn_6;
-
     public GameObject chefao;
     private bool chefao_nasceu;
     public static bool chefao_vivo;
@@ -79,6 +72,8 @@ public class FaseManager : MonoBehaviour
 
     private bool pode_comecar;
 
+    public GameObject[] spawns;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -117,12 +112,9 @@ public class FaseManager : MonoBehaviour
             Chefao01.bateu_chao = false;
             escada.SetActive(true);
             Destroy(chefao);
-            Destroy(spawn_1);
-            Destroy(spawn_2);
-            Destroy(spawn_3);
-            Destroy(spawn_4);
-            Destroy(spawn_5);
-            Destroy(spawn_6);
+            for(int i = 0; i <= 5; i++) {
+                Destroy(spawns[i]);
+            }
             base_branco.SetActive(false);
             PlayerControle.conversando = false;
             PlayerControle.pode_mexer = true;
@@ -164,27 +156,27 @@ public class FaseManager : MonoBehaviour
                 switch(valor_alet) {
                 case 1:
                     MetadeVida();
-                    Instantiate(monstros_base, spawn_1.position, spawn_1.rotation);
+                    Instantiate(monstros_base, spawns[0].transform.position, spawns[0].transform.rotation);
                     break;
                 case 2:
                     MetadeVida();
-                    Instantiate(monstros_base, spawn_2.position, spawn_2.rotation);
+                    Instantiate(monstros_base, spawns[1].transform.position, spawns[1].transform.rotation);
                     break;
                 case 3:
                     MetadeVida();
-                    Instantiate(monstros_base, spawn_3.position, spawn_3.rotation);
+                    Instantiate(monstros_base, spawns[2].transform.position, spawns[2].transform.rotation);
                     break;    
                 case 4:
                     MetadeVida();
-                    Instantiate(monstros_base, spawn_4.position, spawn_4.rotation);
+                    Instantiate(monstros_base, spawns[3].transform.position, spawns[3].transform.rotation);
                     break;    
                 case 5:
                     MetadeVida();
-                    Instantiate(monstros_base, spawn_5.position, spawn_5.rotation);
+                    Instantiate(monstros_base, spawns[4].transform.position, spawns[4].transform.rotation);
                     break;    
                 case 6:
                     MetadeVida();
-                    Instantiate(monstros_base, spawn_6.position, spawn_6.rotation);
+                    Instantiate(monstros_base, spawns[5].transform.position, spawns[5].transform.rotation);
                     break;    
             }
             }

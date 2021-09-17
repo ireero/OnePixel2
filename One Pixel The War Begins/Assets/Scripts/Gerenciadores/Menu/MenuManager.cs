@@ -139,6 +139,8 @@ public class MenuManager : MonoBehaviour
         SceneLoader.Instance.LoadSceneAsync("Menu");
         GameManager.Instance.SalvarSit(0, "PONTO");
         GameManager.Instance.SalvarSit(0, "TEMPO");
+        GameManager.Instance.SalvarSit(0, "RED");
+        GameManager.Instance.SalvarSit(0, "REDJA");
     }
 
     public void AtivarOpcoes() {

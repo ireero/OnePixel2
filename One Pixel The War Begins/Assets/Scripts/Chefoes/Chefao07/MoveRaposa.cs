@@ -9,7 +9,7 @@ public class MoveRaposa : MonoBehaviour
     public static bool ataqueRaposa;
     public static bool voltar;
     private Animator anim;
-    private PolygonCollider2D collider;
+    private PolygonCollider2D collider_raposa;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class MoveRaposa : MonoBehaviour
         ataqueRaposa = false;
         aux = slider.motor;
         anim = GetComponent<Animator>();
-        collider = GetComponent<PolygonCollider2D>();
+        collider_raposa = GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame
@@ -65,19 +65,11 @@ public class MoveRaposa : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        } else if(other.gameObject.CompareTag("Player")) {
-            collider.isTrigger = true;
-            StartCoroutine("voltarDano");
         }
     }
 
     IEnumerator sumir() {
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
-    }
-
-    IEnumerator voltarDano() {
-        yield return new WaitForSeconds(3f);
-        collider.isTrigger = false;
     }
 }

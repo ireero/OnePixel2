@@ -8,7 +8,7 @@ public class TiroLaser : MonoBehaviour
     private float speed_laser;
     private float timeDestroy;
     private Animator anim;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_laser;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class TiroLaser : MonoBehaviour
         anim = GetComponent<Animator>();
         timeDestroy = 2.5f;
         Destroy(gameObject, timeDestroy);
-        collider = GetComponent<BoxCollider2D>();
+        collider_laser = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -53,7 +53,7 @@ public class TiroLaser : MonoBehaviour
     private void Morrer() {
         anim.SetBool("sumir", true);
         speed_laser = 0;
-        collider.isTrigger = true;
+        collider_laser.isTrigger = true;
         StartCoroutine("morre");
     }
 }

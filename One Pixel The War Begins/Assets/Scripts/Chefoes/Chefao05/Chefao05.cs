@@ -5,7 +5,7 @@ using UnityEngine;
 public class Chefao05 : MonoBehaviour
 {
     private float contador;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_chefao5;
     private Rigidbody2D corpo;
     private Animator anim;
 
@@ -30,7 +30,6 @@ public class Chefao05 : MonoBehaviour
     public SpriteRenderer base_sr;
 
     private bool pode_atirar;
-    private int tirosDados;
 
     private float nextFire;
     private bool morto;
@@ -72,10 +71,9 @@ public class Chefao05 : MonoBehaviour
         vida = 600f;
         nextFire = 0;
         morto = false;
-        tirosDados = 0;
         pode_atirar = false;
         contador = 0;
-        collider = GetComponent<BoxCollider2D>();
+        collider_chefao5 = GetComponent<BoxCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
@@ -148,7 +146,7 @@ public class Chefao05 : MonoBehaviour
                 umaMorte = true;
             }
             somTerremoto.Stop();
-            collider.isTrigger = true;
+            collider_chefao5.isTrigger = true;
             FaseManager6.podeCair = false;
             Camera.tremer_bastante = false;
             do_background.SetBool("mexer", false);

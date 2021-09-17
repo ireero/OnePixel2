@@ -6,7 +6,7 @@ public class PixelPreto : MonoBehaviour
 {
     public float contador;
     private Animator anim;
-    private CapsuleCollider2D collider;
+    private CapsuleCollider2D collider_pixel_preto;
     private Rigidbody2D corpo;
 
     private float forca_pulo;
@@ -30,7 +30,7 @@ public class PixelPreto : MonoBehaviour
     public float contador2;
 
     private bool atirar_normal;
-    private bool pularUmaVez;
+    public static bool pularUmaVez;
 
     public Transform ponto_direita, ponto_esquerda;
 
@@ -108,7 +108,7 @@ public class PixelPreto : MonoBehaviour
         contador = 0;
         voltarCv = false;
         anim = GetComponent<Animator>();
-        collider = GetComponent<CapsuleCollider2D>();
+        collider_pixel_preto = GetComponent<CapsuleCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
@@ -186,7 +186,7 @@ public class PixelPreto : MonoBehaviour
             } else {
 
                 if(vida_pixel_preto <= 0) {
-                    collider.isTrigger = true;
+                    collider_pixel_preto.isTrigger = true;
                     corpo.bodyType = RigidbodyType2D.Static;
                     anim.SetBool("morrer", true);
                 }
@@ -374,8 +374,8 @@ public class PixelPreto : MonoBehaviour
     }
 
     IEnumerator Tirao() {
-        yield return new WaitForSeconds(0.8f);
-        if(contador2 >= 2.5f) {
+        yield return new WaitForSeconds(0.6f);
+        if(contador2 >= 0.5f) {
                 GameObject cloneBullet = Instantiate(bala, spawn_tiro_bala.position, spawn_tiro_bala.rotation);
                 contador2 = 0;
             }

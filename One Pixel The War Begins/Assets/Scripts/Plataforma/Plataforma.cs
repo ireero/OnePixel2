@@ -6,12 +6,12 @@ public class Plataforma : MonoBehaviour
 {
     private Animator anim;
     private float tempo;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_plataforma;
 
     // Start is called before the first frame update
     void Start()
     {   
-        collider = GetComponent<BoxCollider2D>();
+        collider_plataforma = GetComponent<BoxCollider2D>();
         tempo = 0f;
         anim = GetComponent<Animator>();
     }
@@ -29,7 +29,7 @@ public class Plataforma : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || 
         other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("super_bullet_inimiga")) {
-            collider.isTrigger = true;
+            collider_plataforma.isTrigger = true;
             anim.SetBool("destruida", true);
             StartCoroutine("destruir");
         }

@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Getsuga : MonoBehaviour
 {
-    private PolygonCollider2D collider;
     private float velocidade = 12.8f;
     void Start()
     {
-        collider = GetComponent<PolygonCollider2D>();
         Destroy(gameObject, 2.5f);
     }
 

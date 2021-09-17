@@ -71,6 +71,7 @@ public class FaseManager2 : MonoBehaviour
             tocaSom = 0;
             TiroPequenoChefao.modoHard = false;
             TiroRedondo.modoHardRedondo = false;
+            SuperTiroChefao.modoHard = false;
             if(GameManager.sem_dialogos == 0) {
                 back_void.Play();
                 som_fala.Play();
@@ -89,7 +90,7 @@ public class FaseManager2 : MonoBehaviour
             back_void.Play();
             escada.SetActive(true);
             Destroy(chefao);
-            Destroy(vida_chefao);
+            vida_chefao.SetActive(false);
             PlayerControle.conversando = false;
             PlayerControle.pode_mexer = true;
             PlayerControle.podeAtirar = true;

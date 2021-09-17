@@ -20,6 +20,7 @@ TagManager:
   - nextFase
   - fora
   - the
+  - paredeFase1
   layers:
   - Default
   - TransparentFX

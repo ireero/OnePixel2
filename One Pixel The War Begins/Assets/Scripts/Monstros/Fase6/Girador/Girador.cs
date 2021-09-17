@@ -7,7 +7,7 @@ public class Girador : MonoBehaviour
     private float velocidade;
     private Rigidbody2D corpo;
     private Animator anim;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_girador;
     private Transform target;
     private bool morreu;
     private SpriteRenderer sr;
@@ -20,7 +20,7 @@ public class Girador : MonoBehaviour
         velocidade = 3f;
         corpo = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider2D>();
+        collider_girador = GetComponent<BoxCollider2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sr = GetComponent<SpriteRenderer>();
         som_morte = GetComponent<AudioSource>();
@@ -73,7 +73,7 @@ public class Girador : MonoBehaviour
         morreu = true;
         sr.color = Color.white;
         anim.SetBool("morreu", true);
-        collider.isTrigger = true;
+        collider_girador.isTrigger = true;
         corpo.gravityScale += 0.1f;
         velocidade = 0;
         StartCoroutine("morre");

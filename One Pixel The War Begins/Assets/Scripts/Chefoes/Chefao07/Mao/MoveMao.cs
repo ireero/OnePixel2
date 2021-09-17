@@ -14,8 +14,8 @@ public class MoveMao : MonoBehaviour
     private Animator anim;
     private float temp_movendo;
 
-    private BoxCollider2D collider_quadrado;
-    private PolygonCollider2D collider;
+    private BoxCollider2D collider_mao;
+    private PolygonCollider2D collider_temp;
 
     public GameObject explosao;
 
@@ -41,8 +41,8 @@ public class MoveMao : MonoBehaviour
         aux = slider.motor;
         corpo = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        collider = GetComponent<PolygonCollider2D>();
-        collider_quadrado = GetComponent<BoxCollider2D>();
+        collider_temp = GetComponent<PolygonCollider2D>();
+        collider_mao = GetComponent<BoxCollider2D>();
         som_batida = GetComponent<AudioSource>();
     }
 
@@ -83,8 +83,8 @@ public class MoveMao : MonoBehaviour
 
         if(contador > temp_movendo) {
             anim.SetBool("fechar", true);
-            collider_quadrado.enabled = true;
-            collider.enabled = false;
+            collider_mao.enabled = true;
+            collider_temp.enabled = false;
             aux.motorSpeed = 0;
             slider.motor = aux;
             if(contador >= (temp_movendo + 0.5f)) {
@@ -95,8 +95,8 @@ public class MoveMao : MonoBehaviour
         if(contador >= 52f) {
             this.gameObject.transform.position = Vector2.MoveTowards(transform.position, ponto_principal.position, speed * Time.deltaTime);
             anim.SetBool("fechar", false);
-            collider_quadrado.enabled = false;
-            collider.enabled = true;
+            collider_mao.enabled = false;
+            collider_temp.enabled = true;
         }
     }
 

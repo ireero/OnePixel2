@@ -13,7 +13,7 @@ public class Clones : MonoBehaviour
     private Animator anim;
 
     public Transform local_chefao;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_clone;
     private bool podeIr;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class Clones : MonoBehaviour
         podeIr = true;
         contador = 0;
         anim = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider2D>();
+        collider_clone = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -48,7 +48,7 @@ public class Clones : MonoBehaviour
             anim.SetBool("morrer", true);
             podeIr = false;
             Destroy(gameObject, 1f);
-            collider.isTrigger = true;
+            collider_clone.isTrigger = true;
         }
     }
 }

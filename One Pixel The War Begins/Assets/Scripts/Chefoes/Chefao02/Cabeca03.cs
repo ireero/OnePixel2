@@ -30,7 +30,6 @@ public class Cabeca03 : MonoBehaviour
         cabeca3.podeAtirar = false;
         cabeca3.vida = 50f;
         contador = 0;
-        cabeca3.collider = GetComponent<PolygonCollider2D>();
         cabeca3.corpo = GetComponent<Rigidbody2D>();
         cabeca3.anim = GetComponent<Animator>();
         cabeca3.sr = GetComponent<SpriteRenderer>();

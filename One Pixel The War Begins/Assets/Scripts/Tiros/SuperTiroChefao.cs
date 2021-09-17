@@ -8,7 +8,7 @@ public class SuperTiroChefao : MonoBehaviour
     private float speed = -1.75f;
     private float timeDestroy;
     private Animator anim;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider_tirao;
     private float contador;
     private int vida = 6;
     private SpriteRenderer sr;
@@ -17,12 +17,11 @@ public class SuperTiroChefao : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        StartCoroutine("ativarIdle");
         contador = 0;
         anim = GetComponent<Animator>();
         timeDestroy = 10f;
         Destroy(gameObject, timeDestroy);
-        collider = GetComponent<BoxCollider2D>();
+        collider_tirao = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
     }
 
@@ -61,15 +60,10 @@ public class SuperTiroChefao : MonoBehaviour
         Destroy(this.gameObject);
 	}
 
-    IEnumerator ativarIdle() {
-        yield return new WaitForSeconds(0.85f);
-        anim.SetBool("idle", true);
-    }
-
     private void Morrer() {
         anim.SetBool("morreu", true);
         speed = 0;
-        collider.isTrigger = true;
+        collider_tirao.isTrigger = true;
         StartCoroutine("morre");
     }
 }

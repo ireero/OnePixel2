@@ -16,7 +16,7 @@ public class Protetor : MonoBehaviour
         public GameObject tiros;
 
         private Animator anim;
-        private CircleCollider2D collider;
+        private CircleCollider2D collider_protetor;
 
         public static bool pode_atirar;
 
@@ -32,14 +32,14 @@ public class Protetor : MonoBehaviour
         potenciaRot = 1f;
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        collider = GetComponent<CircleCollider2D>();
+        collider_protetor = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(MoedaRisada.moeda_ativou == false && FaseManager5.pode_comecar_5 == true) {
-            collider.isTrigger = false;
+            collider_protetor.isTrigger = false;
             if(!chefao_vermelho) {
                 anim.SetBool("nascer", true);
             } else {
@@ -49,7 +49,7 @@ public class Protetor : MonoBehaviour
             }
             transform.Rotate(new Vector3(x: 0, y: 0, z: potenciaRot));
             if(Chefao04.contador >= tempo_de_tiro) {
-                collider.enabled = true;
+                collider_protetor.enabled = true;
                 for (int i = 0; i < 16; i++)
                 {
                     if(pode_atirar) {
@@ -78,7 +78,7 @@ public class Protetor : MonoBehaviour
 
     IEnumerator protetorSumindo() {
         yield return new WaitForSeconds(0.85f);
-        collider.isTrigger = true;
+        collider_protetor.isTrigger = true;
         if(!chefao_vermelho) {
             anim.SetBool("sumir", false);
             anim.SetBool("nascer", false);
