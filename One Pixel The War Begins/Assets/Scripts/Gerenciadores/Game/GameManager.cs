@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         fase5 = PlayerPrefs.GetInt("Fase5");
         fase6 = PlayerPrefs.GetInt("Fase6");
         fase7 = PlayerPrefs.GetInt("Fase7");
+        fase7_5 = PlayerPrefs.GetInt("Fase7_5");
         fase8 = PlayerPrefs.GetInt("Fase8");
         fase9 = PlayerPrefs.GetInt("Fase9");
         fase10 = PlayerPrefs.GetInt("Fase10");

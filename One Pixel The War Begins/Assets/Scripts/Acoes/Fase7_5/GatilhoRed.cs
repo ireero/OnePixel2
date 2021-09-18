@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GatilhoRed : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class GatilhoRed : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
+            PlayerPrefs.SetInt("Fase7_5", 2);
             Red.SetActive(true);
         }
     }

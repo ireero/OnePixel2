@@ -49,7 +49,7 @@ public class Chefao04 : MonoBehaviour
         contador = 0;
         contador_voltar = 0;
         valor_para_voltar = 7f;
-        vida_chefao = 50f;
+        vida_chefao = 80f;
         sr = GetComponent<SpriteRenderer>();
         collider_chefao4 = GetComponent<BoxCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
@@ -109,12 +109,12 @@ public class Chefao04 : MonoBehaviour
             anim.SetBool("morreu", true);
             StartCoroutine("morrer");
             sr.color = Color.white;
-        } else if(vida_chefao <= 25 && vida_chefao > 0) {
+        } else if(vida_chefao <= 40 && vida_chefao > 0) {
             FaseManager5.valor_tiros_dados = 12;
             Protetor.chefao_vermelho = true;
             sr.color = Color.red;
             valor_para_voltar = 6f;
-            if(vida_chefao == 25 && !umaVezMeiaVida) {
+            if(vida_chefao == 40 && !umaVezMeiaVida) {
                 if(GameManager.sem_dialogos == 0) {
                     FaseManager5.contagem_falas_5 = 8;
                 }

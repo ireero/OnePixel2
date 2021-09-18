@@ -140,7 +140,7 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.SalvarSit(0, "PONTO");
         GameManager.Instance.SalvarSit(0, "TEMPO");
         GameManager.Instance.SalvarSit(0, "RED");
-        GameManager.Instance.SalvarSit(0, "REDJA");
+        GameManager.Instance.SalvarSit(0, "Fase7_5");
     }
 
     public void AtivarOpcoes() {

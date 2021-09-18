@@ -55,7 +55,7 @@ public class FaseManager5 : MonoBehaviour
 
     public Sprite icon_metade_vida;
 
-    private float vida_maxima = 50f;
+    private float vida_maxima = 80f;
 
     public static int valor_tiros_dados = 8;
 
@@ -250,7 +250,7 @@ public class FaseManager5 : MonoBehaviour
                 back_void.Play();
                 back_som.Stop();
                 Destroy(vida_chefao);
-            } else if(Chefao04.vida_chefao <= 25 && Chefao04.vida_chefao > 0) {
+            } else if(Chefao04.vida_chefao <= 40 && Chefao04.vida_chefao > 0) {
                 BarraVidaMaior.sprite = icon_metade_vida;
                 TiroPequenoChefao.modoHard = true;
                 BarraVidaMaior.color = Color.red;

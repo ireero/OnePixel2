@@ -183,7 +183,6 @@ public class PlayerControle : MonoBehaviour {
       if(red_var) {
             type_red = 1;
             PlayerPrefs.SetInt("RED", type_red);
-            PlayerPrefs.SetInt("REDJA", type_red);
          }
 
       if(conversando) {
@@ -352,8 +351,10 @@ public class PlayerControle : MonoBehaviour {
          transform.position = teleporte.position;
       } else if(other.gameObject.CompareTag("paredeFase1")) {
          if(SceneManager.GetActiveScene().name == "Fase0") {
-            SceneLoader.Instance.LoadSceneAsync("Fase1");
-            gameObject.SetActive(false);
+            if(FaseManager0.horaDePassar == 5) {
+               SceneLoader.Instance.LoadSceneAsync("Fase1");
+               gameObject.SetActive(false);
+            }
          }
       }
    }

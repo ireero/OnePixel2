@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Chefao0 : MonoBehaviour
 {
@@ -15,8 +16,14 @@ public class Chefao0 : MonoBehaviour
     private AudioSource som_batida;
     public AudioSource som_pulo;
     public AudioSource som_dano;
-    private int vida_boss0;
+    public AudioSource som_explod;
+    public static int vida_boss0;
     private bool tomandoDano;
+    public GameObject[] bichos;
+    public Transform[] spawns;
+    public GameObject vida_chefao;
+    public Image BarraDeVida;
+    private int vida_maxima = 40;
 
     void Start()
     {
@@ -35,6 +42,8 @@ public class Chefao0 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        VidaBoss();
 
         if(transform.position.x < target.transform.position.x) {
             transform.Translate(new Vector2(velocidade * Time.deltaTime, 0));
@@ -65,6 +74,11 @@ public class Chefao0 : MonoBehaviour
                 tomandoDano = true;
                 anim.SetBool("dano", true);
                 StartCoroutine("voltarDano");
+            } else if(vida_boss0 <= 0) {
+                anim.SetBool("morrer", true);
+                Destroy(vida_chefao);
+                corpo.bodyType = RigidbodyType2D.Static;    
+                StartCoroutine("morrerCara");
             }
         }
     }
@@ -87,6 +101,28 @@ public class Chefao0 : MonoBehaviour
         anim.SetBool("pular", true);
     }
 
+    public void VidaBoss() {
+        BarraDeVida.fillAmount = vida_maxima / Chefao0.vida_boss0;
+    }
+
+    public void Filhotes() {
+
+        som_explod.Play();
+        FaseManager0.horaDePassar++;
+
+        bichos[0].transform.position = spawns[0].position;
+        bichos[0].SetActive(true);
+
+        bichos[1].transform.position = spawns[1].position;
+        bichos[1].SetActive(true);
+
+        bichos[2].transform.position = spawns[2].position;
+        bichos[2].SetActive(true);
+
+        bichos[3].transform.position = spawns[3].position;
+        bichos[3].SetActive(true);
+    }
+
     IEnumerator voltarDano() {
         yield return new WaitForSeconds(2f);
         som_dano.Stop();
@@ -94,5 +130,10 @@ public class Chefao0 : MonoBehaviour
         anim.SetBool("dano", false);
         anim.SetBool("pular", true);
         tomandoDano = false;
+    }
+
+    IEnumerator morrerCara() {
+        yield return new WaitForSeconds(0.9f);
+        Destroy(this.gameObject);
     }
 }
