@@ -57,8 +57,8 @@ public class FaseManager4 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase4");
         }
 
-        if(GameManager.progresso <= 3) {
-            GameManager.Instance.SalvarSit(4, "Progresso");
+        if(GameManager.progresso <= 4) {
+            GameManager.Instance.SalvarSit(5, "Progresso");
         }
 
         if(Application.systemLanguage == SystemLanguage.English) {

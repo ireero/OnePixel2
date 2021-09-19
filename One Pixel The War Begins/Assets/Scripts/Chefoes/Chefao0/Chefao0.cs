@@ -23,7 +23,7 @@ public class Chefao0 : MonoBehaviour
     public Transform[] spawns;
     public GameObject vida_chefao;
     public Image BarraDeVida;
-    private int vida_maxima = 40;
+    private float vida_maxima = 40f;
 
     void Start()
     {
@@ -43,7 +43,9 @@ public class Chefao0 : MonoBehaviour
     void Update()
     {
 
-        VidaBoss();
+        if(vida_boss0 >= 0) {
+            VidaBoss();
+        }
 
         if(transform.position.x < target.transform.position.x) {
             transform.Translate(new Vector2(velocidade * Time.deltaTime, 0));
@@ -76,10 +78,12 @@ public class Chefao0 : MonoBehaviour
                 StartCoroutine("voltarDano");
             } else if(vida_boss0 <= 0) {
                 anim.SetBool("morrer", true);
-                Destroy(vida_chefao);
                 corpo.bodyType = RigidbodyType2D.Static;    
                 StartCoroutine("morrerCara");
             }
+        } else if(other.gameObject.CompareTag("fora")) {
+            FaseManager0.horaDePassar++;
+            Destroy(this.gameObject);
         }
     }
 
@@ -102,7 +106,7 @@ public class Chefao0 : MonoBehaviour
     }
 
     public void VidaBoss() {
-        BarraDeVida.fillAmount = vida_maxima / Chefao0.vida_boss0;
+        BarraDeVida.fillAmount = Chefao0.vida_boss0 / vida_maxima;
     }
 
     public void Filhotes() {
@@ -134,6 +138,7 @@ public class Chefao0 : MonoBehaviour
 
     IEnumerator morrerCara() {
         yield return new WaitForSeconds(0.9f);
+        Destroy(vida_chefao);
         Destroy(this.gameObject);
     }
 }

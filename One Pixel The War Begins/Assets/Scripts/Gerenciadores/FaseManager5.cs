@@ -84,8 +84,8 @@ public class FaseManager5 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase5");
         }
 
-        if(GameManager.progresso <= 4) {
-            GameManager.Instance.SalvarSit(5, "Progresso");
+        if(GameManager.progresso <= 5) {
+            GameManager.Instance.SalvarSit(6, "Progresso");
         }
 
         if(GameManager.fase5 == 1 || GameManager.fase5 == 0) {

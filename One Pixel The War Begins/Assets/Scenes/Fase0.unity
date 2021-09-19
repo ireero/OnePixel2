@@ -870,7 +870,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.11889753}
   m_AnchorMax: {x: 1, y: 0.30622053}
-  m_AnchoredPosition: {x: 0.00012207031, y: 4.5000076}
+  m_AnchoredPosition: {x: 0.00012207031, y: 4.4999924}
   m_SizeDelta: {x: 0.00024414062, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &154888416
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 748662337}
         m_TargetAssemblyTypeName: MenuDerrota, Assembly-CSharp
         m_MethodName: IrMenu
         m_Mode: 1
@@ -4061,6 +4061,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4159547c648da9f4a9910a9f36a7dca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss:
+  - {fileID: 1174744120}
+  - {fileID: 1762410226}
+  - {fileID: 868324739}
+  - {fileID: 1501728858}
+  - {fileID: 757937461}
+  barra_de_vida: {fileID: 250320594}
+  painel_derrota: {fileID: 1879815990}
 --- !u!114 &748662337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4478,7 +4486,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 748662337}
         m_TargetAssemblyTypeName: MenuDerrota, Assembly-CSharp
         m_MethodName: Reiniciar
         m_Mode: 1

@@ -64,6 +64,7 @@ public class ChefaoMenor : MonoBehaviour
         } else if(other.gameObject.CompareTag("Chefoes")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         } else if(other.gameObject.CompareTag("fora")) {
+            FaseManager0.horaDePassar++;
             Destroy(this.gameObject);
         }
     }

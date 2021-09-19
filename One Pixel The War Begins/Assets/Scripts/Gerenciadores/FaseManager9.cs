@@ -115,8 +115,8 @@ public class FaseManager9 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase9");
         }
 
-        if(GameManager.progresso <= 8) {
-            GameManager.Instance.SalvarSit(9, "Progresso");
+        if(GameManager.progresso <= 9) {
+            GameManager.Instance.SalvarSit(10, "Progresso");
         }
 
         anim = GetComponent<Animator>();

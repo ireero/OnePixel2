@@ -52,8 +52,8 @@ public class FaseManager7 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase7");
         }
 
-        if(GameManager.progresso <= 6) {
-            GameManager.Instance.SalvarSit(7, "Progresso");
+        if(GameManager.progresso <= 7) {
+            GameManager.Instance.SalvarSit(8, "Progresso");
         }
         som_void.Play();
 

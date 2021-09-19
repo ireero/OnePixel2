@@ -63,8 +63,8 @@ public class FaseManager2 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase2");
         }
 
-        if(GameManager.progresso <= 1) {
-            GameManager.Instance.SalvarSit(2, "Progresso");
+        if(GameManager.progresso <= 2) {
+            GameManager.Instance.SalvarSit(3, "Progresso");
         }
 
         if(GameManager.fase2 == 1 || GameManager.fase2 == 0) {

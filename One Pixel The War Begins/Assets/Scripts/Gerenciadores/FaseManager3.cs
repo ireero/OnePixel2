@@ -71,8 +71,8 @@ public class FaseManager3 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase3");
         }
 
-        if(GameManager.progresso <= 2) {
-            GameManager.Instance.SalvarSit(3, "Progresso");
+        if(GameManager.progresso <= 3) {
+            GameManager.Instance.SalvarSit(4, "Progresso");
         }
 
         anim = GetComponent<Animator>();

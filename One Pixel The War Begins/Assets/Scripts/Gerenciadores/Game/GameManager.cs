@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
+    public static int fase0;
     public static int fase1;
     public static int fase2;
     public static int fase3;
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     public void CarregarDados() {
         comecou_game = PlayerPrefs.GetInt("Comecou");
+        fase0 = PlayerPrefs.GetInt("Fase0");
         fase1 = PlayerPrefs.GetInt("Fase1");
         fase2 = PlayerPrefs.GetInt("Fase2");
         fase3 = PlayerPrefs.GetInt("Fase3");

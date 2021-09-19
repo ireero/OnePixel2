@@ -87,33 +87,36 @@ public class MenuManager : MonoBehaviour
         som_click.Play();
         switch(GameManager.progresso) {
             case 1:
-                SceneLoader.Instance.LoadSceneAsync("Fase1");
+                SceneLoader.Instance.LoadSceneAsync("Fase0");
                 break;
             case 2:
-                SceneLoader.Instance.LoadSceneAsync("Fase2");
+                SceneLoader.Instance.LoadSceneAsync("Fase1");
                 break;
             case 3:
-                SceneLoader.Instance.LoadSceneAsync("Fase3");
+                SceneLoader.Instance.LoadSceneAsync("Fase2");
                 break;
             case 4:
-                SceneLoader.Instance.LoadSceneAsync("Fase4");
+                SceneLoader.Instance.LoadSceneAsync("Fase3");
                 break;
             case 5:
-                SceneLoader.Instance.LoadSceneAsync("Fase5");
+                SceneLoader.Instance.LoadSceneAsync("Fase4");
                 break;
             case 6:
-                SceneLoader.Instance.LoadSceneAsync("Fase6");
+                SceneLoader.Instance.LoadSceneAsync("Fase5");
                 break;
             case 7:
-                SceneLoader.Instance.LoadSceneAsync("Fase7");
+                SceneLoader.Instance.LoadSceneAsync("Fase6");
                 break;
             case 8:
-                SceneLoader.Instance.LoadSceneAsync("Fase8");
+                SceneLoader.Instance.LoadSceneAsync("Fase7");
                 break;
             case 9:
-                SceneLoader.Instance.LoadSceneAsync("Fase9");
+                SceneLoader.Instance.LoadSceneAsync("Fase8");
                 break;
             case 10:
+                SceneLoader.Instance.LoadSceneAsync("Fase9");
+                break;
+            case 11:
                 SceneLoader.Instance.LoadSceneAsync("Fase10");
                 break;                                    
         }
@@ -121,6 +124,7 @@ public class MenuManager : MonoBehaviour
 
     public void ReiniciarTudo() {
         som_click.Play();
+        GameManager.Instance.SalvarSit(0, "Fase0");
         GameManager.Instance.SalvarSit(0, "Fase1");
         GameManager.Instance.SalvarSit(0, "Fase2");
         GameManager.Instance.SalvarSit(0, "Fase3");

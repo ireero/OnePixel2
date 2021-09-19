@@ -16,7 +16,7 @@ public class Slime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Chefao04.vida_chefao == 25f || Chefao04.vida_chefao <= 0) {
+        if(Chefao04.vida_chefao == 40f || Chefao04.vida_chefao <= 0) {
             FaseManager5.slimes_vivos--;
             anim.SetBool("sumir", true);
             Destroy(gameObject, 0.5f);
