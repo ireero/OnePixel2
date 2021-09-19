@@ -86,7 +86,7 @@ public class PlayerControle : MonoBehaviour {
 
    public Transform teleporte;
 
-   private bool red_var;
+   public static bool red_var;
    public static int type_red;
    private float cont_red;
  

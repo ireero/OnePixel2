@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Clones : MonoBehaviour
 {
@@ -15,23 +16,45 @@ public class Clones : MonoBehaviour
     public Transform local_chefao;
     private BoxCollider2D collider_clone;
     private bool podeIr;
+
+    private int vida;
+    private bool descansar;
+    private float cont_descanso;
+
+    private Image img;
     // Start is called before the first frame update
     void Start()
     {
+        cont_descanso = 0;
+        descansar = false;
+        vida = 15;
         podeIr = true;
         contador = 0;
         anim = GetComponent<Animator>();
         collider_clone = GetComponent<BoxCollider2D>();
+        img = GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
         contador += Time.deltaTime;
-        if(FaseManager10.pode_comecar_10) {
-            if(contador >= 2f) {
-                Instantiate(tiro, spawn_tiro.position, spawn_tiro.rotation);
-                contador = 0;
+        
+            if(descansar) {
+                cont_descanso += Time.deltaTime;
+                if(cont_descanso >= 8.5f) {
+                    anim.SetBool("descansar", false);
+                    collider_clone.isTrigger = false;
+                    descansar = false;
+                    vida = 15;
+                    img.color = Color.red;
+                }
+            } else {
+                if(FaseManager10.pode_comecar_10) {
+                if(contador >= 2f) {
+                    Instantiate(tiro, spawn_tiro.position, spawn_tiro.rotation);
+                    contador = 0;
+                }
             }
 
             if(PixelPreto.sugando) {
@@ -49,6 +72,14 @@ public class Clones : MonoBehaviour
             podeIr = false;
             Destroy(gameObject, 1f);
             collider_clone.isTrigger = true;
+        } else if(other.gameObject.CompareTag("bullet")) {
+            vida--;
+            if(vida <= 0) {
+                img.color = Color.white;
+                collider_clone.isTrigger = true;
+                anim.SetBool("descansar", true);
+                descansar = true;
+            }
         }
     }
 }

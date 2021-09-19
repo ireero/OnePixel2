@@ -13,16 +13,24 @@ public class Chefao7 : MonoBehaviour
     public Animator do_background;
     public AudioSource som_terremoto;
     private bool som_umaVez;
+    public static bool red_sair;
+    private bool redUmaVez;
 
     void Start()
     {
+        redUmaVez = true;
         som_umaVez = false;
         bateu_nele = false;
         possuido = false;
         umaVez = false;
         rindo = false;
+        red_sair = false;
         anim = GetComponent<Animator>();
         colisor = GetComponent<BoxCollider2D>();
+        if(PlayerControle.red_var) {
+            anim.SetBool("legal", true);
+            anim.SetBool("idle", false);
+        }
     }
 
     // Update is called once per frame
@@ -32,6 +40,14 @@ public class Chefao7 : MonoBehaviour
             umaVez = true;
             anim.SetBool("transformar", true);
             colisor.isTrigger = true;
+        }
+
+        if(red_sair) {
+            if(redUmaVez) {
+                anim.SetBool("idle", true);
+                anim.SetBool("legal", false);
+                redUmaVez = false;
+            }
         }
 
         if(FaseManager9.acabou == true) {

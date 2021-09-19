@@ -32,27 +32,30 @@ public class TiroPequeno : MonoBehaviour
             Destroy(this.gameObject);
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || 
         other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("super_bullet_inimiga")) {
-            Morrer();
+            anim.SetBool("morreu", true);
         } else if(other.gameObject.CompareTag("plataforma") || other.gameObject.CompareTag("moeda_rir")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 
-    IEnumerator morre() {
-		yield return new WaitForSeconds(0.75f);
+    public void MorreBala() {
         Destroy(this.gameObject);
-	}
+    }
 
-    private void Morrer() {
+    public void PrepararMorrer() {
         rb.bodyType = RigidbodyType2D.Static;
-        anim.SetBool("morreu", true);
         speed = 0;
         collider_tirinho.isTrigger = true;
-        StartCoroutine("morre");
     }
 
     IEnumerator ativarIdle() {
         yield return new WaitForSeconds(0.25f);
-        anim.SetBool("idle", true);
+        if(PlayerControle.red_var) {
+            anim.SetBool("red", true);
+            anim.SetBool("idle", false);
+        } else {
+            anim.SetBool("idle", true);
+            anim.SetBool("red", false);
+        }
     }
 }

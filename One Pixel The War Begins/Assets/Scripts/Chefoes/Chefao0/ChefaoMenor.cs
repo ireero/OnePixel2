@@ -16,9 +16,11 @@ public class ChefaoMenor : MonoBehaviour
     private int vida_mob;
     private float valor;
     private float valor2;
+    private bool nao_pular;
 
     void Start()
     {
+        nao_pular = true;
         vida_mob = 10;
         lookingRight = false;
         corpo = GetComponent<Rigidbody2D>();
@@ -51,7 +53,10 @@ public class ChefaoMenor : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("chao")) {
-            som_batida.Play();
+            if(nao_pular) {
+                som_batida.Play();
+                nao_pular = false;
+            }
             anim.SetBool("pular", false);
         } else if(other.gameObject.CompareTag("bullet")) {
             vida_mob--;
@@ -79,6 +84,7 @@ public class ChefaoMenor : MonoBehaviour
     public void Pular() {
         som_pulo.Play();
         corpo.AddForce(new Vector2(0, forca_pulo));
+        nao_pular = true;
     }
 
     public void Filhotes() {

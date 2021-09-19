@@ -24,9 +24,11 @@ public class Chefao0 : MonoBehaviour
     public GameObject vida_chefao;
     public Image BarraDeVida;
     private float vida_maxima = 40f;
+    private bool nao_pulou;
 
     void Start()
     {
+        nao_pulou = true;
         tomandoDano = false;
         vida_boss0 = 40;
         lookingRight = false;
@@ -62,9 +64,12 @@ public class Chefao0 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("chao")) {
-            som_batida.Play();
-            Camera.tremer_chao = true;
-            anim_back.SetBool("tremer_chao", true);
+            if(nao_pulou) {
+                som_batida.Play();
+                Camera.tremer_chao = true;
+                anim_back.SetBool("tremer_chao", true);
+                nao_pulou = false;
+            }
             anim.SetBool("pular", false);
         } else if(other.gameObject.CompareTag("bullet")) {
             if(!tomandoDano) {
@@ -98,6 +103,7 @@ public class Chefao0 : MonoBehaviour
         if(!tomandoDano) {
             som_pulo.Play();
             corpo.AddForce(new Vector2(0, forca_pulo));
+            nao_pulou = true;
         }
     }
 

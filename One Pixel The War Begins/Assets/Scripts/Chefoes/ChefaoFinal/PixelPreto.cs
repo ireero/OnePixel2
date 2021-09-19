@@ -206,7 +206,6 @@ public class PixelPreto : MonoBehaviour
                             cont_adaga += Time.deltaTime;
                             if(evo_pixel == 1) {
                                 if(estaNaDireita) {
-                                    sr.color = Color.white;
                                     Vector3 vetor = transform.localScale;
                                     vetor.x *= -1;
                                     transform.localScale = vetor;
@@ -214,7 +213,6 @@ public class PixelPreto : MonoBehaviour
                                     corpo.bodyType = RigidbodyType2D.Kinematic;
                                     evo_pixel++;
                                 } else {
-                                    sr.color = Color.white;
                                     anim.SetBool("modo_caveira", true);
                                     corpo.bodyType = RigidbodyType2D.Kinematic;
                                     evo_pixel++;
@@ -322,8 +320,16 @@ public class PixelPreto : MonoBehaviour
             }
         }
         if(other.gameObject.CompareTag("bullet")) {
-            vida_pixel_preto--;
-            if(vida_pixel_preto <= 480) {
+            if(PlayerControle.red_var) {
+                vida_pixel_preto -= 2;
+            } else {
+                vida_pixel_preto--;
+            }
+            if(evo_pixel == 2) {
+                sr.color = Color.white;
+                StartCoroutine("voltarCor");
+            }
+            if(vida_pixel_preto <= 250) {
                 meia_vida = true;
                 AtirouJa = false;
             }
@@ -342,6 +348,11 @@ public class PixelPreto : MonoBehaviour
         yield return new WaitForSeconds(1f);
         podeAtirar = true;
         atirarUmaVez = true;
+    }
+
+    IEnumerator voltarCor() {
+        yield return new WaitForSeconds(0.1f);
+        sr.color = Color.red;    
     }
 
     IEnumerator voltarAnimSoco() {
