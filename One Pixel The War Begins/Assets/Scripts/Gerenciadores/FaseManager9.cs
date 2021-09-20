@@ -87,6 +87,7 @@ public class FaseManager9 : MonoBehaviour
     public Sprite cara_surpreso;
     public Sprite cara_sorrindo;
     public Sprite cara_irritado;
+    public Sprite cara_foco;
 
     public GameObject portal_direita, portal_esquerda, portal_cima;
     public GameObject raposa;
@@ -202,6 +203,7 @@ public class FaseManager9 : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_9 && GameManager.sem_dialogos == 0) {
             if(PlayerControle.red_var) {
+                imagem.sprite = cara_foco;
                 painel_falas.SetActive(false);
                 tempo_objeto.SetActive(true);
             if(!pode_comecar_9) {
@@ -229,6 +231,8 @@ public class FaseManager9 : MonoBehaviour
                 som_void.Stop();
                 musica_fase.Play();
             }
+            Chefao7.red_sair = true;
+            imagem.sprite = cara_foco;
             pode_comecar_9 = true;
         }
 

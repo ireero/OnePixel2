@@ -183,6 +183,8 @@ public class PlayerControle : MonoBehaviour {
       if(red_var) {
             type_red = 1;
             PlayerPrefs.SetInt("RED", type_red);
+         } else {
+
          }
 
       if(conversando) {
@@ -441,6 +443,10 @@ public class PlayerControle : MonoBehaviour {
    }
 
    void Morrer() {
+      if(red_var) {
+         red_var = false;
+         PlayerPrefs.SetInt("RED", 0);
+      }
       vida--;
       GerenciadorAudio.inst.PlayMorte(som_morte);
       Camera.tremer = true;

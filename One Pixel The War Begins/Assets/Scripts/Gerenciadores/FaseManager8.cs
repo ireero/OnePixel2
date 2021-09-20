@@ -69,6 +69,9 @@ public class FaseManager8 : MonoBehaviour
                 jabateuUmPapo = true;
             }
         } else {
+            PlayerControle.conversando = false;
+            PlayerControle.podeAtirar = true;
+            PlayerControle.pode_mexer = true;
             Destroy(cientista);
             Destroy(gatilho);
             escada.SetActive(true);

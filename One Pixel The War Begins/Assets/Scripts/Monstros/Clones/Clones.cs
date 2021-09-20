@@ -73,7 +73,11 @@ public class Clones : MonoBehaviour
             Destroy(gameObject, 1f);
             collider_clone.isTrigger = true;
         } else if(other.gameObject.CompareTag("bullet")) {
-            vida--;
+            if(PlayerControle.red_var) {
+                vida -= 3;
+            } else {
+                vida--;
+            }
             if(vida <= 0) {
                 img.color = Color.white;
                 collider_clone.isTrigger = true;
