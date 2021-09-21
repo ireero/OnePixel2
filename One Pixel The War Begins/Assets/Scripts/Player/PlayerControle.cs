@@ -88,10 +88,58 @@ public class PlayerControle : MonoBehaviour {
 
    public static bool red_var;
    public static int type_red;
-   private float cont_red;
+   public static float cont_red;
+   public static float cont_volt_red;
+
+   private float tempo_maximo_stamina = 30f;
+   public GameObject BarraStamina;
+   public Image barra_stamina;
+
+   private bool red_pausado;
+   private int pausado;
+   private bool umaVezRed;
  
    void Start () {  
-      cont_red = 0;
+      if(PlayerPrefs.HasKey("CONT_RED")) {
+         cont_red = PlayerPrefs.GetFloat("CONT_RED");
+      } else {
+         cont_red = 30f;
+      }
+      if(PlayerPrefs.HasKey("CONT_VOLT_RED")) {
+         cont_volt_red = PlayerPrefs.GetFloat("CONT_VOLT_RED");
+      } else {
+         cont_volt_red = 0;
+      }
+      if(PlayerPrefs.HasKey("RED")) {
+         type_red = PlayerPrefs.GetInt("RED");
+         if(type_red == 1) {
+            red_var = true;
+            BarraStamina.SetActive(true);
+            barra_stamina.enabled = true;
+         } else if(type_red == 2) {
+            if(cont_red > 0) {
+               red_var = true;
+            } else {
+               red_var = false;
+            }
+            BarraStamina.SetActive(true);
+         } else {
+            red_var = false;
+         }
+      } else {
+         cont_red = 0;
+         cont_volt_red = 0;
+         red_var = false;
+      }
+      if(PlayerPrefs.HasKey("RED_PAUSADO")) {
+         pausado = PlayerPrefs.GetInt("RED_PAUSADO");
+         if(pausado == 1) {
+            red_pausado = true;
+         } else {
+            red_pausado = false;
+         }
+      }
+      umaVezRed = false;
       vida = 3f;
       podeTomarDano = true;
       pularPegar = PlayerPrefs.GetInt("PularDuas");
@@ -102,7 +150,6 @@ public class PlayerControle : MonoBehaviour {
       }
       cont_pisca_dano = 0;
       doubleJump = true;
-      red_var = false;
       parado = true;
       player_morto = false;
       petPegar = PlayerPrefs.GetInt("Pet");
@@ -123,13 +170,7 @@ public class PlayerControle : MonoBehaviour {
       anim = GetComponent<Animator>();
       rb2d = GetComponent<Rigidbody2D>();
       sr = GetComponent<SpriteRenderer>();
-      if(PlayerPrefs.HasKey("RED")) {
-         type_red = PlayerPrefs.GetInt("RED");
-         if(type_red == 1) {
-            sr.color = Color.red;
-            red_var = true;
-         }
-      } else {
+      if(red_pausado && cont_red > 0) {
          red_var = false;
       }
    }
@@ -137,11 +178,55 @@ public class PlayerControle : MonoBehaviour {
    void Update () {
 
       if(red_var) {
-         cont_red += Time.deltaTime;
-         if(cont_red >= 30f) {
+
+         sr.color = Color.red;
+         BarraVidaMaior.color = Color.red;
+
+         BarraVidaStamina();
+         barra_stamina.enabled = true;
+
+         cont_red -= Time.deltaTime;
+         if(cont_red <= 0f) {
             red_var = false;
-            PlayerPrefs.SetInt("RED", 0);
             sr.color = Color.white;
+         }
+
+         if(!red_pausado) {
+            if(Input.GetKeyDown(KeyCode.E)) {
+               red_var = false;
+               red_pausado = true;
+               PlayerPrefs.SetInt("RED_PAUSADO", 1);
+               sr.color = Color.white;
+            }
+         } 
+      } else {
+         if(red_pausado) {
+            if(Input.GetKeyDown(KeyCode.E)) {
+               PlayerPrefs.SetInt("RED_PAUSADO", 0);
+               red_pausado = false;
+               red_var = true;
+            }
+         }
+         if((type_red == 1 || type_red == 2) && !red_pausado) {
+            barra_stamina.fillAmount = cont_volt_red / 180f;
+            BarraVidaMaior.color = Color.white;
+            sr.color = Color.white;
+            cont_volt_red += Time.deltaTime;
+            if(!umaVezRed) {
+               PlayerPrefs.SetFloat("CONT_RED", 0);
+               umaVezRed = true;
+            }
+            if(cont_volt_red >= 180f) {
+               if(Input.GetKeyDown(KeyCode.E)) {
+                  PlayerPrefs.SetInt("RED", 2);
+                  PlayerPrefs.SetFloat("CONT_VOLT_RED", 0);
+                  PlayerPrefs.SetFloat("CONT_RED", 0);
+                  red_var = true;
+                  cont_volt_red = 0;
+                  cont_red = 30;
+                  umaVezRed = false;
+               }
+            }
          }
       }
 
@@ -179,13 +264,6 @@ public class PlayerControle : MonoBehaviour {
             cont_pisca_dano = 0;
          }
       }
-
-      if(red_var) {
-            type_red = 1;
-            PlayerPrefs.SetInt("RED", type_red);
-         } else {
-
-         }
 
       if(conversando) {
          pode_mexer = false;
@@ -445,7 +523,8 @@ public class PlayerControle : MonoBehaviour {
    void Morrer() {
       if(red_var) {
          red_var = false;
-         PlayerPrefs.SetInt("RED", 0);
+         cont_red = 30f;
+         cont_volt_red = 0;
       }
       vida--;
       GerenciadorAudio.inst.PlayMorte(som_morte);
@@ -502,6 +581,10 @@ public class PlayerControle : MonoBehaviour {
 
    private void BarraVida() {
         Barra_de_vida.fillAmount = vida / vida_maxima; 
+    }
+
+    private void BarraVidaStamina() {
+        barra_stamina.fillAmount = cont_red / tempo_maximo_stamina; 
     }
 
 }

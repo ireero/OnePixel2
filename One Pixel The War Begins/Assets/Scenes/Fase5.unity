@@ -290,6 +290,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5411903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2106894290, guid: 0f09a4c876b07314b889e8da904a0894,
+    type: 3}
+  m_PrefabInstance: {fileID: 5411897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5411904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 869330511, guid: 0f09a4c876b07314b889e8da904a0894,
+    type: 3}
+  m_PrefabInstance: {fileID: 5411897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &10161259
 GameObject:
   m_ObjectHideFlags: 0
@@ -7150,7 +7168,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0.9997763}
   m_Children: []
   m_Father: {fileID: 1756958246}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8725001, y: 0.06888889}
   m_AnchorMax: {x: 1, y: 0.29111117}
@@ -8060,9 +8078,19 @@ PrefabInstance:
       objectReference: {fileID: 5411900}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
+      propertyPath: BarraStamina
+      value: 
+      objectReference: {fileID: 5411904}
+    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
       propertyPath: Barra_de_vida
       value: 
       objectReference: {fileID: 5411901}
+    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: barra_stamina
+      value: 
+      objectReference: {fileID: 5411903}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BarraVidaMaior
@@ -8432,9 +8460,9 @@ RectTransform:
   - {fileID: 855862392}
   - {fileID: 1807141232}
   - {fileID: 1111556354}
-  - {fileID: 5411898}
   - {fileID: 1915836122}
   - {fileID: 1533251308}
+  - {fileID: 5411898}
   - {fileID: 203038704}
   - {fileID: 980712712}
   - {fileID: 2096227966}
@@ -9365,7 +9393,7 @@ RectTransform:
   - {fileID: 1744880121}
   - {fileID: 1933873636}
   m_Father: {fileID: 1756958246}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.080000006, y: 0.097777784}
   m_AnchorMax: {x: 0.9175, y: 0.8911112}

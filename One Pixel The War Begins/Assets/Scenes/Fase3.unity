@@ -11126,9 +11126,19 @@ PrefabInstance:
       objectReference: {fileID: 2062563928}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
+      propertyPath: BarraStamina
+      value: 
+      objectReference: {fileID: 2062563932}
+    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
       propertyPath: Barra_de_vida
       value: 
       objectReference: {fileID: 2062563929}
+    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: barra_stamina
+      value: 
+      objectReference: {fileID: 2062563931}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BarraVidaMaior
@@ -16497,6 +16507,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2062563931 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2106894290, guid: 0f09a4c876b07314b889e8da904a0894,
+    type: 3}
+  m_PrefabInstance: {fileID: 2062563925}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2062563932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 869330511, guid: 0f09a4c876b07314b889e8da904a0894,
+    type: 3}
+  m_PrefabInstance: {fileID: 2062563925}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2086964055 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1848100958310169417, guid: c60aa0a8bc5fa114c88b2d6fffd7f246,

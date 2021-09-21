@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
     private string text_fases = "Fases";
     private string text_creditos = "Créditos";
     private string text_sair = "Sair";
-    private string segundos;
+    public static string segundos;
 
     public GameObject painel_pause;
 
@@ -145,6 +145,10 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.SalvarSit(0, "TEMPO");
         GameManager.Instance.SalvarSit(0, "RED");
         GameManager.Instance.SalvarSit(0, "Fase7_5");
+        PlayerPrefs.SetFloat("CONT_RED", 0);
+        PlayerPrefs.SetFloat("CONT_VOLT_RED", 0);
+        GameManager.Instance.SalvarSit(0, "TEMPO_JOGO");
+        PlayerPrefs.SetInt("RED_PAUSADO", 0);
     }
 
     public void AtivarOpcoes() {

@@ -5442,6 +5442,9 @@ MonoBehaviour:
   qtd_vida_2: {fileID: 21300000, guid: 1816dea9a26eff44c9075653d39e3f90, type: 3}
   qtd_vida_1: {fileID: 21300000, guid: 42bd90f979ba5c64497d8822306949b6, type: 3}
   qtd_vida_0: {fileID: 21300000, guid: 5b0c586582ff7eb4eae379572d73112a, type: 3}
+  teleporte: {fileID: 0}
+  barra_stamina: {fileID: 0}
+  BarraStamina: {fileID: 0}
 --- !u!114 &7442106555341568671
 MonoBehaviour:
   m_ObjectHideFlags: 0

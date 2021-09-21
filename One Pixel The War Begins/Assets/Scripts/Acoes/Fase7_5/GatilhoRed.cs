@@ -22,6 +22,7 @@ public class GatilhoRed : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             PlayerPrefs.SetInt("Fase7_5", 2);
+            PlayerPrefs.SetInt("RED", 1);
             Red.SetActive(true);
         }
     }

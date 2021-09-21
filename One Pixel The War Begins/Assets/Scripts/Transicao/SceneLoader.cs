@@ -33,7 +33,26 @@ public class SceneLoader : MonoBehaviour
     }
 
     public void LoadSceneAsync(string sceneName) {
-        StartCoroutine(PerformLoadSceneAsync(sceneName));
+        if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
+            if(PlayerControle.red_var) {
+                if(PlayerControle.cont_red > 0 && PlayerControle.cont_red < 30) {
+                    PlayerPrefs.SetFloat("CONT_RED", PlayerControle.cont_red);
+                }
+
+            } else {
+                if(PlayerControle.cont_volt_red > 0 && PlayerControle.cont_volt_red < 180) {
+                    PlayerPrefs.SetFloat("CONT_VOLT_RED", PlayerControle.cont_volt_red);
+            } 
+
+            if(PlayerControle.cont_red > 0 && PlayerControle.cont_red < 30) {
+                    PlayerPrefs.SetFloat("CONT_RED", PlayerControle.cont_red);
+                }  
+        }
+        if(GameManager.tempo_de_jogo < 60f) {
+            PlayerPrefs.SetFloat("TEMPO_JOGO", GameManager.tempo_de_jogo);
+        }
+        }
+    StartCoroutine(PerformLoadSceneAsync(sceneName));
     }
 
     private IEnumerator PerformLoadSceneAsync(string sceneName) {

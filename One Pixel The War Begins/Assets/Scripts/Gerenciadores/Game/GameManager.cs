@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public static int fase8;
     public static int fase9;
     public static int fase10;
-    private float tempo_de_jogo;
+    public static float tempo_de_jogo;
     public static int tempo_min;
 
     public static int sem_dialogos;
@@ -30,7 +30,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
 
-        tempo_de_jogo = 0;
+        if(PlayerPrefs.HasKey("TEMPO_JOGO")) {
+            tempo_de_jogo = PlayerPrefs.GetFloat("TEMPO_JOGO");
+        } else {
+            tempo_de_jogo = 0;
+        }
 
         // valor 0 = Nem chegou nela (Nem vai aparecer na tela de menu de fases)
         // valor 1 = Chegou nela (vai aparecer na tela de menu de fases)
@@ -77,5 +81,6 @@ public class GameManager : MonoBehaviour
         progresso = PlayerPrefs.GetInt("Progresso");
         AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
         tempo_min = PlayerPrefs.GetInt("TEMPO");
+        
     }
 }
