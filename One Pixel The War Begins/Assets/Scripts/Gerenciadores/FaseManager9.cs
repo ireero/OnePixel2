@@ -178,7 +178,7 @@ public class FaseManager9 : MonoBehaviour
         if(contagem_falas_9 <= 17 && contagem_falas_9 >= 0) {
             if(GameManager.sem_dialogos == 0) { 
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                    if(PlayerControle.red_var) {
+                    if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
                         txtFalas.text = fala_red;
                     } else {
                         txtFalas.text = falas[contagem_falas_9];
@@ -191,7 +191,7 @@ public class FaseManager9 : MonoBehaviour
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
                     txtAvancar.text = text_avancar;
                 }
-                if(PlayerControle.red_var) {
+                if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
                     txtFalas.text = fala_red;
                 } else {
                     txtFalas.text = fala_mutado;
@@ -202,7 +202,7 @@ public class FaseManager9 : MonoBehaviour
         txt_tempo.text = tempo_sobreviver.ToString("F0");
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_9 && GameManager.sem_dialogos == 0) {
-            if(PlayerControle.red_var) {
+            if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
                 imagem.sprite = cara_foco;
                 painel_falas.SetActive(false);
                 tempo_objeto.SetActive(true);
@@ -221,7 +221,7 @@ public class FaseManager9 : MonoBehaviour
                 }
                 contagem_falas_9++;
             }
-        } else if(Input.GetKeyDown(KeyCode.Q) && GameManager.sem_dialogos == 1 && (!pode_comecar_9 || PlayerControle.red_var == true)) {
+        } else if(Input.GetKeyDown(KeyCode.Q) && GameManager.sem_dialogos == 1 && (!pode_comecar_9 || PlayerControle.type_red == 1 || PlayerControle.type_red == 2)) {
             painel_falas.SetActive(false);
             tempo_objeto.SetActive(true);
             if(!pode_comecar_9) {
@@ -393,7 +393,7 @@ public class FaseManager9 : MonoBehaviour
         yield return new WaitForSeconds(7f);
         PlayerControle.conversando = true;
         imagem.sprite = cara_irritado;
-        if(GameManager.sem_dialogos == 0) {
+        if(GameManager.sem_dialogos == 0 || PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
             painel_falas.SetActive(true);
             pode_comecar_9 = false;
             contagem_falas_9 = 14;

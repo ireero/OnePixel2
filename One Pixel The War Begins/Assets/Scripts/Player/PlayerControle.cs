@@ -197,6 +197,7 @@ public class PlayerControle : MonoBehaviour {
                red_pausado = true;
                PlayerPrefs.SetInt("RED_PAUSADO", 1);
                sr.color = Color.white;
+               BarraVidaMaior.color = Color.white;
             }
          } 
       } else {
