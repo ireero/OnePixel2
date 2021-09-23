@@ -245,7 +245,7 @@ public class FaseManager5 : MonoBehaviour
                     umaVez = true;
             }
 
-            if(Chefao04.vida_chefao == 0) {
+            if(Chefao04.vida_chefao <= 0) {
                 GameManager.Instance.SalvarSit(2, "Fase5");
                 back_void.Play();
                 back_som.Stop();

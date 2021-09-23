@@ -133,6 +133,9 @@ public class Chefao04 : MonoBehaviour
         }else if(other.gameObject.CompareTag("chao")) {
             som_queda_morte.Play();
             desintegrando.Play();
+        } else if(other.gameObject.CompareTag("fora")) {
+            GameManager.Instance.SalvarSit(2, "Fase5");
+            Destroy(this.gameObject);
         }
     }
 

@@ -206,16 +206,9 @@ public class PixelPreto : MonoBehaviour
                             cont_adaga += Time.deltaTime;
                             if(evo_pixel == 1) {
                                 if(estaNaDireita) {
-                                    Vector3 vetor = transform.localScale;
-                                    vetor.x *= -1;
-                                    transform.localScale = vetor;
-                                    anim.SetBool("modo_caveira", true);
-                                    corpo.bodyType = RigidbodyType2D.Kinematic;
-                                    evo_pixel++;
+                                    TransformarCaveira();
                                 } else {
-                                    anim.SetBool("modo_caveira", true);
-                                    corpo.bodyType = RigidbodyType2D.Kinematic;
-                                    evo_pixel++;
+                                    TransformarCaveira();
                                 }
                             }
 
@@ -322,13 +315,12 @@ public class PixelPreto : MonoBehaviour
         if(other.gameObject.CompareTag("bullet")) {
             if(PlayerControle.red_var) {
                 vida_pixel_preto -= 2;
+                sr.color = Color.red;
+                StartCoroutine("voltarCor");
             } else {
                 vida_pixel_preto--;
             }
-            if(evo_pixel == 2) {
-                sr.color = Color.white;
-                StartCoroutine("voltarCor");
-            }
+
             if(vida_pixel_preto <= 250) {
                 meia_vida = true;
                 AtirouJa = false;
@@ -344,6 +336,16 @@ public class PixelPreto : MonoBehaviour
         }
     }
 
+    private void TransformarCaveira() {
+        Vector3 vetor = transform.localScale;
+        vetor.x *= -1;
+        sr.color = Color.white;
+        transform.localScale = vetor;
+        anim.SetBool("modo_caveira", true);
+        corpo.bodyType = RigidbodyType2D.Kinematic;
+        evo_pixel++;
+    }
+
     IEnumerator Atirar() {
         yield return new WaitForSeconds(1f);
         podeAtirar = true;
@@ -352,7 +354,7 @@ public class PixelPreto : MonoBehaviour
 
     IEnumerator voltarCor() {
         yield return new WaitForSeconds(0.1f);
-        sr.color = Color.red;    
+        sr.color = Color.white;    
     }
 
     IEnumerator voltarAnimSoco() {

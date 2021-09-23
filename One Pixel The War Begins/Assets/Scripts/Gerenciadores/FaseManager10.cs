@@ -95,8 +95,8 @@ public class FaseManager10 : MonoBehaviour
             GameManager.Instance.SalvarSit(1, "Fase10");
         }
 
-        if(GameManager.progresso <= 9) {
-            GameManager.Instance.SalvarSit(10, "Progresso");
+        if(GameManager.progresso <= 10) {
+            GameManager.Instance.SalvarSit(11, "Progresso");
         }
         valor_alet_qual = 0;
         cont_spawn = 0;

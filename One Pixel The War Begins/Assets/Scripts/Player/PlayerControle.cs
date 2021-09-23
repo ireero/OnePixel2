@@ -209,15 +209,17 @@ public class PlayerControle : MonoBehaviour {
             }
          }
          if((type_red == 1 || type_red == 2) && !red_pausado) {
-            barra_stamina.fillAmount = cont_volt_red / 180f;
+            barra_stamina.fillAmount = cont_volt_red / 120f;
             BarraVidaMaior.color = Color.white;
-            sr.color = Color.white;
+            if(podeTomarDano) {
+               sr.color = Color.white;
+            }
             cont_volt_red += Time.deltaTime;
             if(!umaVezRed) {
                PlayerPrefs.SetFloat("CONT_RED", 0);
                umaVezRed = true;
             }
-            if(cont_volt_red >= 180f) {
+            if(cont_volt_red >= 120f) {
                if(Input.GetKeyDown(KeyCode.E)) {
                   PlayerPrefs.SetInt("RED", 2);
                   PlayerPrefs.SetFloat("CONT_VOLT_RED", 0);

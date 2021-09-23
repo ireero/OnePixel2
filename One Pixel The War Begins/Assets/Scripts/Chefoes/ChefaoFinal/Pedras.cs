@@ -34,7 +34,9 @@ public class Pedras : MonoBehaviour
             anim.SetBool("energia", true);
             transform.Rotate(new Vector3(0, 0, 90));
             collider_pedra.isTrigger = true;
-            PixelPreto.vida_pixel_preto += 5;
+            if(PixelPreto.vida_pixel_preto <= 497) {
+                PixelPreto.vida_pixel_preto += 3;
+            }
         }
     }
 

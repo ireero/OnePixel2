@@ -393,12 +393,21 @@ public class FaseManager9 : MonoBehaviour
         yield return new WaitForSeconds(7f);
         PlayerControle.conversando = true;
         imagem.sprite = cara_irritado;
-        if(GameManager.sem_dialogos == 0 || PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
-            painel_falas.SetActive(true);
-            pode_comecar_9 = false;
-            contagem_falas_9 = 14;
-        } else {
-            if(!cabo_tudo) {
+        if(GameManager.sem_dialogos == 0) {
+            if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
+                CabarTudo();
+            } else {
+                painel_falas.SetActive(true);
+                pode_comecar_9 = false;
+                contagem_falas_9 = 14;
+            }
+        } else if(GameManager.sem_dialogos == 1 || PlayerControle.type_red == 1 || PlayerControle.type_red == 2){
+            CabarTudo();
+        }
+    }
+
+    private void CabarTudo() {
+        if(!cabo_tudo) {
                 som_void.Play();
                 musica_fase.Stop();
                 GameManager.Instance.SalvarSit(2, "Fase9");
@@ -410,7 +419,6 @@ public class FaseManager9 : MonoBehaviour
             }
         Destroy(barra_vida);
         Destroy(txt_tempo);
-        }
     }
 
     IEnumerator escadaAparecer() {

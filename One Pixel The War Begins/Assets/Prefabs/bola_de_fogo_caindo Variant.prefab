@@ -19,6 +19,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2026819728, guid: 4ac9240278b30a64dbe258733b4da409, type: 3}
+      propertyPath: Priority
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026819728, guid: 4ac9240278b30a64dbe258733b4da409, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 759926554386cd946813931ac53598df, type: 3}
     - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
         type: 3}
       propertyPath: m_RootOrder
@@ -27,12 +35,12 @@ PrefabInstance:
     - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1533558
+      value: 1.5593181
       objectReference: {fileID: 0}
     - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0732308
+      value: 0.19612801
       objectReference: {fileID: 0}
     - target: {fileID: 7155301498245612122, guid: 4ac9240278b30a64dbe258733b4da409,
         type: 3}
@@ -87,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 7155301498245612127, guid: 4ac9240278b30a64dbe258733b4da409,
         type: 3}
       propertyPath: m_Name
-      value: bola_de_fogo_caindo
+      value: bola_de_fogo_caindo Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 338139111, guid: 4ac9240278b30a64dbe258733b4da409, type: 3}

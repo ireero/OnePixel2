@@ -35,12 +35,16 @@ public class SceneLoader : MonoBehaviour
     public void LoadSceneAsync(string sceneName) {
         if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
             if(PlayerControle.red_var) {
-                if(PlayerControle.cont_red > 0 && PlayerControle.cont_red < 30) {
+                if(PlayerControle.cont_red > 0 && PlayerControle.cont_red <= 30) {
                     PlayerPrefs.SetFloat("CONT_RED", PlayerControle.cont_red);
                 }
 
+                if(PlayerControle.cont_volt_red > 0 && PlayerControle.cont_volt_red <= 120) {
+                    PlayerPrefs.SetFloat("CONT_VOLT_RED", PlayerControle.cont_volt_red);
+                }
+
             } else {
-                if(PlayerControle.cont_volt_red > 0 && PlayerControle.cont_volt_red < 180) {
+                if(PlayerControle.cont_volt_red > 0 && PlayerControle.cont_volt_red < 120) {
                     PlayerPrefs.SetFloat("CONT_VOLT_RED", PlayerControle.cont_volt_red);
             } 
 
