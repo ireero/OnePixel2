@@ -7,8 +7,11 @@ public class Paredona : MonoBehaviour
 {
     public static bool sumir;
     private Animator anim;
+    private int vida;
+
     void Start()
     {
+        vida = 10;
         sumir = false;
         anim = GetComponent<Animator>();
     }
@@ -26,6 +29,13 @@ public class Paredona : MonoBehaviour
         if(other.gameObject.CompareTag("Player")) {
             if(SceneManager.GetActiveScene().name == "Fase7_5") {
                 PlayerPrefs.SetInt("Fase7_5", 1);
+            }
+        } else if(other.gameObject.CompareTag("bullet")) {
+            if(PlayerControle.red_var) {
+                vida--;
+                if(vida <= 0) {
+                    sumir = true;
+                }
             }
         }
     }

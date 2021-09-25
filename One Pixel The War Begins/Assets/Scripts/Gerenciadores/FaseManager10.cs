@@ -88,6 +88,14 @@ public class FaseManager10 : MonoBehaviour
     public int valor_alet_qual;
     public float cont_spawn;
 
+    public AudioSource som_fala;
+    public AudioSource som_back;
+    public AudioSource som_vacuo;
+    public AudioSource nascer_adagas;
+
+    private int musicaUmaVez;
+    private bool adagaUmaVez;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -98,6 +106,8 @@ public class FaseManager10 : MonoBehaviour
         if(GameManager.progresso <= 10) {
             GameManager.Instance.SalvarSit(11, "Progresso");
         }
+        adagaUmaVez = false;
+        musicaUmaVez = 0;
         valor_alet_qual = 0;
         cont_spawn = 0;
         valor_alet = 0;
@@ -132,6 +142,9 @@ public class FaseManager10 : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar_10) {
             contagem_falas_10++;
+            if(contagem_falas_10  != 20 && contagem_falas_10 != 41) {
+                som_fala.Play();
+            }
         }
 
         if(PlayerControle.player_morto == true) {
@@ -151,10 +164,15 @@ public class FaseManager10 : MonoBehaviour
                 umaParedona = true;
             }
             if(i <= 13) {
+                if(!adagaUmaVez) {
+                    nascer_adagas.Play();
+                    adagaUmaVez = true;
+                }
                 Instantiate(adaga, spawn_cima[i].position, spawn_cima[i].rotation);
                 i++;
                 if(i == 13) {
                     i = 0;
+                    adagaUmaVez = false;
                     PixelPreto.atirarAdagas = false;
                 }
             }
@@ -243,8 +261,18 @@ public class FaseManager10 : MonoBehaviour
                 PlayerControle.podeAtirar = true;
                 PlayerControle.pode_mexer = true;
                 pode_comecar_10 = true;
+                if(musicaUmaVez == 0) {
+                    som_vacuo.Stop();
+                    som_back.Play();
+                    musicaUmaVez++;
+                }
                 break;
             case 21:
+                if(musicaUmaVez == 1) {
+                    som_vacuo.Play();
+                    som_back.Stop();
+                    musicaUmaVez++;
+                }
                 pode_comecar_10 = false;
                 painel_conversas.SetActive(true);
                 PlayerControle.conversando = true;
@@ -267,6 +295,11 @@ public class FaseManager10 : MonoBehaviour
                 img_carinha.sprite = sprites_caras[0];
                 break;
             case 41:
+                if(musicaUmaVez == 2) {
+                    som_vacuo.Stop();
+                    som_back.Play();
+                    musicaUmaVez++;
+                }
                 BarraVidaMaior.color = Color.white;
                 painel_conversas.SetActive(false);
                 PlayerControle.conversando = false;

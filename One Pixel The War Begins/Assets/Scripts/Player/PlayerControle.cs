@@ -192,7 +192,7 @@ public class PlayerControle : MonoBehaviour {
          }
 
          if(!red_pausado) {
-            if(Input.GetKeyDown(KeyCode.E)) {
+            if(Input.GetKeyDown(KeyCode.C)) {
                red_var = false;
                red_pausado = true;
                PlayerPrefs.SetInt("RED_PAUSADO", 1);
@@ -202,7 +202,8 @@ public class PlayerControle : MonoBehaviour {
          } 
       } else {
          if(red_pausado) {
-            if(Input.GetKeyDown(KeyCode.E)) {
+            BarraVidaStamina();
+            if(Input.GetKeyDown(KeyCode.C)) {
                PlayerPrefs.SetInt("RED_PAUSADO", 0);
                red_pausado = false;
                red_var = true;
@@ -220,7 +221,7 @@ public class PlayerControle : MonoBehaviour {
                umaVezRed = true;
             }
             if(cont_volt_red >= 120f) {
-               if(Input.GetKeyDown(KeyCode.E)) {
+               if(Input.GetKeyDown(KeyCode.C)) {
                   PlayerPrefs.SetInt("RED", 2);
                   PlayerPrefs.SetFloat("CONT_VOLT_RED", 0);
                   PlayerPrefs.SetFloat("CONT_RED", 0);
@@ -402,7 +403,8 @@ public class PlayerControle : MonoBehaviour {
 	}
 
    private void OnCollisionEnter2D(Collision2D other) {
-      if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga")) {
+      if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("Chefoes") || 
+      other.gameObject.CompareTag("super_bullet_inimiga") || other.gameObject.CompareTag("pedras")) {
          if(podeTomarDano) {
             anim.SetBool("tomou_dano", true);
             if(lookingRight) {
@@ -447,7 +449,8 @@ public class PlayerControle : MonoBehaviour {
       if(Input.GetKey(KeyCode.LeftShift)) {
             Destroy(other.gameObject);
          }
-      } else if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga")) {
+      } else if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("bullet_inimiga") || 
+      other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("super_bullet_inimiga") || other.gameObject.CompareTag("pedras")) {
          if(podeTomarDano) {
             anim.SetBool("tomou_dano", true);
             if(lookingRight) {

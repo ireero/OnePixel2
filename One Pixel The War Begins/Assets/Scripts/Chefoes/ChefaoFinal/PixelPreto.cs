@@ -78,6 +78,10 @@ public class PixelPreto : MonoBehaviour
 
     private bool sair_daqui;
 
+    public AudioSource som_dano;
+    public AudioSource som_getsuga;
+    public AudioSource som_batida;
+
     void Start()
     {
         sair_daqui = false;
@@ -189,6 +193,12 @@ public class PixelPreto : MonoBehaviour
                     collider_pixel_preto.isTrigger = true;
                     corpo.bodyType = RigidbodyType2D.Static;
                     anim.SetBool("morrer", true);
+                    atirou_adagas = 0;
+                    cont_adaga = 0;
+                    FaseManager10.umaParedona = false;
+                    getsugas_dados = 0;
+                    sair_daqui = false;
+                    contador = 0;
                 }
 
                 if(!pode_comecar) {
@@ -277,13 +287,13 @@ public class PixelPreto : MonoBehaviour
                                     anim.SetBool("idle_pousado", true);
                                     sair_daqui = true;
                                 }
-                                if(cont_adaga >= 1f && sair_daqui) {
+                                if(cont_adaga >= 2.5f && sair_daqui) {
                                     anim.SetBool("idle", true);
                                     anim.SetBool("idle_pousado", false);
                                     anim.SetBool("calma", true);
                                     anim.SetBool("pousando", false);
                                 }
-                                if(cont_adaga >= 4f && atirou_adagas == 7) {
+                                if(cont_adaga >= 6f && atirou_adagas == 7) {
                                     atirou_adagas = 0;
                                     cont_adaga = 0;
                                     FaseManager10.umaParedona = false;
@@ -307,12 +317,14 @@ public class PixelPreto : MonoBehaviour
             Camera.tremer_chao = true;
             anim.SetBool("pulando", false);
             if(pode_explosao) {
+                som_batida.Play();
                 Instantiate(explosao, spawn_explosao.position, spawn_explosao.rotation);
                 spawn_explosao.Rotate(new Vector3(0, 180, 0), Space.Self);
                 pode_explosao = false;
             }
         }
         if(other.gameObject.CompareTag("bullet")) {
+            som_dano.Play();
             if(PlayerControle.red_var) {
                 vida_pixel_preto -= 2;
                 sr.color = Color.red;
@@ -359,6 +371,7 @@ public class PixelPreto : MonoBehaviour
 
     IEnumerator voltarAnimSoco() {
         yield return new WaitForSeconds(0.55f);
+        som_batida.Play();
         Instantiate(explosao_meia_vida, spawn_tiro_segunda_explosao.position, spawn_tiro_segunda_explosao.rotation);
         anim.SetBool("socao_time", false);
     }
@@ -369,6 +382,7 @@ public class PixelPreto : MonoBehaviour
     }
 
     public void atirarGetsuga() {
+        som_getsuga.Play();
         Instantiate(getsuga, spawn_tiro_bala.position, spawn_tiro_bala.rotation);
         getsugas_dados++;
     }

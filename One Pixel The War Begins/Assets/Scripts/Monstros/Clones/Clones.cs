@@ -22,6 +22,9 @@ public class Clones : MonoBehaviour
     private float cont_descanso;
 
     private Image img;
+
+    private AudioSource som_quebrando;
+    public AudioSource som_dano;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,7 @@ public class Clones : MonoBehaviour
         anim = GetComponent<Animator>();
         collider_clone = GetComponent<BoxCollider2D>();
         img = GetComponent<Image>();
+        som_quebrando = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -71,8 +75,10 @@ public class Clones : MonoBehaviour
             anim.SetBool("morrer", true);
             podeIr = false;
             Destroy(gameObject, 1f);
+            som_quebrando.Play();
             collider_clone.isTrigger = true;
         } else if(other.gameObject.CompareTag("bullet")) {
+            som_dano.Play();
             if(PlayerControle.red_var) {
                 vida -= 3;
             } else {

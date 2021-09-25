@@ -21,6 +21,7 @@ TagManager:
   - fora
   - the
   - paredeFase1
+  - pedras
   layers:
   - Default
   - TransparentFX
