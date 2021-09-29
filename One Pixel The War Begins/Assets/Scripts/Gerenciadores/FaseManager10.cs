@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FaseManager10 : MonoBehaviour
@@ -31,7 +32,12 @@ public class FaseManager10 : MonoBehaviour
     "NOW DIE TO THE ONE YOU HAVE ALWAYS DESPISED!"};
 
     public Text txtAvancar;
+    public Text txt_final;
+    public Text txt_obrigado;
+
     private string text_avancar = "Pressione 'Q' para avançar";
+    private string text_final = "Parabéns! você conseguiu zerar esse jogo que sinceramente eu acho muito difícil. Se você puder deixar uma review de como foi essa sua experiencia eu ficaria muito agradecido.\n Em memória da minha gatinha Fiora, obrigado por toda alegria e companheirismo que você me proporcionou. Descanse em paz.";
+    private string text_obrigado = "Obrigado";
 
     public GameObject bolaFogo;
     private float delayTiro;
@@ -96,6 +102,15 @@ public class FaseManager10 : MonoBehaviour
     private int musicaUmaVez;
     private bool adagaUmaVez;
 
+    public GameObject painel_zerou;
+    public static bool acabou;
+
+    public GameObject boss_final;
+    public GameObject vida_ne;
+    public GameObject clone1, clone2;
+
+    private bool morte_uma;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -106,35 +121,77 @@ public class FaseManager10 : MonoBehaviour
         if(GameManager.progresso <= 10) {
             GameManager.Instance.SalvarSit(11, "Progresso");
         }
-        adagaUmaVez = false;
-        musicaUmaVez = 0;
-        valor_alet_qual = 0;
-        cont_spawn = 0;
-        valor_alet = 0;
-        valor_prov = 0;
-        valor = 0;
-        TiroPequenoChefao.modoHard = true;
-        umaParedona = false;
-        i = 0;
-        contagem_falas_10 = 0;
-        pode_comecar_10 = false;
-        contador = 0;
-        valor_aleatorio = 0;
-        delayTiro = 1.5f;    
-        PlayerControle.conversando = true;
-        painel_conversas.SetActive(true);
+
+        if(GameManager.fase10 == 0 || GameManager.fase10 == 1) {
+            acabou = false;
+            adagaUmaVez = false;
+            musicaUmaVez = 0;
+            valor_alet_qual = 0;
+            cont_spawn = 0;
+            valor_alet = 0;
+            valor_prov = 0;
+            valor = 0;
+            morte_uma = false;
+            if(GameManager.sem_dialogos == 0) {
+                som_fala.Play();
+                som_vacuo.Play();
+                painel_conversas.SetActive(true);
+                contagem_falas_10 = 0;
+                pode_comecar_10 = false;
+                PlayerControle.conversando = true;
+            } else {
+                PlayerControle.conversando = false;
+                PlayerControle.pode_mexer = true;
+                PlayerControle.podeAtirar = true;
+                pode_comecar_10 = true;
+                contagem_falas_10 = 0;
+                som_back.Play();
+            }
+            TiroPequenoChefao.modoHard = true;
+            umaParedona = false;
+            i = 0;
+            contador = 0;
+            valor_aleatorio = 0;
+            delayTiro = 1.5f;    
+        } else {
+            Destroy(painel_zerou);
+            som_vacuo.Play();
+            Destroy(boss_final);
+            Destroy(vida_ne);
+            Destroy(clone1);
+            Destroy(clone2);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        if(PixelPreto.vida_pixel_preto <= 0) {
+            if(!morte_uma) {
+                Destroy(vida_ne);
+                som_back.Stop();
+                som_vacuo.Play();
+                morte_uma = true;
+            }
+        }
+
+        if(Time.timeScale == 1) {
+            GameManager.Instance.SalvarSit(2, "Fase10");
+            AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        }
+
+        if(acabou) {
+            
+            painel_zerou.SetActive(true);
+        }
 
         if(contagem_falas_10 <= 40 && contagem_falas_10 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
                 txt_falas.text = falas_pixel_preto[contagem_falas_10];
                 txtAvancar.text = text_avancar;
+                txt_final.text = text_final;
+                txt_obrigado.text = text_obrigado;
             } else {
                 txt_falas.text = falas_pixel_preto_ingles[contagem_falas_10];
             }
@@ -257,11 +314,11 @@ public class FaseManager10 : MonoBehaviour
                 break;
             case 20:
                 painel_conversas.SetActive(false);
-                PlayerControle.conversando = false;
-                PlayerControle.podeAtirar = true;
-                PlayerControle.pode_mexer = true;
                 pode_comecar_10 = true;
                 if(musicaUmaVez == 0) {
+                    PlayerControle.conversando = false;
+                    PlayerControle.podeAtirar = true;
+                    PlayerControle.pode_mexer = true;
                     som_vacuo.Stop();
                     som_back.Play();
                     musicaUmaVez++;
@@ -298,13 +355,13 @@ public class FaseManager10 : MonoBehaviour
                 if(musicaUmaVez == 2) {
                     som_vacuo.Stop();
                     som_back.Play();
+                    PlayerControle.conversando = false;
+                    PlayerControle.pode_mexer = true;
+                    PlayerControle.podeAtirar = true;
                     musicaUmaVez++;
                 }
                 BarraVidaMaior.color = Color.white;
                 painel_conversas.SetActive(false);
-                PlayerControle.conversando = false;
-                PlayerControle.pode_mexer = true;
-                PlayerControle.podeAtirar = true;
                 pode_comecar_10 = true;
                 break;                                                
         }
@@ -314,6 +371,11 @@ public class FaseManager10 : MonoBehaviour
         cont_spawn = 0;
         valor_prov = valor_alet;
         valor++;
+    }
+
+    public void Zerar() {
+        GameManager.Instance.SalvarSit(1, "ZEROU");
+        SceneManager.LoadSceneAsync("Menu");
     }
 
     private void BarraVida() {

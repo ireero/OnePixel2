@@ -121,6 +121,7 @@ public class FaseManager6 : MonoBehaviour
             podeCair = false;
             valor_alet = 0;
         } else {
+            back_void.Play();
             pode_normal = false;
             Destroy(chefao);
             escada.SetActive(true);
@@ -135,7 +136,9 @@ public class FaseManager6 : MonoBehaviour
     void Update()
     {
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        if(Time.timeScale == 1) {
+            AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        }
 
         if(pode_normal) {
             if(PlayerControle.player_morto == true) {

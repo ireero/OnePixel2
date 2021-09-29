@@ -13,8 +13,10 @@ public class FaseManager9 : MonoBehaviour
     "Tomara que você vença eles", "Boa sorte lá, Tchau!"};
 
     private string fala_mutado = "Você realmente se acha Deus calando os outros assim não é?";
+    private string fala_mutado_ingles = "You really think you are God by shutting others up like that, don't you?";
 
     private string fala_red = "Poder interessante esse seu!";
+    private string fala_red_ingles = "Interesting power that yours!";
 
     private string[] falas_ingles = {"damn!, You have come this far", "I was told that you were coming but honestly I never would have imagined that you would come to me",
     "How about we cut to the chase, I would like to go to the bathroom urgently", "Unfortunately for you I am immortal and nothing you do will kill me or even hurt me", 
@@ -168,7 +170,9 @@ public class FaseManager9 : MonoBehaviour
     void Update()
     {
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        if(Time.timeScale == 1) {
+            AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        }
         
         if(pode_normal) {
             if(PlayerControle.player_morto == true) {
@@ -179,12 +183,16 @@ public class FaseManager9 : MonoBehaviour
             if(GameManager.sem_dialogos == 0) { 
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
                     if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
+                        imagem.sprite = cara_foco;
                         txtFalas.text = fala_red;
                     } else {
                         txtFalas.text = falas[contagem_falas_9];
                     }
                     txtAvancar.text = text_avancar;
                 } else {
+                    if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
+                        txtFalas.text = fala_red_ingles;
+                    }
                     txtFalas.text = falas_ingles[contagem_falas_9];
                 }
             } else {
@@ -192,9 +200,17 @@ public class FaseManager9 : MonoBehaviour
                     txtAvancar.text = text_avancar;
                 }
                 if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
-                    txtFalas.text = fala_red;
+                    if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                        txtFalas.text = fala_red;
+                    } else {
+                        txtFalas.text = fala_red_ingles;
+                    }
                 } else {
-                    txtFalas.text = fala_mutado;
+                    if(Application.systemLanguage == SystemLanguage.Portuguese) {
+                        txtFalas.text = fala_mutado;
+                    } else {
+                        txtFalas.text = fala_mutado_ingles;
+                    }
                 }
             }
         }
@@ -298,6 +314,7 @@ public class FaseManager9 : MonoBehaviour
             case 18:
                 PlayerControle.conversando = false;
                 if(!cabo_tudo) {
+                    Destroy(barra_vida);
                     GameManager.Instance.SalvarSit(2, "Fase9");
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;

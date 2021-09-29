@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
     public Text txt_fases;
     public Text txt_creditos;
     public Text txt_sair;
+    public Text txt_mostra_tempo;
+    public Text txt_fala_red;
 
     public Text txt_tempo_jogo;
 
@@ -22,9 +24,13 @@ public class MenuManager : MonoBehaviour
     private string text_fases = "Fases";
     private string text_creditos = "Créditos";
     private string text_sair = "Sair";
+    private string text_mostra_tempo = "Tempo de Jogo:";
+    private string text_fala_red = "Você conseguiu aprender um novo poder interessante!, tente apertar na tecla 'C' para ativar e desativar este poder que lhe fará dar o dobro de dano quando estiver ativado!";
     public static string segundos;
+    private int conferindo = 0;
 
     public GameObject painel_pause;
+    public GameObject painel_vermelho;
 
     void Start()
     {
@@ -35,6 +41,8 @@ public class MenuManager : MonoBehaviour
             txt_fases.text = text_fases;
             txt_creditos.text = text_creditos;
             txt_sair.text = text_sair;
+            txt_mostra_tempo.text = text_mostra_tempo;
+            txt_fala_red.text = text_fala_red;
             segundos = " Minutos";
         } else {
             segundos = " Minutes";
@@ -48,6 +56,14 @@ public class MenuManager : MonoBehaviour
         }
 
         txt_tempo_jogo.text = GameManager.tempo_min.ToString("F0") + segundos;
+
+        if(PlayerPrefs.HasKey("REDVAR")) {
+            conferindo = PlayerPrefs.GetInt("REDVAR");
+            if(conferindo == 1) {
+                painel_vermelho.SetActive(true);
+                PlayerPrefs.SetInt("REDVAR", 2);
+            }
+        }
       
     }
 
@@ -144,6 +160,7 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.SalvarSit(0, "PONTO");
         GameManager.Instance.SalvarSit(0, "TEMPO");
         GameManager.Instance.SalvarSit(0, "RED");
+        GameManager.Instance.SalvarSit(0, "REDVAR");
         GameManager.Instance.SalvarSit(0, "Fase7_5");
         PlayerPrefs.SetFloat("CONT_RED", 0);
         PlayerPrefs.SetFloat("CONT_VOLT_RED", 0);
@@ -159,5 +176,10 @@ public class MenuManager : MonoBehaviour
     public void Cancelar() {
         som_click.Play();
         painel_alerta_iniciar.SetActive(false);
+    }
+
+    public void CancelarOK() {
+        som_click.Play();
+        painel_vermelho.SetActive(false);
     }
 }

@@ -90,7 +90,9 @@ public class FaseManager7 : MonoBehaviour
     void Update()
     {
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        if(Time.timeScale == 1) {
+            AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        }
 
         BarraVida();
 

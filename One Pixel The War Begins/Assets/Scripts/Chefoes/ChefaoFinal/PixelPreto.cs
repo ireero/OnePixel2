@@ -81,9 +81,13 @@ public class PixelPreto : MonoBehaviour
     public AudioSource som_dano;
     public AudioSource som_getsuga;
     public AudioSource som_batida;
+    public AudioSource som_morte;
+
+    private int musica;
 
     void Start()
     {
+        musica = 0;
         sair_daqui = false;
         getsugas_dados = 0;
         suga_as_pedra = false;
@@ -190,6 +194,11 @@ public class PixelPreto : MonoBehaviour
             } else {
 
                 if(vida_pixel_preto <= 0) {
+                    if(musica == 0) {
+                        som_morte.Play();
+                        musica++;
+                    }
+                    Paredona.sumir = true;
                     collider_pixel_preto.isTrigger = true;
                     corpo.bodyType = RigidbodyType2D.Static;
                     anim.SetBool("morrer", true);
@@ -199,27 +208,27 @@ public class PixelPreto : MonoBehaviour
                     getsugas_dados = 0;
                     sair_daqui = false;
                     contador = 0;
+                    StartCoroutine("FinalizarJogo");
                 }
 
                 if(!pode_comecar) {
+                    pularUmaVez = true;
                     anim.SetBool("meia_vida", true);
                     corpo.bodyType = RigidbodyType2D.Dynamic;
                     corpo.constraints = RigidbodyConstraints2D.FreezeRotation;
                     StartCoroutine("sugandoAqui");
                 } else {
                     if(!voltarCv) {
-                        FaseManager10.contagem_falas_10 = 21;
+                        if(GameManager.sem_dialogos == 0) {
+                            FaseManager10.contagem_falas_10 = 21;
+                        }
                         anim.SetBool("meia_vida", false);
                         StartCoroutine("voltarOCv");
                     } else {
                         if(FaseManager10.pode_comecar_10) {
                             cont_adaga += Time.deltaTime;
                             if(evo_pixel == 1) {
-                                if(estaNaDireita) {
                                     TransformarCaveira();
-                                } else {
-                                    TransformarCaveira();
-                                }
                             }
 
                             if(transform.position.y >= ponto_meio.position.y && !atirarAdagas) {
@@ -251,6 +260,7 @@ public class PixelPreto : MonoBehaviour
                                 if(estaNaDireita) {
                                     transform.position = Vector2.MoveTowards(transform.position, ponto_esquerda.position, speed * Time.deltaTime);
                                     if(transform.position.x <= ponto_esquerda.position.x) {
+                                        corpo.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
                                         Vector3 vetor = transform.localScale;
                                         vetor.x *= -1;
                                         transform.localScale = vetor;
@@ -259,7 +269,9 @@ public class PixelPreto : MonoBehaviour
                                         anim.SetBool("pousando", true);
                                     }
                                 } else {
+                                    transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
                                     if(transform.position.x >= ponto_direita.position.x) {
+                                        corpo.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
                                         Vector3 vetor = transform.localScale;
                                         vetor.x *= -1;
                                         transform.localScale = vetor;
@@ -267,7 +279,6 @@ public class PixelPreto : MonoBehaviour
                                         atirou_adagas++;
                                         anim.SetBool("pousando", true);
                                     }
-                                    transform.position = Vector2.MoveTowards(transform.position, ponto_direita.position, speed * Time.deltaTime);
                                 }
                             } else if(atirou_adagas == 5) {
                                 anim.SetBool("espadas", true);
@@ -287,13 +298,13 @@ public class PixelPreto : MonoBehaviour
                                     anim.SetBool("idle_pousado", true);
                                     sair_daqui = true;
                                 }
-                                if(cont_adaga >= 2.5f && sair_daqui) {
+                                if(cont_adaga >= 3f && sair_daqui) {
                                     anim.SetBool("idle", true);
                                     anim.SetBool("idle_pousado", false);
                                     anim.SetBool("calma", true);
                                     anim.SetBool("pousando", false);
                                 }
-                                if(cont_adaga >= 6f && atirou_adagas == 7) {
+                                if(cont_adaga >= 6.5f && atirou_adagas == 7) {
                                     atirou_adagas = 0;
                                     cont_adaga = 0;
                                     FaseManager10.umaParedona = false;
@@ -411,6 +422,13 @@ public class PixelPreto : MonoBehaviour
     IEnumerator adicionarEvo() {
         yield return new WaitForSeconds(0.2f);
         evo_pixel = 1;
+    }
+
+    IEnumerator FinalizarJogo() {
+        yield return new WaitForSeconds(3.5f);
+        som_morte.Stop();
+        PlayerControle.chegou_final = true;
+        Destroy(this.gameObject);
     }
 
     IEnumerator voltarOCv() {

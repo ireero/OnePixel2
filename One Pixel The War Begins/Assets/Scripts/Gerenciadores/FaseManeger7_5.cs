@@ -29,6 +29,8 @@ public class FaseManeger7_5 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Time.timeScale == 1) {
+            AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        }
     }
 }

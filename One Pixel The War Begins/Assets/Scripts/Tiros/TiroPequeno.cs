@@ -28,10 +28,10 @@ public class TiroPequeno : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("paredesSumir") || other.gameObject.CompareTag("paredeFase1")) {
+        if(other.gameObject.CompareTag("paredesSumir")) {
             Destroy(this.gameObject);
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro") || 
-        other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("super_bullet_inimiga")) {
+        other.gameObject.CompareTag("bullet_inimiga") || other.gameObject.CompareTag("super_bullet_inimiga") || other.gameObject.CompareTag("pedras")) {
             anim.SetBool("morreu", true);
         } else if(other.gameObject.CompareTag("plataforma") || other.gameObject.CompareTag("moeda_rir")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());

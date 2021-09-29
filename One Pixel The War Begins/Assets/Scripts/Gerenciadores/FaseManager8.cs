@@ -82,7 +82,9 @@ public class FaseManager8 : MonoBehaviour
     void Update()
     {
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        if(Time.timeScale == 1) {
+            AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        }
 
         if(pode_comecar_8) {
             PlayerControle.conversando = true;

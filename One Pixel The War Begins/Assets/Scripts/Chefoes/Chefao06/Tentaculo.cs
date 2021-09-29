@@ -14,7 +14,7 @@ public class Tentaculo : MonoBehaviour
         tempo_pra_morrer = 3.4f;
         contador = 0;
         anim = GetComponent<Animator>();  
-        StartCoroutine("ativarIdle");  
+        StartCoroutine("ativarFase");  
         if(Chefao06.meia_vida == true) {
             anim.SetBool("meia_vida", true);
             tempo_pra_morrer = 4f;
@@ -36,9 +36,8 @@ public class Tentaculo : MonoBehaviour
         }
     }
 
-    IEnumerator ativarIdle() {
+    IEnumerator ativarFase() {
         yield return new WaitForSeconds(1.6f);
-        anim.SetBool("idle", true);
         FaseManager7.liberado = true;
     }
 

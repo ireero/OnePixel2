@@ -113,6 +113,7 @@ public class FaseManager5 : MonoBehaviour
             TiroPequenoChefao.modoHard = false;
             umaVez = false;
         } else {
+            back_void.Play();
             pode_normal = false;
             escada.SetActive(true);
             Destroy(protetor);
@@ -128,7 +129,9 @@ public class FaseManager5 : MonoBehaviour
     void Update()
     {
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        if(Time.timeScale == 1) {
+            AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        }
         
         if(pode_normal) {
             if(PlayerControle.player_morto == true) {
@@ -208,9 +211,9 @@ public class FaseManager5 : MonoBehaviour
                     if(!pode_comecar_5) {
                         PlayerControle.pode_mexer = true;
                         PlayerControle.podeAtirar = true;
+                        pode_comecar_5 = true; 
                     }
-                    painel_falas.SetActive(false);
-                    pode_comecar_5 = true;      
+                    painel_falas.SetActive(false);     
                     break;                      
             }
 
@@ -247,8 +250,11 @@ public class FaseManager5 : MonoBehaviour
 
             if(Chefao04.vida_chefao <= 0) {
                 GameManager.Instance.SalvarSit(2, "Fase5");
-                back_void.Play();
-                back_som.Stop();
+                if(podeTocar <= 2) {
+                    back_void.Play();
+                    back_som.Stop();
+                    podeTocar++;
+                }
                 Destroy(vida_chefao);
             } else if(Chefao04.vida_chefao <= 40 && Chefao04.vida_chefao > 0) {
                 BarraVidaMaior.sprite = icon_metade_vida;

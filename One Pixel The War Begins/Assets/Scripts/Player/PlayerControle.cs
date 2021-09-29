@@ -98,6 +98,10 @@ public class PlayerControle : MonoBehaviour {
    private bool red_pausado;
    private int pausado;
    private bool umaVezRed;
+
+   public static bool chegou_final;
+
+   private bool andar;
  
    void Start () {  
       if(PlayerPrefs.HasKey("CONT_RED")) {
@@ -139,6 +143,7 @@ public class PlayerControle : MonoBehaviour {
             red_pausado = false;
          }
       }
+      andar = false;
       umaVezRed = false;
       vida = 3f;
       podeTomarDano = true;
@@ -148,6 +153,7 @@ public class PlayerControle : MonoBehaviour {
       } else {
          jaPodePularDuas = false;
       }
+      chegou_final = false;
       cont_pisca_dano = 0;
       doubleJump = true;
       parado = true;
@@ -176,6 +182,25 @@ public class PlayerControle : MonoBehaviour {
    }
  
    void Update () {
+
+      if(chegou_final) {
+         anim.SetBool("final", true);
+         rb2d.velocity = new Vector2(0,0);
+         conversando = true;
+         pode_mexer = false;
+         podeAtirar = false;
+         StartCoroutine("FinalETals");
+         chegou_final = false;
+      }
+
+      if(andar) {
+         anim.SetBool("final", false);
+         transform.Translate(new Vector2((speed - 3.5f) * Time.deltaTime, 0));
+         if(!lookingRight) {
+            Flip();
+            lookingRight = true;
+         }
+      }
 
       if(red_var) {
 
@@ -376,6 +401,37 @@ public class PlayerControle : MonoBehaviour {
       anim.SetBool("idle", true);
    }
 
+   IEnumerator FinalETals() {
+      yield return new WaitForSeconds(5f);
+      chegou_final = false;
+      anim.SetBool("desvirar", true);
+      anim.SetBool("final", false);
+      if(GameManager.fase7_5 >= 1) {
+         anim.SetBool("abrir", true);
+         if(PlayerPrefs.HasKey("RED")) {
+            if(type_red >= 1) {
+               anim.SetBool("abrir_vermelho", true);
+            } else {
+               anim.SetBool("abrir_normal", true);
+            }
+            yield return StartCoroutine(sairAndando());
+         } else {
+            anim.SetBool("abrir_normal", true);
+            yield return StartCoroutine(sairAndando());
+         }
+      } else {
+         anim.SetBool("saco_cheio", true);
+         andar = true;
+      }
+   }
+
+   IEnumerator sairAndando() {
+      yield return new WaitForSeconds(6.5f);
+      andar = true;
+      anim.SetBool("idle", true);
+      anim.SetBool("fechar", true);
+   }
+
     IEnumerator levantar() {
       yield return new WaitForSeconds(0.25f);
       anim.SetBool("levantou", false);
@@ -434,10 +490,15 @@ public class PlayerControle : MonoBehaviour {
          }
       }else if(other.gameObject.CompareTag("fora")) {
          transform.position = teleporte.position;
-      } else if(other.gameObject.CompareTag("paredeFase1")) {
+      } else if(other.gameObject.CompareTag("paredesSumir")) {
          if(SceneManager.GetActiveScene().name == "Fase0") {
             if(FaseManager0.horaDePassar == 5) {
                SceneLoader.Instance.LoadSceneAsync("Fase1");
+               gameObject.SetActive(false);
+            }
+         } else if(SceneManager.GetActiveScene().name == "Fase10") {
+            if(andar) {
+               FaseManager10.acabou = true;
                gameObject.SetActive(false);
             }
          }
@@ -467,6 +528,7 @@ public class PlayerControle : MonoBehaviour {
       if(other.gameObject.CompareTag("alerta_falas")) {
          rb2d.velocity = new Vector2(0, 0);
       } else if(other.gameObject.CompareTag("the")) {
+         PlayerPrefs.SetInt("REDVAR", 1);
          StartCoroutine("serEsmagado");
          rb2d.bodyType = RigidbodyType2D.Static;
          conversando = true;
@@ -541,8 +603,7 @@ public class PlayerControle : MonoBehaviour {
       if(!pet_ativado && vida <= 0f) {
          jaPodePularDuas = false;
          simbuloVoador.SetActive(false);
-         pode_mexer = false;
-         podeAtirar = false;
+         conversando = true;
          anim.SetBool("morreu", true);
          player_collider.isTrigger = true;
          rb2d.bodyType = RigidbodyType2D.Static;

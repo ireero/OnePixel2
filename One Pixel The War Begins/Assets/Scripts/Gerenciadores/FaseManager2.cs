@@ -105,7 +105,9 @@ public class FaseManager2 : MonoBehaviour
             painel_derrota.SetActive(true);
         }
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        if(Time.timeScale == 1) {
+            AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        }
 
         if(contagem_falas_2 <= 5 && contagem_falas_2 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
@@ -152,9 +154,12 @@ public class FaseManager2 : MonoBehaviour
                     imagem.sprite = cabeca_base_vingativa; 
                     break;
                 case 6:
-                    PlayerControle.conversando = false;
-                    PlayerControle.pode_mexer = true;
-                    PlayerControle.podeAtirar = true;
+                    if(tocaSom >= 2) {
+                        PlayerControle.conversando = false;
+                        PlayerControle.pode_mexer = true;
+                        PlayerControle.podeAtirar = true;
+                        tocaSom++;
+                    }
                     CabecaBase.todosMortos = true;
                     painel_falas.SetActive(false);
                     break;                  

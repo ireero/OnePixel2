@@ -126,7 +126,9 @@ public class FaseManager : MonoBehaviour
     void Update()
     {
 
-        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        if(Time.timeScale == 1) {
+            AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+        }
 
         if(PlayerControle.player_morto == true) {
             painel_derrota.SetActive(true);

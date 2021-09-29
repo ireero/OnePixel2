@@ -36,10 +36,12 @@ public class Chefao01 : MonoBehaviour
     public GameObject escada;
 
     public Animator anim_back;
+    private bool ativarUmaVez;
 
     // Start is called before the first frame update
     void Start()
     {
+        ativarUmaVez = false;
         umaVez = false;
         morrer_de_vez = false;
         metade_vida = false;
@@ -67,13 +69,13 @@ public class Chefao01 : MonoBehaviour
         }
 
         if(vida <= 50f && vida > 0) {
+            metade_vida = true;
             if(vida == 50) {
+                sr.color = Color.red;
                 anim.SetBool("meia_vida", true);
                 StartCoroutine("meiaVida");
             }
-            sr.color = Color.red;
             velocidade = 15f;
-            metade_vida = true;
         }
 
         if(bateu_chao) {
@@ -184,9 +186,12 @@ public class Chefao01 : MonoBehaviour
         FaseManager.podeSpawn = true;
         anim.SetBool("idle", true);
         anim.SetBool("apareceu", false);
-        PlayerControle.conversando = false;
-        PlayerControle.pode_mexer = true;
-        PlayerControle.podeAtirar = true;
+        if(!ativarUmaVez) {
+            PlayerControle.conversando = false;
+            PlayerControle.pode_mexer = true;
+            PlayerControle.podeAtirar = true;
+            ativarUmaVez = true;
+        }
     }
 
     IEnumerator voltarDoAtaque() {

@@ -55,7 +55,7 @@ public class Clones : MonoBehaviour
                 }
             } else {
                 if(FaseManager10.pode_comecar_10) {
-                if(contador >= 2f) {
+                if(contador >= 2.5f) {
                     Instantiate(tiro, spawn_tiro.position, spawn_tiro.rotation);
                     contador = 0;
                 }
