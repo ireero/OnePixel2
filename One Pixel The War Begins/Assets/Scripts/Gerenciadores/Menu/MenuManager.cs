@@ -166,6 +166,7 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.SetFloat("CONT_VOLT_RED", 0);
         GameManager.Instance.SalvarSit(0, "TEMPO_JOGO");
         PlayerPrefs.SetInt("RED_PAUSADO", 0);
+        PlayerPrefs.SetInt("ZEROU", 0);
     }
 
     public void AtivarOpcoes() {

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Steamworks.Data;
+using Steamworks;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour
     public static int comecou_game;
 
     public static int progresso;
+
+    private int zerou_valor;
 
     public static GameManager Instance {get; private set;}
 
@@ -58,6 +62,87 @@ public class GameManager : MonoBehaviour
                 tempo_de_jogo = 0;
             }
         }
+
+        if(fase0 == 2) {
+            var ach = new Achievement("ZERO");
+            ach.Trigger();
+        }
+
+        if(fase1 == 2) {
+            var ach = new Achievement("FIRST");
+            ach.Trigger();
+        }
+
+        if(fase2 == 2) {
+            var ach = new Achievement("SECOND");
+            ach.Trigger();
+        }
+
+        if(fase3 == 2) {
+            var ach = new Achievement("THIRD");
+            ach.Trigger();
+        }
+
+        if(fase4 == 2) {
+            var ach = new Achievement("FOURTH");
+            ach.Trigger();
+        }
+
+        if(fase5 == 2) {
+            var ach = new Achievement("FIFTH");
+            ach.Trigger();
+        }
+
+        if(fase6 == 2) {
+            var ach = new Achievement("SIXTH");
+            ach.Trigger();
+        }
+
+        if(fase7 == 2) {
+            var ach = new Achievement("SEVENTH");
+            ach.Trigger();
+        }
+
+        if(fase8 == 2) {
+            var ach = new Achievement("EIGHTH");
+            ach.Trigger();
+        }
+
+        if(fase9 == 2) {
+            var ach = new Achievement("NINTH");
+            ach.Trigger();
+        }
+
+        if(fase10 == 2) {
+            var ach = new Achievement("TENTH");
+            ach.Trigger();
+        }
+
+        if(PlayerPrefs.HasKey("RED")) {
+            var ach = new Achievement("RED_AND_WHITE");
+            ach.Trigger();
+        }
+
+        if(sem_dialogos == 1 && progresso == 10) {
+            var ach = new Achievement("NOT_HAPPY");
+            ach.Trigger();
+        }
+
+        if(progresso == 1) {
+            var ach = new Achievement("TUTORIAL");
+            ach.Trigger();
+        }
+
+        if(PlayerPrefs.HasKey("ZEROU")) {
+            var ach = new Achievement("WINNER");
+            ach.Trigger();
+            zerou_valor = PlayerPrefs.GetInt("ZEROU");
+            if(zerou_valor == 2) {
+                var achF = new Achievement("FIORA");
+                achF.Trigger();
+            }
+        }
+
     }
 
     public void SalvarSit(int sit, string nome_fase) {

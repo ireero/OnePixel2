@@ -3499,6 +3499,7 @@ GameObject:
   - component: {fileID: 996807233}
   - component: {fileID: 996807236}
   - component: {fileID: 996807237}
+  - component: {fileID: 996807238}
   m_Layer: 8
   m_Name: cama
   m_TagString: chao
@@ -3693,6 +3694,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &996807238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996807231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39680f3c990552648ba3449472f4e44c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1011782279
 GameObject:
   m_ObjectHideFlags: 0

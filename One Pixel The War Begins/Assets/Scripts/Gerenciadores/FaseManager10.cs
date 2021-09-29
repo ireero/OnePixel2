@@ -169,6 +169,7 @@ public class FaseManager10 : MonoBehaviour
 
         if(PixelPreto.vida_pixel_preto <= 0) {
             if(!morte_uma) {
+                GameManager.Instance.SalvarSit(2, "Fase10");
                 Destroy(vida_ne);
                 som_back.Stop();
                 som_vacuo.Play();
@@ -177,12 +178,10 @@ public class FaseManager10 : MonoBehaviour
         }
 
         if(Time.timeScale == 1) {
-            GameManager.Instance.SalvarSit(2, "Fase10");
             AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
         }
 
         if(acabou) {
-            
             painel_zerou.SetActive(true);
         }
 

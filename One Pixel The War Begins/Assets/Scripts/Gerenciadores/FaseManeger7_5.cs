@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Steamworks.Data;
+using Steamworks;
 
 public class FaseManeger7_5 : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class FaseManeger7_5 : MonoBehaviour
     void Start()
     {
         GameManager.Instance.CarregarDados();
+        var ach = new Achievement("SECRET_FASE");
+        ach.Trigger();
         if(GameManager.fase7_5 == 2) {
             Destroy(alerta);
             Destroy(spawn);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class FaseManager3 : MonoBehaviour
 {
 
@@ -64,6 +65,9 @@ public class FaseManager3 : MonoBehaviour
 
     private Animator anim;
 
+    public GameObject Fiora;
+    private int fiora_valor;
+
     void Start()
     {
         GameManager.Instance.CarregarDados();
@@ -101,6 +105,16 @@ public class FaseManager3 : MonoBehaviour
             umaVezBack = false;
             podeTocar = 0;
         } else {
+            if(PlayerPrefs.HasKey("ZEROU")) {
+                fiora_valor = PlayerPrefs.GetInt("ZEROU");
+                if(fiora_valor == 1) {
+                    anim.SetBool("cair_quadro", true);
+                    PlayerPrefs.SetInt("ZEROU", 2);
+                } else if(fiora_valor == 2) {
+                    anim.SetBool("quadro_caido", true);
+                    Fiora.SetActive(true);
+                }
+            }
             Destroy(chefao);
             escada.SetActive(true);
             PlayerControle.conversando = false;
@@ -220,5 +234,9 @@ public class FaseManager3 : MonoBehaviour
 
     public void PararTremedeira() {
         anim.SetBool("tremer_chao", false);
+    }
+
+    public void UnlockFiora() {
+        Fiora.SetActive(true);
     }
 }

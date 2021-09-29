@@ -122,6 +122,7 @@ public class FaseManager9 : MonoBehaviour
 
         if(GameManager.progresso <= 9) {
             GameManager.Instance.SalvarSit(10, "Progresso");
+            GameManager.Instance.CarregarDados();
         }
 
         anim = GetComponent<Animator>();
