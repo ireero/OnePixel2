@@ -45,7 +45,7 @@ public class Chefao01 : MonoBehaviour
         umaVez = false;
         morrer_de_vez = false;
         metade_vida = false;
-        velocidade = 10f;
+        velocidade = 9f;
         vida = 100f;
         contagem_danos = 0;
         bateu_chao = false;
@@ -75,7 +75,7 @@ public class Chefao01 : MonoBehaviour
                 anim.SetBool("meia_vida", true);
                 StartCoroutine("meiaVida");
             }
-            velocidade = 15f;
+            velocidade = 14f;
         }
 
         if(bateu_chao) {
@@ -91,7 +91,7 @@ public class Chefao01 : MonoBehaviour
                 if(contador >= 6.5f && !atacou) {
                     somResp.Stop();
                     umaVez = false;
-                    transform.Translate(new Vector2(-velocidade * Time.deltaTime, 0));
+                    corpo_vilao.velocity = new Vector2(-velocidade, 0);
                 }
             } else if(contador >= 5f && atacou) {
                 anim.SetBool("atacar", true);
@@ -99,7 +99,7 @@ public class Chefao01 : MonoBehaviour
                if(contador>= 6.5f && atacou) {
                    somResp.Stop();
                    umaVez = false;
-                    transform.Translate(new Vector2(velocidade * Time.deltaTime, 0));
+                   corpo_vilao.velocity = new Vector2(velocidade, 0);
                }
             }
         } else {
@@ -113,7 +113,7 @@ public class Chefao01 : MonoBehaviour
                 if(contador >= 2.9f && !atacou) {
                     somResp.Stop();
                     umaVez = false;
-                    transform.Translate(new Vector2(-velocidade * Time.deltaTime, 0));
+                    corpo_vilao.velocity = new Vector2(-velocidade, 0);
                 }
             } else if(contador >= 1.5f && atacou) {
                 anim.SetBool("atacar", true);
@@ -121,7 +121,7 @@ public class Chefao01 : MonoBehaviour
                if(contador>= 2.9f && atacou) {
                     somResp.Stop();
                     umaVez = false;
-                    transform.Translate(new Vector2(velocidade * Time.deltaTime, 0));
+                    corpo_vilao.velocity = new Vector2(velocidade, 0);
                }
             }
         }
@@ -174,6 +174,7 @@ public class Chefao01 : MonoBehaviour
             sr.flipX = !sr.flipX;
         }
     }
+
 
     IEnumerator voltarDoDano() {
         yield return new WaitForSeconds(0.3f);

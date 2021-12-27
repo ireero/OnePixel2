@@ -28,11 +28,14 @@ public class GameManager : MonoBehaviour
 
     public static int progresso;
 
+    private bool umaVez;
+
     private int zerou_valor;
 
     public static GameManager Instance {get; private set;}
 
     private void Awake() {
+        umaVez = false;
 
         if(PlayerPrefs.HasKey("TEMPO_JOGO")) {
             tempo_de_jogo = PlayerPrefs.GetFloat("TEMPO_JOGO");
@@ -118,9 +121,12 @@ public class GameManager : MonoBehaviour
             ach.Trigger();
         }
 
-        if(PlayerPrefs.HasKey("RED")) {
-            var ach = new Achievement("RED_AND_WHITE");
-            ach.Trigger();
+        if(PlayerControle.red_var) {
+            if(!umaVez) {
+                var ach = new Achievement("RED_AND_WHITE");
+                ach.Trigger();
+                umaVez = true;
+            }
         }
 
         if(sem_dialogos == 1 && progresso == 10) {
@@ -134,15 +140,16 @@ public class GameManager : MonoBehaviour
         }
 
         if(PlayerPrefs.HasKey("ZEROU")) {
-            var ach = new Achievement("WINNER");
-            ach.Trigger();
             zerou_valor = PlayerPrefs.GetInt("ZEROU");
+            if(zerou_valor == 1) {
+                var ach = new Achievement("WINNER");
+                ach.Trigger();
+            }
             if(zerou_valor == 2) {
                 var achF = new Achievement("FIORA");
                 achF.Trigger();
             }
         }
-
     }
 
     public void SalvarSit(int sit, string nome_fase) {
@@ -166,6 +173,5 @@ public class GameManager : MonoBehaviour
         progresso = PlayerPrefs.GetInt("Progresso");
         AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
         tempo_min = PlayerPrefs.GetInt("TEMPO");
-        
     }
 }

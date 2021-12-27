@@ -36,7 +36,7 @@ public class FaseManager10 : MonoBehaviour
     public Text txt_obrigado;
 
     private string text_avancar = "Pressione 'Q' para avançar";
-    private string text_final = "Parabéns! você conseguiu zerar esse jogo que sinceramente eu acho muito difícil. Se você puder deixar uma review de como foi essa sua experiencia eu ficaria muito agradecido.\n Em memória da minha gatinha Fiora, obrigado por toda alegria e companheirismo que você me proporcionou. Descanse em paz.";
+    private string text_final = "Parabéns! você conseguiu zerar esse jogo que sinceramente eu acho muito difícil. Se você puder deixar uma review de como foi essa sua experiencia eu ficaria muito agradecido.\n\nEm memória da minha gatinha Fiora, obrigado por toda alegria e companheirismo que você me proporcionou. Descanse em paz.";
     private string text_obrigado = "Obrigado";
 
     public GameObject bolaFogo;
@@ -350,6 +350,30 @@ public class FaseManager10 : MonoBehaviour
             case 26:
                 img_carinha.sprite = sprites_caras[0];
                 break;
+            case 28:
+                img_carinha.sprite = sprites_caras[3];
+                break;
+            case 30:
+                img_carinha.sprite = sprites_caras[5];
+                break;  
+            case 31:
+                img_carinha.sprite = sprites_caras[0];
+                break; 
+            case 33:
+                img_carinha.sprite = sprites_caras[5];
+                break;   
+            case 34:
+                img_carinha.sprite = sprites_caras[4];   
+                break;
+            case 37:
+                img_carinha.sprite = sprites_caras[2];
+                break;
+            case 39:
+                img_carinha.sprite = sprites_caras[0];
+                break;    
+            case 40:
+                img_carinha.sprite = sprites_caras[3];
+                break;                   
             case 41:
                 if(musicaUmaVez == 2) {
                     som_vacuo.Stop();

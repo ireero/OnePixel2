@@ -155,8 +155,16 @@ public class Chefao05 : MonoBehaviour
             base_sr.color = Color.white;
             girador_sr.color = Color.white;
             anim.SetBool("morreu", true);
-            StartCoroutine("morrendo");
         }
+    }
+
+    public void MorteDesse() {
+        escada.SetActive(true);
+        desintegrando.Stop();
+        if(GameManager.sem_dialogos == 0) {
+            FaseManager6.contagem_falas_6 = 5;
+        }
+        Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -193,16 +201,6 @@ public class Chefao05 : MonoBehaviour
         } else if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("tijolo")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         } 
-    }
-
-    IEnumerator morrendo() {
-        yield return new WaitForSeconds(3.5f);
-        escada.SetActive(true);
-        desintegrando.Stop();
-        if(GameManager.sem_dialogos == 0) {
-            FaseManager6.contagem_falas_6 = 5;
-        }
-        Destroy(this.gameObject);
     }
 
     IEnumerator atirandoIdle() {

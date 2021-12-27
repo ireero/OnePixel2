@@ -25,14 +25,13 @@ public class MonstroBase : MonoBehaviour
         anim = GetComponent<Animator>();
         audio_morte = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
+        player_pos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartCoroutine("esperarCair");
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        player_pos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         if(caiu) {
             if(player_pos.position.x > transform.position.x) {
@@ -65,11 +64,13 @@ public class MonstroBase : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
          if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player")) {
             Morte(1);
-        } else if(other.gameObject.CompareTag("chao") || other.gameObject.CompareTag("fora")) {
+        } else if(other.gameObject.CompareTag("chao")) {
             anim.SetBool("levantar", true);
             StartCoroutine("liberarAndada");
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        } else if(other.gameObject.CompareTag("fora")) {
+            Destroy(this.gameObject);
         }
     }
 

@@ -3988,6 +3988,36 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!1 &711308725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 711308726}
+  m_Layer: 0
+  m_Name: teleporte
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &711308726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711308725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &714418811
 GameObject:
   m_ObjectHideFlags: 0
@@ -7964,7 +7994,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.68378425, g: 0.70403165, b: 0.735849, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -10924,10 +10954,10 @@ MonoBehaviour:
     very difficult. If you can leave a review of how was your experience I would
     be very grateful.
 
-    
 
-    In memory of my kitty Fiora, thank you for all
-    the joy and companionship you gave me. Rest in peace.'
+
+    In memory of my kitty Fiora, thank you for all the joy
+    and companionship you gave me. Rest in peace.'
 --- !u!222 &1908393629
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11423,7 +11453,7 @@ PrefabInstance:
         type: 3}
       propertyPath: teleporte
       value: 
-      objectReference: {fileID: 1161415812}
+      objectReference: {fileID: 711308726}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: valor_vida
@@ -11554,6 +11584,11 @@ PrefabInstance:
       propertyPath: BotaoVoltarAoMenu
       value: 
       objectReference: {fileID: 1687249522}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: CaixaProtetorMouse
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BotaoRetornarAoJogo

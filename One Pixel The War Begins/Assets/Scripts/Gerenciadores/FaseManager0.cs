@@ -39,7 +39,7 @@ public class FaseManager0 : MonoBehaviour
             } 
         } else {
             back_void.Play();
-            if(GameManager.progresso >= 2) {
+            if(GameManager.progresso >= 3) {
                 Destroy(painel_socorro);
             } else {
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {

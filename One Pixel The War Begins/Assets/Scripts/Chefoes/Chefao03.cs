@@ -201,7 +201,6 @@ public class Chefao03 : MonoBehaviour
                 Destroy(particulas_de_cura);
                 morreu = true;
                 anim.SetBool("morreu", true);
-                StartCoroutine("morrer");
             } else {
                 anim.SetBool("transformando", false);
                 anim.SetBool("tomou_dano", true);
@@ -245,8 +244,7 @@ public class Chefao03 : MonoBehaviour
         anim.SetBool("meia_vida", false);
     }
 
-    IEnumerator morrer() {
-        yield return new WaitForSeconds(3.4f);
+    public void morrer() {
         desintegracao.Stop();
         escada.SetActive(true);
         Destroy(this.gameObject);

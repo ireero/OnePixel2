@@ -7,7 +7,7 @@ public class FaseManager4 : MonoBehaviour
 {
 
     private string[] falas_meditador = {"Sinto muito imperador...", "Éramos aproximadamente 50 soldados de alto nível neste andar e mesmo assim fomos todos derrotados", 
-    "Graças ao sacrifício de todos, nós ainda conseguimos eliminar 1 deles", "Eles se revoltaram do nada...", "Quando notamos o perigo já era tarde de mais, estávamos cercados",
+    "Graças ao sacrifício de todos, nós ainda conseguimos eliminar 1 deles", "Eles se revoltaram do nada...", "Quando notamos o perigo já era tarde demais, estávamos cercados",
     "Sinto muito meu senhor, espero que nossas mortes não sejam em vão", "O monstro que matamos deixou isso cair, espero que lhe ajude em algo", "Por favor meu imperador, salve nosso povo..."};
 
     private string[] falas_meditador_ingles = {"I'm sorry Emperor...", "There were approximately 50 high-level soldiers on this floor and yet we were all defeated", 

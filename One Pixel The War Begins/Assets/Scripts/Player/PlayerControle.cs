@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerControle : MonoBehaviour {
    public Transform groundCheck;
    public float speed = 4;
-   public float jumpForce = 200;
+   public float jumpForce = 400;
    public LayerMask whatIsGround;
  
    [HideInInspector]
@@ -102,7 +102,9 @@ public class PlayerControle : MonoBehaviour {
    public static bool chegou_final;
 
    private bool andar;
- 
+   
+   private float cont;
+
    void Start () {  
       if(PlayerPrefs.HasKey("CONT_RED")) {
          cont_red = PlayerPrefs.GetFloat("CONT_RED");
@@ -143,6 +145,7 @@ public class PlayerControle : MonoBehaviour {
             red_pausado = false;
          }
       }
+      cont = 0;
       andar = false;
       umaVezRed = false;
       vida = 3f;
@@ -240,7 +243,9 @@ public class PlayerControle : MonoBehaviour {
             if(podeTomarDano) {
                sr.color = Color.white;
             }
-            cont_volt_red += Time.deltaTime;
+            if(cont_volt_red <= 120) {
+               cont_volt_red += Time.deltaTime;
+            }
             if(!umaVezRed) {
                PlayerPrefs.SetFloat("CONT_RED", 0);
                umaVezRed = true;
@@ -382,9 +387,15 @@ public class PlayerControle : MonoBehaviour {
       }
 
       if(podeAtirar) {
-         if(Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)) {
-				Fire();
-			}
+            if((Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))) {
+               Fire();
+            } else if((Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0))) {
+               cont += Time.deltaTime;
+               if(cont >= 0.25f) {
+                  Fire();
+                  cont = 0;
+               }
+            }
       }
    }
  
@@ -529,6 +540,7 @@ public class PlayerControle : MonoBehaviour {
          rb2d.velocity = new Vector2(0, 0);
       } else if(other.gameObject.CompareTag("the")) {
          PlayerPrefs.SetInt("REDVAR", 1);
+         PlayerPrefs.SetInt("RED", 1);
          StartCoroutine("serEsmagado");
          rb2d.bodyType = RigidbodyType2D.Static;
          conversando = true;

@@ -27,8 +27,8 @@ public class ChefaoMenor : MonoBehaviour
         anim = GetComponent<Animator>();
         valor = Random.Range(-500, 501);
         valor2 = Random.Range(-100, 300);
-        velocidade = Random.Range(0.5f, 1.5f);
-        forca_pulo = Random.Range(150, 300);
+        velocidade = Random.Range(0.25f, 0.8f);
+        forca_pulo = Random.Range(100, 150);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         som_batida = GetComponent<AudioSource>();
         corpo.AddForce(new Vector2(valor, valor2));

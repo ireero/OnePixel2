@@ -316,6 +316,7 @@ public class FaseManager9 : MonoBehaviour
                 PlayerControle.conversando = false;
                 if(!cabo_tudo) {
                     Destroy(barra_vida);
+                    txt_tempo.enabled = false;
                     GameManager.Instance.SalvarSit(2, "Fase9");
                     PlayerControle.pode_mexer = true;
                     PlayerControle.podeAtirar = true;

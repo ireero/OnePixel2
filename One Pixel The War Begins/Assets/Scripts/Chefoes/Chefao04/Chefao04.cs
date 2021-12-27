@@ -107,7 +107,6 @@ public class Chefao04 : MonoBehaviour
             corpo.bodyType = RigidbodyType2D.Dynamic;
             Destroy(protetor);
             anim.SetBool("morreu", true);
-            StartCoroutine("morrer");
             sr.color = Color.white;
         } else if(vida_chefao <= 40 && vida_chefao > 0) {
             FaseManager5.valor_tiros_dados = 12;
@@ -151,8 +150,7 @@ public class Chefao04 : MonoBehaviour
         anim.SetBool("meia_vida", false);
     }
 
-    IEnumerator morrer() {
-        yield return new WaitForSeconds(3.9f);
+    public void morrer() {
         escada.SetActive(true);
         desintegrando.Stop();
         Destroy(this.gameObject);

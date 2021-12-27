@@ -159,14 +159,20 @@ public class MenuManager : MonoBehaviour
         SceneLoader.Instance.LoadSceneAsync("Menu");
         GameManager.Instance.SalvarSit(0, "PONTO");
         GameManager.Instance.SalvarSit(0, "TEMPO");
-        GameManager.Instance.SalvarSit(0, "RED");
-        GameManager.Instance.SalvarSit(0, "REDVAR");
+        if(PlayerPrefs.HasKey("RED")) {
+            GameManager.Instance.SalvarSit(0, "RED");
+            PlayerPrefs.SetFloat("CONT_RED", 0);
+            PlayerPrefs.SetFloat("CONT_VOLT_RED", 0);
+        }
+        if(PlayerPrefs.HasKey("REDVAR")) {
+            GameManager.Instance.SalvarSit(0, "REDVAR");
+        }
         GameManager.Instance.SalvarSit(0, "Fase7_5");
-        PlayerPrefs.SetFloat("CONT_RED", 0);
-        PlayerPrefs.SetFloat("CONT_VOLT_RED", 0);
         GameManager.Instance.SalvarSit(0, "TEMPO_JOGO");
         PlayerPrefs.SetInt("RED_PAUSADO", 0);
-        PlayerPrefs.SetInt("ZEROU", 0);
+        if(PlayerPrefs.HasKey("ZEROU")) {
+            PlayerPrefs.SetInt("ZEROU", 0);
+        }
     }
 
     public void AtivarOpcoes() {

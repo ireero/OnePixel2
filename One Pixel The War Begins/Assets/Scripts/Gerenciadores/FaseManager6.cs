@@ -157,8 +157,8 @@ public class FaseManager6 : MonoBehaviour
            GameManager.Instance.SalvarSit(2, "Fase6");
            if(GameManager.sem_dialogos == 1) {
                if(!back_pode) {
-                   back_void.Stop();
-                   back.Play();
+                   back_void.Play();
+                   back.Stop();
                    back_pode = true;
                }
            }

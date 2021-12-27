@@ -469,7 +469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.063, y: 0.34169734}
   m_AnchorMax: {x: 0.3666684, y: 0.79700005}
-  m_AnchoredPosition: {x: 0.49996948, y: 1.4350014}
+  m_AnchoredPosition: {x: 0.49995422, y: 1.4350014}
   m_SizeDelta: {x: 1.9400024, y: -2.8700027}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &229706673
@@ -1170,7 +1170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.29628205}
   m_AnchorMax: {x: 0.546875, y: 0.37428206}
-  m_AnchoredPosition: {x: -958, y: 453.00003}
+  m_AnchoredPosition: {x: -958, y: 453.00006}
   m_SizeDelta: {x: -402.48, y: -30.03187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &372536622
@@ -1707,7 +1707,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.063, y: 0.34169734}
   m_AnchorMax: {x: 0.3666684, y: 0.79700005}
-  m_AnchoredPosition: {x: 0.49996948, y: 1.4350014}
+  m_AnchoredPosition: {x: 0.49995422, y: 1.4350014}
   m_SizeDelta: {x: 1.9400024, y: -2.8700027}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &484270805
@@ -4348,7 +4348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.54, y: 0.7433334}
   m_AnchorMax: {x: 0.975, y: 0.78000003}
-  m_AnchoredPosition: {x: 10.632988, y: -72.25693}
+  m_AnchoredPosition: {x: 10.632996, y: -72.25693}
   m_SizeDelta: {x: 16.464264, y: 13.777145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &953864215
@@ -5483,7 +5483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.063, y: 0.34169734}
   m_AnchorMax: {x: 0.3666684, y: 0.79700005}
-  m_AnchoredPosition: {x: 0.49996948, y: 1.4350014}
+  m_AnchoredPosition: {x: 0.49995422, y: 1.4350014}
   m_SizeDelta: {x: 1.9400024, y: -2.8700027}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1216837944
@@ -7041,6 +7041,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515250059}
   m_CullTransparentMesh: 1
+--- !u!1 &1542822686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1542822687}
+  m_Layer: 0
+  m_Name: teleporte
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1542822687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542822686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1562095964
 GameObject:
   m_ObjectHideFlags: 0
@@ -7957,7 +7987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.063, y: 0.34169734}
   m_AnchorMax: {x: 0.3666684, y: 0.79700005}
-  m_AnchoredPosition: {x: 0.49996948, y: 1.4350014}
+  m_AnchoredPosition: {x: 0.49995422, y: 1.4350014}
   m_SizeDelta: {x: 1.9400024, y: -2.8700027}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1717729343
@@ -10019,7 +10049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.063, y: 0.34169734}
   m_AnchorMax: {x: 0.3666684, y: 0.79700005}
-  m_AnchoredPosition: {x: 0.49996948, y: 1.4350014}
+  m_AnchoredPosition: {x: 0.49995422, y: 1.4350014}
   m_SizeDelta: {x: 1.9400024, y: -2.8700027}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &7442106555341568669
@@ -10094,6 +10124,11 @@ PrefabInstance:
       propertyPath: vida_pet
       value: 
       objectReference: {fileID: 1148874069}
+    - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: teleporte
+      value: 
+      objectReference: {fileID: 1542822687}
     - target: {fileID: 7442106555223898367, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: valor_vida
@@ -10224,6 +10259,11 @@ PrefabInstance:
       propertyPath: BotaoVoltarAoMenu
       value: 
       objectReference: {fileID: 506960297}
+    - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
+        type: 3}
+      propertyPath: CaixaProtetorMouse
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7442106555341568671, guid: ce49866eef6f55f4b878608aeec5cced,
         type: 3}
       propertyPath: BotaoRetornarAoJogo
