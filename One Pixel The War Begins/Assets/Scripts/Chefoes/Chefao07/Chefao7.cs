@@ -11,7 +11,6 @@ public class Chefao7 : MonoBehaviour
     public static bool bateu_nele;
     private BoxCollider2D colisor;
     public Animator do_background;
-    public AudioSource som_terremoto;
     private bool som_umaVez;
     public static bool red_sair;
     private bool redUmaVez;
@@ -53,7 +52,6 @@ public class Chefao7 : MonoBehaviour
         if(FaseManager9.acabou == true) {
             Camera.tremer_bastante = true;
             if(!som_umaVez) {
-                som_terremoto.Play();
                 som_umaVez = true;
             }
             do_background.SetBool("mexer", true);
@@ -93,7 +91,6 @@ public class Chefao7 : MonoBehaviour
     IEnumerator voltarNormal() {
         yield return new WaitForSeconds(5f);
         possuido = false;
-        som_terremoto.Stop();
         FaseManager9.acabou = false;
         Camera.tremer_bastante = false;
         do_background.SetBool("mexer", false);

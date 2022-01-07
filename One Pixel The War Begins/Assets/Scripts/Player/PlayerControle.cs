@@ -380,7 +380,7 @@ public class PlayerControle : MonoBehaviour {
       }
 
       if (jump) {
-         GerenciadorAudio.inst.PlayPulo(som_pulo);
+         GerenciadorAudio.inst.PlaySomSfx(0, "SfxPlayer");
          rb2d.AddForce(new Vector2(0, jumpForce));
          anim.SetBool("pulou", true);
          jump = false;
@@ -457,7 +457,7 @@ public class PlayerControle : MonoBehaviour {
 
    void Fire() {
 
-      GerenciadorAudio.inst.PlayTiro(som_tiro);
+      GerenciadorAudio.inst.PlaySomSfx(2, "SfxPlayer");
 
 		GameObject cloneBullet = Instantiate(bulletObject, bulletSpawn.position, bulletSpawn.rotation);
 
@@ -567,7 +567,7 @@ public class PlayerControle : MonoBehaviour {
    void Dash() {
       if((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(2)) && canDash) {
          if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2)) {
-            GerenciadorAudio.inst.PlayDash(dash_sound);
+            GerenciadorAudio.inst.PlaySomSfx(1, "SfxPlayer");
          }
          if(dashAtual <= 0) {
             StopDash();
@@ -607,7 +607,7 @@ public class PlayerControle : MonoBehaviour {
          cont_volt_red = 0;
       }
       vida--;
-      GerenciadorAudio.inst.PlayMorte(som_morte);
+      GerenciadorAudio.inst.PlaySomSfx(3, "SfxPlayer");
       Camera.tremer = true;
       podeTomarDano = false;
       Time.timeScale = 0.1f;

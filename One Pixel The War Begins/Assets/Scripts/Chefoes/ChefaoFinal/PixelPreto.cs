@@ -78,11 +78,6 @@ public class PixelPreto : MonoBehaviour
 
     private bool sair_daqui;
 
-    public AudioSource som_dano;
-    public AudioSource som_getsuga;
-    public AudioSource som_batida;
-    public AudioSource som_morte;
-
     private int musica;
 
     void Start()
@@ -195,7 +190,6 @@ public class PixelPreto : MonoBehaviour
 
                 if(vida_pixel_preto <= 0) {
                     if(musica == 0) {
-                        som_morte.Play();
                         musica++;
                     }
                     Paredona.sumir = true;
@@ -328,14 +322,12 @@ public class PixelPreto : MonoBehaviour
             Camera.tremer_chao = true;
             anim.SetBool("pulando", false);
             if(pode_explosao) {
-                som_batida.Play();
                 Instantiate(explosao, spawn_explosao.position, spawn_explosao.rotation);
                 spawn_explosao.Rotate(new Vector3(0, 180, 0), Space.Self);
                 pode_explosao = false;
             }
         }
         if(other.gameObject.CompareTag("bullet")) {
-            som_dano.Play();
             if(PlayerControle.red_var) {
                 vida_pixel_preto -= 2;
                 sr.color = Color.red;
@@ -382,7 +374,6 @@ public class PixelPreto : MonoBehaviour
 
     IEnumerator voltarAnimSoco() {
         yield return new WaitForSeconds(0.55f);
-        som_batida.Play();
         Instantiate(explosao_meia_vida, spawn_tiro_segunda_explosao.position, spawn_tiro_segunda_explosao.rotation);
         anim.SetBool("socao_time", false);
     }
@@ -393,7 +384,6 @@ public class PixelPreto : MonoBehaviour
     }
 
     public void atirarGetsuga() {
-        som_getsuga.Play();
         Instantiate(getsuga, spawn_tiro_bala.position, spawn_tiro_bala.rotation);
         getsugas_dados++;
     }
@@ -426,7 +416,6 @@ public class PixelPreto : MonoBehaviour
 
     IEnumerator FinalizarJogo() {
         yield return new WaitForSeconds(3.5f);
-        som_morte.Stop();
         PlayerControle.chegou_final = true;
         Destroy(this.gameObject);
     }

@@ -44,9 +44,6 @@ public class FaseManager : MonoBehaviour
 
     public static bool falas_terminaram;
 
-    public AudioSource background;
-    public AudioSource back_void;
-
     public Image imagem;
 
     public Sprite cara_chorando;
@@ -59,9 +56,7 @@ public class FaseManager : MonoBehaviour
     public Sprite icon_normal;
     public Image icon_atual;
 
-    public AudioSource som_caida;
     private bool uma_batida;
-    public AudioSource som_fala;
 
     private bool falarUmaVez;
     public GameObject vida_chefao;
@@ -89,11 +84,9 @@ public class FaseManager : MonoBehaviour
         }
 
         if(GameManager.fase1 == 1 || GameManager.fase1 == 0) {
-            back_void.Play();
             falarUmaVez = false;
             pode_comecar = false;
             if(GameManager.sem_dialogos == 0) {
-                som_fala.Play();
                 painel_falas.SetActive(true);
                 contagem_falas = 0;
                 falas_terminaram = false;   
@@ -139,9 +132,6 @@ public class FaseManager : MonoBehaviour
                 vida_chefao.SetActive(true);
                 icon_atual.sprite = icon_normal;
                 icon_atual.color = Color.white;
-                som_caida.Play();
-                back_void.Pause();
-                background.Play();
                 uma_batida = true;
             }
         }
@@ -201,7 +191,6 @@ public class FaseManager : MonoBehaviour
                 painel_falas.SetActive(false);
             } else if((contagem_falas >= 6 && contagem_falas <= 7) && !chefao_vivo && GameManager.sem_dialogos == 0) {
                 if(!falarUmaVez) {
-                    som_fala.Play();
                     falarUmaVez = true;
                 }
                 PlayerControle.conversando = true;
@@ -213,7 +202,6 @@ public class FaseManager : MonoBehaviour
             } else if(GameManager.sem_dialogos != 0 && !chefao_vivo) {
                 Chefao01.morrer_de_vez = true;
                 if(!falarUmaVez) {
-                    back_void.Play();
                     falarUmaVez = true;
                 }
             }
@@ -231,15 +219,12 @@ public class FaseManager : MonoBehaviour
             BarraVidaMaior.color = Color.red;
         } else if(Chefao01.vida < 0) {
             GameManager.Instance.SalvarSit(2, "Fase1");
-            background.Stop();
             Destroy(vida_chefao);
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar) {
             if(contagem_falas == 8) {
-                back_void.Play();
             } else if(contagem_falas != 4){
-                som_fala.Play();
             }
             contagem_falas++;
         }

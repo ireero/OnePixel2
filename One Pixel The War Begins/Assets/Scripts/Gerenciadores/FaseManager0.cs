@@ -14,8 +14,6 @@ public class FaseManager0 : MonoBehaviour
     public GameObject painel_socorro;
     public Text txt_help;
     private string text_help = "Socorrro!";
-    public AudioSource back;
-    public AudioSource back_void;
 
     void Start()
     {
@@ -29,7 +27,6 @@ public class FaseManager0 : MonoBehaviour
         }
 
         if(GameManager.fase0 == 0 || GameManager.fase0 == 1) {
-            back.Play();
             horaDePassar = 0;
             PlayerControle.conversando = false;
             PlayerControle.podeAtirar = true;
@@ -38,7 +35,6 @@ public class FaseManager0 : MonoBehaviour
                 txt_help.text = text_help;
             } 
         } else {
-            back_void.Play();
             if(GameManager.progresso >= 3) {
                 Destroy(painel_socorro);
             } else {
@@ -74,8 +70,6 @@ public class FaseManager0 : MonoBehaviour
 
         if(!umaVez) {
             if(horaDePassar == 5) {
-                back.Stop();
-                back_void.Play();
                 GameManager.Instance.SalvarSit(2, "Fase0");
                 StartCoroutine("aparecerPainel");
                 umaVez = true;

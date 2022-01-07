@@ -7,7 +7,6 @@ public class Tentaculo : MonoBehaviour
     private Animator anim;
     private float contador;
     private float tempo_pra_morrer;
-    private AudioSource dano;
 
     void Start()
     {
@@ -21,7 +20,6 @@ public class Tentaculo : MonoBehaviour
         } else {
             anim.SetBool("meia_vida", false);
         }
-        dano = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,7 +42,6 @@ public class Tentaculo : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
             if(Chefao06.dano_tomado < 50) {
-                dano.Play();
                 Chefao06.vida_restante--;
                 Chefao06.dano_tomado++;
             }

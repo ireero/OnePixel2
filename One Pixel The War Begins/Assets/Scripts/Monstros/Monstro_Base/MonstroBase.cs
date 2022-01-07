@@ -7,7 +7,6 @@ public class MonstroBase : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private BoxCollider2D collider_monstro_base;
-    private AudioSource audio_morte;
     private SpriteRenderer sr;
     private float velocidade;
     private Transform player_pos;
@@ -23,7 +22,6 @@ public class MonstroBase : MonoBehaviour
         collider_monstro_base = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        audio_morte = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
         player_pos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartCoroutine("esperarCair");
@@ -88,7 +86,6 @@ public class MonstroBase : MonoBehaviour
             anim.SetBool("morte_caiu", true);
             Destroy(gameObject, 0.55f);
         } else if(qual == 1) {
-            audio_morte.Play();
             anim.SetBool("morte_tiro", true);
             Destroy(gameObject, 1.2f);
         }

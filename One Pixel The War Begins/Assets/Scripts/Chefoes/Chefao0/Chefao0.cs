@@ -13,10 +13,6 @@ public class Chefao0 : MonoBehaviour
     private Transform target;
     private bool lookingRight;
     public Animator anim_back;
-    private AudioSource som_batida;
-    public AudioSource som_pulo;
-    public AudioSource som_dano;
-    public AudioSource som_explod;
     public static int vida_boss0;
     private bool tomandoDano;
     public GameObject[] bichos;
@@ -38,7 +34,6 @@ public class Chefao0 : MonoBehaviour
         velocidade = 0.5f;
         forca_pulo = 500f;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        som_batida = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -65,7 +60,6 @@ public class Chefao0 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("chao")) {
             if(nao_pulou) {
-                som_batida.Play();
                 Camera.tremer_chao = true;
                 anim_back.SetBool("tremer_chao", true);
                 nao_pulou = false;
@@ -76,7 +70,6 @@ public class Chefao0 : MonoBehaviour
                 vida_boss0--;
             }
             if(vida_boss0 == 30 || vida_boss0 == 20 || vida_boss0 == 10) {
-                som_dano.Play();
                 velocidade = 0;
                 tomandoDano = true;
                 anim.SetBool("dano", true);
@@ -101,7 +94,6 @@ public class Chefao0 : MonoBehaviour
 
     public void Pular() {
         if(!tomandoDano) {
-            som_pulo.Play();
             corpo.AddForce(new Vector2(0, forca_pulo));
             nao_pulou = true;
         }
@@ -117,7 +109,6 @@ public class Chefao0 : MonoBehaviour
 
     public void Filhotes() {
 
-        som_explod.Play();
         FaseManager0.horaDePassar++;
 
         bichos[0].transform.position = spawns[0].position;
@@ -135,7 +126,6 @@ public class Chefao0 : MonoBehaviour
 
     IEnumerator voltarDano() {
         yield return new WaitForSeconds(2f);
-        som_dano.Stop();
         velocidade = 0.5f;
         anim.SetBool("dano", false);
         anim.SetBool("pular", true);

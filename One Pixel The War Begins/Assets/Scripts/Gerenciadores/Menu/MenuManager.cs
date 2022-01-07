@@ -76,12 +76,10 @@ public class MenuManager : MonoBehaviour
     }
 
     public void Sair() {
-        som_click.Play();
         Application.Quit();
     }
 
     public void Jogar() {
-        som_click.Play();
         if(GameManager.comecou_game == 1) {
             painel_alerta_iniciar.SetActive(true);
         } else {
@@ -90,17 +88,14 @@ public class MenuManager : MonoBehaviour
     }
 
     public void IrMenuFases() {
-        som_click.Play();
         SceneLoader.Instance.LoadSceneAsync("MenuFases");
     }
 
     public void IrCreditos() {
-        som_click.Play();
         SceneLoader.Instance.LoadSceneAsync("Creditos");
     }
 
     public void CarregarJogo() {
-        som_click.Play();
         switch(GameManager.progresso) {
             case 1:
                 SceneLoader.Instance.LoadSceneAsync("Fase0");
@@ -139,7 +134,6 @@ public class MenuManager : MonoBehaviour
     }
 
     public void ReiniciarTudo() {
-        som_click.Play();
         GameManager.Instance.SalvarSit(0, "Fase0");
         GameManager.Instance.SalvarSit(0, "Fase1");
         GameManager.Instance.SalvarSit(0, "Fase2");
@@ -176,17 +170,14 @@ public class MenuManager : MonoBehaviour
     }
 
     public void AtivarOpcoes() {
-        som_click.Play();
         painel_pause.SetActive(true);
     }
 
     public void Cancelar() {
-        som_click.Play();
         painel_alerta_iniciar.SetActive(false);
     }
 
     public void CancelarOK() {
-        som_click.Play();
         painel_vermelho.SetActive(false);
     }
 }

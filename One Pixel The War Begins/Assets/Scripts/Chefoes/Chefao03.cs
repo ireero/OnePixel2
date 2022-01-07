@@ -41,13 +41,7 @@ public class Chefao03 : MonoBehaviour
     private bool morreu;
     public bool podeTomarDano;
 
-    public AudioSource som_batida;
-    public AudioSource desintegracao;
-
     private float mais_speed;
-
-    private AudioSource audio_dano;
-    public AudioSource rugido_meia_vida;
 
     public GameObject escada;
 
@@ -67,7 +61,6 @@ public class Chefao03 : MonoBehaviour
         collider_redondo = GetComponent<CircleCollider2D>();
         corpo = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        audio_dano = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -127,7 +120,6 @@ public class Chefao03 : MonoBehaviour
         }
 
         if(vida_chefao == 0 && !meia_vida) {
-            rugido_meia_vida.Play();
             if(GameManager.sem_dialogos == 0) {
                 FaseManager3.contagem_falas_3 = 9;
             }
@@ -146,7 +138,6 @@ public class Chefao03 : MonoBehaviour
         switch(lados) {
             case 1: // cima
                 if(transform.position.y >= pontosIdaCima[i].position.y) {
-                    som_batida.Play();
                     Camera.tremer_chao = true;
                     anim_back.SetBool("tremer_chao", true);
                     cont = 2;
@@ -157,7 +148,6 @@ public class Chefao03 : MonoBehaviour
                 break;
             case 2: // esquerda
                 if(transform.position.x <= pontosIdaEsquerda[i].position.x) {
-                    som_batida.Play();
                     cont = 3;
                     umaVez = false;
                 } else {
@@ -166,7 +156,6 @@ public class Chefao03 : MonoBehaviour
                 break;  
             case 3: // baixo
                 if(transform.position.y <= pontosIdaBaixo[i].position.y) {
-                    som_batida.Play();
                     Camera.tremer_chao = true;
                     anim_back.SetBool("tremer_chao", true);
                     cont = 4;
@@ -177,7 +166,6 @@ public class Chefao03 : MonoBehaviour
                 break;
             case 4: // direita
                 if(transform.position.x >= pontosIdaDireita[i].position.x) {
-                    som_batida.Play();
                     cont = 1;
                     umaVez = false;
                 } else {
@@ -189,11 +177,9 @@ public class Chefao03 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet") && podeTomarDano) {
-            audio_dano.Play();
             podeTomarDano = false;
             vida_chefao--;
             if(vida_chefao <= -3) {
-                desintegracao.Play();
                 sr.color = Color.white;
                 corpo.bodyType = RigidbodyType2D.Static;
                 collider_quadrado.isTrigger = true;
@@ -245,7 +231,6 @@ public class Chefao03 : MonoBehaviour
     }
 
     public void morrer() {
-        desintegracao.Stop();
         escada.SetActive(true);
         Destroy(this.gameObject);
     }

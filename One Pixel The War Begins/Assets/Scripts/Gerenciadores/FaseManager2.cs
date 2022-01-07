@@ -73,21 +73,17 @@ public class FaseManager2 : MonoBehaviour
             TiroRedondo.modoHardRedondo = false;
             SuperTiroChefao.modoHard = false;
             if(GameManager.sem_dialogos == 0) {
-                back_void.Play();
-                som_fala.Play();
                 painel_falas.SetActive(true);
                 PlayerControle.conversando = true;
                 pode_comecar = false;
                 contagem_falas_2 = 0;
             } else {
-                back.Play();
                 pode_comecar = true;
                 PlayerControle.conversando = false;
                 PlayerControle.pode_mexer = true;
                 PlayerControle.podeAtirar = true;
             }
         } else {
-            back_void.Play();
             escada.SetActive(true);
             Destroy(chefao);
             vida_chefao.SetActive(false);
@@ -127,8 +123,6 @@ public class FaseManager2 : MonoBehaviour
                      break;
                 case 3:
                     if(tocaSom <= 0) {
-                        back_void.Stop();
-                        back.Play();
                         tocaSom += 1;
                     }
                     PlayerControle.conversando = false;
@@ -140,10 +134,7 @@ public class FaseManager2 : MonoBehaviour
                     painel_falas.SetActive(false);
                     break;
                 case 4:
-                    back.Stop();
-                    back_void.Play();
                     if(tocaSom <= 1) {
-                        som_fala.Play();
                         tocaSom++;
                     }
                     PlayerControle.conversando = true;
@@ -167,7 +158,6 @@ public class FaseManager2 : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar) {
             if(contagem_falas_2 != 2 && contagem_falas_2 != 5) {
-                som_fala.Play();
             }
             contagem_falas_2++;
         }
@@ -189,8 +179,6 @@ public class FaseManager2 : MonoBehaviour
                 contagem_falas_2 = 4;
             } else {
                 if(tocaSom <= 0) {
-                    back_void.Play();
-                    back.Pause();
                     tocaSom++;
                 }
                 CabecaBase.todosMortos = true;

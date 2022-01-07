@@ -7,14 +7,11 @@ public class RostoVermelho : MonoBehaviour
     public static bool apareceu;
     private float contador;
     private Animator anim;
-    private AudioSource som_risada;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         contador = 0;
-        som_risada = GetComponent<AudioSource>();
-        som_risada.Play();
     }
 
     // Update is called once per frame

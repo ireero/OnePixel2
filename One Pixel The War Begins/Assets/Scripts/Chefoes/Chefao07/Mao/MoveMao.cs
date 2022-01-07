@@ -22,8 +22,6 @@ public class MoveMao : MonoBehaviour
     public int valor_alet;
     private bool sortearUmaVez;
 
-    private AudioSource som_batida;
-
     public Animator anim_back;
 
     void Start()
@@ -43,7 +41,6 @@ public class MoveMao : MonoBehaviour
         anim = GetComponent<Animator>();
         collider_temp = GetComponent<PolygonCollider2D>();
         collider_mao = GetComponent<BoxCollider2D>();
-        som_batida = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -152,7 +149,6 @@ public class MoveMao : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("chao")) {
-            som_batida.Play();
             explosao.SetActive(true);
             StartCoroutine("explosaoParar");
             Camera.tremer_chao = true;

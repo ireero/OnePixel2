@@ -18,13 +18,10 @@ public class PortalDiagonal : MonoBehaviour
 
     private float[] tempos = {2.5f, 1f, 4f};
 
-    private AudioSource som_lazer;
-
     void Start()
     {
         contador = 0;
         anim = GetComponent<Animator>();
-        som_lazer = GetComponent<AudioSource>();
         if(GameManager.sem_dialogos == 1) {
             tempos[0] = 2.25f;
             tempos[1] = 0.75f;
@@ -41,19 +38,16 @@ public class PortalDiagonal : MonoBehaviour
         contador3 += Time.deltaTime;
 
         if(contador >= tempos[0]) {
-            som_lazer.Play();
             Instantiate(laser, spawn_laser.position, spawn_laser.rotation);
             contador = 0;
         }
 
         if(contador2 >= tempos[1]) {
-            som_lazer.Play();
             Instantiate(laser, spawn_laser2.position, spawn_laser2.rotation);
             contador2 = 0;
         }
 
         if(contador3 >= tempos[2]) {
-            som_lazer.Play();
             Instantiate(laser, spawn_laser3.position, spawn_laser3.rotation);
             contador3 = 0;
         }

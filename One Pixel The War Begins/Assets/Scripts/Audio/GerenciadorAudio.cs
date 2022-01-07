@@ -5,39 +5,65 @@ using UnityEngine.SceneManagement;
 
 public class GerenciadorAudio : MonoBehaviour
 {
-    public AudioSource som_pulo;
-    public AudioSource som_tiro;
-    public AudioSource som_morte;
-    public AudioSource som_dash;
+
+    public AudioSource sair_sons_background;
+    public AudioSource sair_sons_sfx;
+    public AudioSource sair_sons_sfx_monstros;
+
+    public AudioClip[] sons_sfx;
+    public AudioClip[] sons_background;
+    public AudioClip[] sons_sfx_monstros;
+
+    protected int valor_cena;
 
     public static GerenciadorAudio inst = null;
 
     void Awake() {
         if(inst == null) {
             inst = this;
+            DontDestroyOnLoad(this.gameObject);
         } else if(inst != this) {
             Destroy(gameObject);
         }
+        valor_cena = SceneManager.GetActiveScene().buildIndex;
     }
 
-    public void PlayPulo(AudioClip clipAudio) {
-        som_pulo.clip = clipAudio;
-        som_pulo.Play();
+    public void Update() {
+
+        if(SceneManager.GetActiveScene().buildIndex == valor_cena) {
+            if(!sair_sons_background.isPlaying) {
+                EscolherSomBackground(valor_cena);
+                sair_sons_background.Play();
+            }
+        } else {
+            sair_sons_background.Stop();
+            valor_cena = SceneManager.GetActiveScene().buildIndex;
+        }
     }
 
-    public void PlayTiro(AudioClip clipAudio) {
-        som_tiro.clip = clipAudio;
-        som_tiro.Play();
+    public void EscolherSomBackground(int qualCena) {
+        if(!sair_sons_background.isPlaying) {
+                sair_sons_background.clip = sons_background[qualCena];
+                sair_sons_background.Play();
+            }
     }
 
-    public void PlayMorte(AudioClip clipAudio) {
-        som_morte.clip = clipAudio;
-        som_morte.Play();
+    public void PausarSomBackGround() {
+        sair_sons_background.Pause();
     }
 
-    public void PlayDash(AudioClip clipAudio) {
-        som_dash.clip = clipAudio;
-        som_dash.Play();
+    public void DespausarSomBackGround() {
+        sair_sons_background.Play();
+    }
+
+    public void PlaySomSfx(int numeroSom, string oqueEIsso) {
+        if(oqueEIsso == "SfxPlayer") {
+            sair_sons_sfx.clip = sons_sfx[numeroSom];
+            sair_sons_sfx.Play();
+        } else if(oqueEIsso == "SfxMonstros") {
+            sair_sons_sfx_monstros.clip = sons_sfx_monstros[numeroSom];
+            sair_sons_sfx_monstros.Play();
+        }
     }
 
 }

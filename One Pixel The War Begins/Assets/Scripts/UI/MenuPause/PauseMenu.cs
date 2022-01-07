@@ -22,8 +22,6 @@ public class PauseMenu : MonoBehaviour {
    private bool telaCheiaAtivada, menuParte1Ativo, menuParte2Ativo;
    private Resolution[] resolucoesSuportadas;
 
-   public AudioSource som_click;
-
    public Text txt_reiniciar;
    public Text txt_jogar;
    public Text txt_opcoes;
@@ -164,7 +162,6 @@ public class PauseMenu : MonoBehaviour {
             Time.timeScale = 0;
             AudioListener.volume = 0;
          } else if (menuParte1Ativo == true && menuParte2Ativo == false) {
-            som_click.Play();
             menuParte1Ativo = menuParte2Ativo = false;
             Opcoes (false, false);
             Time.timeScale = 1;
@@ -216,12 +213,10 @@ public class PauseMenu : MonoBehaviour {
       BotaoVoltar.gameObject.SetActive (ativarOP2);
       BotaoSalvarPref.gameObject.SetActive (ativarOP2);
       if (ativarOP == true && ativarOP2 == false) {
-         som_click.Play();
          menuParte1Ativo = true;
          menuParte2Ativo = false;
       }
       else if (ativarOP == false && ativarOP2 == true) {
-         som_click.Play();
          menuParte1Ativo = false;
          menuParte2Ativo = true;
       }
@@ -238,7 +233,6 @@ public class PauseMenu : MonoBehaviour {
    }
    //=========VOIDS DE SALVAMENTO==========//
    private void SalvarPreferencias(){
-      som_click.Play();
       if (CaixaModoJanela.isOn == true) {
          modoJanelaAtivo = 1;
          telaCheiaAtivada = false;
@@ -267,14 +261,12 @@ public class PauseMenu : MonoBehaviour {
       Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width,resolucoesSuportadas[resolucaoSalveIndex].height,telaCheiaAtivada);
    }
    private void VoltarAoMenu(){
-      som_click.Play();
       SceneLoader.Instance.LoadSceneAsync(nomeCenaMenu);
       AudioListener.volume = VOLUME;
       Time.timeScale = 1;
    }
 
    private void ReiniciarCena() {
-      som_click.Play();
       SceneLoader.Instance.LoadSceneAsync(SceneManager.GetActiveScene().name);
       AudioListener.volume = VOLUME;
       Time.timeScale = 1;

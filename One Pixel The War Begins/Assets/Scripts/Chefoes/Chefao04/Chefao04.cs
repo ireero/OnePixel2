@@ -29,15 +29,6 @@ public class Chefao04 : MonoBehaviour
 
     private float valor_para_voltar;
 
-    public AudioSource tocador_risada_chefao;
-
-    public AudioSource tocador_risada_player;
-
-    public AudioSource som_queda_morte;
-    public AudioSource desintegrando;
-
-    public AudioSource dano_chefao;
-
     public GameObject escada;
 
     void Start()
@@ -80,8 +71,6 @@ public class Chefao04 : MonoBehaviour
         } else if(MoedaRisada.moeda_ativou == true && FaseManager5.pode_comecar_5 == true) {
             contador_voltar += Time.deltaTime;
             if(!umaVez) {
-                tocador_risada_chefao.Play();
-                tocador_risada_player.Play();
                 anim.SetBool("atacando", false);
                 anim.SetBool("rir", true);
                 umaVez = true;
@@ -126,12 +115,9 @@ public class Chefao04 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
-            dano_chefao.Play();
             vida_chefao--;
             contagem_danos++;
         }else if(other.gameObject.CompareTag("chao")) {
-            som_queda_morte.Play();
-            desintegrando.Play();
         } else if(other.gameObject.CompareTag("fora")) {
             GameManager.Instance.SalvarSit(2, "Fase5");
             Destroy(this.gameObject);
@@ -152,7 +138,6 @@ public class Chefao04 : MonoBehaviour
 
     public void morrer() {
         escada.SetActive(true);
-        desintegrando.Stop();
         Destroy(this.gameObject);
     }
 }
