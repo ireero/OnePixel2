@@ -21,6 +21,7 @@ public class Chefao0 : MonoBehaviour
     public Image BarraDeVida;
     private float vida_maxima = 40f;
     private bool nao_pulou;
+    private AudioSource som_dano_chefao;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class Chefao0 : MonoBehaviour
         velocidade = 0.5f;
         forca_pulo = 500f;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        som_dano_chefao = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,13 +65,16 @@ public class Chefao0 : MonoBehaviour
                 Camera.tremer_chao = true;
                 anim_back.SetBool("tremer_chao", true);
                 nao_pulou = false;
+                GerenciadorAudio.inst.PlaySomSfx(2, "SfxMonstros");
             }
             anim.SetBool("pular", false);
         } else if(other.gameObject.CompareTag("bullet")) {
             if(!tomandoDano) {
+                som_dano_chefao.Play();
                 vida_boss0--;
             }
             if(vida_boss0 == 30 || vida_boss0 == 20 || vida_boss0 == 10) {
+                GerenciadorAudio.inst.PlaySomSfx(1, "SfxMonstros");
                 velocidade = 0;
                 tomandoDano = true;
                 anim.SetBool("dano", true);
@@ -95,6 +100,7 @@ public class Chefao0 : MonoBehaviour
     public void Pular() {
         if(!tomandoDano) {
             corpo.AddForce(new Vector2(0, forca_pulo));
+            GerenciadorAudio.inst.PlaySomSfx(3, "SfxMonstros");
             nao_pulou = true;
         }
     }

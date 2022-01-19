@@ -8,7 +8,12 @@ public class GerenciadorAudio : MonoBehaviour
 
     public AudioSource sair_sons_background;
     public AudioSource sair_sons_sfx;
+    public AudioSource sair_sons_sfx_chefoes;
     public AudioSource sair_sons_sfx_monstros;
+
+    public AudioSource sfx_dano_chefao;
+    public AudioSource sfx_som_extra_chefao;
+    public AudioSource sfx_dano_temporario_chefao;
 
     public AudioClip[] sons_sfx;
     public AudioClip[] sons_background;

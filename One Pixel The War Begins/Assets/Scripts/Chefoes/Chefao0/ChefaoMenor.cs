@@ -14,6 +14,7 @@ public class ChefaoMenor : MonoBehaviour
     private float valor;
     private float valor2;
     private bool nao_pular;
+    private AudioSource som_dano_minie_chefoes;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class ChefaoMenor : MonoBehaviour
         velocidade = Random.Range(0.25f, 0.8f);
         forca_pulo = Random.Range(100, 150);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        som_dano_minie_chefoes = GetComponent<AudioSource>();
         corpo.AddForce(new Vector2(valor, valor2));
     }
 
@@ -55,6 +57,7 @@ public class ChefaoMenor : MonoBehaviour
             anim.SetBool("pular", false);
         } else if(other.gameObject.CompareTag("bullet")) {
             vida_mob--;
+            som_dano_minie_chefoes.Play();
             if(vida_mob <= 0) {
                 velocidade = 0;
                 corpo.bodyType = RigidbodyType2D.Static;  
