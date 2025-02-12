@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FaseManager4 : MonoBehaviour
 {
 
-    private string[] falas_meditador = {"Sinto muito imperador...", "Éramos aproximadamente 50 soldados de alto nível neste andar e mesmo assim fomos todos derrotados", 
+    private string[] falas_meditador_portugues = {"Sinto muito imperador...", "Éramos aproximadamente 50 soldados de alto nível neste andar e mesmo assim fomos todos derrotados", 
     "Graças ao sacrifício de todos, nós ainda conseguimos eliminar 1 deles", "Eles se revoltaram do nada...", "Quando notamos o perigo já era tarde demais, estávamos cercados",
     "Sinto muito meu senhor, espero que nossas mortes não sejam em vão", "O monstro que matamos deixou isso cair, espero que lhe ajude em algo", "Por favor meu imperador, salve nosso povo..."};
 
@@ -14,11 +14,24 @@ public class FaseManager4 : MonoBehaviour
     "Thanks to the sacrifice of all of us, we still managed to eliminate 1 of them", "They revolted out of nowhere.", "When we noticed the danger it was already too late, we were surrounded",
     "I am sorry my lord, I hope our deaths are not in vain", "The monster we killed dropped this, I hope it helps you", "Please my emperor, save our people..."};
 
+    private string[] falas_meditador_chines = {
+    "对不起，皇帝……",
+    "这一层大约有50名高级士兵，然而我们全都被击败了",
+    "多亏了我们所有人的牺牲，我们依然成功消灭了其中一人",
+    "他们毫无预兆地反叛了。",
+    "当我们意识到危险时，已经太晚了，我们被包围了",
+    "对不起，我的主，我希望我们的牺牲不是徒劳的",
+    "我们杀死的怪物掉落了这个，我希望它能帮到你",
+    "请你，我的皇帝，拯救我们的人民……"
+};
+
     public Text txtFalas;
 
     public Text txtAvancar;
 
-    private string text_avancar = "Pressione 'Q' para avançar";
+    private string text_avancar_portugues = "Pressione 'Q' para avançar";
+    private string text_avancar_ingles = "Press 'Q' to advance";
+    private string text_avancar_chines = "按下 'Q' 键以继续";
 
     public static int contagem_falas_4;
 
@@ -116,10 +129,17 @@ public class FaseManager4 : MonoBehaviour
 
         if(contagem_falas_4 <= 7 && contagem_falas_4 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txtFalas.text = falas_meditador[contagem_falas_4];
-                txtAvancar.text = text_avancar;
-            } else {
+                txtFalas.text = falas_meditador_portugues[contagem_falas_4];
+                txtAvancar.text = text_avancar_portugues;
+            } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                txtFalas.text = falas_meditador_chines[contagem_falas_4];
+                txtAvancar.text = text_avancar_chines;
+            } 
+            else {
                 txtFalas.text = falas_meditador_ingles[contagem_falas_4];
+                txtAvancar.text = text_avancar_ingles;   
             }
         }
 

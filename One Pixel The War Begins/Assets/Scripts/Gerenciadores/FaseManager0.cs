@@ -13,7 +13,9 @@ public class FaseManager0 : MonoBehaviour
     public GameObject painel_derrota;
     public GameObject painel_socorro;
     public Text txt_help;
-    private string text_help = "Socorrro!";
+    private string text_help_portugues = "Socorrro!";
+    private string text_help_ingles = "Help!";
+    private string text_help_chines = "帮助！";
 
     void Start()
     {
@@ -32,7 +34,14 @@ public class FaseManager0 : MonoBehaviour
             PlayerControle.podeAtirar = true;
             PlayerControle.pode_mexer = true;
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txt_help.text = text_help;
+                txt_help.text = text_help_portugues;
+            } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                txt_help.text = text_help_chines;
+            } 
+            else {
+                txt_help.text = text_help_ingles;
             } 
         } else {
             if(GameManager.progresso >= 3) {

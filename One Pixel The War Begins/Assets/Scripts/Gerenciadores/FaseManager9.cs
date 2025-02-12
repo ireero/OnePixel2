@@ -6,17 +6,19 @@ using UnityEngine.UI;
 public class FaseManager9 : MonoBehaviour
 {
 
-    private string[] falas = {"Eita!, Você chegou até aqui", "Me falaram que você estava vindo mas sinceramente eu nunca imaginaria que chegaria em mim",
+    private string[] falas_portugues = {"Eita!, Você chegou até aqui", "Me falaram que você estava vindo mas sinceramente eu nunca imaginaria que chegaria em mim",
     "Que tal irmos direto ao assunto?, Eu gostaria de ir no banheiro urgentemente", "Infelizmente para você eu sou imortal e nada do que fizer vai-me matar ou mesmo me machucar", 
     "Então que tal você dar meia volta e me deixar cagar em paz?", "Não?", "Mas você com certeza vai morrer amigo", "Não se importa?", "É um idiota mesmo...", "MAS EU GOSTO DA SUA DETERMINAÇÃO!", "Sobreviva aos meus ataques por 75 segundos e eu te deixo passar", 
     "Mas se você não se importar irei ficar parado pois estou em um estado de concentração aqui, você entende né?","", "Você acredita na audácia desse cara?", "Não lembro de ter autorizado ninguém a me controlar assim", "Enfim Imperador, você passou no meu teste", 
     "Tomara que você vença eles", "Boa sorte lá, Tchau!"};
 
-    private string fala_mutado = "Você realmente se acha Deus calando os outros assim não é?";
+    private string fala_mutado_portugues = "Você realmente se acha Deus calando os outros assim não é?";
     private string fala_mutado_ingles = "You really think you are God by shutting others up like that, don't you?";
+    private string fala_mutado_chines = "你真以为这样让别人闭嘴就是上帝了，是吗？";
 
-    private string fala_red = "Poder interessante esse seu!";
+    private string fala_red_portugues = "Poder interessante esse seu!";
     private string fala_red_ingles = "Interesting power that yours!";
+    private string fala_red_chines = "你的力量很有趣！";
 
     private string[] falas_ingles = {"damn!, You have come this far", "I was told that you were coming but honestly I never would have imagined that you would come to me",
     "How about we cut to the chase, I would like to go to the bathroom urgently", "Unfortunately for you I am immortal and nothing you do will kill me or even hurt me", 
@@ -24,11 +26,34 @@ public class FaseManager9 : MonoBehaviour
     "But if you don't mind I will stay still because I am in a state of concentration here, you understand?","", "Can you believe the audacity of this guy?", "I don't remember ever allowing anyone to control me like that", "Anyway Emperoyr, ou passed my test", 
     "Hopefully you will beat them", "Good luck there, bye!"};
 
+    private string[] falas_chines = {
+    "该死！你竟然走到了这一步",
+    "有人告诉我你会来，但老实说，我从未想过你会亲自来找我",
+    "我们开门见山吧，我急需去厕所",
+    "对你来说不幸的是，我是不死的，无论你做什么都无法杀死或伤害我",
+    "那么，你能转过身，让我安静地拉屎吗？",
+    "不？",
+    "但你肯定会死的，朋友",
+    "你不在乎吗？",
+    "他真是个混蛋……",
+    "但是我喜欢你的决心！",
+    "在75秒内挺过我的攻击, 我就放你走",
+    "但如果你不介意的话，我会保持静止，因为我正处于集中状态，你明白吗？",
+    "",
+    "你能相信这个家伙的厚颜无耻吗？",
+    "我不记得曾经允许任何人那样控制过我",
+    "总之, Emperoyr, 你通过了我的测试",
+    "希望你能打败他们",
+    "祝你好运，再见！"
+};
+
     public Text txtFalas;
 
     public Text txtAvancar;
 
-    private string text_avancar = "Pressione 'Q' para avançar";
+    private string text_avancar_portugues = "Pressione 'Q' para avançar";
+    private string text_avancar_ingles = "Press 'Q' to advance";
+    private string text_avancar_chines = "按下 'Q' 键以继续";
 
     public static int contagem_falas_9;
 
@@ -185,30 +210,55 @@ public class FaseManager9 : MonoBehaviour
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
                     if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
                         imagem.sprite = cara_foco;
-                        txtFalas.text = fala_red;
+                        txtFalas.text = fala_red_portugues;
                     } else {
-                        txtFalas.text = falas[contagem_falas_9];
+                        txtFalas.text = falas_portugues[contagem_falas_9];
                     }
                     txtAvancar.text = text_avancar;
-                } else {
+                } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+            if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
+                imagem.sprite = cara_foco;
+                txtFalas.text = fala_red_chines;
+            } else {
+                txtFalas.text = falas_chines[contagem_falas_9];
+            }
+         } else {
                     if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
+                        imagem.sprite = cara_foco;
                         txtFalas.text = fala_red_ingles;
+                    } else {
+                        txtFalas.text = falas_ingles[contagem_falas_9];
                     }
-                    txtFalas.text = falas_ingles[contagem_falas_9];
                 }
             } else {
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                    txtAvancar.text = text_avancar;
+                    txtAvancar.text = text_avancar_portugues;
+                } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                    txtAvancar.text = text_avancar_chines
+                } else {
+                    txtAvancar.text = text_avancar_ingles
                 }
                 if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
                     if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                        txtFalas.text = fala_red;
+                        txtFalas.text = fala_red_portugues;
+                    } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                        txtFalas.text = fala_red_chines
                     } else {
                         txtFalas.text = fala_red_ingles;
                     }
                 } else {
                     if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                        txtFalas.text = fala_mutado;
+                        txtFalas.text = fala_mutado_portugues;
+                    } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                        txtFalas.text = fala_mutado_chines;
                     } else {
                         txtFalas.text = fala_mutado_ingles;
                     }
