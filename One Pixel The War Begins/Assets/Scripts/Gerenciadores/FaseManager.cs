@@ -192,7 +192,7 @@ public class FaseManager : MonoBehaviour
             } 
             else {
                 txtFalas.text = falas_ingles[contagem_falas];
-                text_avancar_chines.text = text_avancar_ingles;
+                txtAvancar.text = text_avancar_ingles;
             }
             if(contagem_falas >= 1 && contagem_falas <= 2) {
                 imagem.sprite = cara_raiva;

@@ -139,6 +139,8 @@ public class FaseManager3 : MonoBehaviour
             Destroy(vidas[1]);
             Destroy(vidas[2]);
         }
+        print(GameManager.sem_dialogos);
+        print("Oi");
     }
 
     // Update is called once per frame

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class TextoTutorial : MonoBehaviour
 {
-    private string[] instrucoes = {"One Pixel The War Begins", "Use as setas ou AWSD para andar e pular", 
+    private string[] instrucoes_portugues = {"One Pixel The War Begins", "Use as setas ou AWSD para andar e pular", 
     "Atire apertando ou segurando a tecla Z ou o lado esquerdo do mouse", "Conjure uma plataforma apertando a tecla X ou o lado direito do mouse, Lembre-se que voce não pode conjurar plataformas estando no chão ou em outra plataforma, também pode apagar a que você está em cima apertando SHIFT", "Apertando a tecla espaço ou o botão no meio do mouse você pode dar um Dash e avançar mais rápido, no ar pode ser usado apenas uma vez e no chão infinitas", 
     "Aqui você pode ver sua barra de vida", "Apertando Esc você pausa e despausa o jogo", "Agora que você aprendeu tudo está na hora de ir, Aliás você tem um reino para salvar"};
 
@@ -14,12 +14,25 @@ public class TextoTutorial : MonoBehaviour
     "Shoot by pressing or holding the Z key or the left mouse button", "Conjure a platform by pressing the X key or the right mouse button, remember that you can't conjure platforms on the ground or on another platform, you can also delete the one you are on by pressing SHIFT", "By pressing the space key or the middle mouse button you can Dash and advance faster, in the air it can be used only once and on the ground infinitely", 
     "Here you can see your life bar", "By pressing Esc you pause and unpause the game", "Now that you've learned everything it's time to go, by the way you have a kingdom to save"};
 
+    private string[] instrucoes_chines = {
+    "一像素：战争开始",
+    "使用方向键或 AWSD 键来行走和跳跃",
+    "按或按住 Z 键或鼠标左键来射击",
+    "按 X 键或鼠标右键召唤一个平台，记住你不能在地面或其他平台上召唤平台，你也可以通过按 SHIFT 键删除你所在的平台",
+    "按空格键或鼠标中键可以冲刺并加速前进，在空中只能使用一次，而在地面上可以无限使用",
+    "在这里你可以看到你的生命条",
+    "按 Esc 键可暂停或继续游戏",
+    "既然你已经学会了所有操作，现在是时候出发了，顺便说一句，你有一个王国要拯救"
+};
+
     public Text txtTutorial;
     private int contagem;
 
     public Text pressioneQ;
 
-    private string text_pressioneq = "Pressione 'Q' para avançar";
+    private string text_pressioneq_portugues = "Pressione 'Q' para avançar";
+    private string text_pressioneq_ingles = "Press 'Q' to advance";
+    private string text_pressioneq_chines = "按下 'Q' 键以继续";
 
     private bool andou_direita;
     private bool andou_esquerda;
@@ -96,10 +109,16 @@ public class TextoTutorial : MonoBehaviour
 
         if(contagem <= 7 && contagem >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txtTutorial.text = instrucoes[contagem];
-                pressioneQ.text = text_pressioneq;
-            } else {
+                txtTutorial.text = instrucoes_portugues[contagem];
+                pressioneQ.text = text_pressioneq_portugues;
+            } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                txtTutorial.text = instrucoes_chines[contagem];
+                pressioneQ.text = text_pressioneq_chines;
+         } else {
                 txtTutorial.text = instrucoes_ingles[contagem];
+                pressioneQ.text = text_pressioneq_ingles;
             }
         } 
 

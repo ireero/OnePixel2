@@ -214,7 +214,7 @@ public class FaseManager9 : MonoBehaviour
                     } else {
                         txtFalas.text = falas_portugues[contagem_falas_9];
                     }
-                    txtAvancar.text = text_avancar;
+                    txtAvancar.text = text_avancar_portugues;
                 } else if (Application.systemLanguage == SystemLanguage.Chinese ||
          Application.systemLanguage == SystemLanguage.ChineseSimplified ||
          Application.systemLanguage == SystemLanguage.ChineseTraditional) {
@@ -224,6 +224,7 @@ public class FaseManager9 : MonoBehaviour
             } else {
                 txtFalas.text = falas_chines[contagem_falas_9];
             }
+            txtAvancar.text = text_avancar_chines;
          } else {
                     if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
                         imagem.sprite = cara_foco;
@@ -231,6 +232,7 @@ public class FaseManager9 : MonoBehaviour
                     } else {
                         txtFalas.text = falas_ingles[contagem_falas_9];
                     }
+                    txtAvancar.text = text_avancar_ingles;
                 }
             } else {
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
@@ -238,9 +240,9 @@ public class FaseManager9 : MonoBehaviour
                 } else if (Application.systemLanguage == SystemLanguage.Chinese ||
          Application.systemLanguage == SystemLanguage.ChineseSimplified ||
          Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-                    txtAvancar.text = text_avancar_chines
+                    txtAvancar.text = text_avancar_chines;
                 } else {
-                    txtAvancar.text = text_avancar_ingles
+                    txtAvancar.text = text_avancar_ingles;
                 }
                 if(PlayerControle.type_red == 1 || PlayerControle.type_red == 2) {
                     if(Application.systemLanguage == SystemLanguage.Portuguese) {
@@ -248,7 +250,7 @@ public class FaseManager9 : MonoBehaviour
                     } else if (Application.systemLanguage == SystemLanguage.Chinese ||
          Application.systemLanguage == SystemLanguage.ChineseSimplified ||
          Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-                        txtFalas.text = fala_red_chines
+                        txtFalas.text = fala_red_chines;
                     } else {
                         txtFalas.text = fala_red_ingles;
                     }

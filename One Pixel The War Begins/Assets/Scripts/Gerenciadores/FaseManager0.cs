@@ -48,8 +48,14 @@ public class FaseManager0 : MonoBehaviour
                 Destroy(painel_socorro);
             } else {
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                    txt_help.text = text_help;
-                } 
+                    txt_help.text = text_help_portugues;
+                } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+            txt_help.text = text_help_chines;
+         } else {
+            txt_help.text = text_help_ingles;
+         }
                 painel_socorro.SetActive(true);
             }
             PlayerControle.conversando = false;

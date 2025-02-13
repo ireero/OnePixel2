@@ -97,6 +97,7 @@ public class FaseManager2 : MonoBehaviour
             PlayerControle.pode_mexer = true;
             PlayerControle.podeAtirar = true;
         }
+        print("Oi 2");
     }
 
     // Update is called once per frame
@@ -118,12 +119,12 @@ public class FaseManager2 : MonoBehaviour
             }  else if (Application.systemLanguage == SystemLanguage.Chinese ||
          Application.systemLanguage == SystemLanguage.ChineseSimplified ||
          Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-                txtFalas.text = falas_chefao_chines[contagem_falas_2]
-                txtAvancar.text = text_avancar_chines
+                txtFalas.text = falas_chefao_chines[contagem_falas_2];
+                txtAvancar.text = text_avancar_chines;
             } 
             else {
-                txtFalas.text = falas_chefao_ingles[contagem_falas_2]
-                txtAvancar.text = text_avancar_ingles
+                txtFalas.text = falas_chefao_ingles[contagem_falas_2];
+                txtAvancar.text = text_avancar_ingles;
             } 
             }
 
