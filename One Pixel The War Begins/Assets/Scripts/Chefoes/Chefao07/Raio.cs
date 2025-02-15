@@ -7,6 +7,7 @@ public class Raio : MonoBehaviour
     private Animator anim;
     private float contador;
     private BoxCollider2D collider_raio;
+    private AudioSource som_trovao;
     private bool umaMusica;
 
     private float[] tempos = {1.2f, 1.6f};
@@ -20,6 +21,7 @@ public class Raio : MonoBehaviour
         umaMusica = false;
         collider_raio = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();    
+        som_trovao = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class Raio : MonoBehaviour
         contador += Time.deltaTime;
         if(contador >= tempos[0] && contador < tempos[1]) {
             if(!umaMusica) {
+                som_trovao.Play();
                 umaMusica = true;
             }
             collider_raio.enabled = true;

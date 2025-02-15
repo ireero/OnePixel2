@@ -15,17 +15,11 @@ public class FaseManager : MonoBehaviour
     "I BEG YOU LORD HELP US!"," ", "There are some real monsters in this castle now", 
     "Escape while you still have the chance", "Tell everyone I'm sorry."};
 
-    private string[] falas_chines = {"哈利路亚，你在这里！", "主公，城堡已经被占领了！", "里面的人全都死了！", 
-    "请主公救救我们！", "我求求你，主公，救救我们！", " ", "现在这座城堡里有一些真正的怪物！", "趁还有机会，快逃！", "告诉大家，我很抱歉。"
-};
-
     public Text txtFalas;
 
     public Text txtAvancar;
 
-    private string text_avancar_portugues = "Pressione 'Q' para avançar";
-    private string text_avancar_ingles = "Press 'Q' to advance";
-    private string text_avancar_chines = "按下 'Q' 键以继续";
+    private string text_avancar = "Pressione 'Q' para avançar";
 
     public static int contagem_falas;
 
@@ -50,6 +44,9 @@ public class FaseManager : MonoBehaviour
 
     public static bool falas_terminaram;
 
+    public AudioSource background;
+    public AudioSource back_void;
+
     public Image imagem;
 
     public Sprite cara_chorando;
@@ -62,7 +59,9 @@ public class FaseManager : MonoBehaviour
     public Sprite icon_normal;
     public Image icon_atual;
 
+    public AudioSource som_caida;
     private bool uma_batida;
+    public AudioSource som_fala;
 
     private bool falarUmaVez;
     public GameObject vida_chefao;
@@ -90,9 +89,11 @@ public class FaseManager : MonoBehaviour
         }
 
         if(GameManager.fase1 == 1 || GameManager.fase1 == 0) {
+            back_void.Play();
             falarUmaVez = false;
             pode_comecar = false;
             if(GameManager.sem_dialogos == 0) {
+                som_fala.Play();
                 painel_falas.SetActive(true);
                 contagem_falas = 0;
                 falas_terminaram = false;   
@@ -138,6 +139,9 @@ public class FaseManager : MonoBehaviour
                 vida_chefao.SetActive(true);
                 icon_atual.sprite = icon_normal;
                 icon_atual.color = Color.white;
+                som_caida.Play();
+                back_void.Pause();
+                background.Play();
                 uma_batida = true;
             }
         }
@@ -183,16 +187,9 @@ public class FaseManager : MonoBehaviour
         if(contagem_falas <= 8 && contagem_falas >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
                 txtFalas.text = falas[contagem_falas];
-                txtAvancar.text = text_avancar_portugues;
-            } else if (Application.systemLanguage == SystemLanguage.Chinese ||
-         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
-         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-                txtFalas.text = falas_chines[contagem_falas];
-                txtAvancar.text = text_avancar_chines;
-            } 
-            else {
+                txtAvancar.text = text_avancar;
+            } else {
                 txtFalas.text = falas_ingles[contagem_falas];
-                txtAvancar.text = text_avancar_ingles;
             }
             if(contagem_falas >= 1 && contagem_falas <= 2) {
                 imagem.sprite = cara_raiva;
@@ -204,6 +201,7 @@ public class FaseManager : MonoBehaviour
                 painel_falas.SetActive(false);
             } else if((contagem_falas >= 6 && contagem_falas <= 7) && !chefao_vivo && GameManager.sem_dialogos == 0) {
                 if(!falarUmaVez) {
+                    som_fala.Play();
                     falarUmaVez = true;
                 }
                 PlayerControle.conversando = true;
@@ -215,6 +213,7 @@ public class FaseManager : MonoBehaviour
             } else if(GameManager.sem_dialogos != 0 && !chefao_vivo) {
                 Chefao01.morrer_de_vez = true;
                 if(!falarUmaVez) {
+                    back_void.Play();
                     falarUmaVez = true;
                 }
             }
@@ -232,12 +231,15 @@ public class FaseManager : MonoBehaviour
             BarraVidaMaior.color = Color.red;
         } else if(Chefao01.vida < 0) {
             GameManager.Instance.SalvarSit(2, "Fase1");
+            background.Stop();
             Destroy(vida_chefao);
         }
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar) {
             if(contagem_falas == 8) {
+                back_void.Play();
             } else if(contagem_falas != 4){
+                som_fala.Play();
             }
             contagem_falas++;
         }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FaseManager8 : MonoBehaviour
 {
-    private string[] falas_cientista_portugues = {"O... Oi Imperador", "Sinceramente não imaginei que você fosse chegar até aqui", "Faziam meses que você não pisava no castelo", 
+    private string[] falas_cientista = {"O... Oi Imperador", "Sinceramente não imaginei que você fosse chegar até aqui", "Faziam meses que você não pisava no castelo", 
     "Me diga como foi sua expedição em busca de novas terras?", "Não está muito bem-humorado não é mesmo?", "Entendo...", "Serei bem sincero com você imperador, eu não gosto de brigas", 
     "Então faça ai o que você quiser e vá para onde você quiser que eu não ligo", "Tome esse presente por me deixar ir, tenho certeza que vai-lhe ajudar bastante com os inimigos a frente"};
 
@@ -13,17 +13,11 @@ public class FaseManager8 : MonoBehaviour
     "Tell me how was your expedition in search of new lands?", "Not in a very good mood are you?", "I see...", "I will be very honest with you Emperor, I do not like fighting", 
     "So do there what you want and go where you want and I don't care", "Take this gift for letting me go, I'm sure it will help you a lot with the enemies ahead"};
 
-    private string[] falas_cientista_chines = {"陛...陛下", "说实话我真没料到你能走到这一步", "自从你踏入城堡已经过去数月了", 
-    "告诉我你在寻找新土地的远征中有什么收获吗？", "看来心情不太好啊？", "我明白了...", "陛下恕我直言，我向来不喜争斗", 
-    "所以您尽管按自己心意行动，我不会有任何干涉", "承蒙放行之谊，这件礼物定能助您应对前方强敌"};
-
     public Text txtFalas;
 
     public Text txtAvancar;
 
-    private string text_avancar_portugues = "Pressione 'Q' para avançar";
-    private string text_avancar_ingles = "Press 'Q' to advance";
-    private string text_avancar_chines = "按下 'Q' 键以继续";
+    private string text_avancar = "Pressione 'Q' para avançar";
 
     public static int contagem_falas_8;
 
@@ -110,17 +104,10 @@ public class FaseManager8 : MonoBehaviour
 
         if(contagem_falas_8 <= 8 && contagem_falas_8 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txtFalas.text = falas_cientista_portugues[contagem_falas_8];
-                txtAvancar.text = text_avancar_portugues;
-            } else if (Application.systemLanguage == SystemLanguage.Chinese ||
-         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
-         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-                txtFalas.text = falas_cientista_chines[contagem_falas_8];
-                txtAvancar.text = text_avancar_chines;
-            } 
-            else {
+                txtFalas.text = falas_cientista[contagem_falas_8];
+                txtAvancar.text = text_avancar;
+            } else {
                 txtFalas.text = falas_cientista_ingles[contagem_falas_8];
-                txtAvancar.text = text_avancar_ingles;
             }
         }
 

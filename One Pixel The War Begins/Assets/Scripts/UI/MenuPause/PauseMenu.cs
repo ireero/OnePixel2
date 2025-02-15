@@ -22,6 +22,8 @@ public class PauseMenu : MonoBehaviour {
    private bool telaCheiaAtivada, menuParte1Ativo, menuParte2Ativo;
    private Resolution[] resolucoesSuportadas;
 
+   public AudioSource som_click;
+
    public Text txt_reiniciar;
    public Text txt_jogar;
    public Text txt_opcoes;
@@ -31,65 +33,27 @@ public class PauseMenu : MonoBehaviour {
    public Text txt_voltar;
    public Text txt_salvar;
 
-   public string text_reiniciar_portugues = "Reiniciar";
-   private string text_jogar_portugues = "Jogar";
-   private string text_opcoes_portugues = "Opções";
-   private string text_voltar_menu_portugues = "Voltar ao Menu";
-   private string text_modo_janela_portugues = "Modo Janela";
-   private string text_sem_dialogos_portugues = "Sem Diálogos";
-   private string text_voltar_portugues = "Voltar";
-   private string text_salvar_portugues = "Salvar Prefs";
-
-   public string text_reiniciar_ingles = "Restart";
-   private string text_jogar_ingles = "Play";
-   private string text_opcoes_ingles = "Options";
-   private string text_voltar_menu_ingles = "Back to menu";
-   private string text_modo_janela_ingles = "Window mode";
-   private string text_sem_dialogos_ingles = "No dialog";
-   private string text_voltar_ingles = "Back";
-   private string text_salvar_ingles = "Save Prefs";
-
-   public string text_reiniciar_chines = "重新启动";
-   private string text_jogar_chines = "游戏";
-   private string text_opcoes_chines = "选项";
-   private string text_voltar_menu_chines = "返回菜单";
-   private string text_modo_janela_chines = "窗口模式";
-   private string text_sem_dialogos_chines = "无对话";
-   private string text_voltar_chines = "返回";
-   private string text_salvar_chines = "保存首选项";
+   public string text_reiniciar = "Reiniciar";
+   private string text_jogar = "Jogar";
+   private string text_opcoes = "Opções";
+   private string text_voltar_menu = "Voltar ao Menu";
+   private string text_modo_janela = "Modo Janela";
+   private string text_sem_dialogos = "Sem Diálogos";
+   private string text_voltar = "Voltar";
+   private string text_salvar = "Salvar Prefs";
 
    void Awake(){
       resolucoesSuportadas = Screen.resolutions;
 
       if(Application.systemLanguage == SystemLanguage.Portuguese) {
-         txt_reiniciar.text = text_reiniciar_portugues;
-         txt_jogar.text = text_jogar_portugues;
-         txt_opcoes.text = text_opcoes_portugues;
-         txt_voltar_menu.text = text_voltar_menu_portugues;
-         txt_modo_janela.text = text_modo_janela_portugues;
-         txt_sem_dialogos.text = text_sem_dialogos_portugues;
-         txt_voltar.text = text_voltar_portugues;
-         txt_salvar.text = text_salvar_portugues;
-      } else if (Application.systemLanguage == SystemLanguage.Chinese ||
-         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
-         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-         txt_reiniciar.text = text_reiniciar_chines;
-         txt_jogar.text = text_jogar_chines;
-         txt_opcoes.text = text_opcoes_chines;
-         txt_voltar_menu.text = text_voltar_menu_chines;
-         txt_modo_janela.text = text_modo_janela_chines;
-         txt_sem_dialogos.text = text_sem_dialogos_chines;
-         txt_voltar.text = text_voltar_chines;
-         txt_salvar.text = text_salvar_chines;
-      } else {
-         txt_reiniciar.text = text_reiniciar_ingles;
-         txt_jogar.text = text_jogar_ingles;
-         txt_opcoes.text = text_opcoes_ingles;
-         txt_voltar_menu.text = text_voltar_menu_ingles;
-         txt_modo_janela.text = text_modo_janela_ingles;
-         txt_sem_dialogos.text = text_sem_dialogos_ingles;
-         txt_voltar.text = text_voltar_ingles;
-         txt_salvar.text = text_salvar_ingles;
+         txt_reiniciar.text = text_reiniciar;
+         txt_jogar.text = text_jogar;
+         txt_opcoes.text = text_opcoes;
+         txt_voltar_menu.text = text_voltar_menu;
+         txt_modo_janela.text = text_modo_janela;
+         txt_sem_dialogos.text = text_sem_dialogos;
+         txt_voltar.text = text_voltar;
+         txt_salvar.text = text_salvar;
       }
    }
 
@@ -200,6 +164,7 @@ public class PauseMenu : MonoBehaviour {
             Time.timeScale = 0;
             AudioListener.volume = 0;
          } else if (menuParte1Ativo == true && menuParte2Ativo == false) {
+            som_click.Play();
             menuParte1Ativo = menuParte2Ativo = false;
             Opcoes (false, false);
             Time.timeScale = 1;
@@ -251,10 +216,12 @@ public class PauseMenu : MonoBehaviour {
       BotaoVoltar.gameObject.SetActive (ativarOP2);
       BotaoSalvarPref.gameObject.SetActive (ativarOP2);
       if (ativarOP == true && ativarOP2 == false) {
+         som_click.Play();
          menuParte1Ativo = true;
          menuParte2Ativo = false;
       }
       else if (ativarOP == false && ativarOP2 == true) {
+         som_click.Play();
          menuParte1Ativo = false;
          menuParte2Ativo = true;
       }
@@ -271,6 +238,7 @@ public class PauseMenu : MonoBehaviour {
    }
    //=========VOIDS DE SALVAMENTO==========//
    private void SalvarPreferencias(){
+      som_click.Play();
       if (CaixaModoJanela.isOn == true) {
          modoJanelaAtivo = 1;
          telaCheiaAtivada = false;
@@ -299,12 +267,14 @@ public class PauseMenu : MonoBehaviour {
       Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width,resolucoesSuportadas[resolucaoSalveIndex].height,telaCheiaAtivada);
    }
    private void VoltarAoMenu(){
+      som_click.Play();
       SceneLoader.Instance.LoadSceneAsync(nomeCenaMenu);
       AudioListener.volume = VOLUME;
       Time.timeScale = 1;
    }
 
    private void ReiniciarCena() {
+      som_click.Play();
       SceneLoader.Instance.LoadSceneAsync(SceneManager.GetActiveScene().name);
       AudioListener.volume = VOLUME;
       Time.timeScale = 1;

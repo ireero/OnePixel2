@@ -6,23 +6,17 @@ using UnityEngine.UI;
 public class FaseManager2 : MonoBehaviour
 {
 
-    private string[] falas_chefao_portugues = {"Vá embora agora!", "Aproveite em quanto nosso Pai dorme e suma!", "Você vai morrer!", " ", 
+    private string[] falas_chefao = {"Vá em bora agora!", "Aproveite em quanto nosso Pai dorme e suma!", "Você vai morrer!", " ", 
     "Meus filhos morreram porque fui fraco de mais...", "Meu senhor este castelo é o seu túmulo, VOCÊ VAI MORRER!"};
 
     private string[] falas_chefao_ingles = {"Go away now!", "Enjoy while our Father sleeps and be gone!", "You are going to die!", " ", 
     "My children died because I was too weak...", "My lord, this castle is your tomb, YOU WILL DIE!"};
 
-    private string[] falas_chefao_chines = {"马上走开！", "趁着我们父亲睡着时尽情享受，然后快走！","你会死的！",
-    " ","我的孩子们死了，因为我太弱了……","主公，这座城堡就是你的坟墓，你必将死去！"
-};
-
     public Text txtFalas;
 
     public Text txtAvancar;
 
-    private string text_avancar_portugues = "Pressione 'Q' para avançar";
-    private string text_avancar_ingles = "Press 'Q' to advance";
-    private string text_avancar_chines = "按下 'Q' 键以继续";
+    private string text_avancar = "Pressione 'Q' para avançar";
 
     public static int contagem_falas_2;
 
@@ -79,17 +73,21 @@ public class FaseManager2 : MonoBehaviour
             TiroRedondo.modoHardRedondo = false;
             SuperTiroChefao.modoHard = false;
             if(GameManager.sem_dialogos == 0) {
+                back_void.Play();
+                som_fala.Play();
                 painel_falas.SetActive(true);
                 PlayerControle.conversando = true;
                 pode_comecar = false;
                 contagem_falas_2 = 0;
             } else {
+                back.Play();
                 pode_comecar = true;
                 PlayerControle.conversando = false;
                 PlayerControle.pode_mexer = true;
                 PlayerControle.podeAtirar = true;
             }
         } else {
+            back_void.Play();
             escada.SetActive(true);
             Destroy(chefao);
             vida_chefao.SetActive(false);
@@ -97,7 +95,6 @@ public class FaseManager2 : MonoBehaviour
             PlayerControle.pode_mexer = true;
             PlayerControle.podeAtirar = true;
         }
-        print("Oi 2");
     }
 
     // Update is called once per frame
@@ -114,18 +111,11 @@ public class FaseManager2 : MonoBehaviour
 
         if(contagem_falas_2 <= 5 && contagem_falas_2 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txtFalas.text = falas_chefao_portugues[contagem_falas_2];
-                txtAvancar.text = text_avancar_portugues;
-            }  else if (Application.systemLanguage == SystemLanguage.Chinese ||
-         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
-         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-                txtFalas.text = falas_chefao_chines[contagem_falas_2];
-                txtAvancar.text = text_avancar_chines;
-            } 
-            else {
+                txtFalas.text = falas_chefao[contagem_falas_2];
+                txtAvancar.text = text_avancar;
+            } else {
                 txtFalas.text = falas_chefao_ingles[contagem_falas_2];
-                txtAvancar.text = text_avancar_ingles;
-            } 
+            }
             }
 
             switch(contagem_falas_2) {
@@ -137,6 +127,8 @@ public class FaseManager2 : MonoBehaviour
                      break;
                 case 3:
                     if(tocaSom <= 0) {
+                        back_void.Stop();
+                        back.Play();
                         tocaSom += 1;
                     }
                     PlayerControle.conversando = false;
@@ -148,7 +140,10 @@ public class FaseManager2 : MonoBehaviour
                     painel_falas.SetActive(false);
                     break;
                 case 4:
+                    back.Stop();
+                    back_void.Play();
                     if(tocaSom <= 1) {
+                        som_fala.Play();
                         tocaSom++;
                     }
                     PlayerControle.conversando = true;
@@ -172,6 +167,7 @@ public class FaseManager2 : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q) && !pode_comecar) {
             if(contagem_falas_2 != 2 && contagem_falas_2 != 5) {
+                som_fala.Play();
             }
             contagem_falas_2++;
         }
@@ -193,6 +189,8 @@ public class FaseManager2 : MonoBehaviour
                 contagem_falas_2 = 4;
             } else {
                 if(tocaSom <= 0) {
+                    back_void.Play();
+                    back.Pause();
                     tocaSom++;
                 }
                 CabecaBase.todosMortos = true;

@@ -26,9 +26,7 @@ public class FaseManager6 : MonoBehaviour
 
     public Text txtAvancar;
 
-    private string text_avancar_portugues = "Pressione 'Q' para avançar";
-    private string text_avancar_ingles = "Press 'Q' to advance";
-    private string text_avancar_chines = "按下 'Q' 键以继续";
+    private string text_avancar = "Pressione 'Q' para avançar";
 
     public static int contagem_falas_6;       
 
@@ -104,15 +102,8 @@ public class FaseManager6 : MonoBehaviour
             tempo_de_cair = 1.5f;
             if(GameManager.sem_dialogos == 0) {
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                    txtAvancar.text = text_avancar_portugues;
-                }  else if (Application.systemLanguage == SystemLanguage.Chinese ||
-         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
-         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-                txtAvancar.text = text_avancar_chines;
-            } 
-            else {
-                txtAvancar.text = text_avancar_ingles;
-            }
+                    txtAvancar.text = text_avancar;
+                }
                 contagem_falas_6 = 0;
                 pode_comecar_6 = false;
                 back_void.Play();
@@ -166,8 +157,8 @@ public class FaseManager6 : MonoBehaviour
            GameManager.Instance.SalvarSit(2, "Fase6");
            if(GameManager.sem_dialogos == 1) {
                if(!back_pode) {
-                   back_void.Play();
-                   back.Stop();
+                   back_void.Stop();
+                   back.Play();
                    back_pode = true;
                }
            }

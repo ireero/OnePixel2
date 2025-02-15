@@ -10,11 +10,13 @@ public class ChefaoMenor : MonoBehaviour
     private float forca_pulo;
     private Transform target;
     private bool lookingRight;
+    private AudioSource som_batida;
+    public AudioSource som_pulo;
+    public AudioSource som_explodi;
     private int vida_mob;
     private float valor;
     private float valor2;
     private bool nao_pular;
-    private AudioSource som_dano_minie_chefoes;
 
     void Start()
     {
@@ -25,10 +27,10 @@ public class ChefaoMenor : MonoBehaviour
         anim = GetComponent<Animator>();
         valor = Random.Range(-500, 501);
         valor2 = Random.Range(-100, 300);
-        velocidade = Random.Range(0.25f, 0.8f);
-        forca_pulo = Random.Range(100, 150);
+        velocidade = Random.Range(0.5f, 1.5f);
+        forca_pulo = Random.Range(150, 300);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        som_dano_minie_chefoes = GetComponent<AudioSource>();
+        som_batida = GetComponent<AudioSource>();
         corpo.AddForce(new Vector2(valor, valor2));
     }
 
@@ -52,12 +54,12 @@ public class ChefaoMenor : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("chao")) {
             if(nao_pular) {
+                som_batida.Play();
                 nao_pular = false;
             }
             anim.SetBool("pular", false);
         } else if(other.gameObject.CompareTag("bullet")) {
             vida_mob--;
-            som_dano_minie_chefoes.Play();
             if(vida_mob <= 0) {
                 velocidade = 0;
                 corpo.bodyType = RigidbodyType2D.Static;  
@@ -80,11 +82,13 @@ public class ChefaoMenor : MonoBehaviour
    }
 
     public void Pular() {
+        som_pulo.Play();
         corpo.AddForce(new Vector2(0, forca_pulo));
         nao_pular = true;
     }
 
     public void Filhotes() {
+        som_explodi.Play();
         FaseManager0.horaDePassar++;
     }
 

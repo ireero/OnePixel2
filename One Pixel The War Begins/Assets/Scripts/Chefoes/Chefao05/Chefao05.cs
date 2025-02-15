@@ -46,6 +46,10 @@ public class Chefao05 : MonoBehaviour
     private float tempo_para_atirar;
     private float pausa_de_tiro;
 
+    public AudioSource somTerremoto;
+    public AudioSource somDano;
+    public AudioSource desintegrando;
+
     private bool umTerremoto;
 
     public GameObject escada;
@@ -84,6 +88,7 @@ public class Chefao05 : MonoBehaviour
         nextFire += Time.deltaTime;
 
         if(FaseManager6.pode_comecar_6 == false) {
+            somTerremoto.Stop();
             contador = 0;
             nextFire = 0;
         }
@@ -119,6 +124,7 @@ public class Chefao05 : MonoBehaviour
         }
 
         if((contador >= -5f && contador < 0) && pode_atirar) {
+            somTerremoto.Stop();
             anim.SetBool("idle_atacando", false);
             anim.SetBool("idle_atacando2", false);
             anim.SetBool("idle_atacando3", false);
@@ -136,8 +142,10 @@ public class Chefao05 : MonoBehaviour
 
         if(vida <= 0) {
             if(!umaMorte) {
+                desintegrando.Play();
                 umaMorte = true;
             }
+            somTerremoto.Stop();
             collider_chefao5.isTrigger = true;
             FaseManager6.podeCair = false;
             Camera.tremer_bastante = false;
@@ -147,25 +155,20 @@ public class Chefao05 : MonoBehaviour
             base_sr.color = Color.white;
             girador_sr.color = Color.white;
             anim.SetBool("morreu", true);
+            StartCoroutine("morrendo");
         }
-    }
-
-    public void MorteDesse() {
-        escada.SetActive(true);
-        if(GameManager.sem_dialogos == 0) {
-            FaseManager6.contagem_falas_6 = 5;
-        }
-        Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            somDano.Play();
             vida--;
             contagem_danos++;
             if(vida <= 300f && !umaVez) {
                 if(GameManager.sem_dialogos == 0) {
                     FaseManager6.contagem_falas_6 = 3;
                 }
+                somTerremoto.Stop();
                 umTerremoto = false;
                 pausa_de_tiro = 1.65f;
                 tempo_para_atirar = 3.5f;
@@ -190,6 +193,16 @@ public class Chefao05 : MonoBehaviour
         } else if(other.gameObject.CompareTag("monstro") || other.gameObject.CompareTag("tijolo")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         } 
+    }
+
+    IEnumerator morrendo() {
+        yield return new WaitForSeconds(3.5f);
+        escada.SetActive(true);
+        desintegrando.Stop();
+        if(GameManager.sem_dialogos == 0) {
+            FaseManager6.contagem_falas_6 = 5;
+        }
+        Destroy(this.gameObject);
     }
 
     IEnumerator atirandoIdle() {
@@ -234,6 +247,7 @@ public class Chefao05 : MonoBehaviour
 
     private void atirandoresIdle(int valor) {
         if(!umTerremoto) {
+            somTerremoto.Play();
             umTerremoto = true;
         }
         FaseManager6.podeCair = true;

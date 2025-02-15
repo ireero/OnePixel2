@@ -28,7 +28,10 @@ public class Chefao01 : MonoBehaviour
     private int contagem_danos;
     public static bool morrer_de_vez;
 
+    public AudioSource somResp;
     private bool umaVez;
+    public AudioSource som_morte;
+    public AudioSource dano;
 
     public GameObject escada;
 
@@ -42,7 +45,7 @@ public class Chefao01 : MonoBehaviour
         umaVez = false;
         morrer_de_vez = false;
         metade_vida = false;
-        velocidade = 9f;
+        velocidade = 10f;
         vida = 100f;
         contagem_danos = 0;
         bateu_chao = false;
@@ -72,47 +75,53 @@ public class Chefao01 : MonoBehaviour
                 anim.SetBool("meia_vida", true);
                 StartCoroutine("meiaVida");
             }
-            velocidade = 14f;
+            velocidade = 15f;
         }
 
         if(bateu_chao) {
             contador += Time.deltaTime;
             if(!metade_vida) {
                 if(!umaVez) {
+                        somResp.Play();
                         umaVez = true;
                     }
                 if(contador >= 5f && !atacou) {
                     anim.SetBool("atacar", true);
                     anim.SetBool("idle", false);
                 if(contador >= 6.5f && !atacou) {
+                    somResp.Stop();
                     umaVez = false;
-                    corpo_vilao.velocity = new Vector2(-velocidade, 0);
+                    transform.Translate(new Vector2(-velocidade * Time.deltaTime, 0));
                 }
             } else if(contador >= 5f && atacou) {
                 anim.SetBool("atacar", true);
                 anim.SetBool("idle", false);
                if(contador>= 6.5f && atacou) {
+                   somResp.Stop();
                    umaVez = false;
-                   corpo_vilao.velocity = new Vector2(velocidade, 0);
+                    transform.Translate(new Vector2(velocidade * Time.deltaTime, 0));
                }
             }
         } else {
             if(!umaVez) {
+                    somResp.Play();
                     umaVez = true;
                 }
             if(contador >= 1.5f && !atacou) {
                 anim.SetBool("atacar", true);
                 anim.SetBool("idle", false);
                 if(contador >= 2.9f && !atacou) {
+                    somResp.Stop();
                     umaVez = false;
-                    corpo_vilao.velocity = new Vector2(-velocidade, 0);
+                    transform.Translate(new Vector2(-velocidade * Time.deltaTime, 0));
                 }
             } else if(contador >= 1.5f && atacou) {
                 anim.SetBool("atacar", true);
                 anim.SetBool("idle", false);
                if(contador>= 2.9f && atacou) {
+                    somResp.Stop();
                     umaVez = false;
-                    corpo_vilao.velocity = new Vector2(velocidade, 0);
+                    transform.Translate(new Vector2(velocidade * Time.deltaTime, 0));
                }
             }
         }
@@ -123,6 +132,8 @@ public class Chefao01 : MonoBehaviour
         }
 
             if(vida <= 0 && vida > -10) {
+                somResp.Stop();
+                som_morte.Play();
                 vida = -10;
                 sr.color = Color.white;
                 FaseManager.podeSpawn = false;
@@ -137,6 +148,7 @@ public class Chefao01 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            dano.Play();
             vida--;
             contagem_danos++;
         } else if(other.gameObject.CompareTag("plataforma") || other.gameObject.CompareTag("monstro") || 
@@ -162,7 +174,6 @@ public class Chefao01 : MonoBehaviour
             sr.flipX = !sr.flipX;
         }
     }
-
 
     IEnumerator voltarDoDano() {
         yield return new WaitForSeconds(0.3f);
@@ -192,6 +203,7 @@ public class Chefao01 : MonoBehaviour
         yield return new WaitForSeconds(2.1f);
         FaseManager.contagem_falas = 6;
         FaseManager.chefao_vivo = false;
+        som_morte.Stop();
     }
 
     IEnumerator morrerDeVez() {

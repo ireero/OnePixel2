@@ -76,7 +76,6 @@ public class FaseManager7 : MonoBehaviour
             Chefao06.meia_vida = false; 
             Chefao06.camuflado_ja = false;
         } else {
-            cont = 0;
             pintura.SetActive(true);
             liberado = false;
             escada.SetActive(true);

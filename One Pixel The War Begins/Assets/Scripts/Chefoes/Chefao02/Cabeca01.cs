@@ -8,6 +8,8 @@ public class Cabeca01 : MonoBehaviour
     public GameObject bala_redonda;
     public Transform Spawn_Bullet;
 
+    public AudioSource somDano;
+
     private float contador;
     public static float vida_cabeca;
 
@@ -88,6 +90,7 @@ public class Cabeca01 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            somDano.Play();
             if(!podeRenascer && !locaute) {
                 cabeca1.vida--;
             }

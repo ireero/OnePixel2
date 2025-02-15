@@ -15,21 +15,13 @@ public class SceneLoader : MonoBehaviour
 
     public Text txtCarregando;
 
-    private string text_carregando_portugues = "Carregando...";
-    private string text_carregando_ingles = "Loading...";
-    private string text_carregando_chines = "正在加载...";
+    private string text_carregando = "Carregando...";
 
     private void Awake() {
 
         if(Application.systemLanguage == SystemLanguage.Portuguese) {
-            txtCarregando.text = text_carregando_portugues;
-        } else if (Application.systemLanguage == SystemLanguage.Chinese ||
-         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
-         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-            txtCarregando.text = text_carregando_chines;
-         } else {
-            txtCarregando.text = text_carregando_ingles;
-         }
+            txtCarregando.text = text_carregando;
+        }
         
         if(Instance == null) {
             Instance = this;
@@ -47,16 +39,16 @@ public class SceneLoader : MonoBehaviour
                     PlayerPrefs.SetFloat("CONT_RED", PlayerControle.cont_red);
                 }
 
-                if(PlayerControle.cont_volt_red > 0 && PlayerControle.cont_volt_red <= 121) {
+                if(PlayerControle.cont_volt_red > 0 && PlayerControle.cont_volt_red <= 120) {
                     PlayerPrefs.SetFloat("CONT_VOLT_RED", PlayerControle.cont_volt_red);
                 }
 
             } else {
-                if(PlayerControle.cont_volt_red > 0 && PlayerControle.cont_volt_red <= 121) {
+                if(PlayerControle.cont_volt_red > 0 && PlayerControle.cont_volt_red < 120) {
                     PlayerPrefs.SetFloat("CONT_VOLT_RED", PlayerControle.cont_volt_red);
             } 
 
-            if(PlayerControle.cont_red > 0 && PlayerControle.cont_red <= 30) {
+            if(PlayerControle.cont_red > 0 && PlayerControle.cont_red < 30) {
                     PlayerPrefs.SetFloat("CONT_RED", PlayerControle.cont_red);
                 }  
         }

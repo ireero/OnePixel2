@@ -16,9 +16,7 @@ public class OpcoesMenu : MonoBehaviour {
    public Button BotaoSalvarPref;
    [Space(20)]
    public Text textoVol;
-   public string nomeCenaMenuPortugues = "Menu";
-   public string nomeCenaMenuIngles = "Menu";
-   public string nomeCenaMenuChines = "菜单";
+   public string nomeCenaMenu = "Menu";
    private float VOLUME;
    private int qualidadeGrafica, modoJanelaAtivo, resolucaoSalveIndex;
    private bool telaCheiaAtivada;
@@ -33,26 +31,12 @@ public class OpcoesMenu : MonoBehaviour {
    public Text txt_opcoes;
    public Text txt_resetar;
 
-   private string text_voltar_portugues = "Voltar";
-   private string text_modo_janela_portugues = "Modo Janela";
-   private string text_sem_dialogos_portugues = "Sem Diálogos";
-   private string text_salvar_portugues = "Salvar Prefs";
-   private string text_opces_portugues = "Opções";
-   private string text_resetar_portugues = "Resetar Save";
-
-   private string text_voltar_ingles = "Back";
-   private string text_modo_janela_ingles = "Window mode";
-   private string text_sem_dialogos_ingles = "No dialog";
-   private string text_salvar_ingles = "Save Prefs";
-   private string text_opces_ingles = "Options";
-   private string text_resetar_ingles = "Reset Save";
-
-   private string text_voltar_chines = "返回";
-   private string text_modo_janela_chines = "窗口模式";
-   private string text_sem_dialogos_chines = "无对话";
-   private string text_salvar_chines = "保存首选项";
-   private string text_opces_chines = "选项";
-   private string text_resetar_chines = "重置保存";
+   private string text_voltar = "Voltar";
+   private string text_modo_janela = "Modo Janela";
+   private string text_sem_dialogos = "Sem Diálogos";
+   private string text_salvar = "Salvar Prefs";
+   private string text_opces = "Opções";
+   private string text_resetar = "Resetar Save";
 
    public GameObject painel_resetar;
 
@@ -60,28 +44,12 @@ public class OpcoesMenu : MonoBehaviour {
       resolucoesSuportadas = Screen.resolutions;
 
       if(Application.systemLanguage == SystemLanguage.Portuguese) {
-         txt_voltar.text = text_voltar_portugues;
-         txt_modo_janela.text = text_modo_janela_portugues;
-         txt_sem_dialogos.text = text_sem_dialogos_portugues;
-         txt_salvar.text = text_salvar_portugues;
-         txt_opcoes.text = text_opces_portugues;
-         txt_resetar.text = text_resetar_portugues;
-      } else if (Application.systemLanguage == SystemLanguage.Chinese ||
-         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
-         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-         txt_voltar.text = text_voltar_chines;
-         txt_modo_janela.text = text_modo_janela_chines;
-         txt_sem_dialogos.text = text_sem_dialogos_chines;
-         txt_salvar.text = text_salvar_chines;
-         txt_opcoes.text = text_opces_chines;
-         txt_resetar.text = text_resetar_chines;
-      } else {
-         txt_voltar.text = text_voltar_ingles;
-         txt_modo_janela.text = text_modo_janela_ingles;
-         txt_sem_dialogos.text = text_sem_dialogos_ingles;
-         txt_salvar.text = text_salvar_ingles;
-         txt_opcoes.text = text_opces_ingles;
-         txt_resetar.text = text_resetar_ingles;
+         txt_voltar.text = text_voltar;
+         txt_modo_janela.text = text_modo_janela;
+         txt_sem_dialogos.text = text_sem_dialogos;
+         txt_salvar.text = text_salvar;
+         txt_opcoes.text = text_opces;
+         txt_resetar.text = text_resetar;
       }
    }
 

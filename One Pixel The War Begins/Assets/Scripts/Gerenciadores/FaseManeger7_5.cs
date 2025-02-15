@@ -13,8 +13,6 @@ public class FaseManeger7_5 : MonoBehaviour
     public GameObject gatilho;
 
     public GameObject paredona;
-
-    public GameObject painel_derrota;
     
     void Start()
     {
@@ -37,10 +35,6 @@ public class FaseManeger7_5 : MonoBehaviour
     {
         if(Time.timeScale == 1) {
             AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
-        }
-
-        if(PlayerControle.player_morto == true) {
-            painel_derrota.SetActive(true);
         }
     }
 }

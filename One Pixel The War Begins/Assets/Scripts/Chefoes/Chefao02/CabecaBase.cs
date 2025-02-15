@@ -23,6 +23,10 @@ public class CabecaBase : MonoBehaviour
     private SpriteRenderer sr;
 
     private float tempoDeTiro;
+    public AudioSource danoSound;
+    public AudioSource desintegrando;
+
+    private AudioSource rugido;
     private bool umaVez;
 
     public GameObject escada;
@@ -42,6 +46,7 @@ public class CabecaBase : MonoBehaviour
         corpo = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        rugido = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,6 +68,7 @@ public class CabecaBase : MonoBehaviour
         if(contador >= tempoDeTiro && podeAtirar) {
             Instantiate(Bullet, Spawn_Bullet.position, Spawn_Bullet.rotation);
             anim.SetBool("atirar", true);
+            rugido.Play();
             contador = 0;
             StartCoroutine("posTiro");
         }
@@ -88,6 +94,7 @@ public class CabecaBase : MonoBehaviour
             contador = 0;
             if(todosMortos) {
                 if(!umaVez) {
+                    desintegrando.Play();
                     umaVez = true;
                 }
                 collider_cabeca_base.isTrigger = true;
@@ -101,6 +108,7 @@ public class CabecaBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("bullet")) {
+            danoSound.Play();
             if(!renascer && !morto) {
                 vida_cabeca--;
             }
@@ -139,6 +147,7 @@ public class CabecaBase : MonoBehaviour
     IEnumerator morrer() {
         yield return new WaitForSeconds(2.35f);
         escada.SetActive(true);
+        desintegrando.Stop();
         Destroy(this.gameObject);
     }
 }

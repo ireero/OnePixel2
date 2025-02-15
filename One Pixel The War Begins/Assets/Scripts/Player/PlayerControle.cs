@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerControle : MonoBehaviour {
    public Transform groundCheck;
    public float speed = 4;
-   public float jumpForce = 400;
+   public float jumpForce = 200;
    public LayerMask whatIsGround;
  
    [HideInInspector]
@@ -102,9 +102,7 @@ public class PlayerControle : MonoBehaviour {
    public static bool chegou_final;
 
    private bool andar;
-   
-   private float cont;
-
+ 
    void Start () {  
       if(PlayerPrefs.HasKey("CONT_RED")) {
          cont_red = PlayerPrefs.GetFloat("CONT_RED");
@@ -145,7 +143,6 @@ public class PlayerControle : MonoBehaviour {
             red_pausado = false;
          }
       }
-      cont = 0;
       andar = false;
       umaVezRed = false;
       vida = 3f;
@@ -243,9 +240,7 @@ public class PlayerControle : MonoBehaviour {
             if(podeTomarDano) {
                sr.color = Color.white;
             }
-            if(cont_volt_red <= 120) {
-               cont_volt_red += Time.deltaTime;
-            }
+            cont_volt_red += Time.deltaTime;
             if(!umaVezRed) {
                PlayerPrefs.SetFloat("CONT_RED", 0);
                umaVezRed = true;
@@ -380,22 +375,16 @@ public class PlayerControle : MonoBehaviour {
       }
 
       if (jump) {
-         GerenciadorAudio.inst.PlaySomSfx(0, "SfxPlayer");
+         GerenciadorAudio.inst.PlayPulo(som_pulo);
          rb2d.AddForce(new Vector2(0, jumpForce));
          anim.SetBool("pulou", true);
          jump = false;
       }
 
       if(podeAtirar) {
-            if((Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))) {
-               Fire();
-            } else if((Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0))) {
-               cont += Time.deltaTime;
-               if(cont >= 0.25f) {
-                  Fire();
-                  cont = 0;
-               }
-            }
+         if(Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)) {
+				Fire();
+			}
       }
    }
  
@@ -457,7 +446,7 @@ public class PlayerControle : MonoBehaviour {
 
    void Fire() {
 
-      GerenciadorAudio.inst.PlaySomSfx(2, "SfxPlayer");
+      GerenciadorAudio.inst.PlayTiro(som_tiro);
 
 		GameObject cloneBullet = Instantiate(bulletObject, bulletSpawn.position, bulletSpawn.rotation);
 
@@ -540,7 +529,6 @@ public class PlayerControle : MonoBehaviour {
          rb2d.velocity = new Vector2(0, 0);
       } else if(other.gameObject.CompareTag("the")) {
          PlayerPrefs.SetInt("REDVAR", 1);
-         PlayerPrefs.SetInt("RED", 1);
          StartCoroutine("serEsmagado");
          rb2d.bodyType = RigidbodyType2D.Static;
          conversando = true;
@@ -567,7 +555,7 @@ public class PlayerControle : MonoBehaviour {
    void Dash() {
       if((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(2)) && canDash) {
          if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2)) {
-            GerenciadorAudio.inst.PlaySomSfx(1, "SfxPlayer");
+            GerenciadorAudio.inst.PlayDash(dash_sound);
          }
          if(dashAtual <= 0) {
             StopDash();
@@ -607,7 +595,7 @@ public class PlayerControle : MonoBehaviour {
          cont_volt_red = 0;
       }
       vida--;
-      GerenciadorAudio.inst.PlaySomSfx(3, "SfxPlayer");
+      GerenciadorAudio.inst.PlayMorte(som_morte);
       Camera.tremer = true;
       podeTomarDano = false;
       Time.timeScale = 0.1f;

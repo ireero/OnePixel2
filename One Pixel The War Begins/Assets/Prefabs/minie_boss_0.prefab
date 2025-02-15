@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5933190753458840086}
   - component: {fileID: 5933190753458840081}
   - component: {fileID: 5933190753458840080}
+  - component: {fileID: 5933190753458840082}
   - component: {fileID: 3911453313073583149}
-  - component: {fileID: 4830933843065201263}
   m_Layer: 9
   m_Name: minie_boss_0
   m_TagString: Chefoes
@@ -154,19 +154,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3911453313073583149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5933190753458840093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2de6cd42852c9742bcba67dfd46045b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!82 &4830933843065201263
+--- !u!82 &5933190753458840082
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,15 +164,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7dd534e4d1a17bf4883a9657c5f32be4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3cd2e390c1bb2934dba68073b7e2446c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -262,3 +250,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3911453313073583149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933190753458840093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2de6cd42852c9742bcba67dfd46045b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  som_pulo: {fileID: 0}

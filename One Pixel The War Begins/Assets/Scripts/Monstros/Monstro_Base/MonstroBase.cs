@@ -7,6 +7,7 @@ public class MonstroBase : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private BoxCollider2D collider_monstro_base;
+    private AudioSource audio_morte;
     private SpriteRenderer sr;
     private float velocidade;
     private Transform player_pos;
@@ -22,14 +23,16 @@ public class MonstroBase : MonoBehaviour
         collider_monstro_base = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audio_morte = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
-        player_pos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartCoroutine("esperarCair");
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        player_pos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         if(caiu) {
             if(player_pos.position.x > transform.position.x) {
@@ -62,13 +65,11 @@ public class MonstroBase : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
          if(other.gameObject.CompareTag("bullet") || other.gameObject.CompareTag("Player")) {
             Morte(1);
-        } else if(other.gameObject.CompareTag("chao")) {
+        } else if(other.gameObject.CompareTag("chao") || other.gameObject.CompareTag("fora")) {
             anim.SetBool("levantar", true);
             StartCoroutine("liberarAndada");
         } else if(other.gameObject.CompareTag("Chefoes") || other.gameObject.CompareTag("monstro")) {
             Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        } else if(other.gameObject.CompareTag("fora")) {
-            Destroy(this.gameObject);
         }
     }
 
@@ -86,6 +87,7 @@ public class MonstroBase : MonoBehaviour
             anim.SetBool("morte_caiu", true);
             Destroy(gameObject, 0.55f);
         } else if(qual == 1) {
+            audio_morte.Play();
             anim.SetBool("morte_tiro", true);
             Destroy(gameObject, 1.2f);
         }

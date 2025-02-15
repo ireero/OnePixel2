@@ -13,9 +13,9 @@ public class FaseManager0 : MonoBehaviour
     public GameObject painel_derrota;
     public GameObject painel_socorro;
     public Text txt_help;
-    private string text_help_portugues = "Socorrro!";
-    private string text_help_ingles = "Help!";
-    private string text_help_chines = "帮助！";
+    private string text_help = "Socorrro!";
+    public AudioSource back;
+    public AudioSource back_void;
 
     void Start()
     {
@@ -29,33 +29,22 @@ public class FaseManager0 : MonoBehaviour
         }
 
         if(GameManager.fase0 == 0 || GameManager.fase0 == 1) {
+            back.Play();
             horaDePassar = 0;
             PlayerControle.conversando = false;
             PlayerControle.podeAtirar = true;
             PlayerControle.pode_mexer = true;
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txt_help.text = text_help_portugues;
-            } else if (Application.systemLanguage == SystemLanguage.Chinese ||
-         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
-         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-                txt_help.text = text_help_chines;
-            } 
-            else {
-                txt_help.text = text_help_ingles;
+                txt_help.text = text_help;
             } 
         } else {
-            if(GameManager.progresso >= 3) {
+            back_void.Play();
+            if(GameManager.progresso >= 2) {
                 Destroy(painel_socorro);
             } else {
                 if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                    txt_help.text = text_help_portugues;
-                } else if (Application.systemLanguage == SystemLanguage.Chinese ||
-         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
-         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
-            txt_help.text = text_help_chines;
-         } else {
-            txt_help.text = text_help_ingles;
-         }
+                    txt_help.text = text_help;
+                } 
                 painel_socorro.SetActive(true);
             }
             PlayerControle.conversando = false;
@@ -85,6 +74,8 @@ public class FaseManager0 : MonoBehaviour
 
         if(!umaVez) {
             if(horaDePassar == 5) {
+                back.Stop();
+                back_void.Play();
                 GameManager.Instance.SalvarSit(2, "Fase0");
                 StartCoroutine("aparecerPainel");
                 umaVez = true;

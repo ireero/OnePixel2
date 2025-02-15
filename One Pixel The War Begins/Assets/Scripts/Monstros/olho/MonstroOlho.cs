@@ -58,7 +58,7 @@ public class MonstroOlho : MonoBehaviour
     {
         contador+= Time.deltaTime;
 
-        if(PixelPreto.pularUmaVez || PlayerControle.player_morto) {
+        if(PixelPreto.pularUmaVez) {
             if(!umaVez) {
                 som_morte.Play();
                 umaVez = true;
