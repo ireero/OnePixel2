@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class FaseManager10 : MonoBehaviour
 {
 
-    private string[] falas_pixel_preto = {"...", "Olá", "Não esperava vê-lo de novo", "Ao menos não nesta situação...", "Sabe, eu juro que tentei evitar tudo isso", "Eu juro que...", 
+    private string[] falas_pixel_preto_portugues = {"...", "Olá", "Não esperava vê-lo de novo", "Ao menos não nesta situação...", "Sabe, eu juro que tentei evitar tudo isso", "Eu juro que...", 
     "Deixa, não à nenhuma explicação que justifique esse massacre", "Infelizmente eu não tenho como voltar atrás", "É uma pena todo um povo sofrer por decisões de seus governantes, você não acha?", 
     "É uma pena um grupo específico ser diminuído", "É uma pena que após anos de convivência em harmonia do nada viramos rivais", "Não temos mais representante no trono", 
     "Não temos mais nenhuma voz", "Não somos mais todos iguais", "Somos constantemente ameaçados", "Vivemos com medo de sofrer um ataque", "Dormimos com medo de nunca acordar", "Acordamos com medo de sofrer extermínio", 
@@ -31,14 +31,63 @@ public class FaseManager10 : MonoBehaviour
     "ou practically asked for it White Pixel", "What I will show you now is beyond anything you have ever seen", "It is beyond your closed and stupid mind", "It is beyond all that you have faced so far", 
     "NOW DIE TO THE ONE YOU HAVE ALWAYS DESPISED!"};
 
+    private string[] falas_pixel_preto_chines = {
+    "...",
+    "你好",
+    "我没想到还能见到他",
+    "至少不会在这种情况下……",
+    "你知道，我发誓我试过尽量避免这一切",
+    "我发誓……",
+    "算了，没有任何解释可以为这场大屠杀辩解",
+    "不幸的是，我没有回头的路",
+    "真可惜，一个民族因统治者的决策而受苦，你不觉得吗？",
+    "真遗憾，一个特定群体被削弱",
+    "真可惜，经过多年的和谐共处，我们突然成为了竞争对手",
+    "我们在王位上不再有代表",
+    "我们再也没有发言权",
+    "我们不再都是一样的",
+    "我们不断受到威胁",
+    "我们生活在对攻击的恐惧中",
+    "我们带着永不醒来的恐惧入睡",
+    "我们带着被消灭的恐惧醒来",
+    "有一天，我们终于厌倦了所有的屈辱，决定反抗……",
+    "抱歉，但现在是你休息的时候了。",
+    "",
+    "我看到你在来这里的路上收集了一些东西",
+    "具有讽刺意味的是，你正在使用我发起研究所产生的果实，不觉得吗？",
+    "你从来不想学习任何东西",
+    "我从不想支持和酬劳那些试图寻找进化途径的人",
+    "看看你现在，全副武装……",
+    "让我告诉你你错过了什么……",
+    "研究表明，我们是所有分子结构中最小的",
+    "我们是一切的开始和终结",
+    "我们有能力变成任何东西",
+    "但权力越大，责任越大，不是吗？",
+    "伟大的力量需要巨大的能量、重大的改造、严格的训练以及更多",
+    "多亏了红色像素，我们终于拥有了掌控一切所需的一切",
+    "比看上去要容易，你能相信吗？",
+    "一个愚蠢的州长一次又一次地离开自己的城市，以寻找新资源为借口",
+    "一个对自己城市后巷发生的事毫不在乎的州长",
+    "你基本上是自找的，白色像素",
+    "我现在要展示给你看的东西超出了你所见过的一切",
+    "这超出了你那封闭且愚蠢的脑袋",
+    "这超越了你迄今为止所经历的一切",
+    "现在，让那个你一直鄙视的人来杀了你！"
+};
+
     public Text txtAvancar;
     public Text txt_final;
     public Text txt_obrigado;
 
-    private string text_avancar = "Pressione 'Q' para avançar";
-    private string text_final = "Parabéns! você conseguiu zerar esse jogo que sinceramente eu acho muito difícil. Se você puder deixar uma review de como foi essa sua experiencia eu ficaria muito agradecido.\n Em memória da minha gatinha Fiora, obrigado por toda alegria e companheirismo que você me proporcionou. Descanse em paz.";
-    private string text_obrigado = "Obrigado";
-
+    private string text_avancar_portugues = "Pressione 'Q' para avançar";
+    private string text_avancar_ingles = "Press 'Q' to advance";
+    private string text_avancar_chines = "按下 'Q' 键以继续";
+    private string text_final_portugues = "Parabéns! você conseguiu zerar esse jogo que sinceramente eu acho muito difícil. Se você puder deixar uma review de como foi essa sua experiencia eu ficaria muito agradecido.\n\nEm memória da minha gatinha Fiora, obrigado por toda alegria e companheirismo que você me proporcionou. Descanse em paz.";
+    private string text_obrigado_portugues = "Obrigado";
+    private string text_final_ingles = "恭喜你，你已经成功打败了这个游戏，老实说，我觉得这个游戏非常难。为了纪念我的小猫菲奥拉，感谢你给我带来的欢乐和陪伴。安息吧";
+    private string text_obrigado_ingles = "Thank you";
+    private string text_final_chines = "恭喜！你成功通关了这款我真心觉得非常困难的游戏。如果你能留下评论，讲讲这次体验如何，我将非常感激。\n\n为了纪念我的小猫Fiora，感谢你带给我所有的欢乐和陪伴。安息吧。";
+    private string text_obrigado_chines = "谢谢";
     public GameObject bolaFogo;
     private float delayTiro;
 
@@ -187,12 +236,22 @@ public class FaseManager10 : MonoBehaviour
 
         if(contagem_falas_10 <= 40 && contagem_falas_10 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txt_falas.text = falas_pixel_preto[contagem_falas_10];
-                txtAvancar.text = text_avancar;
-                txt_final.text = text_final;
-                txt_obrigado.text = text_obrigado;
+                txt_falas.text = falas_pixel_preto_portugues[contagem_falas_10];
+                txtAvancar.text = text_avancar_portugues;
+                txt_final.text = text_final_portugues;
+                txt_obrigado.text = text_obrigado_portugues;
+            } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                txt_falas.text = falas_pixel_preto_chines[contagem_falas_10];
+                txtAvancar.text = text_avancar_chines;
+                txt_final.text = text_final_chines;
+                txt_obrigado.text = text_obrigado_chines;
             } else {
                 txt_falas.text = falas_pixel_preto_ingles[contagem_falas_10];
+                txtAvancar.text = text_avancar_ingles;
+                txt_final.text = text_final_ingles;
+                txt_obrigado.text = text_obrigado_ingles;
             }
         }
 

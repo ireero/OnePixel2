@@ -19,14 +19,32 @@ public class MenuManager : MonoBehaviour
 
     public Text txt_tempo_jogo;
 
-    private string text_jogar = "Jogar";
-    private string text_continuar = "Continuar";
-    private string text_fases = "Fases";
-    private string text_creditos = "Créditos";
-    private string text_sair = "Sair";
-    private string text_mostra_tempo = "Tempo de Jogo:";
-    private string text_fala_red = "Você conseguiu aprender um novo poder interessante!, tente apertar na tecla 'C' para ativar e desativar este poder que lhe fará dar o dobro de dano quando estiver ativado!";
-    public static string segundos;
+    // Português (original)
+    private string text_jogar_pt = "Jogar";
+    private string text_continuar_pt = "Continuar";
+    private string text_fases_pt = "Fases";
+    private string text_creditos_pt = "Créditos";
+    private string text_sair_pt = "Sair";
+    private string text_mostra_tempo_pt = "Tempo de Jogo:";
+    private string text_fala_red_pt = "Você conseguiu aprender um novo poder interessante!, tente apertar na tecla 'C' para ativar e desativar este poder que lhe fará dar o dobro de dano quando estiver ativado!";
+
+    // English
+    private string text_jogar_en = "Play";
+    private string text_continuar_en = "Continue";
+    private string text_fases_en = "Levels";
+    private string text_creditos_en = "Credits";
+    private string text_sair_en = "Exit";
+    private string text_mostra_tempo_en = "Game Time:";
+    private string text_fala_red_en = "You have learned a new interesting power! Try pressing the 'C' key to activate and deactivate this ability, which will double your damage when active!";
+
+    // 简体中文 (Simplified Chinese)
+    private string text_jogar_cn = "玩";
+    private string text_continuar_cn = "继续";
+    private string text_fases_cn = "关卡";
+    private string text_creditos_cn = "制作人员";
+    private string text_sair_cn = "退出";
+    private string text_mostra_tempo_cn = "游戏时间：";
+    private string text_fala_red_cn = "你成功学会了一个有趣的新能力！请尝试按 'C' 键来启用和禁用此能力，启用时你的伤害将翻倍！";    public static string segundos;
     private int conferindo = 0;
 
     public GameObject painel_pause;
@@ -36,15 +54,33 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.Instance.CarregarDados();
         if(Application.systemLanguage == SystemLanguage.Portuguese) {
-            txt_jogar.text = text_jogar;
-            txt_continuar.text = text_continuar;
-            txt_fases.text = text_fases;
-            txt_creditos.text = text_creditos;
-            txt_sair.text = text_sair;
-            txt_mostra_tempo.text = text_mostra_tempo;
-            txt_fala_red.text = text_fala_red;
+            txt_jogar.text = text_jogar_pt;
+            txt_continuar.text = text_continuar_pt;
+            txt_fases.text = text_fases_pt;
+            txt_creditos.text = text_creditos_pt;
+            txt_sair.text = text_sair_pt;
+            txt_mostra_tempo.text = text_mostra_tempo_pt;
+            txt_fala_red.text = text_fala_red_pt;
             segundos = " Minutos";
-        } else {
+        } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+            txt_jogar.text = text_jogar_cn;
+            txt_continuar.text = text_continuar_cn;
+            txt_fases.text = text_fases_cn;
+            txt_creditos.text = text_creditos_cn;
+            txt_sair.text = text_sair_cn;
+            txt_mostra_tempo.text = text_mostra_tempo_cn;
+            txt_fala_red.text = text_fala_red_cn;
+            segundos = " 秒钟";
+         } else {
+            txt_jogar.text = text_jogar_en;
+            txt_continuar.text = text_continuar_en;
+            txt_fases.text = text_fases_en;
+            txt_creditos.text = text_creditos_en;
+            txt_sair.text = text_sair_en;
+            txt_mostra_tempo.text = text_mostra_tempo_en;
+            txt_fala_red.text = text_fala_red_en;
             segundos = " Minutes";
         }
 

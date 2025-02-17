@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class FaseManager3 : MonoBehaviour
 {
 
-    private string[] falas_chefao = {"Quem diria que você chegaria até aqui", "Tenho que dizer que estou impressionado pela sua força de vontade", 
+    private string[] falas_chefao_portugues = {"Quem diria que você chegaria até aqui", "Tenho que dizer que estou impressionado pela sua força de vontade", 
     "Tenho que lhe contar uma coisa Imperador", "Esses monstros que você está matando são nada mais, nada menos do que cidadãos do seu Reino", 
     "Graças ao imperador Pixel Preto agora temos o poder que precisávamos", "Finalmente iremos deixar de ser a minoria", "Finalmente seremos nós a tomar grandes decisões", 
     "Sua sorte acaba aqui Imperador Pixel Branco, prepare-se para morrer", " ", "Chega de brincadeira, irei-lhe mostrar a força de todo um povo diminuído, amargurado e pronto para VINGANÇA!"}; // 9
@@ -17,11 +17,26 @@ public class FaseManager3 : MonoBehaviour
     "Thanks to Emperor Black Pixel we now have the power we needed", "Finally we will stop being the minority", "Finally we will be the ones making the big decisions", 
     "Your luck runs out here Emperor White Pixel, prepare to die", " ", "Enough fooling around, I will show you the strength of a whole people diminished, embittered and ready for VENGEANCE!"};
 
+    private string[] falas_chefao_chines = {
+    "谁能想到你竟然能走到这一步",
+    "我不得不说，你的意志力令我印象深刻",
+    "我有件事要告诉你，皇帝",
+    "这些你所杀的怪物无非就是你王国的公民",
+    "多亏黑像素皇帝，我们现在拥有了所需的力量",
+    "终于，我们将不再是少数",
+    "终于，我们将成为做出重大决策的人",
+    "你的好运到此为止了，白像素皇帝，准备死吧",
+    " ",
+    "别再胡闹了，我将让你见识一个被削弱、充满怨恨且准备复仇的民族的力量！"
+};
+
     public Text txtFalas;
 
     public Text txtAvancar;
 
-    private string text_avancar = "Pressione 'Q' para avançar";
+    private string text_avancar_portugues = "Pressione 'Q' para avançar";
+    private string text_avancar_ingles = "Press 'Q' to advance";
+    private string text_avancar_chines = "按下 'Q' 键以继续";
 
     public static int contagem_falas_3;
 
@@ -147,10 +162,17 @@ public class FaseManager3 : MonoBehaviour
 
         if(contagem_falas_3 <= 9 && contagem_falas_3 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txtFalas.text = falas_chefao[contagem_falas_3];
-                txtAvancar.text = text_avancar;
-            } else {
+                txtFalas.text = falas_chefao_portugues[contagem_falas_3];
+                txtAvancar.text = text_avancar_portugues;
+            } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                txtFalas.text = falas_chefao_chines[contagem_falas_3];
+                txtAvancar.text = text_avancar_chines;
+            } 
+            else {
                 txtFalas.text = falas_chefao_ingles[contagem_falas_3];
+                txtAvancar.text = text_avancar_ingles;
             }
         }
 

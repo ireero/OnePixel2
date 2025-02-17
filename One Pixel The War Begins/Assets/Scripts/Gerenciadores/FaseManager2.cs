@@ -6,17 +6,22 @@ using UnityEngine.UI;
 public class FaseManager2 : MonoBehaviour
 {
 
-    private string[] falas_chefao = {"Vá em bora agora!", "Aproveite em quanto nosso Pai dorme e suma!", "Você vai morrer!", " ", 
+    private string[] falas_chefao_portugues = {"Vá embora agora!", "Aproveite em quanto nosso Pai dorme e suma!", "Você vai morrer!", " ", 
     "Meus filhos morreram porque fui fraco de mais...", "Meu senhor este castelo é o seu túmulo, VOCÊ VAI MORRER!"};
 
     private string[] falas_chefao_ingles = {"Go away now!", "Enjoy while our Father sleeps and be gone!", "You are going to die!", " ", 
     "My children died because I was too weak...", "My lord, this castle is your tomb, YOU WILL DIE!"};
 
+    private string[] falas_chefao_chines = {"马上走开！", "趁着我们父亲睡着时尽情享受，然后快走！","你会死的！",
+    " ","我的孩子们死了，因为我太弱了……","主公，这座城堡就是你的坟墓，你必将死去！"
+};
     public Text txtFalas;
 
     public Text txtAvancar;
 
-    private string text_avancar = "Pressione 'Q' para avançar";
+    private string text_avancar_portugues = "Pressione 'Q' para avançar";
+    private string text_avancar_ingles = "Press 'Q' to advance";
+    private string text_avancar_chines = "按下 'Q' 键以继续";
 
     public static int contagem_falas_2;
 
@@ -111,11 +116,18 @@ public class FaseManager2 : MonoBehaviour
 
         if(contagem_falas_2 <= 5 && contagem_falas_2 >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txtFalas.text = falas_chefao[contagem_falas_2];
-                txtAvancar.text = text_avancar;
-            } else {
+                txtFalas.text = falas_chefao_portugues[contagem_falas_2];
+                txtAvancar.text = text_avancar_portugues;
+            }  else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                txtFalas.text = falas_chefao_chines[contagem_falas_2];
+                txtAvancar.text = text_avancar_chines;
+            } 
+            else {
                 txtFalas.text = falas_chefao_ingles[contagem_falas_2];
-            }
+                txtAvancar.text = text_avancar_ingles;
+            } 
             }
 
             switch(contagem_falas_2) {

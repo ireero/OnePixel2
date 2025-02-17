@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class FaseManager : MonoBehaviour
 {
 
-    private string[] falas = {"Aleluia, você chegou!", "Meu senhor o castelo foi tomado!", "Todos morreram lá dentro", "Por favor meu lorde nos ajude", 
+    private string[] falas_portugues = {"Aleluia, você chegou!", "Meu senhor o castelo foi tomado!", "Todos morreram lá dentro", "Por favor meu lorde nos ajude", 
     "TE IMPLORO SENHOR QUE NOS AJUDE!"," ", "Existem alguns verdadeiros monstros nesse castelo agora", 
     "Fuja em quanto ainda tem chance", "Diga a todos que sinto muito."};
 
@@ -15,11 +15,17 @@ public class FaseManager : MonoBehaviour
     "I BEG YOU LORD HELP US!"," ", "There are some real monsters in this castle now", 
     "Escape while you still have the chance", "Tell everyone I'm sorry."};
 
+    private string[] falas_chines = {"哈利路亚，你在这里！", "主公，城堡已经被占领了！", "里面的人全都死了！", 
+    "请主公救救我们！", "我求求你，主公，救救我们！", " ", "现在这座城堡里有一些真正的怪物！", "趁还有机会，快逃！", "告诉大家，我很抱歉。"
+    };
+
     public Text txtFalas;
 
     public Text txtAvancar;
 
-    private string text_avancar = "Pressione 'Q' para avançar";
+    private string text_avancar_portugues = "Pressione 'Q' para avançar";
+    private string text_avancar_ingles = "Press 'Q' to advance";
+    private string text_avancar_chines = "按下 'Q' 键以继续";
 
     public static int contagem_falas;
 
@@ -186,10 +192,17 @@ public class FaseManager : MonoBehaviour
 
         if(contagem_falas <= 8 && contagem_falas >= 0) {
             if(Application.systemLanguage == SystemLanguage.Portuguese) {
-                txtFalas.text = falas[contagem_falas];
-                txtAvancar.text = text_avancar;
-            } else {
+                txtFalas.text = falas_portugues[contagem_falas];
+                txtAvancar.text = text_avancar_portugues;
+            } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+                txtFalas.text = falas_chines[contagem_falas];
+                txtAvancar.text = text_avancar_chines;
+            } 
+            else {
                 txtFalas.text = falas_ingles[contagem_falas];
+                txtAvancar.text = text_avancar_ingles;
             }
             if(contagem_falas >= 1 && contagem_falas <= 2) {
                 imagem.sprite = cara_raiva;

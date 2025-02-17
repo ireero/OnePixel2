@@ -15,13 +15,21 @@ public class SceneLoader : MonoBehaviour
 
     public Text txtCarregando;
 
-    private string text_carregando = "Carregando...";
+    private string text_carregando_portugues = "Carregando...";
+    private string text_carregando_ingles = "Loading...";
+    private string text_carregando_chines = "加载中...";
 
     private void Awake() {
 
         if(Application.systemLanguage == SystemLanguage.Portuguese) {
-            txtCarregando.text = text_carregando;
-        }
+            txtCarregando.text = text_carregando_portugues;
+        } else if (Application.systemLanguage == SystemLanguage.Chinese ||
+         Application.systemLanguage == SystemLanguage.ChineseSimplified ||
+         Application.systemLanguage == SystemLanguage.ChineseTraditional) {
+            txtCarregando.text = text_carregando_chines;
+         } else {
+            txtCarregando.text = text_carregando_ingles;
+         }
         
         if(Instance == null) {
             Instance = this;
